@@ -81,22 +81,8 @@
       return /toss/i.test(navigator.userAgent || '');
     }
 
-    function openExternalUrl(url){
-      if(!url) return false;
-      if(isTossInAppBrowser()){
-        location.href = url;
-        return false;
-      }
-      try {
-        const popup = window.open(url, '_blank', 'noopener,noreferrer');
-        if(popup) return false;
-      } catch(e) {}
-      location.href = url;
+    function openExternalUrl(){
       return false;
-    }
-
-    function openKakaoPayDonation(){
-      return openExternalUrl('https://qr.kakaopay.com/FdgGayRHw');
     }
 
     const policyContents = {
@@ -1687,74 +1673,28 @@
       return expandProjectData(JSON.parse(decodeURIComponent(escape(atob(e)))));
     }
     function getShareBaseUrl(){
-      if(location.protocol === 'file:') return 'https://albabee.pages.dev/';
       return location.href.split('#')[0];
     }
     function buildShareUrl(){
       return getShareBaseUrl() + '#data=' + encodeProjectDataForUrl();
     }
     async function buildShortShareUrl(){
-      const encoded = encodeProjectDataForUrl();
-      const fallbackUrl = getShareBaseUrl() + '#data=' + encoded;
-      try{
-        const response = await fetch('/s', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data: encoded, title: getShareTitleForKakao(), description: getShareDescriptionForKakao() })
-        });
-        if(!response.ok) throw new Error('short share create failed');
-        const json = await response.json();
-        if(json && json.url) return new URL(json.url, location.origin).href;
-        if(json && json.id) return location.origin + '/s/' + encodeURIComponent(json.id);
-      } catch(e) {}
-      return fallbackUrl;
+      return buildShareUrl();
     }
-    function getShareTitleForKakao(){
+    function getShareTitleForToss(){
       return '알바 월급 계산기 💰';
     }
-    function getShareDescriptionForKakao(){
+    function getShareDescriptionForToss(){
       const ym = getCurrentYearMonth();
       if(lastCalculationSummary){
         return '실제 근무일 기준 급여 계산 · ' + ym.year + '년 ' + ym.month + '월 예상 세후 ' + formatWon(lastCalculationSummary.netPay) + ' · 총 근무 ' + Number(lastCalculationSummary.totalWorkHours || 0).toFixed(1) + '시간';
       }
       return '실제 근무일 기준 급여 계산 · 근무 스케줄과 예상 월급을 확인해보세요.';
     }
-    async function shareToKakaoTalk(){
+    async function shareCleanLink(){
       const url = await buildShortShareUrl();
-      const title = getShareTitleForKakao();
-      const text = getShareDescriptionForKakao();
-      const fallback = function(){
-        showShareLinkBox();
-        copyTextToClipboard(url, '카카오톡 공유창을 바로 열 수 없어 공유 링크를 복사했어요. 카카오톡 채팅방에 붙여넣어 보내면 됩니다.');
-      };
-
-      // 모바일 크롬/사파리에서는 이 방식이 가장 안정적입니다. 카카오톡이 설치되어 있으면 공유 대상에 뜹니다.
-      if(navigator.share){
-        navigator.share({ title:title, text:text, url:url }).catch(function(){ fallback(); });
-        return false;
-      }
-
-      // PC에서는 카카오 SDK를 먼저 시도하고, 실패하면 즉시 링크 복사/표시로 대체합니다.
-      const kakaoJavascriptKey = '88aceef505f5dfe007a1cf217d46f4b0';
-      try {
-        if(window.Kakao && kakaoJavascriptKey){
-          if(!Kakao.isInitialized()) Kakao.init(kakaoJavascriptKey);
-          Kakao.Share.sendDefault({
-            objectType: 'feed',
-            content: {
-              title: title,
-              description: text,
-              imageUrl: 'https://dummyimage.com/600x315/111827/ffffff&text=Alba+Pay+Calculator',
-              link: { mobileWebUrl: url, webUrl: url }
-            },
-            buttons: [{ title: '계산 결과 보기', link: { mobileWebUrl: url, webUrl: url } }],
-            fail: fallback
-          });
-          return false;
-        }
-      } catch(e) {}
-
-      fallback();
+      showShareLinkBox();
+      copyTextToClipboard(url, '토스 앱 버전에서는 외부 SDK 없이 공유 링크만 복사합니다.');
       return false;
     }
 
@@ -2062,25 +2002,7 @@
       return ws;
     }
     function loadXlsxLibrary(){
-      return new Promise(function(resolve){
-        if(window.XLSX){ resolve(true); return; }
-        const sources = [
-          'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js',
-          'https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js'
-        ];
-        let idx = 0;
-        function tryNext(){
-          if(window.XLSX){ resolve(true); return; }
-          if(idx >= sources.length){ resolve(false); return; }
-          const s = document.createElement('script');
-          s.src = sources[idx++];
-          s.async = true;
-          s.onload = function(){ resolve(Boolean(window.XLSX)); };
-          s.onerror = tryNext;
-          document.head.appendChild(s);
-        }
-        tryNext();
-      });
+      return Promise.resolve(Boolean(window.XLSX));
     }
 
 
@@ -2132,7 +2054,7 @@
       if(!ensureCalculated() || !lastCalculationSummary) return;
       const loaded = await loadXlsxLibrary();
       if(!loaded || !window.XLSX){
-        alert('XLSX 파일 생성 도구를 불러오지 못했습니다. 인터넷 연결이 막혀 있으면 임시로 엑셀 호환 파일(.xls)을 저장합니다.');
+        alert('토스 앱 버전에서는 외부 XLSX 도구를 불러오지 않고 엑셀 호환 파일(.xls)을 저장합니다.');
         downloadExcelCompatibleFile();
         return;
       }
@@ -2338,17 +2260,6 @@
       updateMinimumWageInfo();
     }
 
-    function acceptCookieConsent(){
-      try { localStorage.setItem('wageCalcCookieConsent', 'accepted'); } catch(e) {}
-      const box = document.getElementById('cookieConsent');
-      if(box) box.classList.remove('show');
-    }
-    function initCookieConsent(){
-      let accepted = false;
-      try { accepted = localStorage.getItem('wageCalcCookieConsent') === 'accepted'; } catch(e) {}
-      const box = document.getElementById('cookieConsent');
-      if(box && !accepted) box.classList.add('show');
-    }
     const allowanceColors = [
       { name:'초록', value:'#22c55e' },
       { name:'파랑', value:'#2563eb' },
@@ -2498,9 +2409,6 @@
       const support = document.getElementById('developerSupport');
       if(support) support.setAttribute('hidden', '');
 
-      const kakaoShareBtn = document.getElementById('kakaoShareBtn');
-      if(kakaoShareBtn) kakaoShareBtn.setAttribute('hidden', '');
-
       document.querySelectorAll('button[onclick*="copyShareLink"]').forEach(function(btn){
         btn.classList.add('toss-primary-share-btn');
       });
@@ -2520,7 +2428,6 @@
     setInitialDateAndWageDefaults();
     initViewMode();
     initStepFlow();
-    initCookieConsent();
     initColorPalette();
     installDayTooltipAutoHide();
     lastCalendarPeriod = getCurrentYearMonth();

@@ -1,70 +1,41 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>알바비 계산기 | 주휴수당·야간수당·연장수당 월급 계산</title>
-  <!-- v17: calendar date click dirty-state fix -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4H0BXPC2LH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4H0BXPC2LH');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6558954953418902"
-     crossorigin="anonymous"></script>
+  <!-- Toss AIT clean build: no ads, analytics, external SDK, or authenticated resources. -->
   <meta name="description" content="알바비 계산기입니다. 시급, 근무시간, 근무일을 입력하면 주휴수당, 야간수당, 연장수당, 휴일수당, 세금까지 반영해 실제 알바 월급과 세후 예상 급여를 계산할 수 있습니다." />
   <meta name="keywords" content="알바비 계산기, 알바 급여 계산기, 알바 월급 계산기, 시급 계산기, 주휴수당 계산기, 야간수당 계산기, 연장수당 계산기, 휴일수당 계산기, 아르바이트 급여 계산, 세후 월급 계산" />
   <meta name="author" content="Lawzero" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://albabee.pages.dev/" />
-  <link rel="icon" href="/favicon.png" type="image/png" />
-  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="./assets/favicon-_NM9_8Cv.png" type="image/png" />
+  <link rel="shortcut icon" href="./assets/favicon-_NM9_8Cv.png" type="image/png" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon-Do-ITn55.png" />
   <meta name="theme-color" content="#111827" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="알바비 계산기" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta property="og:image" content="https://albabee.pages.dev/thumbnail.png" />
+  <meta property="og:image" content="./thumbnail.png" />
   <meta property="og:image:width" content="1932" />
   <meta property="og:image:height" content="828" />
-  <meta name="twitter:image" content="https://albabee.pages.dev/thumbnail.png" />
+  <meta name="twitter:image" content="./thumbnail.png" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="알바비 계산기 | 시급·주휴수당 포함 월급 계산" />
   <meta property="og:description" content="실제 근무일 기준으로 시급, 주휴수당, 야간수당, 연장수당, 휴일수당까지 포함해 알바 월급과 급여를 계산해보세요." />
   <meta property="og:locale" content="ko_KR" />
-  <meta property="og:url" content="https://albabee.pages.dev/" />
   <meta property="og:site_name" content="알바비 계산기" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="알바비 계산기 | 시급·주휴수당 포함 월급 계산" />
   <meta name="twitter:description" content="시급, 근무시간, 주휴수당, 야간수당, 연장수당, 세금까지 반영해 알바 월급을 계산하세요." />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "알바비 계산기",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Any",
-    "description": "알바비 계산기입니다. 달력 기반으로 실제 근무일, 시급, 근무시간, 주휴수당, 연장수당, 야간수당, 휴일수당, 세후 급여를 계산하는 무료 도구입니다.",
-    "inLanguage": "ko-KR",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
-    "publisher": { "@type": "Organization", "name": "Lawzero", "alternateName": "로제로", "logo": "https://albabee.pages.dev/logo.png" },
-    "image": "https://albabee.pages.dev/thumbnail.png",
-    "contactPoint": { "@type": "ContactPoint", "email": "lawzero3057@gmail.com", "contactType": "customer support" }
-  }
-  </script>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" crossorigin href="./assets/toss-BAC3DmEA.css">
 </head>
 <body>
   <div class="container">
     <header>
       <div class="site-hero-banner">
-        <img src="/thumbnail.png" alt="알바비 계산기 - 내 알바비, 얼마나 받을까?" />
+        <img src="./assets/thumbnail-6PlduY9-.png" alt="알바비 계산기 - 내 알바비, 얼마나 받을까?" />
       </div>
       <h1>알바비 계산기</h1>
       <p class="sub-text hero-main-desc">실제 근무일 기준으로 시급, 주휴수당, 야간수당, 연장수당, 세후 월급까지 계산하세요.</p>
@@ -151,7 +122,7 @@
               <div class="weekdays"><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(0)">일</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(1)">월</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(2)">화</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(3)">수</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(4)">목</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(5)">금</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(6)">토</button></div>
               <div id="calendar" class="calendar"></div>
               <div class="calendar-legend"><span class="legend-item">↪ 퇴근 시간이 다음날이에요</span><span class="legend-item">🌙 22:00~06:00 근무가 포함돼요</span><span class="legend-item">날짜 배경색은 근무 프리셋이에요</span><span class="legend-item">● 작은 원은 추가수당이에요</span></div>
-              <div class="calendar-help-note">ℹ️ 선택한 날짜를 다시 누르면 해제돼요.</div>
+              <div class="toss-help-note">ℹ️ 선택한 날짜를 다시 누르면 해제돼요.</div>
               <div id="mobileAllowanceLegend" class="mobile-allowance-legend"></div>
             </div>
             <aside id="mainCalendarLegend" class="main-calendar-color-guide"></aside>
@@ -287,20 +258,9 @@
             <button class="soft-btn" onclick="downloadExcelCompatibleFile()">📄 Excel 파일 다운</button>
             <button class="soft-btn" onclick="copyResultSummary()">문자용 요약 복사</button>
             <button class="soft-btn" onclick="copyShareLink()">공유링크복사 🔗</button>
-            <button id="kakaoShareBtn" class="soft-btn kakao-share-btn" onclick="return shareToKakaoTalk()">카카오톡에 공유하기 💬</button>
           </div>
           <div id="shareLinkBox" class="share-box"><a id="shareLinkAnchor" class="share-link-short" href="#" target="_blank" rel="noopener"><span>공유 링크 열기</span><strong>↗</strong></a><textarea id="shareLinkText" readonly inputmode="url" aria-label="공유 링크"></textarea><p class="tool-note">짧은 공유링크가 가능하면 /s/링크로 만들고, 실패하면 긴 데이터 링크로 대체합니다. 링크에는 입력한 근무일·근무시간·수당·예상 급여 계산값이 포함될 수 있습니다.</p></div>
         </div>
-      </div>
-    </section>
-
-    <section class="card developer-support-card" id="developerSupport">
-      <div class="developer-support-inner">
-        <div>
-          <p class="developer-support-title">🍗 치킨값 후원하기</p>
-          <p class="developer-support-text"><strong>버그잡는날 치킨은 못참지.</strong><br>계산기가 도움이 됐다면 부담 없이 자유롭게 응원해주세요.<span class="donation-mobile-break"></span>버튼을 누르면 카카오페이 송금창으로 바로 이동합니다.</p>
-        </div>
-        <button type="button" class="developer-support-main-btn" onclick="openKakaoPayDonation()">🍗 치킨값 후원</button>
       </div>
     </section>
 
@@ -322,11 +282,6 @@
     </div>
     <div id="mobileDaySheetBody" class="mobile-day-sheet-body"></div>
   </div>
-  <div id="cookieConsent" class="cookie-consent" role="dialog" aria-live="polite">
-    <p><strong>쿠키 사용 안내</strong><br>본 사이트는 저장 기능, 방문 통계, 광고 제공을 위해 쿠키 또는 브라우저 저장소를 사용할 수 있습니다. 계속 이용하면 이에 동의한 것으로 간주됩니다.</p>
-    <button type="button" onclick="acceptCookieConsent()">확인</button>
-  </div>
-
   <div id="policyModalBackdrop" class="policy-modal-backdrop" onclick="closePolicyModal()"></div>
   <div id="policyModal" class="policy-modal" role="dialog" aria-modal="true" aria-labelledby="policyModalTitle">
     <div class="policy-modal-head">
@@ -335,9 +290,6 @@
     </div>
     <div id="policyModalBody" class="policy-modal-body"></div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-  <script src="app.js"></script>
+  <script src="toss-app.js"></script>
 </body>
 </html>
