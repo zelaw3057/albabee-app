@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://albabee.pages.dev/sitemap.xml
