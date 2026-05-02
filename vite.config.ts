@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
+import { copyFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { defineConfig } from 'vite';
 
@@ -18,25 +18,6 @@ const staticFiles = [
   'weekly-pay.html',
 ];
 
-const sitemapFiles = [
-  'sitemap.xml',
-  'sitemap2.xml',
-];
-
-function assertSitemapIsPureXml(file, target) {
-  const sourceBytes = readFileSync(file);
-  const targetBytes = readFileSync(target);
-  const targetText = targetBytes.toString('utf8');
-
-  if (!sourceBytes.equals(targetBytes)) {
-    throw new Error(`dist/${file} must be an exact copy of ${file}`);
-  }
-
-  if (/<\/?script\b|<script\s*\/>/i.test(targetText)) {
-    throw new Error(`dist/${file} must not contain script tags`);
-  }
-}
-
 function copyStaticRootFiles() {
   return {
     name: 'copy-static-root-files',
@@ -50,23 +31,8 @@ function copyStaticRootFiles() {
   };
 }
 
-function copySitemapXml() {
-  return {
-    name: 'copy-sitemap-xml-verbatim',
-    closeBundle() {
-      for (const file of sitemapFiles) {
-        const target = join('dist', file);
-        mkdirSync(dirname(target), { recursive: true });
-        rmSync(target, { force: true });
-        copyFileSync(file, target);
-        assertSitemapIsPureXml(file, target);
-      }
-    },
-  };
-}
-
 export default defineConfig({
-  plugins: [copyStaticRootFiles(), copySitemapXml()],
+  plugins: [copyStaticRootFiles()],
   build: {
     outDir: 'dist',
     emptyOutDir: true,
