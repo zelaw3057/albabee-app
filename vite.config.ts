@@ -16,7 +16,6 @@ const staticFiles = [
   'night-pay.html',
   'robots.txt',
   'service-worker.js',
-  'sitemap.xml',
   'thumbnail.png',
   'weekly-pay.html',
 ];
