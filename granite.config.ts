@@ -3,7 +3,7 @@ import { defineConfig } from '@apps-in-toss/web-framework/config';
 const isTossCleanBuild = process.env.TOSS_CLEAN_BUILD === '1';
 
 export default defineConfig({
-  appName: 'albabee-calculator',
+  appName: 'albabee-paycalc',
   brand: {
     displayName: '\uC54C\uBC14\uBE44 \uACC4\uC0B0\uAE30',
     primaryColor: '#111827',

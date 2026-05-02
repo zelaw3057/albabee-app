@@ -4,12 +4,12 @@ var global = typeof globalThis !== 'undefined' ? globalThis : typeof global !== 
 (function (global) {
   global.__granite = global.__granite || {};
   global.__granite.app = {
-    name: "albabee-calculator",
+    name: "albabee-paycalc",
     scheme: 'intoss',
     host: ''
   };
   global.__appsInToss = {
-    deploymentId: "019de49d-c286-752e-8f14-ba7c6eaa222b",
+    deploymentId: "019de4ca-e922-7a32-8621-ff17e52c9fd6",
     brandDisplayName: "\uC54C\uBC14\uBE44 \uACC4\uC0B0\uAE30",
     brandPrimaryColor: "#111827",
     brandIcon: "./favicon.png",
@@ -127,12 +127,12 @@ if (global.__MICRO_FRONTEND__ == null) {
 (function (global) {
   global.__granite = global.__granite || {};
   global.__granite.app = {
-    name: "albabee-calculator",
+    name: "albabee-paycalc",
     scheme: 'intoss',
     host: ''
   };
   global.__appsInToss = {
-    deploymentId: "019de49d-c286-752e-8f14-ba7c6eaa222b",
+    deploymentId: "019de4ca-e922-7a32-8621-ff17e52c9fd6",
     brandDisplayName: "\uC54C\uBC14\uBE44 \uACC4\uC0B0\uAE30",
     brandPrimaryColor: "#111827",
     brandIcon: "./favicon.png",
