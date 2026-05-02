@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync, readFileSync } from 'node:fs';
+import { copyFileSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { defineConfig } from 'vite';
 
@@ -14,10 +14,23 @@ const staticFiles = [
   'night-pay.html',
   'robots.txt',
   'service-worker.js',
-  'sitemap.xml',
   'thumbnail.png',
   'weekly-pay.html',
 ];
+
+function assertSitemapIsPureXml(target) {
+  const sourceBytes = readFileSync('sitemap.xml');
+  const targetBytes = readFileSync(target);
+  const targetText = targetBytes.toString('utf8');
+
+  if (!sourceBytes.equals(targetBytes)) {
+    throw new Error('dist/sitemap.xml must be an exact copy of sitemap.xml');
+  }
+
+  if (/<\/?script\b|<script\s*\/>/i.test(targetText)) {
+    throw new Error('dist/sitemap.xml must not contain script tags');
+  }
+}
 
 function copyStaticRootFiles() {
   return {
@@ -27,22 +40,26 @@ function copyStaticRootFiles() {
         const target = join('dist', file);
         mkdirSync(dirname(target), { recursive: true });
         copyFileSync(file, target);
-
-        if (file === 'sitemap.xml') {
-          const sourceBytes = readFileSync(file);
-          const targetBytes = readFileSync(target);
-
-          if (!sourceBytes.equals(targetBytes)) {
-            throw new Error('dist/sitemap.xml must be an exact copy of sitemap.xml');
-          }
-        }
       }
     },
   };
 }
 
+function copySitemapXml() {
+  return {
+    name: 'copy-sitemap-xml-verbatim',
+    closeBundle() {
+      const target = join('dist', 'sitemap.xml');
+      mkdirSync(dirname(target), { recursive: true });
+      rmSync(target, { force: true });
+      copyFileSync('sitemap.xml', target);
+      assertSitemapIsPureXml(target);
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [copyStaticRootFiles()],
+  plugins: [copyStaticRootFiles(), copySitemapXml()],
   build: {
     outDir: 'dist',
     emptyOutDir: true,
