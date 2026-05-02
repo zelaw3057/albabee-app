@@ -3,6 +3,8 @@ import { dirname, join } from 'node:path';
 import { defineConfig } from 'vite';
 
 const staticFiles = [
+  '_headers',
+  '_routes.json',
   'ads.txt',
   'apple-touch-icon.png',
   'app.js',
