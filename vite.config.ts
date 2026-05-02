@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync } from 'node:fs';
+import { copyFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { defineConfig } from 'vite';
 
@@ -27,6 +27,15 @@ function copyStaticRootFiles() {
         const target = join('dist', file);
         mkdirSync(dirname(target), { recursive: true });
         copyFileSync(file, target);
+
+        if (file === 'sitemap.xml') {
+          const sourceBytes = readFileSync(file);
+          const targetBytes = readFileSync(target);
+
+          if (!sourceBytes.equals(targetBytes)) {
+            throw new Error('dist/sitemap.xml must be an exact copy of sitemap.xml');
+          }
+        }
       }
     },
   };
