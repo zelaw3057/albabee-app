@@ -2,7 +2,15 @@ const SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://albabee.pages.dev/</loc>
-    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/minimum-wage.html</loc>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/night-pay.html</loc>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/weekly-pay.html</loc>
   </url>
 </urlset>
 `;
@@ -13,6 +21,7 @@ export function onRequestGet() {
       'Content-Type': 'application/xml; charset=utf-8',
       'X-Content-Type-Options': 'nosniff',
       'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0, no-transform',
+      'X-Robots-Tag': 'noarchive',
     },
   });
 }
