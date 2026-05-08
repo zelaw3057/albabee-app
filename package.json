@@ -4,12 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "ait dev",
+    "dev": "npm run web:dev",
     "build": "npm run web:build",
     "web:dev": "vite dev",
     "web:build": "vite build",
     "web:build:ait": "vite build --config vite.config.toss.ts",
     "build:ait": "node scripts/build-ait.mjs",
+    "toss:dev": "ait dev",
+    "toss:build:web": "npm run web:build:ait",
+    "toss:build:ait": "npm run build:ait",
     "preview": "vite preview"
   },
   "dependencies": {

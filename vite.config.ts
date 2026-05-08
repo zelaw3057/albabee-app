@@ -15,6 +15,7 @@ const staticFiles = [
   'robots.txt',
   'service-worker.js',
   'sitemap.xml',
+  'style.css',
   'thumbnail.png',
   'weekly-pay.html',
 ];
