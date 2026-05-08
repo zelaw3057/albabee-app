@@ -99,27 +99,6 @@
       return openExternalUrl('https://qr.kakaopay.com/FdgGayRHw');
     }
 
-    const policyContents = {
-      aboutSite: { title: '📌 사이트 소개', body: `<h3>알바 월급 계산기</h3><p><strong>알바 월급 계산기</strong>는 아르바이트생, 단기근로자, 교대근무자가 실제로 일한 날짜를 달력에 입력해 예상 급여를 확인할 수 있도록 만든 무료 계산 도구입니다. 시급, 출근·퇴근 시간, 휴게시간, 주휴수당, 연장수당, 야간수당, 휴일수당, 추가수당, 세금 공제 등을 한 화면에서 계산할 수 있습니다.</p><div class="policy-modal-grid"><div class="policy-modal-card"><b>✅ 실제 근무일 기준</b>매주 근무시간이 달라도 달력에서 실제 근무일을 선택해 계산할 수 있습니다.</div><div class="policy-modal-card"><b>✅ 수당 계산 보조</b>주휴, 연장, 야간, 휴일수당을 옵션으로 나누어 예상 급여를 확인할 수 있습니다.</div><div class="policy-modal-card"><b>✅ 공유·제출용 도구</b>계산 결과를 복사하거나 Excel 파일로 내려받아 확인용 자료로 활용할 수 있습니다.</div></div>` },
-      wageGuide: { title: '💡 급여 계산 안내', body: `<h3>알바 급여 계산 안내</h3><p><strong>주휴수당</strong>은 일반적으로 1주 소정근로시간이 15시간 이상이고, 약속된 근무일을 개근한 경우 발생할 수 있습니다. 실제 지급 여부는 근로계약과 근무 형태에 따라 달라질 수 있습니다.</p><p><strong>연장수당</strong>은 하루 8시간 또는 주 40시간을 초과한 근무를 기준으로 계산할 수 있으며, 사업장 규모와 근로계약에 따라 적용 여부가 달라질 수 있습니다.</p><p><strong>야간수당</strong>은 보통 22:00부터 다음 날 06:00 사이 근무를 기준으로 계산합니다. 이 계산기는 사용자가 입력한 근무시간을 바탕으로 예상 금액을 표시합니다.</p>` },
-      privacyPolicy: { title: '🔒 개인정보처리방침', body: `<h3>개인정보처리방침</h3><p>본 사이트는 사용자가 입력한 근무일, 근무시간, 시급, 수당 등의 계산 데이터를 기본적으로 사용자의 브라우저 안에서 처리합니다. 별도의 회원가입을 요구하지 않으며, 운영자가 사용자의 계산 내용을 직접 수집하지 않습니다.</p><ul><li><strong>로컬 저장:</strong> 저장 기능을 사용할 경우 입력 정보가 사용자의 기기 브라우저 저장소에 보관될 수 있습니다.</li><li><strong>공유 링크:</strong> 공유 링크를 만들면 입력한 계산 데이터가 링크 안에 포함될 수 있으므로, 개인정보가 들어가지 않도록 주의해주세요.</li><li><strong>쿠키 사용:</strong> 사이트 이용 편의, 방문 통계, 광고 제공을 위해 쿠키가 사용될 수 있습니다.</li><li><strong>광고 안내:</strong> 향후 Google AdSense 등 제3자 광고 서비스가 맞춤형 광고 제공을 위해 쿠키를 사용할 수 있습니다.</li><li><strong>문의:</strong> 개인정보 또는 사이트 관련 문의는 lawzero3057@gmail.com 으로 연락해주세요.</li></ul>` },
-      termsOfUse: { title: '📄 이용약관', body: `<h3>이용약관</h3><p>본 사이트의 계산 결과는 사용자가 입력한 값을 기준으로 한 <strong>참고용 예상 금액</strong>입니다. 실제 급여는 근로계약서, 사업장 규모, 근무 형태, 세금 처리, 관련 법령 적용 여부에 따라 달라질 수 있습니다.</p><ul><li>계산 결과는 법률·노무 자문을 대체하지 않습니다.</li><li>정확한 임금 분쟁 또는 체불임금 판단은 고용노동부, 노무사 등 전문 기관에 확인하는 것이 좋습니다.</li><li>사용자는 본인의 상황에 맞게 입력값과 옵션을 직접 확인해야 합니다.</li><li>사이트 운영자는 계산 결과 사용으로 발생한 손해에 대해 법이 허용하는 범위 내에서 책임을 지지 않습니다.</li></ul>` }
-    };
-
-    function openPolicyModal(id){
-      const data = policyContents[id];
-      if(!data) return;
-      document.getElementById('policyModalTitle').textContent = data.title;
-      document.getElementById('policyModalBody').innerHTML = data.body;
-      document.getElementById('policyModalBackdrop').classList.add('show');
-      document.getElementById('policyModal').classList.add('show');
-    }
-
-    function closePolicyModal(){
-      document.getElementById('policyModalBackdrop').classList.remove('show');
-      document.getElementById('policyModal').classList.remove('show');
-    }
-
     function setStepOpen(sectionId, shouldOpen){
       const section = document.getElementById(sectionId);
       if(!section) return;
@@ -1418,7 +1397,6 @@
       }
     }
 
-    function getStorageKey(){ const ym = getCurrentYearMonth(); return 'albaPayCalculator:' + ym.year + '-' + pad(ym.month); }
     function collectProjectData(){
       return {
         version: 16,
@@ -1478,27 +1456,6 @@
       ensurePatternColors();
       toggleCustomTax(); applyBusinessSizeRules(); updateMinimumWageInfo(); renderCalendar(); renderAllowanceList(); renderPatternList(); updateSelectedDayDetails();
     }
-    function saveProjectData(){
-      localStorage.setItem(getStorageKey(), JSON.stringify(collectProjectData()));
-      document.getElementById('saveState').textContent = '저장 완료: ' + new Date().toLocaleString();
-    }
-    function loadProjectData(){
-      const raw = localStorage.getItem(getStorageKey());
-      if(!raw){ alert('현재 연도/월에 저장된 기록이 없습니다.'); return; }
-      applyProjectData(JSON.parse(raw));
-      document.getElementById('saveState').textContent = '불러오기 완료: ' + new Date().toLocaleString();
-    }
-    function autoLoadProjectData(){
-      const raw = localStorage.getItem(getStorageKey());
-      if(raw){ applyProjectData(JSON.parse(raw)); document.getElementById('saveState').textContent = '자동 불러오기 완료'; }
-      else { document.getElementById('saveState').textContent = '현재 연도/월에 저장된 기록이 없습니다.'; }
-    }
-    function clearSavedProjectData(){
-      if(!confirm('현재 연도/월의 저장 기록을 삭제할까요? 화면에 입력된 내용은 바로 사라지지 않습니다.')) return;
-      localStorage.removeItem(getStorageKey());
-      document.getElementById('saveState').textContent = '저장 기록을 삭제했습니다.';
-    }
-
     function addWorkPattern(){
       const name = document.getElementById('patternName').value.trim() || '근무 패턴';
       const startTime = normalizeTimeValue(document.getElementById('patternStartTime').value);
