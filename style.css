@@ -466,9 +466,9 @@
     .policy-list { margin:8px 0 0; padding-left:18px; }
     .policy-list li { margin:4px 0; }
 
-    .footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:4px 10px; margin:6px 0; }
-    .footer-links button { width:auto; padding:0; border:0; background:transparent; color:#6b7280; font-size:11px; font-weight:800; text-decoration:none; box-shadow:none; }
-    .footer-links button:hover { transform:none; opacity:.75; text-decoration:underline; text-underline-offset:3px; }
+    .footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:8px 12px; margin:8px 0; line-height:1.45; }
+    .footer-links button, .footer-links a { width:auto; padding:2px 0; border:0; background:transparent; color:#6b7280; font-size:12px; font-weight:800; text-decoration:none; box-shadow:none; }
+    .footer-links button:hover, .footer-links a:hover { transform:none; opacity:.75; text-decoration:underline; text-underline-offset:3px; }
     .policy-modal-backdrop { position:fixed; inset:0; z-index:10001; background:rgba(15,23,42,.45); opacity:0; pointer-events:none; transition:.18s ease; }
     .policy-modal-backdrop.show { opacity:1; pointer-events:auto; }
     .policy-modal { position:fixed; left:50%; top:50%; z-index:10002; width:720px; max-width:calc(100vw - 28px); max-height:82vh; background:#fff; border-radius:22px; box-shadow:0 24px 60px rgba(0,0,0,.30); transform:translate(-50%, -46%) scale(.98); opacity:0; visibility:hidden; pointer-events:none; transition:.18s ease; overflow:hidden; }

@@ -12,6 +12,21 @@ const SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
   <url>
     <loc>https://albabee.pages.dev/weekly-pay.html</loc>
   </url>
+  <url>
+    <loc>https://albabee.pages.dev/wage-guide.html</loc>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/about.html</loc>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/privacy.html</loc>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/terms.html</loc>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/contact.html</loc>
+  </url>
 </urlset>
 `;
 
