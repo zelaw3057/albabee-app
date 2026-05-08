@@ -6,12 +6,12 @@ Use these slugs unless there is a strong SEO reason to change them:
 
 | Page | Primary intent | Suggested title pattern |
 | --- | --- | --- |
-| `labor-contract.html` | 알바 근로계약서 작성/확인 | 알바 근로계약서 작성 가이드 |
-| `overtime-pay.html` | 연장수당 계산 | 연장수당 계산기 |
-| `severance-pay.html` | 퇴직금 계산 | 알바 퇴직금 계산 |
-| `tax-3-3.html` | 3.3% 세금/실수령 | 알바 3.3% 세금 계산 |
-| `holiday-pay.html` | 휴일수당 계산 | 휴일수당 계산기 |
-| `probation-pay.html` | 수습기간 급여 | 수습기간 최저시급 계산 |
+| `labor-contract.html` | part-time labor contract guide | 알바 근로계약서 작성 가이드 |
+| `overtime-pay.html` | overtime allowance calculation | 연장수당 계산기 |
+| `severance-pay.html` | severance pay calculation | 알바 퇴직금 계산 |
+| `tax-3-3.html` | 3.3% tax and net pay | 알바 3.3% 세금 계산 |
+| `holiday-pay.html` | holiday work allowance calculation | 휴일수당 계산기 |
+| `probation-pay.html` | probation wage guide | 수습기간 최저시급 계산 |
 
 ## Page Template Requirements
 
@@ -26,6 +26,7 @@ Each page should include:
 - lists and examples;
 - internal links to related SEO pages;
 - `관련 계산기 보기`;
+- `함께 보면 좋은 알바 급여 정보`;
 - bottom CTA: `실제 근무일 기준으로 정확하게 계산하려면 알바BEE 계산기를 사용하세요`;
 - button text: `알바비 계산하러 가기`;
 - visible FAQ section;
@@ -55,6 +56,14 @@ Then scripts can generate:
 - related-page sections;
 - Vite static file copy list.
 
+## SEO Safety Rules
+
+- Only real public pages go in `sitemap.xml`.
+- Never keep backup HTML inside the project root or `public/`.
+- Do not create duplicate page copies such as `minimum-wage-old.html`.
+- Use canonical URLs for every SEO page.
+- Keep internal links between the wage, weekly pay, and night pay pages.
+
 ## Common Component Strategy
 
 Because this is currently static HTML, use build-time generation instead of client-side includes. Search engines will see complete HTML and no JavaScript is needed for SEO content.
@@ -64,6 +73,7 @@ Recommended shared pieces:
 - `SeoHead` metadata template;
 - `SeoHeader` page nav;
 - `RelatedCalculators`;
+- `RelatedInfoHub`;
 - `CalculatorCTA`;
 - `FaqSection`;
 - `SeoFooter`.
@@ -81,4 +91,5 @@ Add a script later at `scripts/validate-seo.mjs` to check:
 - CTA exists;
 - FAQPage JSON parses;
 - page exists in sitemap;
-- page exists in Vite static copy list.
+- page exists in Vite static copy list;
+- no backup or old HTML files are present in the deploy output.

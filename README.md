@@ -34,4 +34,4 @@ npm.cmd run build:ait
 
 ## Backup Note
 
-Local source snapshots live in `backups/` and are ignored by Git. Use Git commits and tags as the primary rollback method.
+Do not keep backup folders inside this project. Use external date-based folders such as `Desktop\albabee-backup-2026-05-09`, and use Git commits and tags as the primary rollback method.

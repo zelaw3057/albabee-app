@@ -29,8 +29,9 @@
 - `functions/sitemap.xml.js`: Cloudflare Function serving sitemap XML.
 - `public/_headers`: Cloudflare headers for sitemap.
 - `public/_routes.json`: Cloudflare routes for sitemap handling.
+- `docs/`: project structure, SEO, backup, and deployment policy.
 
-## Assets
+## Active Assets
 
 - `favicon.png`
 - `apple-touch-icon.png`
@@ -39,21 +40,34 @@
 
 These are active but should eventually move under `public/assets/images/` and `public/assets/icons/`.
 
-## Generated Or Local Files
+## Local Or Generated Files
+
+These may exist locally, but should not be tracked or kept as source:
 
 - `node_modules/`: generated dependency directory.
 - `dist/`: generated web build output.
-- `dist-toss/`: generated Toss output. Currently tracked and should be untracked after verification.
+- `dist-toss/`: generated Toss output.
 - `*.ait`: generated package artifacts.
 - `.granite/`: local/generated Granite data.
-- `backups/`: local source snapshots.
 
-## Cleanup Candidates
+## Removed From Project Root
 
-Do not delete immediately. Verify first.
+The following were removed from the working project after creating an external full backup:
 
-- `dist-toss/`: remove from Git tracking, keep ignored.
-- root `*.ait`: keep local only or move to release storage.
-- duplicate `style.css` and `toss-style.css`: extract shared CSS later.
-- duplicate `app.js` and `toss-app.js`: extract shared calculator logic later.
-- duplicated sitemap URL lists: generate from one registry later.
+- internal `backups/`;
+- local `dist/`;
+- local `dist-toss/`;
+- root `*.ait` files.
+
+External backup:
+
+```text
+C:\Users\User.DESKTOP-BLBKBC2\Desktop\albabee-backup-2026-05-09
+```
+
+## Future Cleanup Candidates
+
+- Extract shared CSS from `style.css` and `toss-style.css`.
+- Extract shared calculator logic from `app.js` and `toss-app.js`.
+- Generate sitemap files from one SEO registry.
+- Move image/icon assets into a stable `public/assets/` structure.

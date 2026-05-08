@@ -14,3 +14,13 @@ playwright-report/
 test-results/
 backups/
 backup-old/
+backup*/
+*-backup*/
+old/
+temp/
+tmp/
+*.bak
+*.backup
+*.old
+*_old*
+*_backup*

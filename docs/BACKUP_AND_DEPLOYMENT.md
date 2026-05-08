@@ -1,52 +1,67 @@
 # Backup And Deployment Policy
 
-## Backup Snapshot Created
+## Current External Backup
 
-A local source snapshot was created at:
+A full project backup was created outside the working project:
 
 ```text
-backups/2026-05-08-stable-source/
+C:\Users\User.DESKTOP-BLBKBC2\Desktop\albabee-backup-2026-05-09
 ```
 
-It includes source HTML/CSS/JS, config, public routing files, scripts, and images. It excludes:
+This backup was created before cleanup so the current working state can be restored if needed.
 
-- `.git/`
-- `node_modules/`
-- `dist/`
-- `dist-toss/`
-- `.granite/`
-- `*.ait`
+## Backup Rule
 
-The backup directory is ignored by Git so it cannot accidentally deploy or bloat the repository.
+Do not keep backup, old, temp, or version folders inside `albabee-app`.
 
-## Recommended Backup Model
+Avoid these inside the project:
 
-Use Git as the primary source of truth.
+- `backups/`
+- `backup-old/`
+- `old/`
+- `temp/`
+- `v8/`, `v9/`, `index_final_v8.html`
+- copied HTML files used only for safekeeping
 
-1. Before a large SEO or platform change, make sure `npm.cmd run build` passes.
-2. Commit the current stable state.
-3. Create a Git tag with a date and purpose.
+Reasons:
 
-Example:
+- Git tracking can become confusing.
+- Cloudflare Pages may deploy unexpected files.
+- Google can discover duplicate pages if they reach the published output.
+- Future AI/code edits may accidentally modify an old copy.
+
+Use external date-based folders instead:
+
+```text
+Desktop\albabee-backup-YYYY-MM-DD
+Desktop\albabee-backup-YYYY-MM-DD-HHMMSS
+```
+
+## Git Is The Main Rollback Tool
+
+Use Git commits and tags as the primary rollback method.
+
+Before large SEO or platform changes:
 
 ```powershell
-git tag stable-2026-05-08-pre-seo-expansion
-git push origin stable-2026-05-08-pre-seo-expansion
+npm.cmd run build
+git status --short
+git tag stable-YYYY-MM-DD-label
+git push origin main --tags
 ```
-
-Use local `backups/YYYY-MM-DD-label/` only as an extra emergency snapshot. Do not treat backup folders as production source.
 
 ## What Git Should Track
 
 Track:
 
-- source HTML/CSS/JS;
+- source HTML, CSS, and JS;
 - `package.json` and `package-lock.json`;
-- Vite, Toss, Cloudflare, and service worker configuration;
+- Vite, Toss, Cloudflare, and service worker config;
 - `public/_headers` and `public/_routes.json`;
 - `functions/`;
 - `scripts/`;
-- docs.
+- `docs/`;
+- root verification/static files such as `robots.txt`, `sitemap.xml`, `ads.txt`, and Google verification files.
 
 Do not track:
 
@@ -56,43 +71,36 @@ Do not track:
 - `*.ait`;
 - `.granite/`;
 - backup folders;
+- old/temp/version folders;
 - local environment files;
 - test reports and coverage output.
 
-## Current Git Cleanup Needed
-
-`dist-toss/` is currently tracked even though it is generated output. The safe cleanup path is:
-
-```powershell
-git rm -r --cached dist-toss
-git status --short
-npm.cmd run build:ait
-```
-
-Only commit this after confirming Toss packaging still recreates the required output.
-
 ## Deployment Checklist
 
-Before deploying the web app:
+Before web deployment:
 
 1. Run `npm.cmd run build`.
 2. Confirm `dist/minimum-wage.html`, `dist/weekly-pay.html`, and `dist/night-pay.html` exist.
 3. Confirm `dist/sitemap.xml` exists.
-4. Confirm `sitemap.xml` and `functions/sitemap.xml.js` contain the same SEO URLs.
+4. Confirm `sitemap.xml` and `functions/sitemap.xml.js` contain the same public SEO URLs.
 5. Confirm `robots.txt` points to `https://albabee.pages.dev/sitemap.xml`.
 
-Before deploying Toss/AIT:
+Before Toss/AIT packaging:
 
 1. Run `npm.cmd run build:ait`.
 2. Confirm generated Toss files are recreated from source.
 3. Do not edit generated bundles by hand.
 
-## Cloudflare Notes
+## Cloudflare And SEO Notes
 
-The project has Cloudflare-specific sitemap protection:
+Only real public pages should appear in `sitemap.xml`.
+
+Do not place backup HTML files under the project root or `public/`. If a copied file is included in the build output, Cloudflare may serve it and Google may treat it as duplicate content.
+
+Cloudflare-specific sitemap protection currently lives in:
 
 - `public/_headers`
 - `public/_routes.json`
 - `functions/sitemap.xml.js`
 
-These files were likely added to prevent sitemap mutation or SPA fallback behavior. Do not remove them during cleanup unless sitemap behavior is re-tested on Cloudflare Pages.
+Do not remove these unless sitemap behavior is tested again after deployment.
