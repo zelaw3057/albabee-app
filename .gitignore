@@ -1,6 +1,16 @@
 node_modules/
 dist/
+dist-toss/
 *.ait
 .granite/
 .DS_Store
 npm-debug.log*
+*.log
+.env
+.env.*
+.vite/
+coverage/
+playwright-report/
+test-results/
+backups/
+backup-old/
