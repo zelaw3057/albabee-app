@@ -2907,3 +2907,198 @@ textarea {
     font-size: 10.5px;
   }
 }
+
+/* v28: tighter mobile settings density */
+@media (max-width: 900px) {
+  body.force-mobile-view .step-body {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  body.force-mobile-view input,
+  body.force-mobile-view select,
+  body.force-mobile-view textarea {
+    min-height: 32px;
+    padding: 5px 7px;
+    border-radius: 9px;
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  body.force-mobile-view label {
+    margin-bottom: 1px;
+    font-size: 10.5px;
+    line-height: 1.15;
+  }
+
+  body.force-mobile-view .top-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+
+  body.force-mobile-view .top-grid > div {
+    min-width: 0;
+  }
+
+  body.force-mobile-view .top-grid > div:nth-child(3),
+  body.force-mobile-view .top-grid > div:nth-child(4) {
+    grid-column: span 2;
+  }
+
+  body.force-mobile-view #calendarBuildBtn {
+    min-height: 34px;
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+
+  body.force-mobile-view #basicSection .option-box {
+    margin-top: 6px;
+    padding: 7px 8px;
+    border-radius: 11px;
+  }
+
+  body.force-mobile-view #basicSection .option-box strong {
+    font-size: 12px;
+  }
+
+  body.force-mobile-view #basicSection .recommend-badge {
+    padding: 2px 5px;
+    font-size: 9px;
+  }
+
+  body.force-mobile-view #basicSection .radio-row,
+  body.force-mobile-view #legalOptionSection .radio-row,
+  body.force-mobile-view #legalOptionSection .check-row {
+    min-height: 24px;
+    margin: 1px 0;
+    gap: 3px;
+    font-size: 12px;
+    line-height: 1.15;
+  }
+
+  body.force-mobile-view #basicSection input[type="radio"],
+  body.force-mobile-view #legalOptionSection input[type="radio"],
+  body.force-mobile-view #legalOptionSection input[type="checkbox"] {
+    margin-right: 2px;
+    transform: scale(.88);
+  }
+
+  body.force-mobile-view #basicSection .muted,
+  body.force-mobile-view #basicSection .option-hint {
+    margin-top: 4px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 10.5px;
+    line-height: 1.25;
+  }
+
+  body.force-mobile-view .minimum-wage-box {
+    margin-top: 5px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  body.force-mobile-view .minimum-wage-box strong {
+    font-size: 12px;
+  }
+
+  body.force-mobile-view .minimum-wage-box button {
+    min-height: 28px;
+    padding: 4px 7px;
+    font-size: 10.5px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel {
+    padding: 5px;
+    margin-bottom: 4px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .form-grid > div:nth-child(3) {
+    grid-column: span 2;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .form-grid > div {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+    padding: 4px 5px;
+    border: 1px solid #e4e7ec;
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel label {
+    margin: 0;
+    white-space: nowrap;
+    color: #667085;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel input {
+    min-height: 26px;
+    padding: 2px 3px;
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+    font-size: 14px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .input-with-unit {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-top-actions {
+    gap: 4px;
+    margin: 3px 0 4px;
+  }
+
+  body.force-mobile-view #workCalendarSection .weekdays,
+  body.force-mobile-view #workCalendarSection .calendar {
+    gap: 2px;
+  }
+
+  body.force-mobile-view #legalOptionSection .option-box,
+  body.force-mobile-view #legalOptionSection .pay-option-card {
+    margin-top: 4px;
+    padding: 6px 7px;
+    border-radius: 10px;
+  }
+
+  body.force-mobile-view #legalOptionSection #holidayApplyBox {
+    margin-top: 4px !important;
+    padding: 5px 7px;
+  }
+
+  body.force-mobile-view #legalOptionSection #holidayApplyBox strong,
+  body.force-mobile-view #legalOptionSection .option-box > strong {
+    margin-bottom: 2px;
+    font-size: 11.5px;
+  }
+
+  body.force-mobile-view #legalOptionSection .info {
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    font-size: 9px;
+  }
+
+  body.force-mobile-view #legalOptionSection .compact-info-accordion {
+    margin-top: 4px;
+  }
+
+  body.force-mobile-view #legalOptionSection .compact-info-accordion .collapsible-head {
+    min-height: 34px;
+    padding: 6px 8px;
+  }
+}
