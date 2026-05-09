@@ -2,13 +2,13 @@
 
 ## Current External Backup
 
-A full project backup was created outside the working project:
+The current stable backup should live outside the working project:
 
 ```text
-C:\Users\User.DESKTOP-BLBKBC2\Desktop\albabee-backup-2026-05-09
+C:\Users\User.DESKTOP-BLBKBC2\Desktop\albabee-backup-2026-05-09-ui-stable.zip
 ```
 
-This backup was created before cleanup so the current working state can be restored if needed.
+This backup preserves the stable UI/share/image state before the next SEO expansion pass.
 
 ## Backup Rule
 
@@ -35,6 +35,7 @@ Use external date-based folders instead:
 ```text
 Desktop\albabee-backup-YYYY-MM-DD
 Desktop\albabee-backup-YYYY-MM-DD-HHMMSS
+Desktop\albabee-backup-YYYY-MM-DD-label.zip
 ```
 
 ## Git Is The Main Rollback Tool
@@ -82,8 +83,9 @@ Before web deployment:
 1. Run `npm.cmd run build`.
 2. Confirm `dist/minimum-wage.html`, `dist/weekly-pay.html`, and `dist/night-pay.html` exist.
 3. Confirm `dist/sitemap.xml` exists.
-4. Confirm `sitemap.xml` and `functions/sitemap.xml.js` contain the same public SEO URLs.
-5. Confirm `robots.txt` points to `https://albabee.pages.dev/sitemap.xml`.
+4. Confirm `dist/images/hero-banner.png`, `dist/images/app-icon.png`, `dist/images/kakao-icon.png`, and `dist/images/excel-icon.png` exist.
+5. Confirm `sitemap.xml` and `functions/sitemap.xml.js` contain the same public SEO URLs.
+6. Confirm `robots.txt` points to `https://albabee.pages.dev/sitemap.xml`.
 
 Before Toss/AIT packaging:
 

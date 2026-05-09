@@ -104,18 +104,18 @@
     <section class="card step-card step-collapsed" id="workCalendarSection" data-step-index="2">
       <h2 class="step-toggle" role="button" tabindex="0" onclick="toggleStepSection('workCalendarSection')"><span class="step-toggle-main"><span class="step-toggle-title">2. 달력에서 근무일 선택/수정</span><span class="step-toggle-sub">근무시간을 넣고 달력에서 실제 일한 날짜를 선택하세요.</span></span><span class="step-arrow">입력하기</span></h2>
       <div class="step-body">
-      <p class="step-progress-note">기본 근무시간을 입력한 뒤 달력에서 실제 일한 날짜를 선택하세요.</p>
+      <p class="step-progress-note">시간 입력 후 날짜를 누르세요.</p>
       <span id="modeText" class="mode-pill">근무일 선택 모드</span>
       <div class="form-grid">
         <div><label for="defaultStartTime">출근</label><input class="time-input" type="text" id="defaultStartTime" value="11:00" placeholder="예: 11:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></div>
         <div><label for="defaultEndTime">퇴근</label><input class="time-input" type="text" id="defaultEndTime" value="21:00" placeholder="예: 21:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></div>
-        <div><label for="defaultBreakHours">휴게시간</label><div class="input-with-unit"><input type="number" id="defaultBreakHours" value="60" min="0" step="1" inputmode="numeric" /><span class="unit-label">분</span></div><div class="field-help">예: 1시간 = 60분, 1시간 15분 = 75분</div></div>
+        <div><label for="defaultBreakHours">휴게시간</label><div class="input-with-unit"><input type="number" id="defaultBreakHours" value="60" min="0" step="1" inputmode="numeric" /><span class="unit-label">분</span></div><div class="field-help">분 단위로 입력</div></div>
       </div>
-      <p class="small-note">퇴근 시간이 출근 시간보다 빠르면 자동으로 다음날 퇴근으로 계산합니다. 예: 22:00~03:00 = 총 5시간. 휴게시간은 분 단위로 입력합니다.</p>
+      <p class="small-note">퇴근이 더 빠르면 다음날 퇴근으로 계산합니다.</p>
 
       <div id="patternAccordion" class="collapsible-box">
         <button type="button" class="collapsible-head" onclick="toggleAccordion('patternAccordion')">
-          <div class="head-main"><div><strong>근무 패턴 프리셋</strong><span>야간/주말처럼 자주 쓰는 시간을 저장해두고, 작은 달력에서 날짜를 눌러 바로 적용해요.</span></div></div>
+          <div class="head-main"><div><strong>근무 패턴 프리셋</strong><span>자주 쓰는 시간을 저장해 날짜에 적용해요.</span></div></div>
           <div class="collapsible-arrow">⌄</div>
         </button>
         <div class="collapsible-body">
@@ -137,9 +137,9 @@
           <div class="main-calendar-area">
             <div class="main-calendar-main">
               <div id="mainCalendarTitle" class="main-calendar-title">달력</div>
-              <div id="detailModeGuide" class="detail-mode-guide"><strong>🔍 상세 확인 모드</strong>를 켜면 근무일을 새로 입력하지 않고 이미 선택한 날짜의 급여 정보를 확인할 수 있어요.<div class="detail-mode-steps"><span class="detail-mode-step">날짜 클릭/터치</span><span class="detail-mode-step">상세 팝업 확인</span><span class="detail-mode-step">팝업에서 근무시간 수정</span></div></div>
-              <div class="calendar-top-actions"><button type="button" class="soft-btn" id="detailModeBtn" onclick="toggleDetailViewMode()">🔍 상세 확인 모드 켜기</button><button type="button" class="danger-btn" onclick="clearCurrentMonth()">이번 달 선택 전체 취소</button></div>
-              <div class="calendar-feature-note">근무 입력 모드에서는 출근·퇴근·휴게시간을 입력한 뒤 날짜를 누르면 바로 근무일로 등록돼요. 요일 글자(월·화·수...)를 누르면 해당 요일을 한 번에 적용/취소할 수 있어요.</div>
+              <div id="detailModeGuide" class="detail-mode-guide"><strong>상세 확인 모드</strong>를 켜면 선택한 날짜의 급여와 근무시간을 확인할 수 있어요.<div class="detail-mode-steps"><span class="detail-mode-step">날짜 선택</span><span class="detail-mode-step">팝업 확인</span><span class="detail-mode-step">시간 수정</span></div></div>
+              <div class="calendar-top-actions"><button type="button" class="soft-btn" id="detailModeBtn" onclick="toggleDetailViewMode()">상세 모드 켜기</button><button type="button" class="danger-btn" onclick="clearCurrentMonth()">이번 달 선택 취소</button></div>
+              <div class="calendar-feature-note">요일을 누르면 해당 요일을 한 번에 적용/취소할 수 있어요.</div>
               <div class="weekdays"><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(0)">일</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(1)">월</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(2)">화</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(3)">수</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(4)">목</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(5)">금</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(6)">토</button></div>
               <div id="calendar" class="calendar"></div>
               <div class="calendar-legend"><span class="legend-item">↪ 퇴근 시간이 다음날이에요</span><span class="legend-item">🌙 22:00~06:00 근무가 포함돼요</span><span class="legend-item">날짜 배경색은 근무 프리셋이에요</span><span class="legend-item">● 작은 원은 추가수당이에요</span></div>
@@ -177,7 +177,7 @@
       <h2 class="step-toggle" role="button" tabindex="0" onclick="toggleStepSection('allowanceSection')"><span class="step-toggle-main"><span class="step-toggle-title">3. 추가 수당</span><span class="step-toggle-sub">식대·교통비·마감수당이 있으면 필요한 만큼 추가하세요.</span></span><span class="step-arrow">입력하기</span></h2>
       <div class="step-body">
       <div class="mobile-allowance-body">
-      <p class="muted">식대·교통비 같은 고정 수당과, 마감수당처럼 시간당 붙는 수당을 만들 수 있습니다. 날짜는 수당 안의 작은 달력에서 바로 적용/해제하세요.</p>
+      <p class="muted">식대·교통비·마감수당이 있으면 추가하세요.</p>
       <div class="form-grid">
         <div>
           <label for="allowanceName">수당 이름</label>
@@ -203,8 +203,8 @@
         <div id="manualHoursBox" class="hidden"><label for="allowanceHours">적용 시간</label><input type="number" id="allowanceHours" value="1" min="0" step="0.5" /></div>
       </div>
       <div class="two-grid" style="margin-top:12px;">
-        <button onclick="createAllowance()">수당 추가하기</button>
-        <button class="soft-btn" onclick="clearAllowanceForm()">입력 초기화</button>
+        <button onclick="createAllowance()">수당 추가</button>
+        <button class="soft-btn" onclick="clearAllowanceForm()">초기화</button>
       </div>
       <div class="allowance-list" id="allowanceList"></div>
       </div>
@@ -225,10 +225,10 @@
           <div class="radio-row"><input type="radio" name="holidayApplyType" id="holidayPublicOnly" value="publicOnly" checked onchange="refreshAfterOptionChange()" /><label for="holidayPublicOnly" style="margin:0;">공휴일/대체공휴일만 적용 <span class="muted">추천</span></label></div>
           <div class="radio-row"><input type="radio" name="holidayApplyType" id="holidaySundayAndPublic" value="sundayAndPublic" onchange="refreshAfterOptionChange()" /><label for="holidaySundayAndPublic" style="margin:0;">일요일 + 공휴일 모두 적용</label></div>
           <div class="radio-row"><input type="radio" name="holidayApplyType" id="holidayNone" value="none" onchange="refreshAfterOptionChange()" /><label for="holidayNone" style="margin:0;">휴일수당 계산 안 함</label></div>
-          <p class="muted" style="margin:6px 0 0;">편의점·식당처럼 일요일이 원래 근무일인 곳은 보통 공휴일만 따로 보는 경우가 있어요. 계약서에서 정한 휴일이 따로 있으면 그 기준에 맞춰 선택하세요.</p>
+          <p class="muted" style="margin:6px 0 0;">일요일이 원래 근무일이면 보통 공휴일만 따로 봅니다.</p>
         </div>
         <div class="check-row"><input type="checkbox" id="weeklyHolidayOption" /><label for="weeklyHolidayOption" style="margin:0;">주휴수당(추정)</label><span class="info" tabindex="0" data-tip="1주 소정근로시간이 15시간 이상이고, 1주간 소정근로일을 개근한 경우 발생하는 유급휴일 수당입니다. 이 계산기는 입력된 주간 근로시간 기준으로 추정합니다.">i</span></div>
-        <p class="muted">※ 연장·야간·휴일 가산수당은 일반적으로 5인 이상 사업장 기준입니다. 실제 급여는 근로계약서와 사업장 조건에 따라 달라질 수 있습니다.</p>
+        <p class="muted">※ 가산수당은 보통 5인 이상 사업장 기준입니다.</p>
       </div>
 
       <div class="option-box">
@@ -246,19 +246,25 @@
           <div>
             <label for="probationRate">수습기간 감액률</label>
             <div class="input-with-unit"><input type="number" id="probationRate" value="10" min="0" max="10" step="0.1" inputmode="decimal" oninput="clampProbationRate(); refreshAfterOptionChange();" /><span class="unit-label">%</span></div>
-            <div class="field-help">0~10% 사이로 입력하세요. 기본값은 최대 감액률인 10%입니다.</div>
+            <div class="field-help">0~10% 사이 입력</div>
           </div>
         </div>
-        <p class="muted" style="margin:8px 0 0;">수습기간 급여 감액이 있는 경우만 켜세요. 감액률은 직접 바꿀 수 있고, 계산 결과에 별도 항목으로 표시됩니다.</p>
+        <p class="muted" style="margin:8px 0 0;">감액이 있는 경우만 켜세요.</p>
       </div>
 
-      <div class="warning">
-        이 계산기는 입력값을 바탕으로 한 참고용 예상 계산기입니다.
-        <ul class="notice-list">
-          <li>주휴수당은 실제 소정근로일 개근 여부와 계약상 소정근로시간에 따라 달라질 수 있어요. 결과에서는 추정값으로 표시됩니다.</li>
-          <li>5인 미만 사업장은 연장·야간·휴일 가산수당 적용이 다를 수 있어요.</li>
-          <li>공휴일·대체공휴일·노동절 적용 여부는 업종, 사업장 규모, 근로계약에 따라 확인이 필요해요.</li>
-        </ul>
+      <div id="legalNoticeAccordion" class="collapsible-box compact-info-accordion">
+        <button type="button" class="collapsible-head" onclick="toggleAccordion('legalNoticeAccordion')">
+          <div class="head-main"><div><strong>계산 기준 보기</strong><span>주휴·가산수당 적용 기준이 궁금할 때만 펼쳐보세요.</span></div></div>
+          <div class="collapsible-arrow">⌄</div>
+        </button>
+        <div class="collapsible-body">
+          <p class="muted">이 계산기는 입력값을 바탕으로 한 참고용 예상 계산기입니다.</p>
+          <ul class="notice-list">
+            <li>주휴수당은 실제 개근 여부와 계약상 소정근로시간에 따라 달라질 수 있어요.</li>
+            <li>5인 미만 사업장은 연장·야간·휴일 가산수당 적용이 다를 수 있어요.</li>
+            <li>공휴일·노동절 적용 여부는 업종, 사업장 규모, 근로계약에 따라 확인이 필요해요.</li>
+          </ul>
+        </div>
       </div>
             <div class="step-complete-row"><button type="button" class="step-complete-btn" onclick="completeStep('legalOptionSection','calculationSection')">완료</button></div>
       </div>

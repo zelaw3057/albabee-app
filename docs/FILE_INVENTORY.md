@@ -8,6 +8,11 @@
 - `minimum-wage.html`: SEO page for 2026 minimum wage.
 - `weekly-pay.html`: SEO page for weekly holiday allowance.
 - `night-pay.html`: SEO page for night work allowance.
+- `wage-guide.html`: SEO hub page for wage calculation guidance.
+- `about.html`: site introduction page.
+- `privacy.html`: privacy policy page.
+- `terms.html`: terms of service page.
+- `contact.html`: contact page.
 - `toss.html`: Toss in-app HTML entry.
 - `toss-style.css`: Toss in-app CSS.
 - `toss-app.js`: Toss in-app logic.
@@ -37,8 +42,17 @@
 - `apple-touch-icon.png`
 - `logo.png`
 - `thumbnail.png`
+- `images/hero-banner.png`
+- `images/app-icon.png`
+- `images/kakao-icon.png`
+- `images/excel-icon.png`
+- `public/images/hero-banner.png`
+- `public/images/app-icon.png`
+- `public/images/kakao-icon.png`
+- `public/images/excel-icon.png`
 
-These are active but should eventually move under `public/assets/images/` and `public/assets/icons/`.
+The root `images/` folder is active for the current Cloudflare Pages deployment path.
+The `public/images/` copy is active for Vite-style static handling and should stay in sync with root `images/` until deployment is centralized.
 
 ## Local Or Generated Files
 
@@ -52,17 +66,17 @@ These may exist locally, but should not be tracked or kept as source:
 
 ## Removed From Project Root
 
-The following were removed from the working project after creating an external full backup:
+These should not be restored into the working project root:
 
 - internal `backups/`;
 - local `dist/`;
 - local `dist-toss/`;
 - root `*.ait` files.
 
-External backup:
+Current stable external backup target:
 
 ```text
-C:\Users\User.DESKTOP-BLBKBC2\Desktop\albabee-backup-2026-05-09
+C:\Users\User.DESKTOP-BLBKBC2\Desktop\albabee-backup-2026-05-09-ui-stable.zip
 ```
 
 ## Future Cleanup Candidates
@@ -70,4 +84,4 @@ C:\Users\User.DESKTOP-BLBKBC2\Desktop\albabee-backup-2026-05-09
 - Extract shared CSS from `style.css` and `toss-style.css`.
 - Extract shared calculator logic from `app.js` and `toss-app.js`.
 - Generate sitemap files from one SEO registry.
-- Move image/icon assets into a stable `public/assets/` structure.
+- Centralize image/icon assets only after Cloudflare Pages root/static behavior is re-tested.

@@ -7,9 +7,10 @@ This document defines the clean operating structure for Albabee.
 | Area | Current files | Status | Notes |
 | --- | --- | --- | --- |
 | Main web calculator | `index.html`, `style.css`, `app.js` | Active | Public web entry served at `/`. |
-| SEO pages | `minimum-wage.html`, `weekly-pay.html`, `night-pay.html` | Active | Only real SEO pages should be in the root and sitemap. |
+| SEO pages | `minimum-wage.html`, `weekly-pay.html`, `night-pay.html`, `wage-guide.html`, `about.html`, `privacy.html`, `terms.html`, `contact.html` | Active | Root location is intentional to preserve current URLs and sitemap behavior. |
 | SEO infrastructure | `sitemap.xml`, `robots.txt`, `functions/sitemap.xml.js`, `public/_headers`, `public/_routes.json` | Active | Sitemap URLs are duplicated in root XML and Cloudflare Function until generation is centralized. |
 | PWA/static identity | `manifest.json`, `service-worker.js`, `favicon.png`, `apple-touch-icon.png`, `logo.png`, `thumbnail.png` | Active | Referenced by the web app and copied into production output. |
+| Homepage images/icons | `images/*.png`, `public/images/*.png` | Active | Root `images/` is required by the current Pages deployment path; `public/images/` is kept for Vite static handling. Keep both in sync for now. |
 | Toss in-app source | `toss.html`, `toss-style.css`, `toss-app.js`, `vite.config.toss.ts`, `scripts/build-ait.mjs`, `granite.config.ts` | Active platform variant | Generated Toss output must not be tracked. |
 | Build outputs | `dist/`, `dist-toss/`, `*.ait` | Generated | Recreate from source. Do not edit or track. |
 | Dependencies | `node_modules/` | Generated | Local only. Recreate with `npm install`. |
@@ -85,7 +86,7 @@ Backups stay outside this tree.
 2. Add a central SEO registry such as `src/seo/shared/seo-pages.json`.
 3. Generate `sitemap.xml`, `functions/sitemap.xml.js`, and SEO navigation from the registry.
 4. Extract SEO shared CSS from inline styles into a shared CSS file.
-5. Move images/icons into `public/assets/` and update references.
+5. Move images/icons into `public/assets/` only after Cloudflare Pages root/static behavior is re-tested.
 6. Split web and Toss source only after web and Toss builds pass.
 
 ## Rules For New SEO Pages
@@ -94,7 +95,7 @@ Every SEO page should have:
 
 - one `h1`;
 - multiple `h2` sections;
-- internal links to `/`, `/minimum-wage.html`, `/weekly-pay.html`, and `/night-pay.html` where relevant;
+- internal links to `/`, `/minimum-wage.html`, `/weekly-pay.html`, `/night-pay.html`, and `/wage-guide.html` where relevant;
 - a calculator CTA with text like `알바비 계산하러 가기`;
 - a related information hub section;
 - FAQ visible in HTML and matching `FAQPage` JSON-LD;

@@ -2117,3 +2117,674 @@ button {
     gap: 8px;
   }
 }
+
+/* v24: final homepage density pass */
+header {
+  margin-bottom: 9px;
+}
+
+.site-hero-banner {
+  max-width: 720px;
+  margin-bottom: 8px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(239, 68, 68, .13);
+}
+
+.seo-keyword-box {
+  margin-top: 5px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  line-height: 1.35;
+  box-shadow: 0 7px 16px rgba(17, 24, 39, .12);
+}
+
+.pc-guide-note,
+.mobile-guide-note {
+  margin-top: 6px;
+  padding: 4px 6px 4px 10px;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #667085;
+  box-shadow: 0 6px 14px rgba(16, 24, 40, .035);
+}
+
+.pc-guide-note .guide-switch-link,
+.mobile-guide-note .guide-switch-link {
+  min-height: 25px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.step-card {
+  margin-bottom: 7px;
+  border-radius: 14px;
+}
+
+.step-card[data-step-index="1"] {
+  border-color: rgba(239, 68, 68, .32);
+  box-shadow: 0 11px 28px rgba(239, 68, 68, .085);
+}
+
+.step-card[data-step-index="2"].step-locked,
+.step-card[data-step-index="3"].step-locked,
+.step-card[data-step-index="4"].step-locked {
+  opacity: .86;
+}
+
+.step-toggle {
+  min-height: 46px;
+  padding: 8px 11px;
+  gap: 8px;
+}
+
+.step-card[data-step-index="2"].step-locked .step-toggle,
+.step-card[data-step-index="3"].step-locked .step-toggle,
+.step-card[data-step-index="4"].step-locked .step-toggle {
+  min-height: 42px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.step-toggle-main {
+  gap: 0;
+}
+
+.step-toggle-title {
+  font-size: 14.5px;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.step-toggle-sub {
+  font-size: 10px;
+  line-height: 1.25;
+  color: #7a8597;
+}
+
+.step-card[data-step-index="2"].step-locked .step-toggle-sub,
+.step-card[data-step-index="3"].step-locked .step-toggle-sub,
+.step-card[data-step-index="4"].step-locked .step-toggle-sub {
+  color: #8a94a6;
+}
+
+.step-arrow {
+  min-width: 52px;
+  height: 25px;
+  padding: 0 10px;
+  font-size: 11px;
+}
+
+.step-card.step-locked .step-arrow {
+  min-width: 48px;
+  height: 24px;
+}
+
+.step-body {
+  padding: 0 11px 11px;
+}
+
+.option-box,
+.pay-option-card,
+.collapsible-box {
+  padding: 9px;
+  margin-top: 7px;
+}
+
+.top-grid,
+.form-grid,
+.two-grid,
+.salary-summary-grid,
+.result-grid {
+  gap: 8px;
+}
+
+label {
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+input,
+select,
+textarea {
+  min-height: 40px;
+  padding: 9px 11px;
+}
+
+.header-tools {
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.header-tools button {
+  min-height: 42px;
+  padding: 9px 10px;
+}
+
+.cookie-consent {
+  max-width: 700px;
+  padding: 9px 10px;
+  border-radius: 14px;
+  background: rgba(16, 24, 40, .92);
+  gap: 9px;
+}
+
+.cookie-consent p {
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.cookie-consent button {
+  min-width: 78px;
+  min-height: 34px;
+  padding: 7px 11px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding-top: 8px;
+  }
+
+  header {
+    margin-bottom: 8px;
+  }
+
+  .site-hero-banner {
+    margin-bottom: 7px;
+    border-radius: 15px;
+  }
+
+  .seo-keyword-box {
+    margin-top: 4px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .pc-guide-note,
+  .mobile-guide-note {
+    margin-top: 5px;
+    padding: 4px 5px 4px 9px;
+    font-size: 10.5px;
+  }
+
+  .step-card {
+    margin-bottom: 6px;
+  }
+
+  .step-toggle {
+    min-height: 43px;
+    padding: 7px 10px;
+  }
+
+  .step-card[data-step-index="2"].step-locked .step-toggle,
+  .step-card[data-step-index="3"].step-locked .step-toggle,
+  .step-card[data-step-index="4"].step-locked .step-toggle {
+    min-height: 39px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .step-toggle-title {
+    font-size: 14px;
+  }
+
+  .step-toggle-sub {
+    font-size: 9.5px;
+  }
+
+  .step-arrow {
+    min-width: 48px;
+    height: 24px;
+    padding: 0 8px;
+    font-size: 10.5px;
+  }
+
+  .step-body {
+    padding: 0 10px 10px;
+  }
+
+  .cookie-consent {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 8px;
+  }
+
+  .cookie-consent button {
+    min-height: 34px;
+  }
+}
+
+/* v25: compact mobile work-calendar flow */
+#workCalendarSection .step-progress-note {
+  margin-top: 0;
+  margin-bottom: 7px;
+}
+
+#workCalendarSection .mode-pill {
+  margin-bottom: 7px;
+  padding: 4px 9px;
+  font-size: 11px;
+}
+
+#workCalendarSection .form-grid {
+  gap: 7px;
+}
+
+#workCalendarSection .field-help,
+#workCalendarSection > .step-body > .small-note {
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+#workCalendarSection > .step-body > .small-note {
+  margin-top: 6px;
+}
+
+#workCalendarSection .work-layout {
+  margin-top: 8px;
+}
+
+#workCalendarSection .main-calendar-title {
+  margin-bottom: 6px;
+  padding: 7px 10px;
+  font-size: 15px;
+}
+
+#workCalendarSection .detail-mode-guide {
+  margin: 6px 0 7px;
+  padding: 8px 10px;
+  font-size: 11.5px;
+}
+
+#workCalendarSection .detail-mode-guide .detail-mode-steps {
+  margin-top: 5px;
+  gap: 4px;
+}
+
+#workCalendarSection .detail-mode-guide .detail-mode-step {
+  padding: 3px 7px;
+  font-size: 10.5px;
+}
+
+#workCalendarSection .calendar-top-actions {
+  margin: 6px 0;
+  gap: 6px;
+}
+
+#workCalendarSection .calendar-top-actions button {
+  min-height: 34px;
+  padding: 6px 9px;
+  font-size: 11px;
+}
+
+#workCalendarSection .calendar-feature-note {
+  margin: 5px 0 5px;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+#workCalendarSection .weekdays,
+#workCalendarSection .calendar {
+  gap: 5px;
+}
+
+#workCalendarSection .weekday-btn {
+  min-height: 28px;
+  padding: 3px 0;
+  font-size: 12px;
+}
+
+#workCalendarSection .weekday-btn::after {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  body.force-mobile-view #workCalendarSection .step-body {
+    padding-top: 0;
+  }
+
+  body.force-mobile-view #workCalendarSection .step-progress-note {
+    margin-bottom: 5px;
+    font-size: 11px;
+  }
+
+  body.force-mobile-view #workCalendarSection .mode-pill,
+  body.force-mobile-view #workCalendarSection > .step-body > .small-note,
+  body.force-mobile-view #workCalendarSection .field-help,
+  body.force-mobile-view #workCalendarSection .detail-mode-guide,
+  body.force-mobile-view #workCalendarSection .calendar-feature-note,
+  body.force-mobile-view #workCalendarSection .calendar-help-note {
+    display: none;
+  }
+
+  body.force-mobile-view #workCalendarSection > .step-body > .form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  body.force-mobile-view #workCalendarSection label {
+    margin-bottom: 2px;
+    font-size: 10.5px;
+    font-weight: 900;
+    color: #667085;
+  }
+
+  body.force-mobile-view #workCalendarSection input,
+  body.force-mobile-view #workCalendarSection select {
+    min-height: 34px;
+    padding: 6px 7px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+
+  body.force-mobile-view #workCalendarSection .time-input,
+  body.force-mobile-view #workCalendarSection #defaultBreakHours {
+    text-align: center;
+    font-weight: 900;
+  }
+
+  body.force-mobile-view #workCalendarSection .input-with-unit {
+    gap: 4px;
+  }
+
+  body.force-mobile-view #workCalendarSection .unit-label {
+    font-size: 10.5px;
+    font-weight: 900;
+  }
+
+  body.force-mobile-view #workCalendarSection .work-layout {
+    margin-top: 6px;
+  }
+
+  body.force-mobile-view #workCalendarSection .main-calendar-title {
+    margin-bottom: 4px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-top-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    margin: 4px 0 5px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-top-actions button {
+    width: 100%;
+    min-height: 30px;
+    padding: 4px 6px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    white-space: nowrap;
+  }
+
+  body.force-mobile-view #workCalendarSection .weekdays,
+  body.force-mobile-view #workCalendarSection .calendar {
+    gap: 3px;
+  }
+
+  body.force-mobile-view #workCalendarSection .weekday-btn {
+    min-height: 23px;
+    padding: 2px 0;
+    border-radius: 8px;
+    font-size: 11px;
+  }
+
+  body.force-mobile-view #workCalendarSection .day {
+    min-height: 50px;
+    padding: 6px 4px;
+    border-radius: 10px;
+  }
+
+  body.force-mobile-view #workCalendarSection .day-number {
+    font-size: 13px;
+    font-weight: 800;
+  }
+}
+
+/* v26: compact allowance and legal option settings */
+#allowanceSection .muted,
+#legalOptionSection .muted,
+#allowanceSection .field-help,
+#legalOptionSection .field-help {
+  font-size: 11.5px;
+  line-height: 1.38;
+}
+
+#allowanceSection .form-grid,
+#legalOptionSection .form-grid,
+#allowanceSection .two-grid {
+  gap: 7px;
+}
+
+#allowanceSection .form-grid + .form-grid {
+  margin-top: 7px !important;
+}
+
+#allowanceSection .two-grid {
+  margin-top: 8px !important;
+}
+
+#allowanceSection .color-palette {
+  gap: 5px;
+  padding: 3px 0 0;
+}
+
+#allowanceSection .color-choice {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+#allowanceSection .allowance-list {
+  margin-top: 8px;
+  gap: 7px;
+}
+
+#allowanceSection .allowance-card {
+  padding: 9px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: none;
+}
+
+#allowanceSection .allowance-card.open {
+  box-shadow: 0 6px 16px rgba(16, 24, 40, .06);
+}
+
+#allowanceSection .allowance-head {
+  margin-bottom: 7px;
+  gap: 7px;
+}
+
+#allowanceSection .allowance-title {
+  font-size: 13.5px;
+}
+
+#allowanceSection .allowance-meta {
+  margin-top: 1px;
+  font-size: 11px;
+}
+
+#allowanceSection .allowance-actions {
+  gap: 5px;
+}
+
+#allowanceSection .allowance-actions .soft-btn,
+#allowanceSection .x-btn {
+  min-height: 30px;
+}
+
+#allowanceSection .allowance-actions .soft-btn {
+  padding: 5px 8px;
+  font-size: 11px;
+}
+
+#legalOptionSection .option-box,
+#legalOptionSection .pay-option-card {
+  margin-top: 7px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: none;
+}
+
+#legalOptionSection > .step-body > .option-box:first-child {
+  margin-top: 0;
+}
+
+#legalOptionSection .check-row,
+#legalOptionSection .radio-row {
+  min-height: 30px;
+  margin: 4px 0;
+  gap: 5px;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+#legalOptionSection .check-row input,
+#legalOptionSection .radio-row input {
+  margin-right: 4px;
+}
+
+#legalOptionSection .info {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  font-size: 10px;
+  margin-left: 2px;
+}
+
+#legalOptionSection #holidayApplyBox {
+  margin-top: 6px !important;
+  padding: 8px 9px;
+  border-color: #eef2f7;
+  background: #f8fafc;
+}
+
+#legalOptionSection #holidayApplyBox strong,
+#legalOptionSection .option-box > strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #344054;
+}
+
+#legalOptionSection #customTaxBox {
+  margin-top: 6px !important;
+}
+
+#legalOptionSection #probationRateBox {
+  margin-top: 7px !important;
+}
+
+#legalOptionSection .compact-info-accordion {
+  margin-top: 7px;
+  border-radius: 12px;
+}
+
+#legalOptionSection .compact-info-accordion .collapsible-head {
+  min-height: 42px;
+  padding: 8px 10px;
+}
+
+#legalOptionSection .compact-info-accordion .collapsible-head strong {
+  font-size: 13px;
+}
+
+#legalOptionSection .compact-info-accordion .collapsible-head span {
+  margin-top: 1px;
+  font-size: 10.5px;
+}
+
+#legalOptionSection .compact-info-accordion .collapsible-arrow {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  font-size: 17px;
+}
+
+#legalOptionSection .compact-info-accordion .collapsible-body {
+  padding: 9px 10px;
+}
+
+#legalOptionSection .notice-list {
+  margin-top: 6px;
+  padding-left: 16px;
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+#legalOptionSection .notice-list li {
+  margin: 2px 0;
+}
+
+@media (max-width: 900px) {
+  body.force-mobile-view #allowanceSection .muted,
+  body.force-mobile-view #legalOptionSection .muted,
+  body.force-mobile-view #allowanceSection .field-help,
+  body.force-mobile-view #legalOptionSection .field-help {
+    font-size: 10.5px;
+    line-height: 1.32;
+  }
+
+  body.force-mobile-view #allowanceSection .step-body,
+  body.force-mobile-view #legalOptionSection .step-body {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  body.force-mobile-view #allowanceSection .form-grid,
+  body.force-mobile-view #legalOptionSection .form-grid {
+    gap: 6px;
+  }
+
+  body.force-mobile-view #allowanceSection input,
+  body.force-mobile-view #allowanceSection select,
+  body.force-mobile-view #legalOptionSection input,
+  body.force-mobile-view #legalOptionSection select {
+    min-height: 36px;
+    padding: 7px 9px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+
+  body.force-mobile-view #allowanceSection label,
+  body.force-mobile-view #legalOptionSection label {
+    margin-bottom: 2px;
+    font-size: 11px;
+  }
+
+  body.force-mobile-view #allowanceSection .color-choice {
+    width: 22px;
+    height: 22px;
+  }
+
+  body.force-mobile-view #allowanceSection .two-grid {
+    grid-template-columns: 1.35fr .75fr;
+    gap: 6px;
+  }
+
+  body.force-mobile-view #allowanceSection .two-grid button {
+    min-height: 36px;
+    padding: 7px 8px;
+    font-size: 13px;
+  }
+
+  body.force-mobile-view #legalOptionSection .option-box,
+  body.force-mobile-view #legalOptionSection .pay-option-card {
+    margin-top: 6px;
+    padding: 8px 9px;
+  }
+
+  body.force-mobile-view #legalOptionSection .check-row,
+  body.force-mobile-view #legalOptionSection .radio-row {
+    min-height: 28px;
+    margin: 3px 0;
+    font-size: 12.5px;
+  }
+}
