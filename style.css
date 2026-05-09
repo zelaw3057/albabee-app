@@ -1445,6 +1445,46 @@ body.force-pc-view .mobile-guide-note {
   }
 }
 
+.pc-guide-note,
+.mobile-guide-note {
+  display: none !important;
+}
+
+body.view-mode-pc .pc-guide-note {
+  display: inline-flex !important;
+}
+
+body.view-mode-pc .mobile-guide-note {
+  display: none !important;
+}
+
+body.view-mode-mobile .pc-guide-note {
+  display: none !important;
+}
+
+body.view-mode-mobile .mobile-guide-note {
+  display: inline-flex !important;
+}
+
+header {
+  margin-bottom: 14px;
+}
+
+.site-hero-banner {
+  margin-bottom: 12px;
+}
+
+.seo-keyword-box {
+  margin-top: 9px;
+  margin-bottom: 0;
+}
+
+.pc-guide-note,
+.mobile-guide-note {
+  margin-top: 9px;
+  margin-bottom: 0;
+}
+
 /* v19: cache-refresh UI corrections */
 .site-hero-banner {
   display: block;

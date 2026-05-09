@@ -2010,9 +2010,10 @@
     }
     function setViewMode(mode){
       const normalized = mode === 'pc' ? 'pc' : (mode === 'mobile' ? 'mobile' : 'auto');
-      document.body.classList.remove('force-mobile-view', 'force-pc-view');
-      if(normalized === 'mobile') document.body.classList.add('force-mobile-view');
-      if(normalized === 'pc') document.body.classList.add('force-pc-view');
+      const effective = normalized === 'auto' ? (window.matchMedia && window.matchMedia('(max-width: 900px)').matches ? 'mobile' : 'pc') : normalized;
+      document.body.classList.remove('force-mobile-view', 'force-pc-view', 'view-mode-mobile', 'view-mode-pc');
+      if(effective === 'mobile') document.body.classList.add('force-mobile-view', 'view-mode-mobile');
+      if(effective === 'pc') document.body.classList.add('force-pc-view', 'view-mode-pc');
       try { localStorage.setItem('albaPayViewMode', normalized); } catch(e) {}
       renderCalendar();
       if(lastCalculationRows && lastCalculationRows.length) calculateMonthlyPay();

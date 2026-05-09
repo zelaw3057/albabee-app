@@ -1,3 +1,9 @@
+/images/* /images/:splat 200
+/favicon.png /favicon.png 200
+/apple-touch-icon.png /apple-touch-icon.png 200
+/manifest.json /manifest.json 200
+/app.js /app.js 200
+/style.css /style.css 200
 /weekly-pay.html /weekly-pay 301
 /minimum-wage.html /minimum-wage 301
 /night-pay.html /night-pay 301
