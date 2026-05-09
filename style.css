@@ -1199,6 +1199,300 @@ footer {
   }
 }
 
+/* v22: final homepage density pass */
+.container {
+  max-width: 1080px;
+  padding: 20px 18px 28px;
+}
+
+body.force-pc-view .container {
+  max-width: 1120px;
+  padding: 20px 22px 30px;
+}
+
+header {
+  margin-bottom: 10px;
+}
+
+.site-hero-banner {
+  width: min(100%, 780px);
+  max-width: 780px;
+  margin: 0 auto 9px;
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(239, 68, 68, .16), 0 6px 14px rgba(16, 24, 40, .05);
+}
+
+.seo-keyword-box {
+  margin-top: 7px;
+  padding: 7px 12px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.pc-guide-note,
+.mobile-guide-note {
+  margin-top: 7px;
+  padding: 5px 7px 5px 10px;
+  font-size: 11px;
+  box-shadow: none;
+}
+
+.pc-guide-note .guide-switch-link,
+.mobile-guide-note .guide-switch-link {
+  min-height: 28px;
+  padding: 3px 8px;
+  font-size: 11px;
+}
+
+.step-card {
+  margin-bottom: 8px;
+  border-radius: 15px;
+}
+
+.step-toggle {
+  min-height: 48px;
+  padding: 8px 12px;
+}
+
+.step-toggle-title {
+  font-size: 15px;
+  font-weight: 950;
+  color: #101828;
+}
+
+.step-toggle-sub {
+  margin-top: 1px;
+  font-size: 10px;
+  color: #667085;
+  font-weight: 800;
+}
+
+.step-arrow {
+  min-width: 58px;
+  height: 28px;
+  font-size: 11px;
+}
+
+.step-body {
+  padding: 0 12px 12px;
+}
+
+.step-complete-row {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.step-complete-btn {
+  min-width: 124px;
+  min-height: 40px;
+  padding: 9px 14px;
+}
+
+.top-grid,
+.form-grid,
+.two-grid {
+  gap: 8px;
+}
+
+label {
+  font-size: 13px;
+}
+
+input,
+select,
+button {
+  min-height: 42px;
+  padding: 9px 11px;
+  font-size: 14px;
+}
+
+.option-box,
+.pay-option-card,
+.collapsible-body,
+.allowance-card,
+.pattern-card {
+  padding: 10px;
+  border-radius: 13px;
+}
+
+.minimum-wage-box,
+.warning,
+.step-progress-note,
+.calendar-feature-note,
+.option-hint {
+  margin-top: 8px;
+  padding: 9px 10px;
+  font-size: 12px;
+}
+
+.calculation-section {
+  margin: 10px 0 14px;
+  padding: 12px;
+  border-radius: 18px;
+}
+
+.calculate-btn {
+  min-height: 52px;
+  padding: 13px 16px;
+  font-size: 17px;
+}
+
+.result-box {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.result-summary-grid {
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.result-summary-card {
+  padding: 12px;
+}
+
+.result-tools-after {
+  margin-top: 10px;
+}
+
+.collapsible-head {
+  padding: 11px 12px;
+}
+
+.collapsible-head strong {
+  font-size: 14px;
+}
+
+.collapsible-head span {
+  font-size: 11px;
+}
+
+.collapsible-arrow {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  font-size: 20px;
+}
+
+.header-tools {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.header-tools button {
+  min-height: 44px;
+  padding: 9px 10px;
+}
+
+.share-box textarea {
+  min-height: 54px;
+}
+
+.developer-support-card {
+  margin: 14px 0 2px;
+}
+
+.site-footer {
+  margin-top: 18px;
+  padding: 18px 0 calc(90px + env(safe-area-inset-bottom));
+}
+
+.cookie-consent {
+  bottom: max(14px, env(safe-area-inset-bottom));
+  max-width: 760px;
+  padding: 11px 12px;
+  border-radius: 16px;
+}
+
+.cookie-consent p {
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .container,
+  body.force-mobile-view .container {
+    max-width: 430px;
+    padding: 10px 10px calc(110px + env(safe-area-inset-bottom));
+  }
+
+  header {
+    margin-bottom: 8px;
+  }
+
+  .site-hero-banner {
+    margin-bottom: 7px;
+    border-radius: 14px;
+  }
+
+  .seo-keyword-box {
+    margin-top: 6px;
+    padding: 6px 9px;
+    font-size: 11px;
+  }
+
+  .pc-guide-note,
+  .mobile-guide-note {
+    margin-top: 6px;
+    padding: 4px 6px;
+  }
+
+  .step-card {
+    margin-bottom: 7px;
+  }
+
+  .step-toggle {
+    min-height: 44px;
+    padding: 7px 9px;
+  }
+
+  .step-toggle-title {
+    font-size: 14px;
+  }
+
+  .step-toggle-sub {
+    display: none;
+  }
+
+  .step-arrow {
+    min-width: 54px;
+    height: 26px;
+    font-size: 10px;
+  }
+
+  .step-body {
+    padding: 0 9px 10px;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    min-height: 42px;
+    font-size: 15px;
+  }
+
+  .calculation-section {
+    margin-top: 8px;
+    padding: 10px;
+  }
+
+  .calculate-btn {
+    min-height: 50px;
+    font-size: 16px;
+  }
+
+  .header-tools {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .site-footer {
+    padding-bottom: calc(120px + env(safe-area-inset-bottom));
+  }
+}
+
 /* v21: branded image hero and compact service controls */
 .sr-only {
   position: absolute;
