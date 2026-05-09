@@ -714,3 +714,487 @@ textarea {
     padding-bottom: calc(18px + env(safe-area-inset-bottom));
   }
 }
+
+/* v18: service polish system for main and SEO pages */
+:root {
+  --brand-red: #ef4444;
+  --brand-red-dark: #dc2626;
+  --brand-yellow: #facc15;
+  --ink: #101828;
+  --ink-soft: #344054;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --service-border: #e6eaf0;
+  --service-radius: 18px;
+  --service-shadow: 0 14px 38px rgba(16, 24, 40, .06);
+}
+
+body {
+  background:
+    linear-gradient(180deg, #f8fafc 0%, #f6f7fb 36%, #ffffff 100%);
+  color: var(--ink);
+}
+
+.container {
+  max-width: 1180px;
+}
+
+header {
+  margin-bottom: 26px;
+}
+
+h1 {
+  color: var(--ink);
+  font-size: clamp(30px, 4.8vw, 48px);
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+h2,
+.card h2 {
+  color: var(--ink);
+  line-height: 1.28;
+  letter-spacing: 0;
+}
+
+h3,
+.card h3 {
+  color: var(--ink);
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+p,
+li {
+  line-height: 1.72;
+}
+
+.sub-text,
+.muted,
+.small-note,
+.field-help {
+  color: #667085;
+}
+
+.card,
+.option-box,
+.pay-option-card,
+.collapsible-box,
+.result-box,
+.main-calendar-color-guide,
+.edit-panel,
+.side-mini-box,
+.allowance-card,
+.pattern-card {
+  border-color: var(--service-border);
+  border-radius: var(--service-radius);
+  box-shadow: var(--service-shadow);
+}
+
+.card {
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+input,
+select,
+textarea {
+  border-color: #d7dde6;
+  border-radius: 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid rgba(239, 68, 68, .18);
+  outline-offset: 2px;
+}
+
+button,
+.cta-button {
+  border-radius: 14px;
+}
+
+button:hover,
+.cta-button:hover,
+.related-list a:hover,
+.seo-pill:hover,
+.guide-pill:hover,
+.info-nav a:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.soft-btn,
+.ghost-btn {
+  border: 1px solid var(--service-border);
+}
+
+.lawzero-brand {
+  margin-bottom: 14px;
+  border-color: rgba(239, 68, 68, .16);
+}
+
+.site-hero-banner {
+  display: none;
+}
+
+.hero-main-desc {
+  max-width: 700px;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+
+.seo-keyword-box {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid #fee2e2;
+  box-shadow: 0 10px 26px rgba(239, 68, 68, .08);
+}
+
+.pc-guide-note,
+.mobile-guide-note,
+.step-progress-note,
+.calendar-feature-note,
+.result-guide,
+.warning {
+  border-color: var(--service-border);
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.step-card {
+  background: #fff;
+}
+
+.step-toggle {
+  border-radius: var(--service-radius);
+}
+
+.step-toggle-title {
+  font-size: 18px;
+}
+
+.step-toggle-sub {
+  color: #667085;
+}
+
+.step-arrow,
+.step-complete-btn,
+.selected-day-title {
+  background: var(--ink);
+}
+
+.calculate-btn {
+  min-height: 58px;
+  background: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark));
+  box-shadow: 0 16px 32px rgba(220, 38, 38, .22);
+}
+
+.calculation-section {
+  background: #fff;
+  border: 1px solid var(--service-border);
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: var(--service-shadow);
+}
+
+.result-box {
+  background: #f8fafc;
+  border: 1px solid var(--service-border);
+}
+
+.result-summary-card.primary {
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.result-summary-card.primary strong,
+.result-total strong {
+  color: var(--brand-red-dark);
+}
+
+.developer-support-card {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--service-border);
+  box-shadow: var(--service-shadow);
+}
+
+.developer-support-text {
+  color: #667085;
+}
+
+.developer-support-text strong {
+  color: var(--ink);
+}
+
+.developer-support-main-btn {
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+  box-shadow: none;
+}
+
+.site-footer,
+footer {
+  margin-top: 24px;
+  padding: 24px 0 10px;
+  color: #667085;
+}
+
+.footer-links {
+  gap: 10px 14px;
+}
+
+.footer-links a,
+.footer-links button {
+  color: #475467;
+  font-size: 13px;
+}
+
+.site-footer .lawzero-footer-brand {
+  margin-top: 10px;
+}
+
+/* Shared SEO and policy page components */
+.seo-page,
+.guide-page,
+.info-page {
+  max-width: 980px !important;
+}
+
+.seo-page header,
+.guide-page header,
+.info-page header {
+  padding: 26px 0 8px;
+  text-align: center;
+}
+
+.seo-page h1,
+.guide-page h1,
+.info-page h1 {
+  max-width: 860px;
+  margin: 0 auto 12px;
+  font-size: clamp(30px, 6vw, 46px) !important;
+}
+
+.seo-page .sub-text,
+.guide-page .sub-text,
+.info-page .sub-text {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.seo-nav,
+.guide-nav,
+.info-nav {
+  margin-top: 18px !important;
+  gap: 8px !important;
+}
+
+.seo-pill,
+.guide-pill,
+.info-nav a {
+  min-height: 38px;
+  align-items: center;
+  border-color: var(--service-border) !important;
+  background: #fff !important;
+  color: var(--ink) !important;
+  border-bottom: 1px solid var(--service-border) !important;
+  box-shadow: 0 8px 18px rgba(16, 24, 40, .04);
+}
+
+.seo-page article > .card,
+.guide-page article > .card,
+.info-page article > .card {
+  border-radius: 20px !important;
+  border-color: var(--service-border) !important;
+  box-shadow: var(--service-shadow) !important;
+}
+
+.seo-page .hero-card,
+.guide-page .hero-card,
+.info-page .info-hero,
+.info-page article > .card:first-child {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .96), rgba(255, 247, 237, .92)) !important;
+  border-color: #fed7aa !important;
+}
+
+.lead {
+  color: var(--ink-soft) !important;
+  font-size: 17px !important;
+  line-height: 1.78 !important;
+}
+
+.highlight-box,
+.summary-box,
+.notice-box,
+.contact-box {
+  border-radius: 16px !important;
+  background: #fff7ed !important;
+  border: 1px solid #fed7aa !important;
+  color: #9a3412 !important;
+}
+
+.formula {
+  border-radius: 16px !important;
+  background: #172033 !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+.mini-card,
+.trust-mini-card,
+.time-band div,
+.related-list a {
+  border-color: var(--service-border) !important;
+  border-radius: 16px !important;
+  background: #fff !important;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, .035);
+}
+
+.mini-card span,
+.mini-card p,
+.trust-mini-card p {
+  color: #667085 !important;
+}
+
+.table-wrap {
+  border-color: var(--service-border) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, .035);
+}
+
+.seo-table th,
+.guide-table th {
+  background: #f8fafc !important;
+}
+
+.faq-item {
+  border-color: var(--service-border) !important;
+}
+
+.faq-item h3 {
+  color: var(--ink);
+}
+
+.related-list a {
+  min-height: 72px;
+  color: var(--ink) !important;
+}
+
+.related-list a::after {
+  content: "바로가기";
+  display: block;
+  margin-top: 8px;
+  color: var(--brand-red-dark);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.cta-panel {
+  background: linear-gradient(135deg, #172033, #101828) !important;
+  color: #fff !important;
+}
+
+.cta-panel h2 {
+  color: #fff !important;
+}
+
+.cta-button {
+  min-height: 50px;
+  background: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark)) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 14px 30px rgba(220, 38, 38, .24) !important;
+}
+
+.text-link {
+  color: var(--brand-red-dark) !important;
+  border-bottom-color: rgba(220, 38, 38, .28) !important;
+}
+
+.notice-list,
+.check-list,
+.seo-page ul,
+.guide-page ul,
+.info-page ul {
+  padding-left: 20px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 16px 14px calc(26px + env(safe-area-inset-bottom));
+  }
+
+  header {
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .card,
+  .option-box,
+  .pay-option-card,
+  .calculation-section {
+    border-radius: 18px;
+  }
+
+  .calculation-section {
+    padding: 14px;
+  }
+
+  .result-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .seo-page header,
+  .guide-page header,
+  .info-page header {
+    padding-top: 18px;
+  }
+
+  .seo-page .sub-text,
+  .guide-page .sub-text,
+  .info-page .sub-text {
+    font-size: 15px;
+  }
+
+  .seo-nav,
+  .guide-nav,
+  .info-nav {
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    flex-wrap: nowrap !important;
+    padding-bottom: 4px;
+  }
+
+  .seo-pill,
+  .guide-pill,
+  .info-nav a {
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+  .content-grid,
+  .three-grid,
+  .info-grid,
+  .trust-content-grid,
+  .related-list,
+  .time-band {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cta-button {
+    width: 100% !important;
+  }
+}

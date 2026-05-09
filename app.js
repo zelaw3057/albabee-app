@@ -1238,7 +1238,7 @@
     }
     function getShareBaseUrl(){
       if(location.protocol === 'file:') return 'https://albabee.pages.dev/';
-      return location.href.split('#')[0];
+      return location.origin + '/';
     }
     function buildShareUrl(){
       return getShareBaseUrl() + '#data=' + encodeProjectDataForUrl();
@@ -1250,7 +1250,8 @@
         const response = await fetch('/s', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data: encoded, title: getShareTitleForKakao(), description: getShareDescriptionForKakao() })
+          body: JSON.stringify({ data: encoded, title: getShareTitleForKakao(), description: getShareDescriptionForKakao() }),
+          cache: 'no-store'
         });
         if(!response.ok) throw new Error('short share create failed');
         const json = await response.json();
@@ -1294,7 +1295,7 @@
             content: {
               title: title,
               description: text,
-              imageUrl: 'https://dummyimage.com/600x315/111827/ffffff&text=Alba+Pay+Calculator',
+              imageUrl: 'https://albabee.pages.dev/thumbnail.png',
               link: { mobileWebUrl: url, webUrl: url }
             },
             buttons: [{ title: '계산 결과 보기', link: { mobileWebUrl: url, webUrl: url } }],
@@ -1383,14 +1384,43 @@
       if(box && box.classList.contains('show')) hideShareLinkBox();
       else showShareLinkBox();
     }
-    function loadFromShareLink(){
+    function getShareIdFromPath(){
+      const match = location.pathname.match(/^\/s\/([^/?#]+)\/?$/);
+      return match ? decodeURIComponent(match[1]) : '';
+    }
+    function finishSharedProjectLoad(data, message){
+      applyProjectData(data);
+      const hasRecords = data && data.workRecords && Object.keys(data.workRecords).length > 0;
+      const hasWage = Number(data && data.hourlyWage) > 0;
+      if(hasRecords && hasWage) calculateMonthlyPay();
+      const state = document.getElementById('saveState');
+      if(state) state.textContent = message || '공유 링크에서 불러오기 완료';
+      return true;
+    }
+    async function loadFromShortShareLink(){
+      const id = getShareIdFromPath();
+      if(!id) return false;
+      try{
+        const response = await fetch('/s/' + encodeURIComponent(id) + '?format=json', {
+          headers: { 'Accept': 'application/json' },
+          cache: 'no-store'
+        });
+        if(!response.ok) throw new Error('short share not found');
+        const json = await response.json();
+        if(!json || !json.data) throw new Error('short share data missing');
+        const data = decodeProjectDataFromUrl(json.data);
+        return finishSharedProjectLoad(data, '짧은 공유 링크에서 불러오기 완료');
+      } catch(e){
+        alert('공유 링크 데이터를 불러오지 못했어요. 링크가 만료되었거나 잘못된 주소일 수 있습니다.');
+        return false;
+      }
+    }
+    async function loadFromShareLink(){
+      if(getShareIdFromPath()) return loadFromShortShareLink();
       if(!location.hash.startsWith('#data=')) return false;
       try{
         const data = decodeProjectDataFromUrl(location.hash.slice(6));
-        applyProjectData(data);
-        const state = document.getElementById('saveState');
-        if(state) state.textContent = '공유 링크에서 불러오기 완료';
-        return true;
+        return finishSharedProjectLoad(data, '기존 공유 링크에서 불러오기 완료');
       } catch(e){
         alert('공유 링크 데이터를 불러오지 못했어요.');
         return false;
