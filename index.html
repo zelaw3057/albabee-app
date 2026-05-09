@@ -93,7 +93,6 @@
           <input type="radio" name="businessSize" id="sizeUnder5" value="under5" onchange="applyBusinessSizeRules()" />
           <label for="sizeUnder5" style="margin:0;">5인 미만 사업장</label>
         </div>
-        <p class="muted">사업장 규모에 맞춰 법정수당 옵션을 자동 추천합니다.</p>
         <div id="businessSizeHint" class="option-hint">5인 이상 기준으로 가산수당을 켰습니다.</div>
       </div>
       <div class="step-complete-row"><button type="button" class="step-complete-btn" onclick="completeStep('basicSection','workCalendarSection')">다음</button></div>
@@ -136,9 +135,7 @@
                   <div><label for="defaultBreakHours">휴게</label><div class="input-with-unit"><input type="number" id="defaultBreakHours" value="60" min="0" step="1" inputmode="numeric" /><span class="unit-label">분</span></div><div class="field-help">퇴근이 더 빠르면 다음날로 계산</div></div>
                 </div>
               </div>
-              <div id="detailModeGuide" class="detail-mode-guide"><strong>상세 모드</strong> 날짜별 급여와 시간을 확인합니다.</div>
               <div class="calendar-top-actions"><button type="button" class="soft-btn" id="detailModeBtn" onclick="toggleDetailViewMode()">상세확인</button><button type="button" class="danger-btn" onclick="clearCurrentMonth()">전체취소</button></div>
-              <div class="calendar-feature-note">요일을 누르면 해당 요일을 한 번에 적용/취소할 수 있어요.</div>
               <div class="weekdays"><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(0)">일</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(1)">월</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(2)">화</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(3)">수</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(4)">목</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(5)">금</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(6)">토</button></div>
               <div id="calendar" class="calendar"></div>
               <div class="calendar-legend"><span class="legend-item">↪ 퇴근 시간이 다음날이에요</span><span class="legend-item">🌙 22:00~06:00 근무가 포함돼요</span><span class="legend-item">날짜 배경색은 근무 프리셋이에요</span><span class="legend-item">● 작은 원은 추가수당이에요</span></div>
@@ -224,10 +221,8 @@
           <div class="radio-row"><input type="radio" name="holidayApplyType" id="holidayPublicOnly" value="publicOnly" checked onchange="refreshAfterOptionChange()" /><label for="holidayPublicOnly" style="margin:0;">공휴일/대체공휴일만 적용 <span class="muted">추천</span></label></div>
           <div class="radio-row"><input type="radio" name="holidayApplyType" id="holidaySundayAndPublic" value="sundayAndPublic" onchange="refreshAfterOptionChange()" /><label for="holidaySundayAndPublic" style="margin:0;">일요일 + 공휴일 모두 적용</label></div>
           <div class="radio-row"><input type="radio" name="holidayApplyType" id="holidayNone" value="none" onchange="refreshAfterOptionChange()" /><label for="holidayNone" style="margin:0;">휴일수당 계산 안 함</label></div>
-          <p class="muted" style="margin:6px 0 0;">일요일이 원래 근무일이면 보통 공휴일만 따로 봅니다.</p>
         </div>
         <div class="check-row"><input type="checkbox" id="weeklyHolidayOption" /><label for="weeklyHolidayOption" style="margin:0;">주휴수당(추정)</label><span class="info" tabindex="0" data-tip="1주 소정근로시간이 15시간 이상이고, 1주간 소정근로일을 개근한 경우 발생하는 유급휴일 수당입니다. 이 계산기는 입력된 주간 근로시간 기준으로 추정합니다.">i</span></div>
-        <p class="muted">※ 가산수당은 보통 5인 이상 사업장 기준입니다.</p>
       </div>
 
       <div class="option-box">
@@ -248,7 +243,6 @@
             <div class="field-help">0~10% 사이 입력</div>
           </div>
         </div>
-        <p class="muted" style="margin:8px 0 0;">감액이 있는 경우만 켜세요.</p>
       </div>
 
       <div id="legalNoticeAccordion" class="collapsible-box compact-info-accordion">

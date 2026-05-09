@@ -3253,3 +3253,121 @@ textarea {
     font-size: 15px;
   }
 }
+
+/* v30: mobile spacing compression only */
+@media (max-width: 900px) {
+  body.force-mobile-view .container {
+    padding-top: 6px;
+  }
+
+  body.force-mobile-view .step-card {
+    margin-bottom: 3px;
+  }
+
+  body.force-mobile-view .step-toggle {
+    min-height: 34px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  body.force-mobile-view .step-body {
+    padding: 0 6px 6px;
+  }
+
+  body.force-mobile-view input,
+  body.force-mobile-view select,
+  body.force-mobile-view textarea {
+    min-height: 30px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  body.force-mobile-view .top-grid {
+    gap: 4px;
+  }
+
+  body.force-mobile-view #calendarBuildBtn {
+    min-height: 31px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  body.force-mobile-view #basicSection .option-box,
+  body.force-mobile-view #legalOptionSection .option-box,
+  body.force-mobile-view #legalOptionSection .pay-option-card {
+    margin-top: 3px;
+    padding: 5px 6px;
+  }
+
+  body.force-mobile-view #basicSection .radio-row,
+  body.force-mobile-view #legalOptionSection .radio-row,
+  body.force-mobile-view #legalOptionSection .check-row {
+    min-height: 21px;
+    margin: 0;
+    line-height: 1.08;
+  }
+
+  body.force-mobile-view #basicSection .option-hint,
+  body.force-mobile-view #legalOptionSection .muted,
+  body.force-mobile-view #allowanceSection .muted {
+    margin-top: 2px;
+    font-size: 10px;
+    line-height: 1.18;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel {
+    padding: 4px;
+    margin-bottom: 3px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .form-grid {
+    gap: 3px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .form-grid > div {
+    padding: 3px 4px;
+    gap: 4px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel input {
+    min-height: 24px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+
+  body.force-mobile-view #workCalendarSection .main-calendar-title {
+    margin-bottom: 3px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-top-actions {
+    margin: 2px 0 3px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-top-actions button {
+    min-height: 26px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+
+  body.force-mobile-view #legalOptionSection #holidayApplyBox {
+    margin-top: 3px !important;
+    padding: 4px 6px;
+  }
+
+  body.force-mobile-view #legalOptionSection #customTaxBox,
+  body.force-mobile-view #legalOptionSection #probationRateBox {
+    margin-top: 4px !important;
+  }
+
+  body.force-mobile-view #allowanceSection .form-grid,
+  body.force-mobile-view #allowanceSection .two-grid {
+    gap: 4px;
+  }
+
+  body.force-mobile-view #allowanceSection .form-grid + .form-grid,
+  body.force-mobile-view #allowanceSection .two-grid {
+    margin-top: 4px !important;
+  }
+}
