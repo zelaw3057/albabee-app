@@ -1,4 +1,4 @@
-const CACHE_NAME = 'albabee-app-v2-20260509-ui2';
+const CACHE_NAME = 'albabee-app-v3-20260509-ui3';
 const APP_SHELL = [
   '/',
   '/index.html',

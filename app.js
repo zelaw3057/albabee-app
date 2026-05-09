@@ -119,7 +119,7 @@
     function toggleStepSection(sectionId){
       const section = document.getElementById(sectionId);
       if(!section) return false;
-      if(section.classList.contains('step-locked')) return false;
+      if(section.classList.contains('step-locked')) markStepUnlocked(sectionId);
       setStepOpen(sectionId, !section.classList.contains('step-open'));
       return false;
     }
@@ -183,6 +183,16 @@
             if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleStepSection(id); }
           });
         }
+      });
+    }
+
+    function normalizeStepCardsAfterCalculation(){
+      ['basicSection','workCalendarSection','allowanceSection','legalOptionSection'].forEach(function(id){
+        const section = document.getElementById(id);
+        if(!section) return;
+        section.classList.remove('step-locked');
+        section.classList.add('step-unlocked');
+        updateStepToggleLabel(section);
       });
     }
 
@@ -1169,6 +1179,7 @@
 
       document.getElementById('result').innerHTML = summaryHtml + resultExtraHtml;
       hasCalculatedOnce = true;
+      normalizeStepCardsAfterCalculation();
       clearDirty();
       updateLastCalculated();
     }
