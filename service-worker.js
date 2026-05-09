@@ -1,11 +1,10 @@
-const CACHE_NAME = 'albabee-app-v3-20260509-ui3';
+const CACHE_NAME = 'albabee-app-v4-20260509-ui4';
 const APP_SHELL = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/favicon.png',
-  '/apple-touch-icon.png',
-  '/thumbnail.png'
+  '/images/app-icon.png',
+  '/images/hero-banner.png'
 ];
 
 self.addEventListener('install', function(event){

@@ -21,9 +21,9 @@
   <meta name="author" content="Lawzero" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://albabee.pages.dev/" />
-  <link rel="icon" href="/favicon.png" type="image/png" />
-  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" href="/images/app-icon.png" type="image/png" />
+  <link rel="shortcut icon" href="/images/app-icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/images/app-icon.png" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#111827" />
   <meta name="mobile-web-app-capable" content="yes" />
@@ -58,18 +58,18 @@
     "contactPoint": { "@type": "ContactPoint", "email": "lawzero3057@gmail.com", "contactType": "customer support" }
   }
   </script>
-  <link rel="stylesheet" href="style.css?v=20260509-ui3" />
+  <link rel="stylesheet" href="style.css?v=20260509-ui4" />
 </head>
 <body>
   <div class="container">
     <header>
       <div class="site-hero-banner">
-        <img src="/thumbnail.png" alt="알바BEE 알바비 계산기" />
+        <img src="/images/hero-banner.png" alt="알바BEE 알바비 계산기 브랜드 배너" />
       </div>
-      <h1>알바비 계산기</h1>
+      <h1 class="sr-only">알바비 계산기</h1>
       <div class="seo-keyword-box">주휴수당 · 야간수당 · 연장수당 · 세후 월급까지 한 번에 계산</div>
-      <p class="pc-guide-note">🖥 상세모드 사용 중 · <button type="button" class="guide-switch-link" onclick="setViewMode('mobile')">📱 간편모드로 보기</button></p>
-      <p class="mobile-guide-note">📱 빠른 계산 모드 · <button type="button" class="guide-switch-link" onclick="setViewMode('pc')">🖥 상세모드로 보기</button></p>
+      <p class="pc-guide-note"><span>현재 PC 상세화면 사용 중</span><button type="button" class="guide-switch-link" onclick="setViewMode('mobile')">모바일 간편화면 보기</button></p>
+      <p class="mobile-guide-note"><span>현재 모바일 간편화면 사용 중</span><button type="button" class="guide-switch-link" onclick="setViewMode('pc')">PC 상세화면 보기</button></p>
     </header>
 
     <section class="card step-card step-collapsed" id="basicSection" data-step-index="1">
@@ -276,9 +276,9 @@
         </button>
         <div class="collapsible-body">
           <div class="header-tools">
-            <button class="soft-btn" onclick="downloadExcelCompatibleFile()">📄 Excel 파일 다운</button>
+            <button class="soft-btn tool-icon-btn" onclick="downloadExcelCompatibleFile()"><img src="/images/excel-icon.png" alt="" /> <span>Excel 파일 다운</span></button>
             <button class="soft-btn share-toggle-btn" id="shareLinkToggleBtn" onclick="copyShareLink()">링크 공유하기</button>
-            <button class="kakao-share-btn" id="kakaoShareBtn" onclick="shareToKakaoTalk()">카카오톡으로 공유하기</button>
+            <button class="kakao-share-btn tool-icon-btn" id="kakaoShareBtn" onclick="shareToKakaoTalk()"><img src="/images/kakao-icon.png" alt="" /> <span>카카오톡으로 공유하기</span></button>
           </div>
           <div id="shareLinkBox" class="share-box" aria-live="polite">
             <textarea id="shareLinkText" readonly aria-label="공유 링크"></textarea>
@@ -323,6 +323,6 @@
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-  <script src="app.js?v=20260509-ui3"></script>
+  <script src="app.js?v=20260509-ui4"></script>
 </body>
 </html>
