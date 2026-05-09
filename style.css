@@ -1198,3 +1198,126 @@ footer {
     width: 100% !important;
   }
 }
+
+/* v19: cache-refresh UI corrections */
+.site-hero-banner {
+  display: block;
+  max-width: 760px;
+  margin: 0 auto 16px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(239, 68, 68, .16);
+  box-shadow: 0 16px 36px rgba(239, 68, 68, .14);
+}
+
+.site-hero-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-main-desc {
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.seo-keyword-box {
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, .14);
+}
+
+.step-card {
+  margin-bottom: 14px;
+}
+
+.step-toggle {
+  min-height: 62px;
+  padding: 13px 16px;
+}
+
+.step-toggle-title {
+  font-size: 17px;
+}
+
+.step-toggle-sub {
+  font-size: 11px;
+}
+
+.step-arrow {
+  min-width: 66px;
+  height: 32px;
+  font-size: 12px;
+}
+
+.step-body {
+  padding: 0 16px 16px;
+}
+
+.step-progress-note,
+.option-box,
+.pay-option-card,
+.collapsible-box {
+  margin-top: 10px;
+}
+
+.top-grid,
+.form-grid,
+.two-grid {
+  gap: 10px;
+}
+
+.header-tools {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.share-box textarea {
+  min-height: 56px;
+}
+
+.share-link-short {
+  margin-top: 8px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--service-border);
+}
+
+@media (max-width: 900px) {
+  .site-hero-banner {
+    max-width: 100%;
+    margin-bottom: 12px;
+    border-radius: 16px;
+  }
+
+  .hero-main-desc {
+    font-size: 13px;
+  }
+
+  .step-card {
+    margin-bottom: 10px;
+  }
+
+  .step-toggle {
+    min-height: 56px;
+    padding: 11px 12px;
+  }
+
+  .step-toggle-title {
+    font-size: 16px;
+  }
+
+  .step-toggle-sub {
+    display: none;
+  }
+
+  .step-body {
+    padding: 0 12px 14px;
+  }
+
+  .header-tools {
+    grid-template-columns: 1fr;
+  }
+}

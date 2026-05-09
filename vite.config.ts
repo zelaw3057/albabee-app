@@ -28,7 +28,7 @@ const staticFiles = [
 function copyStaticRootFiles() {
   return {
     name: 'copy-static-root-files',
-    closeBundle() {
+    writeBundle() {
       for (const file of staticFiles) {
         const target = join('dist', file);
         mkdirSync(dirname(target), { recursive: true });

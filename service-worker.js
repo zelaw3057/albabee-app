@@ -1,9 +1,7 @@
-const CACHE_NAME = 'albabee-app-v1';
+const CACHE_NAME = 'albabee-app-v2-20260509-ui2';
 const APP_SHELL = [
   '/',
   '/index.html',
-  '/style.css',
-  '/app.js',
   '/manifest.json',
   '/favicon.png',
   '/apple-touch-icon.png',
@@ -40,6 +38,26 @@ self.addEventListener('fetch', function(event){
   const url = new URL(request.url);
   if(url.origin !== location.origin) return;
   if(url.pathname.startsWith('/s')) return;
+  const networkFirst = request.mode === 'navigate' || ['style', 'script'].includes(request.destination) || /\.(?:html|css|js)$/i.test(url.pathname);
+
+  if(networkFirst){
+    event.respondWith(
+      fetch(request, { cache: 'no-store' }).then(function(response){
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(function(cache){
+          cache.put(request, copy);
+        });
+        return response;
+      }).catch(function(){
+        return caches.match(request).then(function(cached){
+          if(cached) return cached;
+          if(request.mode === 'navigate') return caches.match('/index.html');
+          throw new Error('offline');
+        });
+      })
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(request).then(function(cached){
