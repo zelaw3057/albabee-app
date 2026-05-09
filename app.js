@@ -970,8 +970,8 @@
       const hint = document.getElementById('businessSizeHint');
       if(hint){
         hint.textContent = isUnder5
-          ? '5인 미만 기준으로 가산수당을 기본 해제했습니다. 단, 실제로 지급받는 곳이면 아래 법정수당 계산 옵션에서 직접 다시 켤 수 있어요.'
-          : '5인 이상 기준으로 연장·야간·휴일 가산수당을 기본 활성화했습니다. 아래 법정수당 계산 옵션에서 상황에 맞게 바꿀 수 있어요.';
+          ? '5인 미만 기준으로 가산수당을 껐습니다.'
+          : '5인 이상 기준으로 가산수당을 켰습니다.';
       }
     }
     function toggleCustomTax(){ document.getElementById('customTaxBox').style.display = getSelectedTaxType() === 'custom' ? 'block' : 'none'; }

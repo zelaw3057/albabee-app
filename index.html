@@ -93,8 +93,8 @@
           <input type="radio" name="businessSize" id="sizeUnder5" value="under5" onchange="applyBusinessSizeRules()" />
           <label for="sizeUnder5" style="margin:0;">5인 미만 사업장</label>
         </div>
-        <p class="muted">사업장 규모는 아래 법정수당 계산 옵션을 처음에 맞춰주는 자동 추천 설정입니다. 5인 미만을 선택하면 연장·야간·휴일 가산수당을 기본 해제하지만, 실제로 챙겨주는 사업장이라면 아래 법정수당 계산 옵션에서 언제든 다시 켤 수 있습니다.</p>
-        <div id="businessSizeHint" class="option-hint">5인 이상 기준으로 연장·야간·휴일 가산수당을 기본 활성화했습니다. 아래 법정수당 계산 옵션에서 상황에 맞게 바꿀 수 있어요.</div>
+        <p class="muted">사업장 규모에 맞춰 법정수당 옵션을 자동 추천합니다.</p>
+        <div id="businessSizeHint" class="option-hint">5인 이상 기준으로 가산수당을 켰습니다.</div>
       </div>
       <div class="step-complete-row"><button type="button" class="step-complete-btn" onclick="completeStep('basicSection','workCalendarSection')">다음</button></div>
       </div>
@@ -104,15 +104,6 @@
     <section class="card step-card step-collapsed" id="workCalendarSection" data-step-index="2">
       <h2 class="step-toggle" role="button" tabindex="0" onclick="toggleStepSection('workCalendarSection')"><span class="step-toggle-main"><span class="step-toggle-title">2. 달력에서 근무일 선택/수정</span><span class="step-toggle-sub">근무시간을 넣고 달력에서 실제 일한 날짜를 선택하세요.</span></span><span class="step-arrow">입력하기</span></h2>
       <div class="step-body">
-      <p class="step-progress-note">시간 입력 후 날짜를 누르세요.</p>
-      <span id="modeText" class="mode-pill">근무일 선택 모드</span>
-      <div class="form-grid">
-        <div><label for="defaultStartTime">출근</label><input class="time-input" type="text" id="defaultStartTime" value="11:00" placeholder="예: 11:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></div>
-        <div><label for="defaultEndTime">퇴근</label><input class="time-input" type="text" id="defaultEndTime" value="21:00" placeholder="예: 21:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></div>
-        <div><label for="defaultBreakHours">휴게시간</label><div class="input-with-unit"><input type="number" id="defaultBreakHours" value="60" min="0" step="1" inputmode="numeric" /><span class="unit-label">분</span></div><div class="field-help">분 단위로 입력</div></div>
-      </div>
-      <p class="small-note">퇴근이 더 빠르면 다음날 퇴근으로 계산합니다.</p>
-
       <div id="patternAccordion" class="collapsible-box">
         <button type="button" class="collapsible-head" onclick="toggleAccordion('patternAccordion')">
           <div class="head-main"><div><strong>근무 패턴 프리셋</strong><span>자주 쓰는 시간을 저장해 날짜에 적용해요.</span></div></div>
@@ -137,8 +128,16 @@
           <div class="main-calendar-area">
             <div class="main-calendar-main">
               <div id="mainCalendarTitle" class="main-calendar-title">달력</div>
-              <div id="detailModeGuide" class="detail-mode-guide"><strong>상세 확인 모드</strong>를 켜면 선택한 날짜의 급여와 근무시간을 확인할 수 있어요.<div class="detail-mode-steps"><span class="detail-mode-step">날짜 선택</span><span class="detail-mode-step">팝업 확인</span><span class="detail-mode-step">시간 수정</span></div></div>
-              <div class="calendar-top-actions"><button type="button" class="soft-btn" id="detailModeBtn" onclick="toggleDetailViewMode()">상세 모드 켜기</button><button type="button" class="danger-btn" onclick="clearCurrentMonth()">이번 달 선택 취소</button></div>
+              <div class="calendar-time-panel">
+                <span id="modeText" class="mode-pill">근무일 선택 모드</span>
+                <div class="form-grid">
+                  <div><label for="defaultStartTime">출근</label><input class="time-input" type="text" id="defaultStartTime" value="11:00" placeholder="11:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></div>
+                  <div><label for="defaultEndTime">퇴근</label><input class="time-input" type="text" id="defaultEndTime" value="21:00" placeholder="21:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></div>
+                  <div><label for="defaultBreakHours">휴게</label><div class="input-with-unit"><input type="number" id="defaultBreakHours" value="60" min="0" step="1" inputmode="numeric" /><span class="unit-label">분</span></div><div class="field-help">퇴근이 더 빠르면 다음날로 계산</div></div>
+                </div>
+              </div>
+              <div id="detailModeGuide" class="detail-mode-guide"><strong>상세 모드</strong> 날짜별 급여와 시간을 확인합니다.</div>
+              <div class="calendar-top-actions"><button type="button" class="soft-btn" id="detailModeBtn" onclick="toggleDetailViewMode()">상세확인</button><button type="button" class="danger-btn" onclick="clearCurrentMonth()">전체취소</button></div>
               <div class="calendar-feature-note">요일을 누르면 해당 요일을 한 번에 적용/취소할 수 있어요.</div>
               <div class="weekdays"><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(0)">일</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(1)">월</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(2)">화</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(3)">수</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(4)">목</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(5)">금</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(6)">토</button></div>
               <div id="calendar" class="calendar"></div>

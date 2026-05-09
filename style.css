@@ -2788,3 +2788,122 @@ textarea {
     font-size: 12.5px;
   }
 }
+
+/* v27: calendar-first mobile input flow */
+#workCalendarSection .calendar-time-panel {
+  margin: 0 0 6px;
+  padding: 8px;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  background: #fff;
+}
+
+#workCalendarSection .calendar-time-panel .mode-pill {
+  margin: 0 0 6px;
+}
+
+#workCalendarSection .calendar-time-panel .form-grid {
+  gap: 6px;
+}
+
+#workCalendarSection .calendar-time-panel label {
+  margin-bottom: 2px;
+  font-size: 11px;
+  color: #667085;
+}
+
+#workCalendarSection .calendar-time-panel input,
+#workCalendarSection .calendar-time-panel select {
+  min-height: 36px;
+  padding: 7px 9px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+#workCalendarSection .calendar-time-panel .time-input,
+#workCalendarSection .calendar-time-panel #defaultBreakHours {
+  text-align: center;
+  font-weight: 900;
+}
+
+#workCalendarSection .calendar-time-panel .field-help {
+  margin-top: 3px;
+  font-size: 10.5px;
+  line-height: 1.25;
+}
+
+#workCalendarSection .detail-mode-guide {
+  display: none;
+}
+
+#workCalendarSection .calendar-top-actions {
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  body.force-mobile-view #workCalendarSection .work-layout {
+    margin-top: 0;
+  }
+
+  body.force-mobile-view #workCalendarSection .main-calendar-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    font-size: 14px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel {
+    margin-bottom: 5px;
+    padding: 7px;
+    border-radius: 12px;
+    background: #f8fafc;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .mode-pill {
+    display: none;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel label {
+    margin-bottom: 2px;
+    font-size: 10.5px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel input {
+    min-height: 34px;
+    padding: 6px 6px;
+    font-size: 13px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .input-with-unit {
+    gap: 3px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .unit-label {
+    font-size: 10px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .field-help {
+    display: none;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-top-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 4px 0 5px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-top-actions button {
+    min-height: 28px;
+    padding: 4px 6px;
+    font-size: 10.5px;
+  }
+}
