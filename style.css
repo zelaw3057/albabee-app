@@ -1988,7 +1988,7 @@ header {
 }
 
 .step-card.step-locked .step-arrow::before {
-  content: "다음 단계";
+  content: "다음";
   position: absolute;
   color: #667085;
 }
@@ -3154,7 +3154,7 @@ textarea {
 }
 
 .step-card.step-locked .step-arrow::before {
-  content: "다음 단계";
+  content: "다음";
   position: absolute;
   color: #667085;
   font-size: 10px;
@@ -4156,7 +4156,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "다음 단계" !important;
+  content: "다음" !important;
   position: absolute !important;
   inset: 0 !important;
   display: flex !important;
@@ -4377,5 +4377,196 @@ body.force-mobile-view .step-card.step-locked .step-arrow::before {
   .step-card.step-locked .step-arrow::before,
   body.force-mobile-view .step-card.step-locked .step-arrow::before {
     font-size: 9.25px !important;
+  }
+}
+
+/* v40: unified clean step-card rhythm */
+.card.step-card,
+body.force-mobile-view .card.step-card {
+  margin-bottom: 12px !important;
+  border: 1px solid #e8edf3 !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, .045) !important;
+  overflow: hidden !important;
+}
+
+.card.step-card.step-open,
+.card.step-card.step-completed:not(.step-open),
+.card.step-card.step-locked:not(.step-open),
+body.force-mobile-view .card.step-card.step-open,
+body.force-mobile-view .card.step-card.step-completed:not(.step-open),
+body.force-mobile-view .card.step-card.step-locked:not(.step-open) {
+  border-color: #e8edf3 !important;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, .045) !important;
+  opacity: 1 !important;
+}
+
+.step-toggle,
+.step-card.step-open .step-toggle,
+.step-card.step-completed:not(.step-open) .step-toggle,
+.step-card.step-locked:not(.step-open) .step-toggle,
+body.force-mobile-view .step-toggle,
+body.force-mobile-view .step-card.step-open .step-toggle,
+body.force-mobile-view .step-card.step-completed:not(.step-open) .step-toggle,
+body.force-mobile-view .step-card.step-locked:not(.step-open) .step-toggle {
+  min-height: 72px !important;
+  padding: 14px 14px !important;
+  gap: 12px !important;
+  align-items: center !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+}
+
+.step-card.step-open .step-toggle {
+  background: linear-gradient(180deg, #fff 0%, #fbfcff 100%) !important;
+}
+
+.step-toggle-main,
+body.force-mobile-view .step-toggle-main {
+  gap: 3px !important;
+  min-width: 0 !important;
+}
+
+.step-toggle-title,
+.step-card.step-open .step-toggle-title,
+.step-card.step-completed:not(.step-open) .step-toggle-title,
+.step-card.step-locked:not(.step-open) .step-toggle-title,
+body.force-mobile-view .step-toggle-title,
+body.force-mobile-view .step-card.step-open .step-toggle-title,
+body.force-mobile-view .step-card.step-completed:not(.step-open) .step-toggle-title,
+body.force-mobile-view .step-card.step-locked:not(.step-open) .step-toggle-title {
+  font-size: 16px !important;
+  line-height: 1.18 !important;
+  color: #111827 !important;
+  letter-spacing: 0 !important;
+}
+
+.step-toggle-sub,
+.step-card.step-open .step-toggle-sub,
+.step-card.step-completed:not(.step-open) .step-toggle-sub,
+.step-card.step-locked:not(.step-open) .step-toggle-sub,
+body.force-mobile-view .step-toggle-sub,
+body.force-mobile-view .step-card.step-open .step-toggle-sub,
+body.force-mobile-view .step-card.step-completed:not(.step-open) .step-toggle-sub,
+body.force-mobile-view .step-card.step-locked:not(.step-open) .step-toggle-sub {
+  margin-top: 0 !important;
+  font-size: 11px !important;
+  line-height: 1.18 !important;
+  color: #667085 !important;
+  opacity: .78 !important;
+  font-weight: 700 !important;
+}
+
+.step-arrow,
+.step-card.step-open .step-arrow,
+.step-card.step-completed .step-arrow,
+.step-card.step-locked .step-arrow,
+body.force-mobile-view .step-arrow,
+body.force-mobile-view .step-card.step-open .step-arrow,
+body.force-mobile-view .step-card.step-completed .step-arrow,
+body.force-mobile-view .step-card.step-locked .step-arrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 58px !important;
+  width: auto !important;
+  height: 30px !important;
+  padding: 0 10px !important;
+  border-radius: 10px !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  flex: 0 0 auto !important;
+}
+
+.step-card:not(.step-locked) .step-arrow,
+body.force-mobile-view .step-card:not(.step-locked) .step-arrow {
+  border: 1px solid #0f172a !important;
+  background: #0f172a !important;
+  color: #fff !important;
+}
+
+.step-card.step-completed:not(.step-open) .step-arrow,
+body.force-mobile-view .step-card.step-completed:not(.step-open) .step-arrow {
+  border-color: #dbe5ff !important;
+  background: #eef4ff !important;
+  color: #1f3b8f !important;
+}
+
+.step-card.step-locked .step-arrow,
+body.force-mobile-view .step-card.step-locked .step-arrow {
+  position: relative !important;
+  min-width: 44px !important;
+  height: 28px !important;
+  padding: 0 9px !important;
+  border: 1px solid #e6eaf0 !important;
+  background: #f6f8fb !important;
+  color: transparent !important;
+}
+
+.step-card.step-locked .step-arrow::before,
+body.force-mobile-view .step-card.step-locked .step-arrow::before {
+  content: "다음" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #667085 !important;
+  font-size: 10.5px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.step-body,
+body.force-mobile-view .step-body {
+  padding: 10px 14px 14px !important;
+}
+
+@media (max-width: 900px) {
+  .card.step-card,
+  body.force-mobile-view .card.step-card {
+    margin-bottom: 10px !important;
+    border-radius: 13px !important;
+  }
+
+  .step-toggle,
+  .step-card.step-open .step-toggle,
+  .step-card.step-completed:not(.step-open) .step-toggle,
+  .step-card.step-locked:not(.step-open) .step-toggle,
+  body.force-mobile-view .step-toggle,
+  body.force-mobile-view .step-card.step-open .step-toggle,
+  body.force-mobile-view .step-card.step-completed:not(.step-open) .step-toggle,
+  body.force-mobile-view .step-card.step-locked:not(.step-open) .step-toggle {
+    min-height: 72px !important;
+    padding: 13px 12px !important;
+    gap: 10px !important;
+    border-radius: 13px !important;
+  }
+
+  .step-toggle-title,
+  .step-card.step-open .step-toggle-title,
+  .step-card.step-completed:not(.step-open) .step-toggle-title,
+  .step-card.step-locked:not(.step-open) .step-toggle-title,
+  body.force-mobile-view .step-toggle-title,
+  body.force-mobile-view .step-card.step-open .step-toggle-title,
+  body.force-mobile-view .step-card.step-completed:not(.step-open) .step-toggle-title,
+  body.force-mobile-view .step-card.step-locked:not(.step-open) .step-toggle-title {
+    font-size: 15.5px !important;
+  }
+
+  .step-toggle-sub,
+  .step-card.step-open .step-toggle-sub,
+  .step-card.step-completed:not(.step-open) .step-toggle-sub,
+  .step-card.step-locked:not(.step-open) .step-toggle-sub,
+  body.force-mobile-view .step-toggle-sub,
+  body.force-mobile-view .step-card.step-open .step-toggle-sub,
+  body.force-mobile-view .step-card.step-completed:not(.step-open) .step-toggle-sub,
+  body.force-mobile-view .step-card.step-locked:not(.step-open) .step-toggle-sub {
+    font-size: 10px !important;
+    line-height: 1.16 !important;
   }
 }

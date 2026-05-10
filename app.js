@@ -127,7 +127,7 @@
       } else if(section.classList.contains('step-open')){
         label.textContent = '접기';
       } else if(section.classList.contains('step-locked')){
-        label.textContent = '다음 단계';
+        label.textContent = '다음';
       } else {
         label.textContent = '입력하기';
       }
