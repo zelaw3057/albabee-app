@@ -1988,7 +1988,7 @@ header {
 }
 
 .step-card.step-locked .step-arrow::before {
-  content: "대기";
+  content: "다음 단계";
   position: absolute;
   color: #667085;
 }
@@ -3154,7 +3154,7 @@ textarea {
 }
 
 .step-card.step-locked .step-arrow::before {
-  content: "대기";
+  content: "다음 단계";
   position: absolute;
   color: #667085;
   font-size: 10px;
@@ -3958,4 +3958,234 @@ body.force-mobile-view #basicSection .year-month-row #year {
 #basicSection .basic-year-month,
 #basicSection .basic-wage {
   display: contents !important;
+}
+
+/* v37: dense app-style step cards */
+.card.step-card {
+  padding: 0 !important;
+  margin-bottom: 7px !important;
+  border-radius: 13px !important;
+  box-shadow: 0 5px 14px rgba(17, 24, 39, .035) !important;
+  overflow: hidden !important;
+}
+
+.step-card.step-collapsed {
+  box-shadow: 0 3px 10px rgba(17, 24, 39, .025) !important;
+}
+
+.step-toggle {
+  min-height: 0 !important;
+  padding: 12px 14px !important;
+  gap: 9px !important;
+  border-radius: 13px !important;
+}
+
+.step-card.step-open .step-toggle {
+  padding-bottom: 10px !important;
+}
+
+.step-toggle-main {
+  gap: 1px !important;
+}
+
+.step-toggle-title {
+  font-size: 16px !important;
+  line-height: 1.18 !important;
+  letter-spacing: 0 !important;
+}
+
+.step-toggle-sub {
+  margin-top: 1px !important;
+  font-size: 11px !important;
+  line-height: 1.22 !important;
+  font-weight: 750 !important;
+  color: #667085 !important;
+}
+
+.step-arrow {
+  min-width: 58px !important;
+  height: 28px !important;
+  padding: 0 10px !important;
+  font-size: 11px !important;
+  border-radius: 999px !important;
+  flex: 0 0 auto !important;
+}
+
+.step-card.step-locked .step-toggle {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.step-card.step-locked .step-toggle-title {
+  font-size: 15px !important;
+}
+
+.step-card.step-locked .step-toggle-sub {
+  font-size: 10.5px !important;
+  line-height: 1.16 !important;
+}
+
+.step-body {
+  padding: 8px 14px 12px !important;
+  border-top-color: #eef2f7 !important;
+}
+
+.step-complete-row {
+  margin-top: 9px !important;
+  padding-top: 8px !important;
+  gap: 6px !important;
+}
+
+.step-complete-btn {
+  width: auto !important;
+  min-width: 108px !important;
+  min-height: 32px !important;
+  padding: 7px 12px !important;
+  font-size: 12px !important;
+}
+
+#basicSection .minimum-wage-box {
+  margin-top: 6px !important;
+}
+
+#basicSection .option-box,
+#legalOptionSection .option-box,
+#legalOptionSection .pay-option-card,
+#allowanceSection .option-box {
+  margin-top: 6px !important;
+}
+
+@media (max-width: 900px) {
+  .card.step-card,
+  body.force-mobile-view .card.step-card {
+    padding: 0 !important;
+    margin-bottom: 6px !important;
+    border-radius: 12px !important;
+  }
+
+  .step-toggle,
+  body.force-mobile-view .step-toggle {
+    padding: 10px 11px !important;
+    gap: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  .step-toggle-title,
+  body.force-mobile-view .step-toggle-title {
+    font-size: 15px !important;
+    line-height: 1.16 !important;
+  }
+
+  .step-toggle-sub,
+  body.force-mobile-view .step-toggle-sub {
+    font-size: 10px !important;
+    line-height: 1.14 !important;
+  }
+
+  .step-arrow,
+  body.force-mobile-view .step-arrow {
+    min-width: 54px !important;
+    height: 28px !important;
+    padding: 0 9px !important;
+    font-size: 10.5px !important;
+  }
+
+  .step-card.step-locked .step-toggle,
+  body.force-mobile-view .step-card.step-locked .step-toggle {
+    padding-top: 9px !important;
+    padding-bottom: 9px !important;
+  }
+
+  .step-body,
+  body.force-mobile-view .step-body {
+    padding: 7px 10px 10px !important;
+  }
+
+  .step-complete-row,
+  body.force-mobile-view .step-complete-row {
+    margin-top: 8px !important;
+    padding-top: 7px !important;
+    justify-content: flex-end !important;
+  }
+
+  .step-complete-btn,
+  body.force-mobile-view .step-complete-btn {
+    width: auto !important;
+    min-width: 96px !important;
+    min-height: 34px !important;
+    padding: 7px 11px !important;
+    font-size: 11.5px !important;
+  }
+}
+
+/* v38: clearer locked step button copy */
+.step-arrow,
+body.force-mobile-view .step-arrow {
+  white-space: nowrap !important;
+}
+
+.step-card.step-locked {
+  opacity: .96 !important;
+}
+
+.step-card.step-locked .step-toggle,
+body.force-mobile-view .step-card.step-locked .step-toggle {
+  opacity: 1 !important;
+  cursor: default !important;
+}
+
+.step-card.step-locked .step-arrow,
+body.force-mobile-view .step-card.step-locked .step-arrow {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 64px !important;
+  width: auto !important;
+  height: 28px !important;
+  padding: 0 10px !important;
+  border: 1px solid #e4e7ec !important;
+  background: #f2f4f7 !important;
+  color: transparent !important;
+  font-size: 10.5px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  flex: 0 0 auto !important;
+}
+
+.step-card.step-locked .step-arrow::before,
+body.force-mobile-view .step-card.step-locked .step-arrow::before {
+  content: "다음 단계" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #667085 !important;
+  font-size: 10.5px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.step-card.step-completed .step-arrow,
+body.force-mobile-view .step-card.step-completed .step-arrow {
+  min-width: 58px !important;
+  background: #eef2ff !important;
+  color: #111827 !important;
+}
+
+@media (max-width: 900px) {
+  .step-card.step-locked .step-arrow,
+  body.force-mobile-view .step-card.step-locked .step-arrow {
+    min-width: 64px !important;
+    padding: 0 9px !important;
+    font-size: 10px !important;
+  }
+
+  .step-card.step-locked .step-arrow::before,
+  body.force-mobile-view .step-card.step-locked .step-arrow::before {
+    font-size: 10px !important;
+  }
 }
