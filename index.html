@@ -58,7 +58,7 @@
     "contactPoint": { "@type": "ContactPoint", "email": "lawzero3057@gmail.com", "contactType": "customer support" }
   }
   </script>
-  <link rel="stylesheet" href="style.css?v=20260509-ui4" />
+  <link rel="stylesheet" href="style.css?v=20260510-compact1" />
 </head>
 <body>
   <div class="container">
@@ -75,23 +75,27 @@
     <section class="card step-card step-collapsed" id="basicSection" data-step-index="1">
       <h2 class="step-toggle" role="button" tabindex="0" onclick="toggleStepSection('basicSection')"><span class="step-toggle-main"><span class="step-toggle-title">1. 기본 설정</span><span class="step-toggle-sub">연도·월·시급·사업장 규모만 먼저 맞추세요.</span></span><span class="step-arrow">입력하기</span></h2>
       <div class="step-body">
-      <div class="top-grid">
-        <div><label for="year">연도</label><input type="number" id="year" value="2026" onchange="handleCalendarPeriodChange(); updateMinimumWageInfo();" /></div>
-        <div><label for="month">월</label><input type="number" id="month" value="4" min="1" max="12" onchange="handleCalendarPeriodChange()" /></div>
-        <div><label for="hourlyWage">시급 <span class="info" tabindex="0" data-tip="처음 열면 브라우저의 현재 연도 기준 최저시급을 자동으로 넣습니다. 단, 향후 연도의 최저임금은 사이트 코드에 새 기준을 반영해야 정확합니다.">i</span></label><input type="number" id="hourlyWage" value="10320" min="0" /></div>
-        <div><label>&nbsp;</label><button id="calendarBuildBtn" onclick="changeMonth()">✅ 달력 적용</button></div>
+      <div class="basic-input-stack">
+        <div class="form-grid two-col basic-year-month">
+          <label for="year">연도 <input type="number" id="year" value="2026" onchange="handleCalendarPeriodChange(); updateMinimumWageInfo();" /></label>
+          <label for="month">월 <input type="number" id="month" value="4" min="1" max="12" onchange="handleCalendarPeriodChange()" /></label>
+        </div>
+        <label class="full basic-wage" for="hourlyWage">시급 <span class="info" tabindex="0" data-tip="처음 열면 브라우저의 현재 연도 기준 최저시급을 자동으로 넣습니다. 단, 향후 연도의 최저임금은 사이트 코드에 새 기준을 반영해야 정확합니다.">i</span><input type="number" id="hourlyWage" value="10320" min="0" /></label>
+        <button id="calendarBuildBtn" onclick="changeMonth()">달력 적용</button>
       </div>
       <div id="minimumWageInfo" class="minimum-wage-box"></div>
 
-      <div class="option-box">
+      <div class="option-box compact-option-box business-size-box">
         <strong>사업장 규모</strong><span class="recommend-badge">법정수당 자동 추천 설정</span>
-        <div class="radio-row">
+        <div class="compact-option-list">
+        <div class="radio-row option-row">
           <input type="radio" name="businessSize" id="size5plus" value="5plus" checked onchange="applyBusinessSizeRules()" />
           <label for="size5plus" style="margin:0;">5인 이상 사업장</label>
         </div>
-        <div class="radio-row">
+        <div class="radio-row option-row">
           <input type="radio" name="businessSize" id="sizeUnder5" value="under5" onchange="applyBusinessSizeRules()" />
           <label for="sizeUnder5" style="margin:0;">5인 미만 사업장</label>
+        </div>
         </div>
         <div id="businessSizeHint" class="option-hint">5인 이상 기준으로 가산수당을 켰습니다.</div>
       </div>
@@ -129,10 +133,13 @@
               <div id="mainCalendarTitle" class="main-calendar-title">달력</div>
               <div class="calendar-time-panel">
                 <span id="modeText" class="mode-pill">근무일 선택 모드</span>
-                <div class="form-grid">
-                  <div><label for="defaultStartTime">출근</label><input class="time-input" type="text" id="defaultStartTime" value="11:00" placeholder="11:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></div>
-                  <div><label for="defaultEndTime">퇴근</label><input class="time-input" type="text" id="defaultEndTime" value="21:00" placeholder="21:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></div>
-                  <div><label for="defaultBreakHours">휴게</label><div class="input-with-unit"><input type="number" id="defaultBreakHours" value="60" min="0" step="1" inputmode="numeric" /><span class="unit-label">분</span></div><div class="field-help">퇴근이 더 빠르면 다음날로 계산</div></div>
+                <div class="time-entry-grid">
+                  <div class="time-grid">
+                    <label for="defaultStartTime">출근 <input class="time-input" type="text" id="defaultStartTime" value="11:00" placeholder="11:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></label>
+                    <label for="defaultEndTime">퇴근 <input class="time-input" type="text" id="defaultEndTime" value="21:00" placeholder="21:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></label>
+                  </div>
+                  <label class="break-input" for="defaultBreakHours">휴게 <span class="input-with-unit"><input type="number" id="defaultBreakHours" value="60" min="0" step="1" inputmode="numeric" /><span class="unit-label">분</span></span></label>
+                  <div class="field-help">퇴근이 더 빠르면 다음날로 계산</div>
                 </div>
               </div>
               <div class="calendar-top-actions"><button type="button" class="soft-btn" id="detailModeBtn" onclick="toggleDetailViewMode()">상세확인</button><button type="button" class="danger-btn" onclick="clearCurrentMonth()">전체취소</button></div>
@@ -151,10 +158,13 @@
           <div class="edit-content-layout">
             <div class="edit-main">
               <p class="side-panel-note">상세 확인 모드에서는 날짜를 누르면 상세 팝업이 열리고, 팝업 안에서 근무시간을 바로 수정할 수 있어요.</p>
-              <div class="form-grid">
-                <div><label for="startTime">출근 시간</label><input class="time-input" type="text" id="startTime" value="11:00" placeholder="예: 11:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this); updateSelectedWorkDay()" oninput="updateSelectedWorkDay()" /></div>
-                <div><label for="endTime">퇴근 시간</label><input class="time-input" type="text" id="endTime" value="21:00" placeholder="예: 21:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this); updateSelectedWorkDay()" oninput="updateSelectedWorkDay()" /></div>
-                <div><label for="breakHours">휴게시간</label><div class="input-with-unit"><input type="number" id="breakHours" value="60" min="0" step="1" inputmode="numeric" oninput="updateSelectedWorkDay()" /><span class="unit-label">분</span></div><div class="field-help">30분 단위가 아니어도 됩니다. 예: 75분, 80분</div></div>
+              <div class="time-entry-grid detail-time-grid">
+                <div class="time-grid">
+                  <label for="startTime">출근 <input class="time-input" type="text" id="startTime" value="11:00" placeholder="예: 11:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this); updateSelectedWorkDay()" oninput="updateSelectedWorkDay()" /></label>
+                  <label for="endTime">퇴근 <input class="time-input" type="text" id="endTime" value="21:00" placeholder="예: 21:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this); updateSelectedWorkDay()" oninput="updateSelectedWorkDay()" /></label>
+                </div>
+                <label class="break-input" for="breakHours">휴게 <span class="input-with-unit"><input type="number" id="breakHours" value="60" min="0" step="1" inputmode="numeric" oninput="updateSelectedWorkDay()" /><span class="unit-label">분</span></span></label>
+                <div class="field-help">30분 단위가 아니어도 됩니다. 예: 75분, 80분</div>
               </div>
               <div id="overnightNotice"></div>
               <div id="selectedDayDetails" class="day-detail-box"></div>
@@ -211,31 +221,41 @@
     <section class="card step-card step-collapsed" id="legalOptionSection" data-step-index="4">
       <h2 class="step-toggle" role="button" tabindex="0" onclick="toggleStepSection('legalOptionSection')"><span class="step-toggle-main"><span class="step-toggle-title">4. 법정수당 계산 옵션</span><span class="step-toggle-sub">연장·야간·휴일·주휴수당과 세금 방식을 마지막으로 확인하세요.</span></span><span class="step-arrow">입력하기</span></h2>
       <div class="step-body">
-      <div class="option-box">
-        <div class="check-row"><input type="checkbox" id="overtimeOption" checked onchange="refreshAfterOptionChange()" /><label for="overtimeOption" style="margin:0;">연장수당</label><span class="info" tabindex="0" data-tip="1일 8시간 또는 1주 40시간을 초과한 근로에 대해 통상시급의 50% 이상을 추가로 가산하는 수당입니다. 기본식: 연장근로시간 × 시급 × 0.5 추가.">i</span></div>
-        <div class="check-row"><input type="checkbox" id="weeklyOvertimeOption" checked /><label for="weeklyOvertimeOption" style="margin:0;">주 40시간 초과 연장수당</label><span class="info" tabindex="0" data-tip="하루 8시간을 넘지 않아도 한 주 총 근로시간이 40시간을 넘으면 초과분을 연장근로로 보는 계산 옵션입니다. 기본식: 주 40시간 초과분 × 시급 × 0.5 추가.">i</span></div>
-        <div class="check-row"><input type="checkbox" id="nightOption" checked onchange="refreshAfterOptionChange()" /><label for="nightOption" style="margin:0;">야간수당</label><span class="info" tabindex="0" data-tip="오후 10시부터 다음 날 오전 6시 사이의 근로에 대해 통상시급의 50% 이상을 가산하는 수당입니다. 기본식: 야간근로시간 × 시급 × 0.5 추가.">i</span></div>
-        <div class="check-row"><input type="checkbox" id="holidayOption" checked onchange="refreshAfterOptionChange()" /><label for="holidayOption" style="margin:0;">휴일/빨간날 수당</label><span class="info" tabindex="0" data-tip="휴일근로에 대해 가산하는 수당입니다. 8시간 이내는 50% 추가, 8시간 초과분은 100% 추가로 계산합니다. 민간 사업장은 보통 관공서 공휴일 중 일요일은 별도 공휴일에서 제외되므로 아래 적용 기준을 선택할 수 있게 했습니다.">i</span></div>
-        <div id="holidayApplyBox" class="option-box" style="margin-top:8px;">
-          <strong>휴일수당 적용 기준</strong>
-          <div class="radio-row"><input type="radio" name="holidayApplyType" id="holidayPublicOnly" value="publicOnly" checked onchange="refreshAfterOptionChange()" /><label for="holidayPublicOnly" style="margin:0;">공휴일/대체공휴일만 적용 <span class="muted">추천</span></label></div>
-          <div class="radio-row"><input type="radio" name="holidayApplyType" id="holidaySundayAndPublic" value="sundayAndPublic" onchange="refreshAfterOptionChange()" /><label for="holidaySundayAndPublic" style="margin:0;">일요일 + 공휴일 모두 적용</label></div>
-          <div class="radio-row"><input type="radio" name="holidayApplyType" id="holidayNone" value="none" onchange="refreshAfterOptionChange()" /><label for="holidayNone" style="margin:0;">휴일수당 계산 안 함</label></div>
+      <div class="option-box compact-option-box legal-main-options">
+        <div class="compact-option-list">
+        <div class="check-row option-row"><input type="checkbox" id="overtimeOption" checked onchange="refreshAfterOptionChange()" /><label for="overtimeOption" style="margin:0;">연장수당</label><span class="info" tabindex="0" data-tip="1일 8시간 또는 1주 40시간을 초과한 근로에 대해 통상시급의 50% 이상을 추가로 가산하는 수당입니다. 기본식: 연장근로시간 × 시급 × 0.5 추가.">i</span></div>
+        <div class="check-row option-row"><input type="checkbox" id="weeklyOvertimeOption" checked /><label for="weeklyOvertimeOption" style="margin:0;">주 40시간 초과 연장수당</label><span class="info" tabindex="0" data-tip="하루 8시간을 넘지 않아도 한 주 총 근로시간이 40시간을 넘으면 초과분을 연장근로로 보는 계산 옵션입니다. 기본식: 주 40시간 초과분 × 시급 × 0.5 추가.">i</span></div>
+        <div class="check-row option-row"><input type="checkbox" id="nightOption" checked onchange="refreshAfterOptionChange()" /><label for="nightOption" style="margin:0;">야간수당</label><span class="info" tabindex="0" data-tip="오후 10시부터 다음 날 오전 6시 사이의 근로에 대해 통상시급의 50% 이상을 가산하는 수당입니다. 기본식: 야간근로시간 × 시급 × 0.5 추가.">i</span></div>
+        <div class="check-row option-row"><input type="checkbox" id="holidayOption" checked onchange="refreshAfterOptionChange()" /><label for="holidayOption" style="margin:0;">휴일/빨간날 수당</label><span class="info" tabindex="0" data-tip="휴일근로에 대해 가산하는 수당입니다. 8시간 이내는 50% 추가, 8시간 초과분은 100% 추가로 계산합니다. 민간 사업장은 보통 관공서 공휴일 중 일요일은 별도 공휴일에서 제외되므로 아래 적용 기준을 선택할 수 있게 했습니다.">i</span></div>
         </div>
-        <div class="check-row"><input type="checkbox" id="weeklyHolidayOption" /><label for="weeklyHolidayOption" style="margin:0;">주휴수당(추정)</label><span class="info" tabindex="0" data-tip="1주 소정근로시간이 15시간 이상이고, 1주간 소정근로일을 개근한 경우 발생하는 유급휴일 수당입니다. 이 계산기는 입력된 주간 근로시간 기준으로 추정합니다.">i</span></div>
+        <div id="holidayApplyBox" class="option-box compact-option-box holiday-option-box" style="margin-top:8px;">
+          <strong>휴일수당 적용 기준</strong>
+          <div class="compact-option-list">
+          <div class="radio-row option-row"><input type="radio" name="holidayApplyType" id="holidayPublicOnly" value="publicOnly" checked onchange="refreshAfterOptionChange()" /><label for="holidayPublicOnly" style="margin:0;">공휴일/대체공휴일만 적용 <span class="muted">추천</span></label></div>
+          <div class="radio-row option-row"><input type="radio" name="holidayApplyType" id="holidaySundayAndPublic" value="sundayAndPublic" onchange="refreshAfterOptionChange()" /><label for="holidaySundayAndPublic" style="margin:0;">일요일 + 공휴일 모두 적용</label></div>
+          <div class="radio-row option-row"><input type="radio" name="holidayApplyType" id="holidayNone" value="none" onchange="refreshAfterOptionChange()" /><label for="holidayNone" style="margin:0;">휴일수당 계산 안 함</label></div>
+          </div>
+        </div>
+        <div class="compact-option-list weekly-holiday-list">
+        <div class="check-row option-row"><input type="checkbox" id="weeklyHolidayOption" /><label for="weeklyHolidayOption" style="margin:0;">주휴수당(추정)</label><span class="info" tabindex="0" data-tip="1주 소정근로시간이 15시간 이상이고, 1주간 소정근로일을 개근한 경우 발생하는 유급휴일 수당입니다. 이 계산기는 입력된 주간 근로시간 기준으로 추정합니다.">i</span></div>
+        </div>
       </div>
 
-      <div class="option-box">
+      <div class="option-box compact-option-box tax-option-box">
         <strong>세금 방식</strong>
-        <div class="radio-row"><input type="radio" name="taxType" id="taxNone" value="none" checked onchange="toggleCustomTax()" /><label for="taxNone" style="margin:0;">세금 없음</label></div>
-        <div class="radio-row"><input type="radio" name="taxType" id="tax33" value="3.3" onchange="toggleCustomTax()" /><label for="tax33" style="margin:0;">3.3%</label><span class="info" tabindex="0" data-tip="프리랜서·사업소득 형태에서 많이 쓰는 원천징수 방식입니다. 보통 소득세 3% + 지방소득세 0.3% = 총 3.3%로 계산합니다. 일반 근로계약 알바와는 다를 수 있어요.">i</span></div>
-        <div class="radio-row"><input type="radio" name="taxType" id="taxInsurance" value="insurance" onchange="toggleCustomTax()" /><label for="taxInsurance" style="margin:0;">4대보험 예상 공제율 9.7%</label><span class="info" tabindex="0" data-tip="2026년 기준 근로자 부담 예시는 국민연금 4.75%, 건강보험 3.595%, 장기요양 약 0.4724%, 고용보험 0.9% 등으로 약 9.7% 수준입니다. 산재보험은 사업주 부담이고, 실제 공제는 월급·근로형태·가입조건에 따라 달라질 수 있습니다.">i</span></div>
-        <div class="radio-row"><input type="radio" name="taxType" id="taxCustomRadio" value="custom" onchange="toggleCustomTax()" /><label for="taxCustomRadio" style="margin:0;">기타 직접 입력</label></div>
+        <div class="compact-option-list">
+        <div class="radio-row option-row"><input type="radio" name="taxType" id="taxNone" value="none" checked onchange="toggleCustomTax()" /><label for="taxNone" style="margin:0;">세금 없음</label></div>
+        <div class="radio-row option-row"><input type="radio" name="taxType" id="tax33" value="3.3" onchange="toggleCustomTax()" /><label for="tax33" style="margin:0;">3.3%</label><span class="info" tabindex="0" data-tip="프리랜서·사업소득 형태에서 많이 쓰는 원천징수 방식입니다. 보통 소득세 3% + 지방소득세 0.3% = 총 3.3%로 계산합니다. 일반 근로계약 알바와는 다를 수 있어요.">i</span></div>
+        <div class="radio-row option-row"><input type="radio" name="taxType" id="taxInsurance" value="insurance" onchange="toggleCustomTax()" /><label for="taxInsurance" style="margin:0;">4대보험 예상 공제율 9.7%</label><span class="info" tabindex="0" data-tip="2026년 기준 근로자 부담 예시는 국민연금 4.75%, 건강보험 3.595%, 장기요양 약 0.4724%, 고용보험 0.9% 등으로 약 9.7% 수준입니다. 산재보험은 사업주 부담이고, 실제 공제는 월급·근로형태·가입조건에 따라 달라질 수 있습니다.">i</span></div>
+        <div class="radio-row option-row"><input type="radio" name="taxType" id="taxCustomRadio" value="custom" onchange="toggleCustomTax()" /><label for="taxCustomRadio" style="margin:0;">기타 직접 입력</label></div>
+        </div>
         <div id="customTaxBox" style="display:none; margin-top:8px;"><label for="customTaxRate">직접 입력 공제율 (%)</label><input type="number" id="customTaxRate" value="0.9" min="0" step="0.1" /></div>
       </div>
 
-      <div class="pay-option-card">
-        <div class="check-row"><input type="checkbox" id="probationOption" onchange="toggleProbationRateBox(); refreshAfterOptionChange();" /><label for="probationOption" style="margin:0;">수습기간 감액 적용</label><span class="info" tabindex="0" data-tip="수습기간 급여 감액은 항상 10% 고정이 아니라, 적용되는 경우 최대 10% 범위에서 정할 수 있게 입력합니다. 실제 적용 가능 여부와 감액률은 근로계약, 수습기간, 계약기간, 업무 종류, 최저임금 기준에 따라 달라질 수 있어요.">i</span></div>
+      <div class="pay-option-card compact-option-box">
+        <div class="compact-option-list">
+        <div class="check-row option-row"><input type="checkbox" id="probationOption" onchange="toggleProbationRateBox(); refreshAfterOptionChange();" /><label for="probationOption" style="margin:0;">수습기간 감액 적용</label><span class="info" tabindex="0" data-tip="수습기간 급여 감액은 항상 10% 고정이 아니라, 적용되는 경우 최대 10% 범위에서 정할 수 있게 입력합니다. 실제 적용 가능 여부와 감액률은 근로계약, 수습기간, 계약기간, 업무 종류, 최저임금 기준에 따라 달라질 수 있어요.">i</span></div>
+        </div>
         <div id="probationRateBox" class="form-grid" style="display:none; margin-top:10px;">
           <div>
             <label for="probationRate">수습기간 감액률</label>
@@ -322,6 +342,6 @@
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-  <script src="app.js?v=20260509-ui4"></script>
+  <script src="app.js?v=20260510-compact1"></script>
 </body>
 </html>

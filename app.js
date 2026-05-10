@@ -539,10 +539,13 @@
       const rec = workRecords[dateKey];
       return '<div class="mobile-sheet-edit-form">'
         + '<p class="mobile-sheet-edit-note">이 날짜만 수정됩니다. 저장하면 달력 색상과 급여 계산값도 바로 다시 반영돼요.</p>'
-        + '<div class="form-grid">'
-        + '<div><label for="mobileSheetStartTime">출근 시간</label><input class="time-input" type="text" id="mobileSheetStartTime" value="' + rec.startTime + '" placeholder="예: 11:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></div>'
-        + '<div><label for="mobileSheetEndTime">퇴근 시간</label><input class="time-input" type="text" id="mobileSheetEndTime" value="' + rec.endTime + '" placeholder="예: 21:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></div>'
-        + '<div><label for="mobileSheetBreakMinutes">휴게시간</label><div class="input-with-unit"><input type="number" id="mobileSheetBreakMinutes" value="' + breakHoursToMinutes(rec.breakHours) + '" min="0" step="1" inputmode="numeric" /><span class="unit-label">분</span></div><div class="field-help">예: 1시간 = 60분, 1시간 15분 = 75분</div></div>'
+        + '<div class="time-entry-grid">'
+        + '<div class="time-grid">'
+        + '<label for="mobileSheetStartTime">출근 <input class="time-input" type="text" id="mobileSheetStartTime" value="' + rec.startTime + '" placeholder="예: 11:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></label>'
+        + '<label for="mobileSheetEndTime">퇴근 <input class="time-input" type="text" id="mobileSheetEndTime" value="' + rec.endTime + '" placeholder="예: 21:00" inputmode="numeric" maxlength="5" onblur="normalizeTimeInput(this)" /></label>'
+        + '</div>'
+        + '<label class="break-input" for="mobileSheetBreakMinutes">휴게 <span class="input-with-unit"><input type="number" id="mobileSheetBreakMinutes" value="' + breakHoursToMinutes(rec.breakHours) + '" min="0" step="1" inputmode="numeric" /><span class="unit-label">분</span></span></label>'
+        + '<div class="field-help">예: 1시간 = 60분, 1시간 15분 = 75분</div>'
         + '</div>'
         + '<div class="mobile-day-sheet-actions"><button type="button" class="soft-btn" onclick="saveMobileSheetEdit(&quot;' + dateKey + '&quot;)">수정 저장</button><button type="button" class="ghost-btn" onclick="showMobileDaySheet(&quot;' + dateKey + '&quot;)">취소</button></div>'
         + '</div>';

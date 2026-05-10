@@ -3371,3 +3371,403 @@ textarea {
     margin-top: 4px !important;
   }
 }
+
+/* v29: compact input rows with real grouped markup */
+#basicSection .basic-input-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: end;
+}
+
+#basicSection .basic-input-stack .form-grid.two-col,
+#basicSection .basic-year-month {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+#basicSection .basic-input-stack label {
+  min-width: 0;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+#basicSection .basic-input-stack label > input {
+  display: block;
+  width: 100%;
+  margin-top: 3px;
+}
+
+#basicSection #calendarBuildBtn {
+  width: auto;
+  min-width: 112px;
+  white-space: nowrap;
+}
+
+#basicSection .option-box {
+  margin-top: 8px;
+  padding: 10px 12px;
+}
+
+#basicSection .radio-row,
+#legalOptionSection .radio-row,
+#legalOptionSection .check-row,
+#legalOptionSection .pay-option-card .check-row {
+  min-height: 24px;
+  margin: 2px 0;
+  gap: 4px;
+  line-height: 1.18;
+}
+
+#basicSection input[type="radio"],
+#legalOptionSection input[type="radio"],
+#legalOptionSection input[type="checkbox"] {
+  min-height: auto;
+  padding: 0;
+  margin-right: 3px;
+}
+
+#basicSection .option-hint {
+  margin-top: 5px;
+  padding: 7px 8px;
+}
+
+#workCalendarSection .time-entry-grid {
+  display: grid;
+  gap: 5px;
+}
+
+#workCalendarSection .time-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+}
+
+#workCalendarSection .time-grid label,
+#workCalendarSection .break-input {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  margin: 0;
+  padding: 5px 6px;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 11px;
+  line-height: 1.15;
+  color: #667085;
+  white-space: nowrap;
+}
+
+#workCalendarSection .time-grid input,
+#workCalendarSection .break-input input {
+  min-height: 28px;
+  padding: 3px 4px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  text-align: center;
+  font-weight: 900;
+}
+
+#workCalendarSection .break-input .input-with-unit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px;
+  min-width: 0;
+}
+
+#workCalendarSection .time-entry-grid .field-help {
+  margin-top: 0;
+}
+
+.mobile-sheet-edit-form .time-entry-grid {
+  display: grid;
+  gap: 7px;
+}
+
+.mobile-sheet-edit-form .time-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.mobile-sheet-edit-form .time-grid label,
+.mobile-sheet-edit-form .break-input {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 7px 8px;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.mobile-sheet-edit-form .time-grid input,
+.mobile-sheet-edit-form .break-input input {
+  min-height: 30px;
+  padding: 3px 4px;
+  border: 0;
+  background: transparent;
+  text-align: center;
+  font-weight: 900;
+}
+
+.mobile-sheet-edit-form .break-input .input-with-unit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px;
+}
+
+@media (max-width: 900px) {
+  #basicSection .basic-input-stack,
+  body.force-mobile-view #basicSection .basic-input-stack {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  #basicSection .basic-input-stack .form-grid.two-col,
+  body.force-mobile-view #basicSection .basic-input-stack .form-grid.two-col,
+  body.force-mobile-view #basicSection .basic-year-month {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 5px;
+  }
+
+  #basicSection #calendarBuildBtn,
+  body.force-mobile-view #basicSection #calendarBuildBtn {
+    width: 100%;
+    min-height: 30px;
+    padding: 5px 8px;
+  }
+
+  #basicSection .basic-input-stack label,
+  body.force-mobile-view #basicSection .basic-input-stack label {
+    font-size: 10.5px;
+  }
+
+  #workCalendarSection .time-grid,
+  body.force-mobile-view #workCalendarSection .time-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .time-entry-grid {
+    gap: 4px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .time-grid label,
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .break-input {
+    padding: 3px 4px;
+    gap: 4px;
+  }
+
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .time-grid input,
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .break-input input {
+    min-height: 24px;
+    padding: 1px 3px;
+    font-size: 14px;
+  }
+
+  body.force-mobile-view #basicSection .option-box,
+  body.force-mobile-view #legalOptionSection .option-box,
+  body.force-mobile-view #legalOptionSection .pay-option-card {
+    margin-top: 4px;
+    padding: 5px 6px;
+  }
+
+  body.force-mobile-view #basicSection .radio-row,
+  body.force-mobile-view #legalOptionSection .radio-row,
+  body.force-mobile-view #legalOptionSection .check-row,
+  body.force-mobile-view #legalOptionSection .pay-option-card .check-row {
+    min-height: 20px;
+    margin: 0;
+    gap: 3px;
+  }
+
+  body.force-mobile-view #basicSection input[type="radio"],
+  body.force-mobile-view #legalOptionSection input[type="radio"],
+  body.force-mobile-view #legalOptionSection input[type="checkbox"] {
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 2px 0 0;
+  }
+}
+
+/* v31: final override for actual mobile compact rendering */
+#workCalendarSection .calendar-time-panel .time-entry-grid,
+#workCalendarSection .detail-time-grid,
+.mobile-sheet-edit-form .time-entry-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 4px !important;
+}
+
+#workCalendarSection .calendar-time-panel .time-grid,
+#workCalendarSection .detail-time-grid .time-grid,
+.mobile-sheet-edit-form .time-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 4px !important;
+}
+
+#workCalendarSection .calendar-time-panel .time-grid label,
+#workCalendarSection .calendar-time-panel .break-input,
+#workCalendarSection .detail-time-grid .time-grid label,
+#workCalendarSection .detail-time-grid .break-input,
+.mobile-sheet-edit-form .time-grid label,
+.mobile-sheet-edit-form .break-input {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  align-items: center !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 4px 5px !important;
+  gap: 4px !important;
+  line-height: 1.1 !important;
+}
+
+#workCalendarSection .calendar-time-panel .time-grid input,
+#workCalendarSection .calendar-time-panel .break-input input,
+#workCalendarSection .detail-time-grid .time-grid input,
+#workCalendarSection .detail-time-grid .break-input input,
+.mobile-sheet-edit-form .time-grid input,
+.mobile-sheet-edit-form .break-input input {
+  width: 100% !important;
+  min-height: 24px !important;
+  padding: 1px 3px !important;
+  border: 0 !important;
+}
+
+#workCalendarSection .calendar-time-panel .break-input .input-with-unit,
+#workCalendarSection .detail-time-grid .break-input .input-with-unit,
+.mobile-sheet-edit-form .break-input .input-with-unit {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 2px !important;
+}
+
+#workCalendarSection .calendar-time-panel .field-help,
+#workCalendarSection .detail-time-grid .field-help,
+.mobile-sheet-edit-form .field-help {
+  margin: 0 !important;
+  line-height: 1.15 !important;
+}
+
+#legalOptionSection .compact-option-box,
+#basicSection .compact-option-box {
+  padding: 5px 7px !important;
+  margin-top: 6px !important;
+  border-radius: 10px !important;
+}
+
+#legalOptionSection .legal-main-options,
+#legalOptionSection .tax-option-box {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+#legalOptionSection #holidayApplyBox.compact-option-box {
+  margin-top: 3px !important;
+  padding: 4px 6px !important;
+}
+
+#legalOptionSection .compact-option-list,
+#basicSection .compact-option-list {
+  display: grid !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#legalOptionSection .weekly-holiday-list {
+  margin-top: 1px !important;
+}
+
+#legalOptionSection .option-row,
+#basicSection .option-row,
+#legalOptionSection .check-row,
+#legalOptionSection .radio-row,
+#basicSection .radio-row {
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 1px 0 !important;
+  gap: 4px !important;
+  line-height: 1.08 !important;
+  font-size: 11.5px !important;
+}
+
+#legalOptionSection .option-row label,
+#basicSection .option-row label {
+  line-height: 1.08 !important;
+  margin: 0 !important;
+}
+
+#legalOptionSection .option-row input[type="radio"],
+#legalOptionSection .option-row input[type="checkbox"],
+#basicSection .option-row input[type="radio"] {
+  width: 12px !important;
+  height: 12px !important;
+  min-width: 12px !important;
+  min-height: 12px !important;
+  margin: 0 3px 0 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+#legalOptionSection .compact-option-box strong,
+#basicSection .compact-option-box strong {
+  display: inline-block;
+  margin-bottom: 1px;
+  font-size: 11.5px;
+  line-height: 1.08;
+}
+
+#legalOptionSection .compact-option-box .muted {
+  font-size: 10px !important;
+}
+
+#legalOptionSection .info {
+  width: 12px !important;
+  height: 12px !important;
+  min-width: 12px !important;
+  margin-left: 1px !important;
+  font-size: 8px !important;
+}
+
+#legalOptionSection #customTaxBox,
+#legalOptionSection #probationRateBox {
+  margin-top: 4px !important;
+}
+
+@media (max-width: 900px) {
+  body.force-mobile-view #workCalendarSection .calendar-time-panel .time-grid,
+  body.force-mobile-view #workCalendarSection .detail-time-grid .time-grid,
+  body.force-mobile-view .mobile-sheet-edit-form .time-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body.force-mobile-view #legalOptionSection .compact-option-box,
+  body.force-mobile-view #basicSection .compact-option-box {
+    padding: 5px 7px !important;
+    margin-top: 4px !important;
+  }
+
+  body.force-mobile-view #legalOptionSection .option-row,
+  body.force-mobile-view #basicSection .option-row,
+  body.force-mobile-view #legalOptionSection .check-row,
+  body.force-mobile-view #legalOptionSection .radio-row,
+  body.force-mobile-view #basicSection .radio-row {
+    padding: 2px 0 !important;
+    padding: 1px 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+  }
+}
