@@ -3,14 +3,8 @@
     let detailToggleTouched = false;
     let workRecords = {};
     let allowances = [];
-    let workPatterns = [
-      { id: 1, name: '평일 근무', startTime: '11:00', endTime: '21:00', breakHours: 1, color: '#2563eb' },
-      { id: 2, name: '짧은 근무', startTime: '17:00', endTime: '22:00', breakHours: 0, color: '#f97316' },
-      { id: 3, name: '야간 근무', startTime: '22:00', endTime: '03:00', breakHours: 0, color: '#7c3aed' }
-    ];
     const manualScheduleColors = ['#22c55e', '#2563eb', '#f97316', '#7c3aed', '#06b6d4', '#ec4899', '#eab308', '#64748b'];
     let scheduleColorMap = {};
-    let activePatternPickerId = null;
     let calendarHasBeenBuilt = false;
     let calendarApplyTimer = null;
     let activeAllowancePickerId = null;
@@ -197,7 +191,6 @@
     }
 
     function renderCalendar(){
-      ensurePatternColors();
       const ym = getCurrentYearMonth();
       const year = ym.year, month = ym.month;
       const calendar = document.getElementById('calendar');
@@ -381,7 +374,6 @@
       if(scheduleColorMap[sig]) return scheduleColorMap[sig];
 
       const usedColors = new Set();
-      workPatterns.forEach(p => { if(p && p.color) usedColors.add(p.color); });
       Object.keys(workRecords || {}).sort().forEach(key => {
         const rec = workRecords[key];
         if(!rec) return;
@@ -568,13 +560,14 @@
       const realHours = calculateRealHours(startTime, endTime, breakHours);
       if(realHours < 0){ alert('휴게시간이 총 근무시간보다 길 수 없어요.'); return; }
       const old = workRecords[dateKey] || {};
-      const color = old.patternId ? old.patternColor : getScheduleColor(startTime, endTime, breakHours);
+      const color = getScheduleColor(startTime, endTime, breakHours);
       workRecords[dateKey] = Object.assign({}, old, {
         startTime: startTime,
         endTime: endTime,
         breakHours: breakHours,
         realHours: Number(realHours.toFixed(2)),
-        patternName: old.patternId ? old.patternName : startTime + '–' + endTime + ' 근무',
+        patternId: null,
+        patternName: startTime + '–' + endTime + ' 근무',
         patternColor: color
       });
       selectedDateKey = dateKey;
@@ -654,7 +647,7 @@
     function toggleWeekdayFromHeader(weekday){ addWeekday(weekday); }
 
     function resetAllInputs(){
-      if(!confirm('근무일, 추가수당, 계산 결과를 전부 초기화할까요? 근무 패턴 프리셋은 유지됩니다.')) return;
+      if(!confirm('근무일, 추가수당, 계산 결과를 전부 초기화할까요?')) return;
       workRecords = {};
       scheduleColorMap = {};
       allowances = [];
@@ -1235,9 +1228,9 @@
           records[key] = { startTime, endTime, breakHours, realHours:Number(calculateRealHours(startTime, endTime, breakHours).toFixed(2)), patternId:null, patternName:startTime + '–' + endTime + ' 근무', patternColor:item[4] || '#2563eb' };
         });
         const allowanceList = (data.a || []).map(item => ({ id:item[0], name:item[1], type:item[2], amount:item[3], hourlyRate:item[4], hourMode:item[5], hours:item[6], color:item[7], dates:item[8] || [] }));
-        return {version:2, year:data.y, month:data.m, hourlyWage:data.w, defaultStartTime:data.ds, defaultEndTime:data.de, defaultBreakMinutes:data.db, businessSize:data.bs, taxType:data.tt, customTaxRate:data.cr, holidayApplyType:data.ht, probationOption:data.po, probationRate:data.pr, options:data.o, workRecords:records, allowances:allowanceList, workPatterns:workPatterns};
+        return {version:2, year:data.y, month:data.m, hourlyWage:data.w, defaultStartTime:data.ds, defaultEndTime:data.de, defaultBreakMinutes:data.db, businessSize:data.bs, taxType:data.tt, customTaxRate:data.cr, holidayApplyType:data.ht, probationOption:data.po, probationRate:data.pr, options:data.o, workRecords:records, allowances:allowanceList};
       }
-      if(data && data.v && data.r !== undefined){ return {version:data.v, year:data.y, month:data.m, hourlyWage:data.w, defaultStartTime:data.ds, defaultEndTime:data.de, defaultBreakMinutes:data.db, businessSize:data.bs, taxType:data.tt, customTaxRate:data.cr, holidayApplyType:data.ht, probationOption:data.po, probationRate:data.pr, options:data.o, workRecords:data.r, allowances:data.a, workPatterns:data.p}; }
+      if(data && data.v && data.r !== undefined){ return {version:data.v, year:data.y, month:data.m, hourlyWage:data.w, defaultStartTime:data.ds, defaultEndTime:data.de, defaultBreakMinutes:data.db, businessSize:data.bs, taxType:data.tt, customTaxRate:data.cr, holidayApplyType:data.ht, probationOption:data.po, probationRate:data.pr, options:data.o, workRecords:data.r, allowances:data.a}; }
       return data;
     }
 
@@ -1465,7 +1458,7 @@
           holiday: document.getElementById('holidayOption').checked,
           weeklyHoliday: document.getElementById('weeklyHolidayOption').checked
         },
-        workRecords, allowances, workPatterns
+        workRecords, allowances
       };
     }
     function applyProjectData(data){
@@ -1496,86 +1489,8 @@
       scheduleColorMap = {};
       Object.keys(workRecords || {}).sort().forEach(k => { const r = workRecords[k]; if(r && r.patternColor) scheduleColorMap[getScheduleSignature(r.startTime, r.endTime, r.breakHours)] = r.patternColor; });
       allowances = (data.allowances || []).map(a => ({ ...a, dates:(a.dates || []).filter(d => d.startsWith(activePrefix)) })).filter(a => (a.dates || []).length > 0);
-      workPatterns = data.workPatterns || workPatterns;
-      ensurePatternColors();
-      toggleCustomTax(); applyBusinessSizeRules(); updateMinimumWageInfo(); renderCalendar(); renderAllowanceList(); renderPatternList(); updateSelectedDayDetails();
+      toggleCustomTax(); applyBusinessSizeRules(); updateMinimumWageInfo(); renderCalendar(); renderAllowanceList(); updateSelectedDayDetails();
     }
-    function addWorkPattern(){
-      const name = document.getElementById('patternName').value.trim() || '근무 패턴';
-      const startTime = normalizeTimeValue(document.getElementById('patternStartTime').value);
-      const endTime = normalizeTimeValue(document.getElementById('patternEndTime').value);
-      const breakHours = minutesToBreakHours(document.getElementById('patternBreakHours').value);
-      if(!startTime || !endTime){ alert('패턴 출근/퇴근 시간을 00:00 형식으로 입력해주세요.'); return; }
-      workPatterns.push({ id: Date.now(), name, startTime, endTime, breakHours, color: getNextPatternColor() });
-      renderPatternList();
-    }
-    function deleteWorkPattern(id){ if(activePatternPickerId === id) activePatternPickerId = null; workPatterns = workPatterns.filter(p => p.id !== id); renderPatternList(); renderCalendar(); }
-    function applyPatternToDate(id, dateKey){
-      const p = workPatterns.find(item => String(item.id) === String(id)); if(!p) return;
-      const current = workRecords[dateKey];
-      if(current && String(current.patternId) === String(id)){
-        deleteWorkDay(dateKey, false);
-        renderCalendar(); renderAllowanceList(); renderPatternList();
-        return;
-      }
-      const realHours = calculateRealHours(p.startTime, p.endTime, p.breakHours);
-      workRecords[dateKey] = { startTime: p.startTime, endTime: p.endTime, breakHours: p.breakHours, realHours: Number(realHours.toFixed(2)), patternId:p.id, patternName:p.name, patternColor:p.color };
-      const parts = dateKey.split('-');
-      selectedDetailOpen = true;
-      selectDay(dateKey, Number(parts[0]), Number(parts[1]), Number(parts[2]), true);
-      renderCalendar(); renderAllowanceList(); renderPatternList();
-    }
-    function applyPatternToSelectedDate(id){
-      if(!selectedDateKey){ alert('먼저 달력에서 날짜를 선택해주세요.'); return; }
-      applyPatternToDate(id, selectedDateKey);
-    }
-    function openPatternPicker(event, id){
-      if(event) event.stopPropagation();
-      activePatternPickerId = activePatternPickerId === id ? null : id;
-      renderPatternList();
-    }
-    function renderPatternMiniCalendar(patternId){
-      const pattern = getPatternById(patternId);
-      const ym = getCurrentYearMonth();
-      const year = ym.year, month = ym.month;
-      const firstDay = new Date(year, month - 1, 1).getDay();
-      const lastDate = new Date(year, month, 0).getDate();
-      const legend = workPatterns.map(p => '<span class="pattern-legend-item"><span class="pattern-dot" style="--pattern-color:' + p.color + '"></span>' + escapeHtml(p.name) + '</span>').join('');
-      let html = '<div class="pattern-mini-wrap" onclick="event.stopPropagation()"><div class="pattern-mini-title"><span><span class="pattern-dot" style="--pattern-color:' + pattern.color + '"></span> ' + escapeHtml(pattern.name) + ' 날짜 선택</span><button type="button" class="ghost-btn" style="width:auto;padding:5px 8px;font-size:12px;" onclick="openPatternPicker(event,' + patternId + ')">닫기</button></div>';
-      html += '<div class="pattern-legend">' + legend + '</div>';
-      html += '<div class="pattern-mini-calendar"><div class="pattern-mini-weekday">일</div><div class="pattern-mini-weekday">월</div><div class="pattern-mini-weekday">화</div><div class="pattern-mini-weekday">수</div><div class="pattern-mini-weekday">목</div><div class="pattern-mini-weekday">금</div><div class="pattern-mini-weekday">토</div>';
-      for(let i=0; i<firstDay; i++) html += '<div class="pattern-mini-day empty"></div>';
-      for(let day=1; day<=lastDate; day++){
-        const dateKey = getDateKey(year, month, day);
-        const rec = workRecords[dateKey];
-        const recColor = getRecordPatternColor(rec);
-        const samePattern = rec && String(rec.patternId) === String(patternId);
-        const cls = 'pattern-mini-day' + (rec ? ' work' : '') + (samePattern ? ' active-pattern' : '') + (dateKey === selectedDateKey ? ' selected' : '');
-        const title = samePattern ? '한 번 더 누르면 이 날짜 근무가 취소돼요' : (rec ? '다른 프리셋으로 변경돼요' : '이 프리셋으로 근무일 추가');
-        const style = ' style="--existing-pattern-color:' + recColor + ';--active-pattern-color:' + pattern.color + '"';
-        html += '<button type="button" class="' + cls + '" title="' + title + '" onclick="applyPatternToDate(' + patternId + ',\'' + dateKey + '\')"' + style + '><span>' + day + '</span>' + (rec ? '<span class="pattern-mini-dot"></span>' : '') + '</button>';
-      }
-      html += '</div><p class="tool-note">같은 프리셋 날짜를 한 번 더 누르면 취소되고, 다른 프리셋 날짜를 누르면 그 프리셋 시간으로 바뀝니다.</p></div>';
-      return html;
-    }
-    function usePatternAsDefault(){
-      const startTime = normalizeTimeValue(document.getElementById('patternStartTime').value);
-      const endTime = normalizeTimeValue(document.getElementById('patternEndTime').value);
-      if(!startTime || !endTime){ alert('패턴 시간을 먼저 입력해주세요.'); return; }
-      document.getElementById('defaultStartTime').value = startTime;
-      document.getElementById('defaultEndTime').value = endTime;
-      document.getElementById('defaultBreakHours').value = Number(document.getElementById('patternBreakHours').value || 0);
-    }
-    function renderPatternList(){
-      ensurePatternColors();
-      const box = document.getElementById('patternList'); if(!box) return;
-      if(!workPatterns.length){ box.innerHTML = '<div class="muted">저장된 근무 패턴이 없습니다.</div>'; return; }
-      box.innerHTML = workPatterns.map(p => {
-        const picker = activePatternPickerId === p.id ? renderPatternMiniCalendar(p.id) : '';
-        return '<div class="pattern-card" onclick="event.stopPropagation()"><div><div class="pattern-title-row"><span class="pattern-dot" style="--pattern-color:' + p.color + '"></span><strong>' + escapeHtml(p.name) + '</strong></div><span>' + p.startTime + '~' + p.endTime + ' · 휴게 ' + breakHoursToMinutes(p.breakHours) + '분</span></div><button class="soft-btn" onclick="openPatternPicker(event,' + p.id + ')">날짜 고르기</button><button class="x-btn" onclick="deleteWorkPattern(' + p.id + ')">×</button>' + picker + '</div>';
-      }).join('');
-    }
-
     function ensureCalculated(){ if(!lastCalculationRows.length){ calculateMonthlyPay(); } return lastCalculationRows.length > 0; }
     function excelEscape(value){ return String(value ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function buildExcelCalendarHtml(){
@@ -1860,14 +1775,6 @@
 
     window.addEventListener('resize', function(){ document.body.classList.toggle('pc-detail-hover', detailViewMode && !isMobileView()); hideDayDetailTooltip(); });
 
-    document.addEventListener('click', function(event){
-      const acc = document.getElementById('patternAccordion');
-      if(activePatternPickerId && acc && !acc.contains(event.target)){
-        activePatternPickerId = null;
-        renderPatternList();
-      }
-    });
-
     const MINIMUM_WAGE_BY_YEAR = {
       2025: 10030,
       2026: 10320
@@ -1957,27 +1864,37 @@
       const fixed = {'01-01':'신정','03-01':'삼일절','05-05':'어린이날','06-06':'현충일','08-15':'광복절','10-03':'개천절','10-09':'한글날','12-25':'성탄절'};
       return fixed[md] || '';
     }
-    function getNextPatternColor(){
-      const colors = ['#2563eb','#f97316','#7c3aed','#22c55e','#ec4899','#06b6d4','#eab308','#64748b'];
-      return colors[workPatterns.length % colors.length];
-    }
-    function getPatternById(id){ return workPatterns.find(function(p){ return String(p.id) === String(id); }); }
-    function ensurePatternColors(){
-      const colors = ['#2563eb','#f97316','#7c3aed','#22c55e','#ec4899','#06b6d4','#eab308','#64748b'];
-      workPatterns.forEach(function(p, i){ if(!p.color) p.color = colors[i % colors.length]; });
-    }
     function getRecordPatternColor(rec){
       if(!rec) return '#22c55e';
       if(rec.patternColor) return rec.patternColor;
-      if(rec.patternId){ const p = getPatternById(rec.patternId); if(p && p.color) return p.color; }
-      return rec.color || '#22c55e';
+      return rec.color || getScheduleColor(rec.startTime, rec.endTime, rec.breakHours);
+    }
+    function getCurrentMonthSchedules(){
+      const ym = getCurrentYearMonth();
+      const prefix = ym.year + '-' + pad(ym.month) + '-';
+      const schedules = {};
+      Object.keys(workRecords || {}).sort().forEach(function(key){
+        if(!key.startsWith(prefix)) return;
+        const rec = workRecords[key];
+        if(!rec) return;
+        const sig = getScheduleSignature(rec.startTime, rec.endTime, rec.breakHours);
+        if(!schedules[sig]){
+          schedules[sig] = {
+            color: getRecordPatternColor(rec),
+            label: rec.startTime + '~' + rec.endTime,
+            breakText: '휴게 ' + breakHoursToMinutes(rec.breakHours) + '분'
+          };
+        }
+      });
+      return Object.keys(schedules).map(function(sig){ return schedules[sig]; });
     }
     function renderMainCalendarLegend(){
       const box = document.getElementById('mainCalendarLegend');
       if(!box) return;
-      let out = '<h3>달력 색상 안내</h3><p class="guide-help">날짜 배경색은 근무 패턴, 작은 점은 추가수당입니다.</p>';
-      out += '<div class="guide-section"><div class="guide-section-title">근무 패턴</div><div class="guide-items">';
-      out += workPatterns.length ? workPatterns.map(function(p){ return '<div class="guide-item"><span class="pattern-bg-swatch" style="--swatch-bg:' + hexToRgba(p.color, .16) + ';--swatch-border:' + hexToRgba(p.color, .8) + '"></span><span class="guide-label">' + escapeHtml(p.name || '근무 패턴') + '</span></div>'; }).join('') : '<div class="guide-empty">등록된 근무 패턴이 없습니다.</div>';
+      const schedules = getCurrentMonthSchedules();
+      let out = '<h3>달력 색상 안내</h3><p class="guide-help">날짜 배경색은 등록된 근무시간, 작은 점은 추가수당입니다.</p>';
+      out += '<div class="guide-section"><div class="guide-section-title">근무시간</div><div class="guide-items">';
+      out += schedules.length ? schedules.map(function(item){ return '<div class="guide-item"><span class="schedule-bg-swatch" style="--swatch-bg:' + hexToRgba(item.color, .16) + ';--swatch-border:' + hexToRgba(item.color, .8) + '"></span><span class="guide-label">' + escapeHtml(item.label) + ' · ' + escapeHtml(item.breakText) + '</span></div>'; }).join('') : '<div class="guide-empty">달력에서 근무일을 선택하면 시간대별 색상이 표시됩니다.</div>';
       out += '</div></div><div class="guide-section"><div class="guide-section-title">추가수당</div><div class="guide-items">';
       out += allowances.length ? allowances.map(function(a){ return '<div class="guide-item"><span class="color-dot" style="--dot-color:' + (a.color || '#22c55e') + '"></span><span class="guide-label">' + escapeHtml(a.name || '수당') + '</span></div>'; }).join('') : '<div class="guide-empty">추가수당을 만들면 여기에 표시됩니다.</div>';
       out += '</div></div>';
@@ -2030,7 +1947,7 @@
     function changeMonth(){
       lastCalendarPeriod = getCurrentYearMonth();
       calendarHasBeenBuilt = true;
-      renderCalendar(); renderAllowanceList(); renderPatternList(); updateMinimumWageInfo();
+      renderCalendar(); renderAllowanceList(); updateMinimumWageInfo();
       const btn = document.getElementById('calendarBuildBtn');
       if(btn){ btn.classList.add('applied'); btn.textContent = '✅ 적용됨'; clearTimeout(calendarApplyTimer); calendarApplyTimer = setTimeout(function(){ btn.classList.remove('applied'); btn.textContent = '✅ 달력 적용'; }, 1200); }
       return false;
@@ -2039,7 +1956,7 @@
 
     function installDirtyWrappers(){
       const names = [
-        'deleteWorkDay','deleteSelectedWorkDay','applyDefaultTimeToSelectedDay','applySelectedDayTime','applyWeekdayToMonth','clearAllWorkDays','addAllowance','deleteAllowance','toggleAllowanceDate','addWorkPattern','deleteWorkPattern','applyPatternToDate','applyPatternToSelectedDate','changeMonth','applyBusinessSizeRules','setAllowanceColor'
+        'deleteWorkDay','deleteSelectedWorkDay','applyDefaultTimeToSelectedDay','applySelectedDayTime','applyWeekdayToMonth','clearAllWorkDays','addAllowance','deleteAllowance','toggleAllowanceDate','changeMonth','applyBusinessSizeRules','setAllowanceColor'
       ];
       names.forEach(function(name){
         const original = window[name];
@@ -2160,9 +2077,7 @@
       navigator.serviceWorker.register('/service-worker.js').catch(function(){});
     }
 
-    ensurePatternColors();
     document.addEventListener('click', function(){
-      if(activePatternPickerId !== null){ activePatternPickerId = null; renderPatternList(); }
       if(activeAllowancePickerId !== null){ activeAllowancePickerId = null; renderAllowanceList(); }
     });
     setInitialDateAndWageDefaults();
@@ -2179,7 +2094,6 @@
     window.addEventListener('resize', function(){ renderCalendar(); if(lastCalculationRows.length) calculateMonthlyPay(); });
     renderCalendar();
     renderAllowanceList();
-    renderPatternList();
     installDirtyWrappers();
     loadFromShareLink();
     installDirtyWatch();
