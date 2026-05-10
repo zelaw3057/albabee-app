@@ -3771,3 +3771,156 @@ textarea {
     min-height: 0 !important;
   }
 }
+
+/* v34: buttonless basic settings and unclipped info tooltips */
+#basicSection,
+#legalOptionSection,
+#basicSection .step-body,
+#legalOptionSection .step-body {
+  overflow: visible !important;
+}
+
+#basicSection .basic-input-stack {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr) !important;
+  gap: 8px !important;
+  align-items: end !important;
+}
+
+#basicSection .basic-year-month {
+  display: grid !important;
+  grid-template-columns: minmax(132px, 1.45fr) minmax(74px, .75fr) !important;
+  gap: 6px !important;
+}
+
+#basicSection .basic-wage {
+  min-width: 0 !important;
+}
+
+#basicSection .basic-input-stack input {
+  min-width: 0 !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+#year {
+  min-width: 0 !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.info {
+  z-index: 2;
+}
+
+.info.tooltip-active {
+  background: #111827 !important;
+  color: #fff !important;
+}
+
+.info-tooltip-layer {
+  position: fixed;
+  z-index: 10050;
+  display: none;
+  width: max-content;
+  max-width: 260px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  background: #111827;
+  color: #fff;
+  box-shadow: 0 14px 32px rgba(0,0,0,.28);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+}
+
+.info-tooltip-layer.show {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  #basicSection .basic-input-stack,
+  body.force-mobile-view #basicSection .basic-input-stack {
+    grid-template-columns: 1fr !important;
+    gap: 5px !important;
+  }
+
+  #basicSection .basic-year-month,
+  body.force-mobile-view #basicSection .basic-year-month {
+    grid-template-columns: minmax(138px, 1.45fr) minmax(76px, .75fr) !important;
+    gap: 5px !important;
+  }
+
+  #basicSection .basic-input-stack input,
+  body.force-mobile-view #basicSection .basic-input-stack input {
+    min-height: 34px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    font-size: 14px !important;
+  }
+
+  #year,
+  body.force-mobile-view #year {
+    min-width: 138px !important;
+  }
+
+  .info-tooltip-layer {
+    max-width: min(260px, calc(100vw - 20px));
+    font-size: 11.5px;
+    line-height: 1.4;
+  }
+}
+
+/* v35: stronger basic grid and CSS tooltip fallback */
+#basicSection .basic-input-stack .form-grid.two-col.basic-year-month,
+body.force-mobile-view #basicSection .basic-input-stack .form-grid.two-col.basic-year-month {
+  grid-template-columns: minmax(142px, 1.45fr) minmax(72px, .75fr) !important;
+}
+
+#basicSection .basic-input-stack .form-grid.two-col.basic-year-month #year,
+body.force-mobile-view #basicSection .basic-input-stack .form-grid.two-col.basic-year-month #year {
+  min-width: 142px !important;
+}
+
+.info:hover::after,
+.info:focus::after {
+  content: attr(data-tip) !important;
+  position: fixed !important;
+  z-index: 10040 !important;
+  top: 76px !important;
+  right: 12px !important;
+  left: auto !important;
+  display: block !important;
+  width: auto !important;
+  max-width: 260px !important;
+  padding: 9px 10px !important;
+  border-radius: 10px !important;
+  background: #111827 !important;
+  color: #fff !important;
+  box-shadow: 0 14px 32px rgba(0,0,0,.28) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: anywhere !important;
+}
+
+.info.tooltip-active::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .info:hover::after,
+  .info:focus::after {
+    top: auto !important;
+    right: 10px !important;
+    bottom: 14px !important;
+    max-width: min(260px, calc(100vw - 20px)) !important;
+    font-size: 11.5px !important;
+  }
+}

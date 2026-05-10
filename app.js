@@ -2064,6 +2064,81 @@
       }
     }
 
+    function getInfoTooltipLayer(){
+      let layer = document.getElementById('infoTooltipLayer');
+      if(layer) return layer;
+      layer = document.createElement('div');
+      layer.id = 'infoTooltipLayer';
+      layer.className = 'info-tooltip-layer';
+      layer.setAttribute('role', 'tooltip');
+      document.body.appendChild(layer);
+      return layer;
+    }
+
+    function hideInfoTooltip(){
+      const layer = document.getElementById('infoTooltipLayer');
+      if(layer) layer.classList.remove('show');
+      document.querySelectorAll('.info.tooltip-active').forEach(function(el){ el.classList.remove('tooltip-active'); });
+    }
+
+    function showInfoTooltip(anchor){
+      if(!anchor || !anchor.dataset || !anchor.dataset.tip) return;
+      const layer = getInfoTooltipLayer();
+      layer.textContent = anchor.dataset.tip;
+      layer.classList.add('show');
+      anchor.classList.add('tooltip-active');
+
+      const gap = 10;
+      const rect = anchor.getBoundingClientRect();
+      layer.style.left = '0px';
+      layer.style.top = '0px';
+      const box = layer.getBoundingClientRect();
+      let left = rect.right + 8;
+      let top = rect.top - 8;
+
+      if(left + box.width > window.innerWidth - gap) left = rect.left - box.width - 8;
+      if(left < gap) left = Math.max(gap, window.innerWidth - box.width - gap);
+      if(top + box.height > window.innerHeight - gap) top = window.innerHeight - box.height - gap;
+      if(top < gap) top = rect.bottom + 8;
+      if(top + box.height > window.innerHeight - gap) top = gap;
+
+      layer.style.left = Math.round(left) + 'px';
+      layer.style.top = Math.round(top) + 'px';
+    }
+
+    function installInfoTooltips(){
+      document.addEventListener('mouseenter', function(event){
+        const info = event.target.closest && event.target.closest('.info[data-tip]');
+        if(info) showInfoTooltip(info);
+      }, true);
+      document.addEventListener('mouseleave', function(event){
+        const info = event.target.closest && event.target.closest('.info[data-tip]');
+        if(info) hideInfoTooltip();
+      }, true);
+      document.addEventListener('focusin', function(event){
+        const info = event.target.closest && event.target.closest('.info[data-tip]');
+        if(info) showInfoTooltip(info);
+      });
+      document.addEventListener('focusout', function(event){
+        if(event.target.closest && event.target.closest('.info[data-tip]')) hideInfoTooltip();
+      });
+      document.addEventListener('click', function(event){
+        const info = event.target.closest && event.target.closest('.info[data-tip]');
+        if(info){
+          event.preventDefault();
+          event.stopPropagation();
+          if(info.classList.contains('tooltip-active')) hideInfoTooltip(); else { hideInfoTooltip(); showInfoTooltip(info); }
+          return;
+        }
+        hideInfoTooltip();
+      });
+      document.addEventListener('keydown', function(event){
+        if(event.key === 'Escape') hideInfoTooltip();
+      });
+      window.addEventListener('scroll', hideInfoTooltip, true);
+      window.addEventListener('resize', hideInfoTooltip);
+    }
+
     function applyTossInAppPolicy(){
       if(!isTossInAppBrowser()) return;
       document.body.classList.add('is-toss-inapp');
@@ -2095,6 +2170,7 @@
     initStepFlow();
     initCookieConsent();
     initColorPalette();
+    installInfoTooltips();
     installDayTooltipAutoHide();
     lastCalendarPeriod = getCurrentYearMonth();
     setAllowanceColor(getNextAllowanceColor());
