@@ -9,10 +9,13 @@ npm-debug.log*
 .env
 .env.*
 .vite/
+.cache/
+.wrangler/
 coverage/
 playwright-report/
 test-results/
 backups/
+unused-assets/
 backup-old/
 backup*/
 *-backup*/

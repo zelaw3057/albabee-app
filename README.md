@@ -18,9 +18,9 @@ npm.cmd run web:build
 
 ## Important Files
 
-- `index.html`, `style.css`, `app.js`: main web calculator.
+- `index.html`, `styles/main.css`, `scripts/app.js`: main web calculator.
 - `minimum-wage.html`, `weekly-pay.html`, `night-pay.html`: SEO pages.
-- `toss.html`, `toss-style.css`, `toss-app.js`: Toss in-app source.
+- `toss.html`, `styles/toss.css`, `scripts/toss-app.js`: Toss in-app source.
 - `sitemap.xml`, `functions/sitemap.xml.js`: sitemap output. Keep these in sync until sitemap generation is centralized.
 - `vite.config.ts`: web build static copy list. Add every new root SEO page here.
 - `public/_headers`, `public/_routes.json`: Cloudflare sitemap behavior.
@@ -38,4 +38,4 @@ Toss in-app work is paused while the public web homepage is stabilized. Keep Tos
 
 ## Backup Note
 
-Do not keep backup folders inside this project. Use external date-based folders such as `Desktop\albabee-backup-2026-05-09`, and use Git commits and tags as the primary rollback method.
+The current cleanup backup is stored at `backups/stable_build_2026-05/` and is ignored by Git. Use Git commits and tags as the primary rollback method for deployable changes.

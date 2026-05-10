@@ -1,113 +1,87 @@
 # Albabee Project Structure
 
-This document defines the clean operating structure for Albabee.
+This document defines the current source layout after the 2026-05 cleanup.
 
-## Current Runtime Map
-
-| Area | Current files | Status | Notes |
-| --- | --- | --- | --- |
-| Main web calculator | `index.html`, `style.css`, `app.js` | Active | Public web entry served at `/`. |
-| SEO pages | `minimum-wage.html`, `weekly-pay.html`, `night-pay.html`, `wage-guide.html`, `about.html`, `privacy.html`, `terms.html`, `contact.html` | Active | Root location is intentional to preserve current URLs and sitemap behavior. |
-| SEO infrastructure | `sitemap.xml`, `robots.txt`, `functions/sitemap.xml.js`, `public/_headers`, `public/_routes.json` | Active | Sitemap URLs are duplicated in root XML and Cloudflare Function until generation is centralized. |
-| PWA/static identity | `manifest.json`, `service-worker.js`, `favicon.png`, `apple-touch-icon.png`, `logo.png`, `thumbnail.png` | Active | Referenced by the web app and copied into production output. |
-| Homepage images/icons | `images/*.png`, `public/images/*.png` | Active | Root `images/` is required by the current Pages deployment path; `public/images/` is kept for Vite static handling. Keep both in sync for now. |
-| Toss in-app source | `toss.html`, `toss-style.css`, `toss-app.js`, `vite.config.toss.ts`, `scripts/build-ait.mjs`, `granite.config.ts` | Active platform variant | Generated Toss output must not be tracked. |
-| Build outputs | `dist/`, `dist-toss/`, `*.ait` | Generated | Recreate from source. Do not edit or track. |
-| Dependencies | `node_modules/` | Generated | Local only. Recreate with `npm install`. |
-| Backups | external `Desktop\albabee-backup-*` folders | External only | Do not keep backup folders inside `albabee-app`. |
-
-## Clean Root Rule
-
-The project root should contain only active source/config files needed to build or deploy the current product.
-
-Do not keep these in the project:
-
-- backup folders;
-- old copies;
-- temp HTML files;
-- generated bundles;
-- package artifacts;
-- versioned files such as `index_final_v8.html`.
-
-## Current Risks
-
-1. Sitemap drift: `sitemap.xml` and `functions/sitemap.xml.js` both contain URL lists.
-2. Static copy drift: every new SEO page must be added to `vite.config.ts` or it will not appear in `dist/`.
-3. Web/Toss duplication: `app.js` and `toss-app.js`, plus `style.css` and `toss-style.css`, are large duplicated files.
-4. Service worker cache drift: renamed CSS/JS/image paths must be reflected in `service-worker.js`.
-5. SEO duplicate risk: backup HTML files in the root or `public/` could be deployed and crawled.
-
-## Recommended Target Structure
-
-Use this as a gradual migration target:
+## Runtime Layout
 
 ```text
 albabee-app/
-  src/
-    web/
-      index.html
-      css/app.css
-      js/app.js
-    toss/
-      index.html
-      css/toss.css
-      js/toss.js
-    seo/
-      pages/
-        minimum-wage.html
-        weekly-pay.html
-        night-pay.html
-        labor-contract.html
-        overtime-pay.html
-        severance-pay.html
-        tax-3-3.html
-        holiday-pay.html
-        probation-pay.html
-      shared/
-        seo.css
-        seo-pages.json
-        render-seo-page.mjs
+  index.html                    # main web calculator route
+  toss.html                     # Toss in-app route
+  minimum-wage.html             # SEO route, kept at root for URL stability
+  weekly-pay.html               # SEO route, kept at root for URL stability
+  night-pay.html                # SEO route, kept at root for URL stability
+  wage-guide.html               # SEO route, kept at root for URL stability
+  about.html
+  privacy.html
+  terms.html
+  contact.html
+  styles/
+    main.css                    # main web calculator styles
+    toss.css                    # Toss in-app styles
+  scripts/
+    app.js                      # main web calculator logic
+    toss-app.js                 # Toss in-app logic
+    build-ait.mjs               # Toss AIT build helper
   public/
-    assets/
-      images/
-      icons/
+    images/
+      hero-banner.png
+      app-icon.png
+      kakao-icon.png
+      excel-icon.png
     _headers
     _routes.json
+    _redirects
   functions/
-  scripts/
+    sitemap.xml.js
+    _share-storage.js
+    s/
   docs/
+  backups/                      # local backup only, ignored by Git
 ```
 
-Backups stay outside this tree.
+## Why SEO Pages Stay In Root
 
-## Migration Order
+The public URLs currently used by sitemap, search engines, and internal links are root URLs such as:
 
-1. Keep the root clean and remove generated/backup files from Git.
-2. Add a central SEO registry such as `src/seo/shared/seo-pages.json`.
-3. Generate `sitemap.xml`, `functions/sitemap.xml.js`, and SEO navigation from the registry.
-4. Extract SEO shared CSS from inline styles into a shared CSS file.
-5. Move images/icons into `public/assets/` only after Cloudflare Pages root/static behavior is re-tested.
-6. Split web and Toss source only after web and Toss builds pass.
+- `/weekly-pay.html`
+- `/minimum-wage.html`
+- `/night-pay.html`
+- `/wage-guide.html`
 
-## Rules For New SEO Pages
+Moving those files into `/pages` would change URLs or require redirects. For SEO safety, the source HTML remains at the root until a route-generation step is added.
 
-Every SEO page should have:
+## Active Asset Policy
 
-- one `h1`;
-- multiple `h2` sections;
-- internal links to `/`, `/minimum-wage.html`, `/weekly-pay.html`, `/night-pay.html`, and `/wage-guide.html` where relevant;
-- a calculator CTA with text like `알바비 계산하러 가기`;
-- a related information hub section;
-- FAQ visible in HTML and matching `FAQPage` JSON-LD;
-- canonical URL;
-- entry in `sitemap.xml`;
-- entry in `functions/sitemap.xml.js` until sitemap generation is centralized;
-- entry in `vite.config.ts` static copy list until the build discovers SEO pages automatically.
+Only `public/images/` is the active image source for app UI assets. Vite serves these at `/images/...`.
 
-## Ownership Boundaries
+The old root `images/` folder was a byte-identical duplicate and has been moved to:
 
-- Main calculator changes: `index.html`, `style.css`, `app.js`.
-- Toss changes: `toss.html`, `toss-style.css`, `toss-app.js`, Toss config, AIT scripts.
-- SEO content changes: SEO HTML pages and sitemap files.
-- Cloudflare routing/header changes: `public/` and `functions/`.
-- Generated output: never edit manually.
+```text
+backups/unused_assets_2026-05/images-root-duplicate/
+```
+
+## Build Outputs
+
+Generated output must not be edited manually:
+
+- `dist/`
+- `dist-toss/`
+- `*.ait`
+- `node_modules/`
+
+These are ignored by Git and can be recreated.
+
+## Current Risks
+
+1. `styles/main.css` and `scripts/app.js` are still large files. They are now in clearer folders, but feature-level splitting should be done gradually with browser regression checks.
+2. SEO URLs are root-based by design. Do not move SEO HTML into `/pages` without adding redirects and sitemap updates.
+3. Sitemap sources still exist in both `sitemap.xml` and `functions/sitemap.xml.js`; keep them synchronized until generation is centralized.
+4. Toss source is separate from web source. Changes to calculator behavior may need to be ported intentionally.
+
+## Recommended Next Refactors
+
+1. Extract shared CSS sections from `styles/main.css` only after visual screenshots are in place.
+2. Split `scripts/app.js` by feature in this order: calendar, allowances, sharing/export, calculation.
+3. Add a small SEO registry and generate `sitemap.xml` plus `functions/sitemap.xml.js`.
+4. Add lightweight smoke tests for `/`, `/weekly-pay.html`, `/minimum-wage.html`, `/night-pay.html`, and `/wage-guide.html`.

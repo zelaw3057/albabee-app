@@ -7,8 +7,8 @@ const tossStaticFiles = [
   'favicon.png',
   'logo.png',
   'thumbnail.png',
-  'toss-app.js',
-  'toss-style.css',
+  'scripts/toss-app.js',
+  'styles/toss.css',
 ];
 
 function copyTossStaticFiles() {

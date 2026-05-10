@@ -9,8 +9,8 @@ Do not delete Toss source files. Keep them out of the normal web deployment path
 Source and config:
 
 - `toss.html`: Toss-specific HTML entry.
-- `toss-style.css`: Toss-specific stylesheet.
-- `toss-app.js`: Toss-specific app logic.
+- `styles/toss.css`: Toss-specific stylesheet.
+- `scripts/toss-app.js`: Toss-specific app logic.
 - `vite.config.toss.ts`: Toss web build config. Outputs to `dist-toss/`.
 - `granite.config.ts`: Apps in Toss/Granite config.
 - `scripts/build-ait.mjs`: AIT build runner.
@@ -43,21 +43,21 @@ The normal web build uses `vite.config.ts`.
 It copies only:
 
 - `index.html`
-- `app.js`
-- `style.css`
+- `scripts/app.js`
+- `styles/main.css`
 - SEO pages
 - static assets
 - sitemap/robots/ads/manifest/service worker files
 
-It does not copy `toss.html`, `toss-app.js`, `toss-style.css`, `vite.config.toss.ts`, or `granite.config.ts`.
+It does not copy `toss.html`, `scripts/toss-app.js`, `styles/toss.css`, `vite.config.toss.ts`, or `granite.config.ts`.
 
 ## Toss Code Still Present In Web Files
 
 The public web app currently contains a small Toss in-app browser policy:
 
-- `app.js`: `isTossInAppBrowser()`
-- `app.js`: `applyTossInAppPolicy()`
-- `style.css`: `body.is-toss-inapp` rules
+- `scripts/app.js`: `isTossInAppBrowser()`
+- `scripts/app.js`: `applyTossInAppPolicy()`
+- `styles/main.css`: `body.is-toss-inapp` rules
 
 These are inert for normal browsers. They only apply when the user agent includes `toss`. Leave them alone unless a future web-only cleanup explicitly removes Toss behavior from the public web app.
 
@@ -66,7 +66,7 @@ These are inert for normal browsers. They only apply when the user agent include
 Web version:
 
 - `index.html` loads Kakao SDK for Kakao sharing.
-- `app.js` uses Kakao Share when available.
+- `scripts/app.js` uses Kakao Share when available.
 - `copyShareLink()` falls back to a hash-based URL if the `/s` short-link endpoint is unavailable.
 - `openKakaoPayDonation()` opens a KakaoPay URL.
 
@@ -90,7 +90,7 @@ When Toss work resumes:
    - clipboard permissions
    - `webViewProps`
    - output directory
-7. Compare `app.js` and `toss-app.js` before copying any logic between them.
+7. Compare `scripts/app.js` and `scripts/toss-app.js` before copying any logic between them.
 8. Do not commit `dist-toss/`, `.granite/`, or `*.ait`.
 
 ## Caution
@@ -98,8 +98,8 @@ When Toss work resumes:
 Do not change these while focusing on web stability unless there is a clear web bug:
 
 - `index.html`
-- `app.js`
-- `style.css`
+- `scripts/app.js`
+- `styles/main.css`
 - `vite.config.ts`
 - `sitemap.xml`
 - `robots.txt`

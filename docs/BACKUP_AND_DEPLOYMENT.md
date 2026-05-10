@@ -1,22 +1,22 @@
 # Backup And Deployment Policy
 
-## Current External Backup
+## Current Cleanup Backup
 
-The current stable backup should live outside the working project:
+The current cleanup backup was requested inside the workspace and is ignored by Git:
 
 ```text
-C:\Users\User.DESKTOP-BLBKBC2\Desktop\albabee-backup-2026-05-09-ui-stable.zip
+backups/stable_build_2026-05/
 ```
 
-This backup preserves the stable UI/share/image state before the next SEO expansion pass.
+It excludes generated/heavy folders such as `.git`, `node_modules/`, `dist/`, `dist-toss/`, and `backups/` itself.
 
 ## Backup Rule
 
-Do not keep backup, old, temp, or version folders inside `albabee-app`.
+By default, do not keep backup, old, temp, or version folders inside `albabee-app` unless a specific local backup is requested.
 
 Avoid these inside the project:
 
-- `backups/`
+- `backups/` except the current ignored cleanup backup
 - `backup-old/`
 - `old/`
 - `temp/`
