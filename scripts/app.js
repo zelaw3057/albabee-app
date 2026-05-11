@@ -1270,23 +1270,37 @@
         return false;
       }
     }
-    async function createShortShareUrl(){
-      const encoded = encodeProjectDataForUrl();
-      logShareDebug('serialize:success', { encodedLength: encoded.length });
+    async function createShortShareUrl(options){
+      const isTest = Boolean(options && options.test);
+      const encoded = isTest ? 'AbC123_-' : encodeProjectDataForUrl();
+      logShareDebug('serialize:success', { encodedLength: encoded.length, test: isTest });
       try{
-        logShareDebug('short-link:request', { endpoint: '/s' });
+        logShareDebug('short-link:request', { endpoint: '/s', test: isTest });
         const response = await fetch('/s', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data: encoded, title: getShareTitleForKakao(), description: getShareSummaryText() }),
+          body: JSON.stringify({
+            data: encoded,
+            title: isTest ? 'share-debug-test' : getShareTitleForKakao(),
+            description: isTest ? 'share debug test' : getShareSummaryText()
+          }),
           cache: 'no-store'
         });
         let json = null;
-        try { json = await response.json(); } catch(parseError) {
-          logShareError('short-link:response-json-failed', parseError, { status: response.status });
+        let rawText = '';
+        try {
+          rawText = await response.text();
+          json = rawText ? JSON.parse(rawText) : null;
+        } catch(parseError) {
+          logShareError('short-link:response-parse-failed', parseError, { status: response.status, rawText: rawText });
         }
-        logShareDebug('short-link:response', { status: response.status, ok: response.ok, body: json });
-        if(!response.ok) throw new Error((json && (json.message || json.error)) || 'short share create failed');
+        logShareDebug('short-link:response', { status: response.status, ok: response.ok, body: json, rawText: rawText });
+        if(!response.ok){
+          const reason = response.status === 503
+            ? 'SHARE_KV binding missing or unavailable'
+            : ((json && (json.message || json.error)) || rawText || 'short share create failed');
+          throw new Error(reason);
+        }
         const url = json && json.url ? new URL(json.url, location.origin).href : (json && json.id ? location.origin + '/s/' + encodeURIComponent(json.id) : '');
         if(url && isShortShareUrl(url)){
           logShareDebug('short-link:success', { url: url });
@@ -1296,6 +1310,7 @@
       } catch(e) {
         logShareError('short-link:failed', e, {
           hint: 'Cloudflare Pages Functions /s 또는 KV binding(SHARE_KV, ALBABEE_SHARE_KV, SHARES)을 확인하세요.',
+          likelyCause: e && /SHARE_KV|503/i.test(e.message || '') ? 'SHARE_KV binding missing' : 'network/function/response error',
           online: navigator.onLine,
           userAgent: navigator.userAgent
         });
@@ -2182,6 +2197,18 @@
       if(location.protocol !== 'https:' && location.hostname !== 'localhost') return;
       navigator.serviceWorker.register('/service-worker.js').catch(function(){});
     }
+
+    window.__testShareLink = async function(){
+      console.info('[AlbaBEE share test] start');
+      const url = await createShortShareUrl({ test: true });
+      const result = {
+        ok: Boolean(url && isShortShareUrl(url)),
+        url: url || '',
+        hint: url ? 'short link created' : 'check [AlbaBEE share] logs; production 503 usually means SHARE_KV binding is missing'
+      };
+      console.info('[AlbaBEE share test] result', result);
+      return result;
+    };
 
     document.addEventListener('click', function(){
       if(activeAllowancePickerId !== null){ activeAllowancePickerId = null; renderAllowanceList(); }
