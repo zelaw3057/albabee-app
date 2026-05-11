@@ -878,7 +878,7 @@ body.force-mobile-view .step-card.step-open .step-toggle:focus {
 /* SEO service pages */
 body:has(.seo-service) {
   background:
-    radial-gradient(circle at top left, rgba(239, 68, 68, .10), transparent 330px),
+    radial-gradient(circle at top left, rgba(239, 68, 68, .025), transparent 210px),
     linear-gradient(180deg, #fff 0%, #f7f8fb 32%, #f3f5f8 100%);
 }
 
@@ -916,11 +916,15 @@ body:has(.seo-service) {
 .seo-service .seo-hero::after {
   content: "";
   position: absolute;
-  inset: auto -80px -120px auto;
-  width: 260px;
-  height: 260px;
+  right: 34px;
+  bottom: 34px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  background: rgba(220, 38, 38, .10);
+  background: var(--seo-accent);
+  opacity: .035;
+  filter: blur(20px);
+  pointer-events: none;
 }
 
 .seo-kicker {
@@ -5840,6 +5844,15 @@ body:has(.seo-service) .seo-service .card {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  body:has(.seo-service) .seo-service .seo-hero::after {
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    opacity: .025;
+    filter: blur(18px);
+  }
+
   body:has(.seo-service) .seo-service .card {
     width: 100%;
     max-width: 100%;
@@ -5869,6 +5882,15 @@ body:has(.seo-service) .seo-service .card {
 
   .container.seo-service .seo-hero {
     padding: 24px 20px !important;
+  }
+
+  .container.seo-service .seo-hero::after {
+    right: 22px !important;
+    bottom: 22px !important;
+    width: 48px !important;
+    height: 48px !important;
+    opacity: .025 !important;
+    filter: blur(18px) !important;
   }
 
   .container.seo-service .card {
