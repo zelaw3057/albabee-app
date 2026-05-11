@@ -427,6 +427,9 @@
     .share-box textarea { font-family: Arial, 'Noto Sans KR', sans-serif; }
     .share-link-short { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px; border:1px solid #bfdbfe; background:#eff6ff; border-radius:14px; color:#1d4ed8; font-size:14px; font-weight:900; text-decoration:underline; text-underline-offset:3px; }
     .share-link-short span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .share-fallback-actions { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+    .share-fallback-actions[hidden] { display:none; }
+    .share-fallback-actions .soft-btn { min-height:34px; padding:8px 11px; font-size:12px; }
     .calendar-feature-note { margin:10px 0 8px; padding:0 2px; border-radius:0; background:transparent; border:0; color:#6b7280; font-size:12px; font-weight:700; line-height:1.55; }
     .weekday-btn { position:relative; }
     .weekday-btn::after { content:'전체'; display:block; margin-top:1px; font-size:9px; font-weight:800; color:#94a3b8; }

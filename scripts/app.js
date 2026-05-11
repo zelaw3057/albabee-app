@@ -1252,6 +1252,16 @@
     function buildShareUrl(){
       return getShareBaseUrl() + '#data=' + encodeProjectDataForUrl();
     }
+    function logShareDebug(step, detail){
+      if(window && window.console){
+        console.info('[AlbaBEE share]', step, detail || '');
+      }
+    }
+    function logShareError(step, error, detail){
+      if(window && window.console){
+        console.error('[AlbaBEE share]', step, error, detail || '');
+      }
+    }
     function isShortShareUrl(url){
       try {
         const parsed = new URL(url, location.origin);
@@ -1262,18 +1272,34 @@
     }
     async function createShortShareUrl(){
       const encoded = encodeProjectDataForUrl();
+      logShareDebug('serialize:success', { encodedLength: encoded.length });
       try{
+        logShareDebug('short-link:request', { endpoint: '/s' });
         const response = await fetch('/s', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ data: encoded, title: getShareTitleForKakao(), description: getShareSummaryText() }),
           cache: 'no-store'
         });
-        if(!response.ok) throw new Error('short share create failed');
-        const json = await response.json();
-        if(json && json.url) return new URL(json.url, location.origin).href;
-        if(json && json.id) return location.origin + '/s/' + encodeURIComponent(json.id);
-      } catch(e) {}
+        let json = null;
+        try { json = await response.json(); } catch(parseError) {
+          logShareError('short-link:response-json-failed', parseError, { status: response.status });
+        }
+        logShareDebug('short-link:response', { status: response.status, ok: response.ok, body: json });
+        if(!response.ok) throw new Error((json && (json.message || json.error)) || 'short share create failed');
+        const url = json && json.url ? new URL(json.url, location.origin).href : (json && json.id ? location.origin + '/s/' + encodeURIComponent(json.id) : '');
+        if(url && isShortShareUrl(url)){
+          logShareDebug('short-link:success', { url: url });
+          return url;
+        }
+        throw new Error('short share response missing valid /s/{id} url');
+      } catch(e) {
+        logShareError('short-link:failed', e, {
+          hint: 'Cloudflare Pages Functions /s 또는 KV binding(SHARE_KV, ALBABEE_SHARE_KV, SHARES)을 확인하세요.',
+          online: navigator.onLine,
+          userAgent: navigator.userAgent
+        });
+      }
       return '';
     }
     async function buildShortShareUrl(){
@@ -1323,7 +1349,8 @@
       };
 
       if(!url || !isShortShareUrl(url)){
-        alert('짧은 공유 링크를 만들지 못했어요. 긴 링크가 채팅에 노출되지 않도록 공유를 중단했습니다. 잠시 후 다시 시도해주세요.');
+        showShortShareFailureBox('짧은 공유 링크 생성 실패\n\n' + summaryText);
+        alert('짧은 공유 링크를 만들지 못했어요. 긴 링크가 채팅에 노출되지 않도록 공유를 중단했습니다. 아래에서 다시 시도하거나 요약 문구만 복사할 수 있어요.');
         return false;
       }
 
@@ -1399,7 +1426,8 @@
     async function copyShareLink(){
       const url = await createShortShareUrl();
       if(!url || !isShortShareUrl(url)){
-        alert('짧은 공유 링크를 만들지 못했어요. 긴 링크가 노출되지 않도록 링크 공유를 중단했습니다. 잠시 후 다시 시도해주세요.');
+        showShortShareFailureBox('짧은 링크 생성 실패\n\n' + getShareSummaryText());
+        alert('짧은 공유 링크를 만들지 못했어요. 긴 링크가 노출되지 않도록 링크 공유를 중단했습니다. 아래에서 다시 시도할 수 있어요.');
         return;
       }
       await showShareLinkBox(url);
@@ -1417,17 +1445,46 @@
       const box = document.getElementById('shareLinkBox');
       const textarea = document.getElementById('shareLinkText');
       const anchor = document.getElementById('shareLinkAnchor');
+      const actions = document.getElementById('shareFallbackActions');
       const btn = document.getElementById('shareLinkToggleBtn');
       if(!box || !textarea) return;
       const url = forcedUrl || await createShortShareUrl();
       if(!url || !isShortShareUrl(url)){
-        alert('짧은 공유 링크를 만들지 못했어요. 잠시 후 다시 시도해주세요.');
+        showShortShareFailureBox('짧은 링크 생성 실패\n\n' + getShareSummaryText());
         return;
       }
       textarea.value = url;
       if(anchor){ anchor.href = url; anchor.querySelector('span').textContent = '공유 링크 열기'; }
+      if(actions) actions.hidden = true;
       box.classList.add('show');
       if(btn){ btn.textContent = '공유 링크 접기 🔗'; btn.classList.add('open'); }
+    }
+    function showShortShareFailureBox(message){
+      const box = document.getElementById('shareLinkBox');
+      const textarea = document.getElementById('shareLinkText');
+      const anchor = document.getElementById('shareLinkAnchor');
+      const actions = document.getElementById('shareFallbackActions');
+      const btn = document.getElementById('shareLinkToggleBtn');
+      if(textarea) textarea.value = message || ('짧은 링크 생성 실패\n\n' + getShareSummaryText());
+      if(anchor){ anchor.removeAttribute('href'); anchor.querySelector('span').textContent = '짧은 링크 생성 실패'; }
+      if(actions) actions.hidden = false;
+      if(box) box.classList.add('show');
+      if(btn){ btn.textContent = '공유 링크 접기 🔗'; btn.classList.add('open'); }
+    }
+    async function retryCreateShortShareLink(){
+      const url = await createShortShareUrl();
+      if(!url || !isShortShareUrl(url)){
+        showShortShareFailureBox('짧은 링크 생성 실패\n\n' + getShareSummaryText());
+        alert('아직 짧은 링크를 만들지 못했어요. 콘솔의 [AlbaBEE share] 로그와 Cloudflare KV 바인딩을 확인해주세요.');
+        return false;
+      }
+      await showShareLinkBox(url);
+      await copyTextToClipboard(url, '짧은 공유 링크를 복사했어요 🔗');
+      return false;
+    }
+    async function copyShareSummaryText(){
+      await copyTextToClipboard(getShareSummaryText(), '요약 문구를 복사했어요. 짧은 링크가 복구되면 다시 링크 공유를 시도해주세요.');
+      return false;
     }
     function hideShareLinkBox(){
       const box = document.getElementById('shareLinkBox');

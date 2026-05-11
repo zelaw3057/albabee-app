@@ -282,6 +282,10 @@
           <div id="shareLinkBox" class="share-box" aria-live="polite">
             <textarea id="shareLinkText" readonly aria-label="공유 링크"></textarea>
             <a id="shareLinkAnchor" class="share-link-short" href="/" target="_blank" rel="noopener noreferrer"><span>공유 링크 열기</span></a>
+            <div id="shareFallbackActions" class="share-fallback-actions" hidden>
+              <button type="button" class="soft-btn" onclick="retryCreateShortShareLink()">짧은 링크 다시 만들기</button>
+              <button type="button" class="soft-btn" onclick="copyShareSummaryText()">요약 문구 복사하기</button>
+            </div>
           </div>
         </div>
       </div>

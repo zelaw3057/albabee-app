@@ -47,6 +47,7 @@ async function loadIndexHtml(request, env) {
 export async function onRequestGet({ request, env, params }) {
   const id = params.id;
   if (!id || !/^[A-Za-z0-9_-]{4,32}$/.test(id)) {
+    console.error('[AlbaBEE share function] invalid_share_id', { id });
     return wantsJson(request)
       ? jsonResponse({ error: 'invalid_share_id' }, { status: 400 })
       : Response.redirect(new URL('/', request.url).toString(), 302);
@@ -54,12 +55,14 @@ export async function onRequestGet({ request, env, params }) {
 
   const share = await readShare(env, id);
   if (!share) {
+    console.error('[AlbaBEE share function] share_not_found', { id });
     return wantsJson(request)
       ? jsonResponse({ error: 'share_not_found' }, { status: 404 })
       : Response.redirect(new URL('/', request.url).toString(), 302);
   }
 
   if (wantsJson(request)) {
+    console.info('[AlbaBEE share function] read_json', { id });
     return jsonResponse({
       id,
       data: share.data,
@@ -71,6 +74,7 @@ export async function onRequestGet({ request, env, params }) {
 
   const html = await loadIndexHtml(request, env);
   const withOg = html.replace('<head>', `<head>${buildOgTags(request, share)}`);
+  console.info('[AlbaBEE share function] render_html', { id });
   return new Response(withOg, {
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
