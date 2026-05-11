@@ -1331,8 +1331,9 @@
       const hasWage = Number(document.getElementById('hourlyWage')?.value || 0) > 0;
       if(hasRecords && hasWage && !lastCalculationSummary) calculateMonthlyPay();
       const ym = getCurrentYearMonth();
-      const lines = [ym.year + '년 ' + ym.month + '월 알바 근무표입니다.'];
+      const lines = [ym.year + '년 ' + ym.month + '월 알바 급여 계산 결과'];
       if(lastCalculationSummary){
+        lines.push('');
         lines.push('예상 세후 급여: ' + formatWon(lastCalculationSummary.netPay));
         lines.push('총 근무시간: ' + Number(lastCalculationSummary.totalHours || 0).toFixed(1).replace(/\.0$/, '') + '시간');
       }
@@ -1341,22 +1342,13 @@
     function getShareSummaryText(){
       return getShareSummaryLines().join('\n');
     }
-    function buildShareMessage(url){
-      const lines = getShareSummaryLines();
-      if(url){
-        lines.push('');
-        lines.push('상세 근무표 확인:');
-        lines.push(url);
-      }
-      return lines.join('\n');
-    }
     function getShareDescriptionForKakao(){
       return getShareSummaryText();
     }
     async function shareToKakaoTalk(){
       const url = await createShortShareUrl();
       const title = getShareTitleForKakao();
-      const shareMessage = buildShareMessage(url);
+      const shareMessage = getShareSummaryText();
       const fallback = function(){
         copyTextToClipboard(shareMessage, '카카오톡 공유창을 바로 열 수 없어 공유 문구를 복사했어요.');
       };
@@ -1369,7 +1361,7 @@
 
       // 모바일 크롬/사파리에서는 이 방식이 가장 안정적입니다. 카카오톡이 설치되어 있으면 공유 대상에 뜹니다.
       if(navigator.share){
-        navigator.share({ title:title, text:shareMessage }).catch(function(){ fallback(); });
+        navigator.share({ title:title, text:shareMessage, url:url }).catch(function(){ fallback(); });
         return false;
       }
 
@@ -1444,7 +1436,7 @@
         return;
       }
       await showShareLinkBox(url);
-      const copied = await copyTextToClipboard(buildShareMessage(url), '공유 문구를 복사했어요 🔗', '자동 복사가 막혀서 공유 문구를 직접 복사할 수 있게 열어뒀어요 🔗');
+      const copied = await copyTextToClipboard(getShareSummaryText(), '공유 문구를 복사했어요 🔗', '자동 복사가 막혀서 공유 문구를 직접 복사할 수 있게 열어뒀어요 🔗');
       if(!copied){
         const textarea = document.getElementById('shareLinkText');
         if(textarea){
@@ -1466,7 +1458,7 @@
         showShortShareFailureBox('짧은 링크 생성 실패\n\n' + getShareSummaryText());
         return;
       }
-      textarea.value = buildShareMessage(url);
+      textarea.value = getShareSummaryText();
       if(anchor){ anchor.href = url; anchor.querySelector('span').textContent = '공유 링크 열기'; }
       if(actions) actions.hidden = true;
       box.classList.add('show');
@@ -1492,7 +1484,7 @@
         return false;
       }
       await showShareLinkBox(url);
-      await copyTextToClipboard(buildShareMessage(url), '공유 문구를 복사했어요 🔗');
+      await copyTextToClipboard(getShareSummaryText(), '공유 문구를 복사했어요 🔗');
       return false;
     }
     async function copyShareSummaryText(){

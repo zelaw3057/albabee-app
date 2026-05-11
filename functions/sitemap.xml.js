@@ -4,13 +4,13 @@ const SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
     <loc>https://albabee.pages.dev/</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/minimum-wage</loc>
+    <loc>https://albabee.pages.dev/minimum-wage.html</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/night-pay</loc>
+    <loc>https://albabee.pages.dev/night-pay.html</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/weekly-pay</loc>
+    <loc>https://albabee.pages.dev/weekly-pay.html</loc>
   </url>
   <url>
     <loc>https://albabee.pages.dev/wage-guide.html</loc>

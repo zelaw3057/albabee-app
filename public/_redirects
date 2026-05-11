@@ -4,6 +4,6 @@
 /manifest.json /manifest.json 200
 /scripts/* /scripts/:splat 200
 /styles/* /styles/:splat 200
-/weekly-pay.html /weekly-pay 301
-/minimum-wage.html /minimum-wage 301
-/night-pay.html /night-pay 301
+/weekly-pay /weekly-pay.html 301
+/minimum-wage /minimum-wage.html 301
+/night-pay /night-pay.html 301
