@@ -1260,14 +1260,13 @@
         return false;
       }
     }
-    async function buildShortShareUrl(){
+    async function createShortShareUrl(){
       const encoded = encodeProjectDataForUrl();
-      const fallbackUrl = getShareBaseUrl() + '#data=' + encoded;
       try{
         const response = await fetch('/s', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data: encoded, title: getShareTitleForKakao(), description: getShareSummaryText('') }),
+          body: JSON.stringify({ data: encoded, title: getShareTitleForKakao(), description: getShareSummaryText() }),
           cache: 'no-store'
         });
         if(!response.ok) throw new Error('short share create failed');
@@ -1275,6 +1274,13 @@
         if(json && json.url) return new URL(json.url, location.origin).href;
         if(json && json.id) return location.origin + '/s/' + encodeURIComponent(json.id);
       } catch(e) {}
+      return '';
+    }
+    async function buildShortShareUrl(){
+      const shortUrl = await createShortShareUrl();
+      if(shortUrl) return shortUrl;
+      const encoded = encodeProjectDataForUrl();
+      const fallbackUrl = getShareBaseUrl() + '#data=' + encoded;
       return fallbackUrl;
     }
     function getShareTitleForKakao(){
@@ -1292,7 +1298,7 @@
       const preview = days.slice(0, 8).map(function(day){ return ym.month + '/' + day; }).join(', ');
       return '근무일: ' + preview + (days.length > 8 ? ' 외 ' + (days.length - 8) + '일' : '');
     }
-    function getShareSummaryText(url){
+    function getShareSummaryText(){
       const hasRecords = Object.keys(workRecords || {}).length > 0;
       const hasWage = Number(document.getElementById('hourlyWage')?.value || 0) > 0;
       if(hasRecords && hasWage && !lastCalculationSummary) calculateMonthlyPay();
@@ -1303,25 +1309,27 @@
         lines.push('총 근무시간: ' + Number(lastCalculationSummary.totalHours || 0).toFixed(1).replace(/\.0$/, '') + '시간');
       }
       lines.push(getShareDateSummary());
-      if(url) lines.push('', '상세 근무표 확인:', url);
       return lines.join('\n');
     }
     function getShareDescriptionForKakao(){
-      return getShareSummaryText('');
+      return getShareSummaryText();
     }
     async function shareToKakaoTalk(){
-      const url = await buildShortShareUrl();
+      const url = await createShortShareUrl();
       const title = getShareTitleForKakao();
-      const shortUrl = isShortShareUrl(url);
-      const text = shortUrl ? getShareSummaryText(url) : getShareSummaryText('') + '\n\n상세 근무표 확인:\n' + url;
+      const summaryText = getShareSummaryText();
       const fallback = function(){
-        showShareLinkBox();
-        copyTextToClipboard(text, '카카오톡 공유창을 바로 열 수 없어 공유 메시지를 복사했어요. 카카오톡 채팅방에 붙여넣어 보내면 됩니다.');
+        copyTextToClipboard(summaryText, '카카오톡 공유창을 바로 열 수 없어 요약 문구를 복사했어요. 짧은 링크 생성 후 다시 공유해주세요.');
       };
+
+      if(!url || !isShortShareUrl(url)){
+        alert('짧은 공유 링크를 만들지 못했어요. 긴 링크가 채팅에 노출되지 않도록 공유를 중단했습니다. 잠시 후 다시 시도해주세요.');
+        return false;
+      }
 
       // 모바일 크롬/사파리에서는 이 방식이 가장 안정적입니다. 카카오톡이 설치되어 있으면 공유 대상에 뜹니다.
       if(navigator.share){
-        navigator.share({ title:title, text:getShareSummaryText(''), url:url }).catch(function(){ fallback(); });
+        navigator.share({ title:title, text:summaryText, url:url }).catch(function(){ fallback(); });
         return false;
       }
 
@@ -1334,7 +1342,7 @@
             objectType: 'feed',
             content: {
               title: title,
-              description: text,
+              description: summaryText,
               imageUrl: 'https://albabee.pages.dev/thumbnail.png',
               link: { mobileWebUrl: url, webUrl: url }
             },
@@ -1389,7 +1397,11 @@
     }
 
     async function copyShareLink(){
-      const url = await buildShortShareUrl();
+      const url = await createShortShareUrl();
+      if(!url || !isShortShareUrl(url)){
+        alert('짧은 공유 링크를 만들지 못했어요. 긴 링크가 노출되지 않도록 링크 공유를 중단했습니다. 잠시 후 다시 시도해주세요.');
+        return;
+      }
       await showShareLinkBox(url);
       const copied = await copyTextToClipboard(url, '공유 링크를 복사했어요 🔗', '자동 복사가 막혀서 링크를 직접 복사할 수 있게 열어뒀어요 🔗');
       if(!copied){
@@ -1407,7 +1419,11 @@
       const anchor = document.getElementById('shareLinkAnchor');
       const btn = document.getElementById('shareLinkToggleBtn');
       if(!box || !textarea) return;
-      const url = forcedUrl || await buildShortShareUrl();
+      const url = forcedUrl || await createShortShareUrl();
+      if(!url || !isShortShareUrl(url)){
+        alert('짧은 공유 링크를 만들지 못했어요. 잠시 후 다시 시도해주세요.');
+        return;
+      }
       textarea.value = url;
       if(anchor){ anchor.href = url; anchor.querySelector('span').textContent = '공유 링크 열기'; }
       box.classList.add('show');
