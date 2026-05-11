@@ -1320,26 +1320,13 @@
     async function buildShortShareUrl(){
       const shortUrl = await createShortShareUrl();
       if(shortUrl) return shortUrl;
-      const encoded = encodeProjectDataForUrl();
-      const fallbackUrl = getShareBaseUrl() + '#data=' + encoded;
-      return fallbackUrl;
+      return '';
     }
     function getShareTitleForKakao(){
       const ym = getCurrentYearMonth();
       return ym.year + '년 ' + ym.month + '월 알바 근무표';
     }
-    function getShareDateSummary(){
-      const ym = getCurrentYearMonth();
-      const prefix = ym.year + '-' + pad(ym.month) + '-';
-      const days = Object.keys(workRecords || {})
-        .filter(function(key){ return key.startsWith(prefix); })
-        .sort()
-        .map(function(key){ return Number(key.slice(-2)); });
-      if(!days.length) return '근무일: 아직 선택 전';
-      const preview = days.slice(0, 8).map(function(day){ return ym.month + '/' + day; }).join(', ');
-      return '근무일: ' + preview + (days.length > 8 ? ' 외 ' + (days.length - 8) + '일' : '');
-    }
-    function getShareSummaryText(){
+    function getShareSummaryLines(){
       const hasRecords = Object.keys(workRecords || {}).length > 0;
       const hasWage = Number(document.getElementById('hourlyWage')?.value || 0) > 0;
       if(hasRecords && hasWage && !lastCalculationSummary) calculateMonthlyPay();
@@ -1349,7 +1336,18 @@
         lines.push('예상 세후 급여: ' + formatWon(lastCalculationSummary.netPay));
         lines.push('총 근무시간: ' + Number(lastCalculationSummary.totalHours || 0).toFixed(1).replace(/\.0$/, '') + '시간');
       }
-      lines.push(getShareDateSummary());
+      return lines;
+    }
+    function getShareSummaryText(){
+      return getShareSummaryLines().join('\n');
+    }
+    function buildShareMessage(url){
+      const lines = getShareSummaryLines();
+      if(url){
+        lines.push('');
+        lines.push('상세 근무표 확인:');
+        lines.push(url);
+      }
       return lines.join('\n');
     }
     function getShareDescriptionForKakao(){
@@ -1358,20 +1356,20 @@
     async function shareToKakaoTalk(){
       const url = await createShortShareUrl();
       const title = getShareTitleForKakao();
-      const summaryText = getShareSummaryText();
+      const shareMessage = buildShareMessage(url);
       const fallback = function(){
-        copyTextToClipboard(summaryText, '카카오톡 공유창을 바로 열 수 없어 요약 문구를 복사했어요. 짧은 링크 생성 후 다시 공유해주세요.');
+        copyTextToClipboard(shareMessage, '카카오톡 공유창을 바로 열 수 없어 공유 문구를 복사했어요.');
       };
 
       if(!url || !isShortShareUrl(url)){
-        showShortShareFailureBox('짧은 공유 링크 생성 실패\n\n' + summaryText);
+        showShortShareFailureBox('짧은 공유 링크 생성 실패\n\n' + getShareSummaryText());
         alert('짧은 공유 링크를 만들지 못했어요. 긴 링크가 채팅에 노출되지 않도록 공유를 중단했습니다. 아래에서 다시 시도하거나 요약 문구만 복사할 수 있어요.');
         return false;
       }
 
       // 모바일 크롬/사파리에서는 이 방식이 가장 안정적입니다. 카카오톡이 설치되어 있으면 공유 대상에 뜹니다.
       if(navigator.share){
-        navigator.share({ title:title, text:summaryText, url:url }).catch(function(){ fallback(); });
+        navigator.share({ title:title, text:shareMessage }).catch(function(){ fallback(); });
         return false;
       }
 
@@ -1384,7 +1382,7 @@
             objectType: 'feed',
             content: {
               title: title,
-              description: summaryText,
+              description: shareMessage,
               imageUrl: 'https://albabee.pages.dev/thumbnail.png',
               link: { mobileWebUrl: url, webUrl: url }
             },
@@ -1446,7 +1444,7 @@
         return;
       }
       await showShareLinkBox(url);
-      const copied = await copyTextToClipboard(url, '공유 링크를 복사했어요 🔗', '자동 복사가 막혀서 링크를 직접 복사할 수 있게 열어뒀어요 🔗');
+      const copied = await copyTextToClipboard(buildShareMessage(url), '공유 문구를 복사했어요 🔗', '자동 복사가 막혀서 공유 문구를 직접 복사할 수 있게 열어뒀어요 🔗');
       if(!copied){
         const textarea = document.getElementById('shareLinkText');
         if(textarea){
@@ -1468,7 +1466,7 @@
         showShortShareFailureBox('짧은 링크 생성 실패\n\n' + getShareSummaryText());
         return;
       }
-      textarea.value = url;
+      textarea.value = buildShareMessage(url);
       if(anchor){ anchor.href = url; anchor.querySelector('span').textContent = '공유 링크 열기'; }
       if(actions) actions.hidden = true;
       box.classList.add('show');
@@ -1494,7 +1492,7 @@
         return false;
       }
       await showShareLinkBox(url);
-      await copyTextToClipboard(url, '짧은 공유 링크를 복사했어요 🔗');
+      await copyTextToClipboard(buildShareMessage(url), '공유 문구를 복사했어요 🔗');
       return false;
     }
     async function copyShareSummaryText(){
@@ -1706,14 +1704,14 @@
       a.click();
       setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 0);
     }
-    function downloadSimpleCsv(){
+    async function downloadSimpleCsv(){
       if(!ensureCalculated() || !lastCalculationSummary) return;
       const ym = getCurrentYearMonth();
       const sum = lastCalculationSummary;
-      const shareUrl = buildShareUrl();
+      const shareUrl = await buildShortShareUrl();
       const rows = [];
       rows.push(['구분','항목','값']);
-      rows.push(['요약','공유 링크', shareUrl]);
+      if(shareUrl) rows.push(['요약','공유 링크', shareUrl]);
       rows.push(['요약','근무월', ym.year + '년 ' + ym.month + '월']);
       rows.push(['요약','근무일수', sum.workDays + '일']);
       rows.push(['요약','총 실근무시간', sum.totalHours.toFixed(1) + '시간']);
@@ -1741,18 +1739,18 @@
       const loaded = await loadXlsxLibrary();
       if(!loaded || !window.XLSX){
         alert('XLSX 파일 생성 도구를 불러오지 못했습니다. 인터넷 연결이 막혀 있으면 임시로 엑셀 호환 파일(.xls)을 저장합니다.');
-        downloadExcelCompatibleFile();
+        await downloadExcelCompatibleFile();
         return;
       }
       const ym = getCurrentYearMonth();
       const sum = lastCalculationSummary;
-      const shareUrl = buildShareUrl();
+      const shareUrl = await buildShortShareUrl();
       const wb = XLSX.utils.book_new();
       wb.Props = { Title:'알바 월급 계산 결과', Subject:'급여 계산', Author:'알바 월급 계산기', CreatedDate:new Date() };
 
       const summaryAoa = [
         ['알바 월급 계산 요약', ''],
-        ['공유 링크 열기', shareUrl],
+        ['공유 링크 열기', shareUrl || ''],
         ['근무월', ym.year + '년 ' + ym.month + '월'],
         ['근무일수', sum.workDays + '일'],
         ['총 실근무시간', sum.totalHours.toFixed(1) + '시간'],
@@ -1772,7 +1770,7 @@
       ];
       const wsSummary = makeAoASheet(summaryAoa, [28, 64]);
       wsSummary['!merges'] = [{ s:{r:0,c:0}, e:{r:0,c:1} }];
-      setCellLink(wsSummary, 'B2', shareUrl, '계산값 공유 링크 열기');
+      if(shareUrl) setCellLink(wsSummary, 'B2', shareUrl, '계산값 공유 링크 열기');
       applyHeaderStyle(wsSummary, 'A1:B1');
       XLSX.utils.book_append_sheet(wb, wsSummary, '급여 요약');
 
@@ -1809,10 +1807,10 @@
         ['휴일수당 적용 기준', getSelectedHolidayApplyType()],
         ['주휴수당', document.getElementById('weeklyHolidayOption').checked ? '계산함' : '계산 안 함'],
         ['세금 방식', document.getElementById('taxType').value],
-        ['공유 링크', shareUrl]
+        ['공유 링크', shareUrl || '']
       ];
       const wsSettings = makeAoASheet(settingsAoa, [26, 64]);
-      setCellLink(wsSettings, 'B12', shareUrl, '계산값 공유 링크 열기');
+      if(shareUrl) setCellLink(wsSettings, 'B12', shareUrl, '계산값 공유 링크 열기');
       applyHeaderStyle(wsSettings, 'A1:B1');
       XLSX.utils.book_append_sheet(wb, wsSettings, '설정값');
 
@@ -1823,18 +1821,17 @@
           XLSX.writeFile(wb, 'alba-pay-detail-' + ym.year + '-' + pad(ym.month) + '.xlsx', { bookType:'xlsx' });
         } catch(err2) {
           alert('XLSX 저장 중 오류가 나서 엑셀 호환 파일(.xls)로 대신 저장합니다.');
-          downloadExcelCompatibleFile();
+          await downloadExcelCompatibleFile();
         }
       }
     }
 
-    function downloadExcelCompatibleFile(){
+    async function downloadExcelCompatibleFile(){
       if(!ensureCalculated() || !lastCalculationSummary) return;
       const sum = lastCalculationSummary;
-      const shareUrl = buildShareUrl();
+      const shareUrl = await buildShortShareUrl();
       const summaryRows = [
         ['알바 월급 계산 요약',''],
-        ['공유 링크', shareUrl, 'skip'],
         ['근무일수', sum.workDays + '일'],
         ['총 실근무시간', sum.totalHours.toFixed(1) + '시간', 'important'],
         ['야간근로시간', sum.nightHoursTotal.toFixed(1) + '시간'],
@@ -1851,6 +1848,7 @@
         ['예상 공제액', Math.round(sum.taxAmount) + '원'],
         ['예상 세후 월급', Math.round(sum.netPay) + '원', 'important']
       ];
+      if(shareUrl) summaryRows.splice(1, 0, ['공유 링크', shareUrl, 'skip']);
       const header = ['날짜','출근','퇴근','휴게시간','실근무시간','기본급','일연장시간','일연장가산','주연장시간','주연장가산','야간시간','야간가산','휴일구분','휴일가산','추가수당','일합계'];
       const detailRows = lastCalculationRows.map(r => [r.date,r.startTime,r.endTime,r.breakHours,r.realHours.toFixed(2),Math.round(r.basePay),r.dailyOverHours.toFixed(2),Math.round(r.dailyOverExtra),r.weeklyOverHours.toFixed(2),Math.round(r.weeklyOverExtra),r.nightHours.toFixed(2),Math.round(r.nightExtra),r.holidayLabel,Math.round(r.holidayExtra),Math.round(r.allowanceMoney),Math.round(r.total)]);
       let html = '<html><head><meta charset="UTF-8"><style>'
@@ -1872,9 +1870,10 @@
       a.click();
       URL.revokeObjectURL(a.href);
     }
-    function copyResultSummary(){
+    async function copyResultSummary(){
       if(!ensureCalculated() || !lastCalculationSummary) return;
       const sum = lastCalculationSummary;
+      const shareUrl = await buildShortShareUrl();
       const text = '알바 월급 계산 요약\n'
         + '근무일수: ' + sum.workDays + '일\n'
         + '총 실근무시간: ' + sum.totalHours.toFixed(1) + '시간\n'
@@ -1889,8 +1888,8 @@
         + (sum.useProbation ? '수습기간 ' + (sum.probationRate ?? 10) + '% 감액: -' + Math.round(sum.probationDeduction || 0).toLocaleString() + '원\n' : '')
         + '세전 예상 월급: ' + Math.round(sum.grossPay).toLocaleString() + '원\n'
         + '예상 공제액: ' + Math.round(sum.taxAmount).toLocaleString() + '원\n'
-        + '예상 세후 월급: ' + Math.round(sum.netPay).toLocaleString() + '원\n'
-        + '계산값 확인 링크: ' + buildShareUrl();
+        + '예상 세후 월급: ' + Math.round(sum.netPay).toLocaleString() + '원'
+        + (shareUrl ? '\n계산값 확인 링크: ' + shareUrl : '');
       copyTextToClipboard(text, '문자용 요약을 복사했어요.', text);
     }
 
