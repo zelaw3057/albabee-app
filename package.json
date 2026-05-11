@@ -8,17 +8,9 @@
     "build": "npm run web:build",
     "web:dev": "vite dev",
     "web:build": "vite build",
-    "web:build:ait": "vite build --config vite.config.toss.ts",
-    "build:ait": "node scripts/build-ait.mjs",
-    "toss:dev": "ait dev",
-    "toss:build:web": "npm run web:build:ait",
-    "toss:build:ait": "npm run build:ait",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "@apps-in-toss/framework": "^2.0.5",
-    "@apps-in-toss/web-framework": "^2.0.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.12.12",
     "typescript": "^5.8.3",

@@ -4,7 +4,6 @@ Albabee is an hourly wage calculator platform for part-time workers. The project
 
 - main web calculator;
 - static SEO guide pages;
-- Toss in-app variant;
 - Cloudflare Pages sitemap handling;
 - PWA assets and service worker.
 
@@ -20,14 +19,13 @@ npm.cmd run web:build
 
 - `index.html`, `styles/main.css`, `scripts/app.js`: main web calculator.
 - `minimum-wage.html`, `weekly-pay.html`, `night-pay.html`: SEO pages.
-- `toss.html`, `styles/toss.css`, `scripts/toss-app.js`: Toss in-app source.
 - `sitemap.xml`, `functions/sitemap.xml.js`: sitemap output. Keep these in sync until sitemap generation is centralized.
 - `vite.config.ts`: web build static copy list. Add every new root SEO page here.
 - `public/_headers`, `public/_routes.json`: Cloudflare sitemap behavior.
 
 ## Toss Status
 
-Toss in-app work is paused while the public web homepage is stabilized. Keep Toss source files, but use the normal web commands for homepage work. Toss notes and re-entry steps live in `docs/TOSS_INAPP_PLAN.md`.
+Toss in-app work is out of the current web stabilization workflow. Archived Toss files live in `archive/toss-inapp/` and should not be built, edited, or verified during normal Cloudflare Pages work.
 
 ## Docs
 

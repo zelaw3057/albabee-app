@@ -7,7 +7,6 @@ This document defines the current source layout after the 2026-05 cleanup.
 ```text
 albabee-app/
   index.html                    # main web calculator route
-  toss.html                     # Toss in-app route
   minimum-wage.html             # SEO route, kept at root for URL stability
   weekly-pay.html               # SEO route, kept at root for URL stability
   night-pay.html                # SEO route, kept at root for URL stability
@@ -18,11 +17,8 @@ albabee-app/
   contact.html
   styles/
     main.css                    # main web calculator styles
-    toss.css                    # Toss in-app styles
   scripts/
     app.js                      # main web calculator logic
-    toss-app.js                 # Toss in-app logic
-    build-ait.mjs               # Toss AIT build helper
   public/
     images/
       hero-banner.png
@@ -37,6 +33,8 @@ albabee-app/
     _share-storage.js
     s/
   docs/
+  archive/
+    toss-inapp/                 # archived Toss source, excluded from web workflow
   backups/                      # local backup only, ignored by Git
 ```
 
@@ -77,7 +75,7 @@ These are ignored by Git and can be recreated.
 1. `styles/main.css` and `scripts/app.js` are still large files. They are now in clearer folders, but feature-level splitting should be done gradually with browser regression checks.
 2. SEO URLs are root-based by design. Do not move SEO HTML into `/pages` without adding redirects and sitemap updates.
 3. Sitemap sources still exist in both `sitemap.xml` and `functions/sitemap.xml.js`; keep them synchronized until generation is centralized.
-4. Toss source is separate from web source. Changes to calculator behavior may need to be ported intentionally.
+4. Toss source is archived under `archive/toss-inapp/` and is intentionally excluded from current web build, preview, and routing validation.
 
 ## Recommended Next Refactors
 

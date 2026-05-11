@@ -5,9 +5,6 @@
 - `index.html`: main web calculator HTML.
 - `styles/main.css`: main web calculator CSS.
 - `scripts/app.js`: main web calculator logic.
-- `toss.html`: Toss in-app HTML entry.
-- `styles/toss.css`: Toss in-app CSS.
-- `scripts/toss-app.js`: Toss in-app logic.
 
 ## Active SEO And Policy Pages
 
@@ -27,9 +24,6 @@ These remain in the project root to preserve existing public URLs:
 - `package.json`
 - `package-lock.json`
 - `vite.config.ts`
-- `vite.config.toss.ts`
-- `granite.config.ts`
-- `scripts/build-ait.mjs`
 - `functions/sitemap.xml.js`
 - `functions/_share-storage.js`
 - `functions/s/`
@@ -65,6 +59,7 @@ These are served publicly as `/images/...`.
 
 - `backups/stable_build_2026-05/`: source backup taken before cleanup.
 - `backups/unused_assets_2026-05/images-root-duplicate/`: old root `images/` duplicate moved out of active source.
+- `archive/toss-inapp/`: archived Toss in-app source/config. Excluded from current web stabilization workflow.
 
 Both folders are ignored by Git.
 
@@ -86,4 +81,5 @@ Both folders are ignored by Git.
 - No temporary root backup files were found.
 - Root `images/` was a duplicate of `public/images/` by hash and has been archived.
 - Main CSS/JS and Toss CSS/JS were moved into role-based folders.
+- Toss source/config was later moved into `archive/toss-inapp/` so current verification stays web-only.
 - SEO pages were intentionally not moved into `/pages` to avoid breaking existing indexed URLs.
