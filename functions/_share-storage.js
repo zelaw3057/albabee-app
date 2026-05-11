@@ -47,4 +47,3 @@ export async function readShare(env, id) {
   const value = await store.get(`share:${id}`, 'json');
   return value || null;
 }
-

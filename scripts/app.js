@@ -1252,6 +1252,14 @@
     function buildShareUrl(){
       return getShareBaseUrl() + '#data=' + encodeProjectDataForUrl();
     }
+    function isShortShareUrl(url){
+      try {
+        const parsed = new URL(url, location.origin);
+        return /^\/s\/[^/?#]+\/?$/.test(parsed.pathname) && !parsed.hash;
+      } catch(e) {
+        return false;
+      }
+    }
     async function buildShortShareUrl(){
       const encoded = encodeProjectDataForUrl();
       const fallbackUrl = getShareBaseUrl() + '#data=' + encoded;
@@ -1259,7 +1267,7 @@
         const response = await fetch('/s', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data: encoded, title: getShareTitleForKakao(), description: getShareDescriptionForKakao() }),
+          body: JSON.stringify({ data: encoded, title: getShareTitleForKakao(), description: getShareSummaryText('') }),
           cache: 'no-store'
         });
         if(!response.ok) throw new Error('short share create failed');
@@ -1270,27 +1278,50 @@
       return fallbackUrl;
     }
     function getShareTitleForKakao(){
-      return '알바 월급 계산기 💰';
+      const ym = getCurrentYearMonth();
+      return ym.year + '년 ' + ym.month + '월 알바 근무표';
+    }
+    function getShareDateSummary(){
+      const ym = getCurrentYearMonth();
+      const prefix = ym.year + '-' + pad(ym.month) + '-';
+      const days = Object.keys(workRecords || {})
+        .filter(function(key){ return key.startsWith(prefix); })
+        .sort()
+        .map(function(key){ return Number(key.slice(-2)); });
+      if(!days.length) return '근무일: 아직 선택 전';
+      const preview = days.slice(0, 8).map(function(day){ return ym.month + '/' + day; }).join(', ');
+      return '근무일: ' + preview + (days.length > 8 ? ' 외 ' + (days.length - 8) + '일' : '');
+    }
+    function getShareSummaryText(url){
+      const hasRecords = Object.keys(workRecords || {}).length > 0;
+      const hasWage = Number(document.getElementById('hourlyWage')?.value || 0) > 0;
+      if(hasRecords && hasWage && !lastCalculationSummary) calculateMonthlyPay();
+      const ym = getCurrentYearMonth();
+      const lines = [ym.year + '년 ' + ym.month + '월 알바 근무표입니다.'];
+      if(lastCalculationSummary){
+        lines.push('예상 세후 급여: ' + formatWon(lastCalculationSummary.netPay));
+        lines.push('총 근무시간: ' + Number(lastCalculationSummary.totalHours || 0).toFixed(1).replace(/\.0$/, '') + '시간');
+      }
+      lines.push(getShareDateSummary());
+      if(url) lines.push('', '상세 근무표 확인:', url);
+      return lines.join('\n');
     }
     function getShareDescriptionForKakao(){
-      const ym = getCurrentYearMonth();
-      if(lastCalculationSummary){
-        return '실제 근무일 기준 급여 계산 · ' + ym.year + '년 ' + ym.month + '월 예상 세후 ' + formatWon(lastCalculationSummary.netPay) + ' · 총 근무 ' + Number(lastCalculationSummary.totalWorkHours || 0).toFixed(1) + '시간';
-      }
-      return '실제 근무일 기준 급여 계산 · 근무 스케줄과 예상 월급을 확인해보세요.';
+      return getShareSummaryText('');
     }
     async function shareToKakaoTalk(){
       const url = await buildShortShareUrl();
       const title = getShareTitleForKakao();
-      const text = getShareDescriptionForKakao();
+      const shortUrl = isShortShareUrl(url);
+      const text = shortUrl ? getShareSummaryText(url) : getShareSummaryText('') + '\n\n상세 근무표 확인:\n' + url;
       const fallback = function(){
         showShareLinkBox();
-        copyTextToClipboard(url, '카카오톡 공유창을 바로 열 수 없어 공유 링크를 복사했어요. 카카오톡 채팅방에 붙여넣어 보내면 됩니다.');
+        copyTextToClipboard(text, '카카오톡 공유창을 바로 열 수 없어 공유 메시지를 복사했어요. 카카오톡 채팅방에 붙여넣어 보내면 됩니다.');
       };
 
       // 모바일 크롬/사파리에서는 이 방식이 가장 안정적입니다. 카카오톡이 설치되어 있으면 공유 대상에 뜹니다.
       if(navigator.share){
-        navigator.share({ title:title, text:text, url:url }).catch(function(){ fallback(); });
+        navigator.share({ title:title, text:getShareSummaryText(''), url:url }).catch(function(){ fallback(); });
         return false;
       }
 
