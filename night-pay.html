@@ -24,50 +24,6 @@
       --seo-accent-line: #fecdd3;
     }
 
-    @media (min-width: 761px) {
-      .seo-night-pay .seo-hero {
-        grid-template-columns: minmax(0, 1fr) minmax(380px, 430px);
-      }
-
-      .seo-night-pay .seo-metric-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-        overflow: hidden;
-        border: 1px solid #edf0f4;
-        border-radius: 18px;
-        background: #fff;
-      }
-
-      .seo-night-pay .seo-metric {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 18px;
-        padding: 16px 18px;
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-      }
-
-      .seo-night-pay .seo-metric + .seo-metric {
-        border-top: 1px solid #edf0f4;
-      }
-
-      .seo-night-pay .seo-metric span {
-        font-size: 13px;
-      }
-
-      .seo-night-pay .seo-metric strong,
-      .seo-night-pay .seo-visual-value {
-        white-space: nowrap;
-      }
-
-      .seo-night-pay .seo-metric strong {
-        margin-top: 0;
-        font-size: 18px;
-        text-align: right;
-      }
-    }
   </style>
   <script type="application/ld+json">
   {
@@ -85,32 +41,34 @@
 <body>
   <div class="container seo-page seo-service seo-night-pay">
         <header class="seo-hero">
-      <div>
+      <div class="seo-hero-inner">
+      <div class="seo-hero-copy">
         <span class="seo-kicker">알바BEE 급여 가이드 · 야간수당</span>
         <h1>야간수당 계산법</h1>
-        <p class="seo-hero-copy">밤 10시부터 다음 날 오전 6시까지 일한 시간에 적용되는 야간수당 기준을 확인하세요.</p>
-        <div class="seo-hero-actions">
+        <p class="seo-hero-description">밤 10시부터 다음 날 오전 6시까지 일한 시간에 적용되는 야간수당 기준을 확인하세요.</p>
+        <div class="seo-cta-row">
           <a class="seo-cta" href="/">야간수당 계산하기</a>
           <a class="seo-secondary-cta" href="/weekly-pay.html">주휴수당도 확인</a>
         </div>
-        <nav class="seo-nav" aria-label="SEO 페이지 내부 링크">
+        <nav class="seo-pill-links" aria-label="SEO 페이지 내부 링크">
           <a class="seo-pill" href="/">알바비 계산기</a>
           <a class="seo-pill" href="/minimum-wage.html">최저시급 계산</a>
           <a class="seo-pill" href="/weekly-pay.html">주휴수당 계산</a>
           <a class="seo-pill" href="/wage-guide.html">급여 계산 안내</a>
         </nav>
       </div>
-      <div class="seo-visual" aria-hidden="true">
+      <div class="seo-hero-panel seo-visual" aria-hidden="true">
         <div class="seo-visual-card">
           <span class="seo-visual-icon">+50</span>
           <span class="seo-visual-label">3시간 야간근로 가산 예시</span>
           <strong class="seo-visual-value">15,480원</strong>
         </div>
         <div class="seo-metric-row">
-          <div class="seo-metric"><span>야간 시간</span><strong>22:00 ~ 06:00</strong></div>
-          <div class="seo-metric"><span>일반 기준</span><strong>통상임금의 50% 가산</strong></div>
-          <div class="seo-metric"><span>10,320원 · 야간 3시간</span><strong>15,480원</strong></div>
+          <div class="seo-metric seo-stat-card"><span>야간 시간</span><strong>22:00 ~ 06:00</strong></div>
+          <div class="seo-metric seo-stat-card"><span>일반 기준</span><strong>통상임금의 50% 가산</strong></div>
+          <div class="seo-metric seo-stat-card"><span>10,320원 · 야간 3시간</span><strong>15,480원</strong></div>
         </div>
+      </div>
       </div>
     </header>
 

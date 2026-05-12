@@ -28,50 +28,6 @@
       --seo-accent-line: #fed7aa;
     }
 
-    @media (min-width: 761px) {
-      .seo-minimum-wage .seo-hero {
-        grid-template-columns: minmax(0, 1fr) minmax(380px, 430px);
-      }
-
-      .seo-minimum-wage .seo-metric-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-        overflow: hidden;
-        border: 1px solid #edf0f4;
-        border-radius: 18px;
-        background: #fff;
-      }
-
-      .seo-minimum-wage .seo-metric {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 18px;
-        padding: 16px 18px;
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-      }
-
-      .seo-minimum-wage .seo-metric + .seo-metric {
-        border-top: 1px solid #edf0f4;
-      }
-
-      .seo-minimum-wage .seo-metric span {
-        font-size: 13px;
-      }
-
-      .seo-minimum-wage .seo-metric strong,
-      .seo-minimum-wage .seo-visual-value {
-        white-space: nowrap;
-      }
-
-      .seo-minimum-wage .seo-metric strong {
-        margin-top: 0;
-        font-size: 18px;
-        text-align: right;
-      }
-    }
   </style>
   <script type="application/ld+json">
   {
@@ -125,31 +81,33 @@
 <body>
   <div class="container seo-page seo-service seo-minimum-wage">
         <header class="seo-hero">
-      <div>
+      <div class="seo-hero-inner">
+      <div class="seo-hero-copy">
         <span class="seo-kicker">알바BEE 급여 가이드 · 최저시급</span>
         <h1>2026 최저시급 계산</h1>
-        <p class="seo-hero-copy">최저시급 10,320원 기준 하루 급여, 주급, 월급 환산액과 주휴수당 포함 급여를 실제 알바 관점에서 확인하세요.</p>
-        <div class="seo-hero-actions">
+        <p class="seo-hero-description">최저시급 10,320원 기준 하루 급여, 주급, 월급 환산액과 주휴수당 포함 급여를 실제 알바 관점에서 확인하세요.</p>
+        <div class="seo-cta-row">
           <a class="seo-cta" href="/">최저시급으로 계산하기</a>
           <a class="seo-secondary-cta" href="/weekly-pay.html">주휴수당 보기</a>
         </div>
-        <nav class="seo-nav" aria-label="관련 급여 계산 페이지">
+        <nav class="seo-pill-links" aria-label="관련 급여 계산 페이지">
           <a class="seo-pill" href="/">알바비 계산기</a>
           <a class="seo-pill" href="/weekly-pay.html">주휴수당 계산</a>
           <a class="seo-pill" href="/night-pay.html">야간수당 계산</a>
         </nav>
       </div>
-      <div class="seo-visual" aria-hidden="true">
+      <div class="seo-hero-panel seo-visual" aria-hidden="true">
         <div class="seo-visual-card">
           <span class="seo-visual-icon">₩</span>
           <span class="seo-visual-label">2026 최저시급</span>
           <strong class="seo-visual-value">10,320원</strong>
         </div>
         <div class="seo-metric-row">
-          <div class="seo-metric"><span>8시간 일급</span><strong>82,560원</strong></div>
-          <div class="seo-metric"><span>주40시간+주휴 포함 월 환산</span><strong>2,156,880원</strong></div>
-          <div class="seo-metric"><span>주 20시간 근무 예시</span><strong>206,400원</strong></div>
+          <div class="seo-metric seo-stat-card"><span>8시간 일급</span><strong>82,560원</strong></div>
+          <div class="seo-metric seo-stat-card"><span>주40시간+주휴 포함 월 환산</span><strong>2,156,880원</strong></div>
+          <div class="seo-metric seo-stat-card"><span>주 20시간 근무 예시</span><strong>206,400원</strong></div>
         </div>
+      </div>
       </div>
     </header>
 

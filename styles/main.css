@@ -5897,3 +5897,235 @@ body:has(.seo-service) .seo-service .card {
     padding: 20px !important;
   }
 }
+
+/* Unified SEO hero layout */
+.container.seo-service {
+  max-width: 1080px !important;
+}
+
+.container.seo-service .seo-hero {
+  display: block !important;
+  width: 100%;
+  margin: 0 0 22px !important;
+  padding: 38px 40px !important;
+  text-align: left !important;
+}
+
+.seo-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 430px;
+  gap: 48px;
+  align-items: center;
+  width: 100%;
+}
+
+.seo-hero-copy {
+  min-width: 0;
+  max-width: 620px !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.container.seo-service .seo-hero h1 {
+  max-width: 620px !important;
+  margin: 0 !important;
+  font-size: clamp(38px, 4.2vw, 46px) !important;
+  line-height: 1.16 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+.seo-hero-description {
+  max-width: 590px;
+  margin: 14px 0 0 !important;
+  color: #4b5563;
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.seo-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.seo-pill-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.seo-hero-panel {
+  width: 430px;
+  min-width: 0;
+  justify-self: end;
+}
+
+.seo-hero-panel .seo-visual-card,
+.seo-hero-panel .seo-metric-row {
+  width: 100%;
+}
+
+.seo-hero-panel .seo-visual-card {
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(17, 24, 39, .08);
+}
+
+.seo-hero-panel .seo-metric-row {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 0;
+  margin-top: 12px;
+  overflow: hidden;
+  border: 1px solid #edf0f4;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(17, 24, 39, .055);
+}
+
+.seo-stat-card,
+.seo-hero-panel .seo-metric {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+  padding: 16px 18px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.seo-stat-card + .seo-stat-card,
+.seo-hero-panel .seo-metric + .seo-metric {
+  border-top: 1px solid #edf0f4;
+}
+
+.seo-stat-card span,
+.seo-hero-panel .seo-metric span {
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.seo-stat-card strong,
+.seo-hero-panel .seo-metric strong,
+.seo-visual-value {
+  min-width: max-content;
+  margin-top: 0;
+  font-size: 18px;
+  line-height: 1.25;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.seo-hero-panel .seo-visual-value {
+  display: block;
+  min-width: 0;
+  margin-top: 3px;
+  font-size: 26px;
+  text-align: left;
+}
+
+.seo-cta,
+.seo-secondary-cta,
+.seo-pill {
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  html:has(.seo-service),
+  body:has(.seo-service) {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container.seo-service {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .container.seo-service .seo-hero,
+  .container.seo-service .card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .container.seo-service .seo-hero {
+    padding: 24px 14px !important;
+  }
+
+  .seo-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+
+  .seo-hero-copy,
+  .container.seo-service .seo-hero h1,
+  .seo-hero-description {
+    max-width: 100% !important;
+  }
+
+  .container.seo-service .seo-hero h1 {
+    font-size: 30px !important;
+    line-height: 1.2 !important;
+  }
+
+  .seo-hero-description {
+    font-size: 15px;
+  }
+
+  .seo-cta-row {
+    justify-content: stretch;
+  }
+
+  .seo-cta,
+  .seo-secondary-cta {
+    width: 100%;
+  }
+
+  .seo-pill-links {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .seo-pill {
+    flex: 0 0 auto;
+  }
+
+  .seo-hero-panel {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .seo-stat-card,
+  .seo-hero-panel .seo-metric {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+    padding: 14px 15px;
+  }
+
+  .seo-stat-card strong,
+  .seo-hero-panel .seo-metric strong {
+    min-width: 0;
+    max-width: 100%;
+    overflow: visible;
+    justify-self: start;
+    font-size: clamp(10px, 3.05vw, 14px) !important;
+    line-height: 1.15;
+    text-align: left;
+    letter-spacing: 0;
+  }
+}

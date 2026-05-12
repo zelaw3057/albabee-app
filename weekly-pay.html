@@ -24,50 +24,6 @@
       --seo-accent-line: #fecdd3;
     }
 
-    @media (min-width: 761px) {
-      .seo-weekly-pay .seo-hero {
-        grid-template-columns: minmax(0, 1fr) minmax(380px, 430px);
-      }
-
-      .seo-weekly-pay .seo-metric-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-        overflow: hidden;
-        border: 1px solid #edf0f4;
-        border-radius: 18px;
-        background: #fff;
-      }
-
-      .seo-weekly-pay .seo-metric {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 18px;
-        padding: 16px 18px;
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-      }
-
-      .seo-weekly-pay .seo-metric + .seo-metric {
-        border-top: 1px solid #edf0f4;
-      }
-
-      .seo-weekly-pay .seo-metric span {
-        font-size: 13px;
-      }
-
-      .seo-weekly-pay .seo-metric:last-child strong,
-      .seo-weekly-pay .seo-visual-value {
-        white-space: nowrap;
-      }
-
-      .seo-weekly-pay .seo-metric strong {
-        margin-top: 0;
-        font-size: 18px;
-        text-align: right;
-      }
-    }
   </style>
   <script type="application/ld+json">
   {
@@ -85,32 +41,34 @@
 <body>
   <div class="container seo-page seo-service seo-weekly-pay">
         <header class="seo-hero">
-      <div>
+      <div class="seo-hero-inner">
+      <div class="seo-hero-copy">
         <span class="seo-kicker">알바BEE 급여 가이드 · 주휴수당</span>
         <h1>주휴수당 계산법</h1>
-        <p class="seo-hero-copy">주 15시간 이상 근무할 때 받을 수 있는 주휴수당 기준과 계산 방법을 쉽게 확인하세요. 실제 근무표 기준 계산기로 바로 이어집니다.</p>
-        <div class="seo-hero-actions">
+        <p class="seo-hero-description">주 15시간 이상 근무할 때 받을 수 있는 주휴수당 기준과 계산 방법을 쉽게 확인하세요. 실제 근무표 기준 계산기로 바로 이어집니다.</p>
+        <div class="seo-cta-row">
           <a class="seo-cta" href="/">주휴수당 계산하기</a>
           <a class="seo-secondary-cta" href="/wage-guide.html">급여 가이드 보기</a>
         </div>
-        <nav class="seo-nav" aria-label="SEO 페이지 내부 링크">
+        <nav class="seo-pill-links" aria-label="SEO 페이지 내부 링크">
           <a class="seo-pill" href="/">알바비 계산기</a>
           <a class="seo-pill" href="/minimum-wage.html">최저시급 계산</a>
           <a class="seo-pill" href="/night-pay.html">야간수당 계산</a>
           <a class="seo-pill" href="/wage-guide.html">급여 계산 안내</a>
         </nav>
       </div>
-      <div class="seo-visual" aria-hidden="true">
+      <div class="seo-hero-panel seo-visual" aria-hidden="true">
         <div class="seo-visual-card">
           <span class="seo-visual-icon">15h</span>
           <span class="seo-visual-label">주 20시간 예시 예상 주휴</span>
           <strong class="seo-visual-value">41,280원</strong>
         </div>
         <div class="seo-metric-row">
-          <div class="seo-metric"><span>주휴수당 조건</span><strong>주 15시간 이상</strong></div>
-          <div class="seo-metric"><span>기본 공식</span><strong>근무시간 ÷ 40 × 8 × 시급</strong></div>
-          <div class="seo-metric"><span>10,320원 · 주 20시간</span><strong>41,280원</strong></div>
+          <div class="seo-metric seo-stat-card"><span>주휴수당 조건</span><strong>주 15시간 이상</strong></div>
+          <div class="seo-metric seo-stat-card"><span>기본 공식</span><strong>근무시간 ÷ 40 × 8 × 시급</strong></div>
+          <div class="seo-metric seo-stat-card"><span>10,320원 · 주 20시간</span><strong>41,280원</strong></div>
         </div>
+      </div>
       </div>
     </header>
 
@@ -255,4 +213,3 @@
   </div>
 </body>
 </html>
-
