@@ -20,7 +20,59 @@
   <meta name="twitter:title" content="2026 최저시급 계산기 | 알바 최저임금 월급 계산" />
   <meta name="twitter:description" content="최저시급 10,320원 기준 월급 계산, 주휴수당, 수습기간, 실수령 예상까지 한 번에 확인하세요." />
   <meta name="twitter:image" content="https://albabee.pages.dev/thumbnail.png" />
-  <style>.seo-minimum-wage{--seo-accent:#dc2626;--seo-accent-dark:#991b1b;--seo-accent-soft:#fff7ed;--seo-accent-line:#fed7aa;}</style>
+  <style>
+    .seo-minimum-wage {
+      --seo-accent: #dc2626;
+      --seo-accent-dark: #991b1b;
+      --seo-accent-soft: #fff7ed;
+      --seo-accent-line: #fed7aa;
+    }
+
+    @media (min-width: 761px) {
+      .seo-minimum-wage .seo-hero {
+        grid-template-columns: minmax(0, 1fr) minmax(380px, 430px);
+      }
+
+      .seo-minimum-wage .seo-metric-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+        overflow: hidden;
+        border: 1px solid #edf0f4;
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      .seo-minimum-wage .seo-metric {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 18px;
+        padding: 16px 18px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .seo-minimum-wage .seo-metric + .seo-metric {
+        border-top: 1px solid #edf0f4;
+      }
+
+      .seo-minimum-wage .seo-metric span {
+        font-size: 13px;
+      }
+
+      .seo-minimum-wage .seo-metric strong,
+      .seo-minimum-wage .seo-visual-value {
+        white-space: nowrap;
+      }
+
+      .seo-minimum-wage .seo-metric strong {
+        margin-top: 0;
+        font-size: 18px;
+        text-align: right;
+      }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
