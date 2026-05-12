@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>야간수당 계산기 | 밤알바 시급과 22시 이후 시급 계산 - 알바BEE</title>
-  <meta name="description" content="야간수당 계산기 사용 전 알아야 할 22시~06시 야간근로 기준, 밤알바 시급 계산, 연장근로 중복, 편의점·카페·배달 예시를 정리했습니다." />
+  <title>야간수당 계산기 | 22시~06시 야간근로 계산법 - 알바BEE</title>
+  <meta name="description" content="밤 10시부터 다음 날 오전 6시까지의 야간근로 기준, 통상임금 50% 가산, 시급 10,320원 기준 3시간 예시와 자주 묻는 질문을 정리했습니다." />
   <meta name="keywords" content="야간수당 계산기, 밤알바 시급, 야간수당 계산, 22시 이후 시급, 알바비 계산기" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://albabee.pages.dev/night-pay.html" />
@@ -12,20 +12,72 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="stylesheet" href="/styles/main.css" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="야간수당 계산기 | 밤알바 시급과 22시 이후 시급 - 알바BEE" />
-  <meta property="og:description" content="22시부터 다음 날 06시까지 야간수당 계산법과 실제 밤알바 급여 예시를 정리했습니다." />
+  <meta property="og:title" content="야간수당 계산기 | 22시~06시 야간근로 계산법 - 알바BEE" />
+  <meta property="og:description" content="야간근로 시간대, 50% 가산 기준, 5인 미만 사업장 안내와 실제 예시를 한눈에 확인하세요." />
   <meta property="og:url" content="https://albabee.pages.dev/night-pay.html" />
   <meta property="og:image" content="https://albabee.pages.dev/thumbnail.png" />
-  <style>.seo-night-pay{--seo-accent:#4f46e5;--seo-accent-dark:#312e81;--seo-accent-soft:#eef2ff;--seo-accent-line:#c7d2fe;}</style>
+  <style>
+    .seo-night-pay {
+      --seo-accent: #dc2626;
+      --seo-accent-dark: #991b1b;
+      --seo-accent-soft: #fff1f2;
+      --seo-accent-line: #fecdd3;
+    }
+
+    @media (min-width: 761px) {
+      .seo-night-pay .seo-hero {
+        grid-template-columns: minmax(0, 1fr) minmax(380px, 430px);
+      }
+
+      .seo-night-pay .seo-metric-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+        overflow: hidden;
+        border: 1px solid #edf0f4;
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      .seo-night-pay .seo-metric {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 18px;
+        padding: 16px 18px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .seo-night-pay .seo-metric + .seo-metric {
+        border-top: 1px solid #edf0f4;
+      }
+
+      .seo-night-pay .seo-metric span {
+        font-size: 13px;
+      }
+
+      .seo-night-pay .seo-metric strong,
+      .seo-night-pay .seo-visual-value {
+        white-space: nowrap;
+      }
+
+      .seo-night-pay .seo-metric strong {
+        margin-top: 0;
+        font-size: 18px;
+        text-align: right;
+      }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type":"Question","name":"야간수당 시간 기준은 언제인가요?","acceptedAnswer":{"@type":"Answer","text":"일반적으로 야간근로 시간은 22시부터 다음 날 06시까지입니다. 이 시간대에 일한 시간에 대해 조건에 따라 야간근로 가산수당을 계산합니다."}},
-      {"@type":"Question","name":"22시 이후 시급은 무조건 1.5배인가요?","acceptedAnswer":{"@type":"Answer","text":"야간근로 가산수당이 적용되는 경우 기본 시급에 50% 가산분을 더해 총 1.5배로 계산합니다. 다만 사업장 규모와 근로 형태에 따라 적용 여부를 확인해야 합니다."}},
-      {"@type":"Question","name":"야간수당과 연장수당은 중복되나요?","acceptedAnswer":{"@type":"Answer","text":"같은 시간이 야간근로이면서 연장근로에 해당하면 각각의 가산분을 함께 검토할 수 있습니다. 예를 들어 기본급 100%에 야간 50%, 연장 50%가 더해질 수 있습니다."}},
-      {"@type":"Question","name":"편의점 밤알바도 야간수당을 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"편의점 밤알바도 근로자이고 야간근로 조건과 사업장 규모 등 적용 요건을 충족하면 야간수당 대상이 될 수 있습니다."}}
+      {"@type":"Question","name":"밤 10시 전부터 일하면 어떻게 계산하나요?","acceptedAnswer":{"@type":"Answer","text":"22시 전 근무는 일반 근로시간으로 보고, 22시부터 다음 날 06시 사이에 실제로 일한 시간만 야간근로 시간으로 나누어 계산합니다."}},
+      {"@type":"Question","name":"새벽 2시에 끝나면 야간수당은 몇 시간인가요?","acceptedAnswer":{"@type":"Answer","text":"예를 들어 22시에 시작해 새벽 2시에 끝났다면 실제 근무한 4시간 전체가 야간근로 시간에 해당할 수 있습니다."}},
+      {"@type":"Question","name":"5인 미만 사업장도 야간수당이 적용되나요?","acceptedAnswer":{"@type":"Answer","text":"근로기준법 제56조의 야간근로 가산수당 규정은 상시 5인 이상 사업장에 적용됩니다. 5인 미만 사업장은 적용이 달라질 수 있습니다."}},
+      {"@type":"Question","name":"주휴수당과 야간수당을 같이 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"각각의 요건을 충족하면 함께 검토될 수 있습니다. 주휴수당은 주 소정근로시간과 개근 여부, 야간수당은 시간대와 사업장 규모가 핵심입니다."}}
     ]
   }
   </script>
@@ -36,7 +88,7 @@
       <div>
         <span class="seo-kicker">알바BEE 급여 가이드 · 야간수당</span>
         <h1>야간수당 계산법</h1>
-        <p class="seo-hero-copy">22시부터 다음 날 06시까지의 밤알바 시급, 야간 가산, 연장근로 중복 계산을 쉽게 정리했습니다.</p>
+        <p class="seo-hero-copy">밤 10시부터 다음 날 오전 6시까지 일한 시간에 적용되는 야간수당 기준을 확인하세요.</p>
         <div class="seo-hero-actions">
           <a class="seo-cta" href="/">야간수당 계산하기</a>
           <a class="seo-secondary-cta" href="/weekly-pay.html">주휴수당도 확인</a>
@@ -45,18 +97,19 @@
           <a class="seo-pill" href="/">알바비 계산기</a>
           <a class="seo-pill" href="/minimum-wage.html">최저시급 계산</a>
           <a class="seo-pill" href="/weekly-pay.html">주휴수당 계산</a>
+          <a class="seo-pill" href="/wage-guide.html">급여 계산 안내</a>
         </nav>
       </div>
       <div class="seo-visual" aria-hidden="true">
         <div class="seo-visual-card">
-          <span class="seo-visual-icon">22</span>
-          <span class="seo-visual-label">야간근로 시작 시간</span>
-          <strong class="seo-visual-value">22:00</strong>
+          <span class="seo-visual-icon">+50</span>
+          <span class="seo-visual-label">3시간 야간근로 가산 예시</span>
+          <strong class="seo-visual-value">15,480원</strong>
         </div>
         <div class="seo-metric-row">
-          <div class="seo-metric"><span>예시 시급</span><strong>11,000원</strong></div>
-          <div class="seo-metric"><span>야간 4시간</span><strong>+22,000원</strong></div>
-          <div class="seo-metric"><span>총 야간분</span><strong>66,000원</strong></div>
+          <div class="seo-metric"><span>야간 시간</span><strong>22:00 ~ 06:00</strong></div>
+          <div class="seo-metric"><span>일반 기준</span><strong>통상임금의 50% 가산</strong></div>
+          <div class="seo-metric"><span>10,320원 · 야간 3시간</span><strong>15,480원</strong></div>
         </div>
       </div>
     </header>
@@ -68,12 +121,16 @@
           <div class="highlight-box"><strong>빠른 판단:</strong> 22시 이후 시급이 궁금하다면 기본 시급, 출근·퇴근 시간, 휴게시간, 사업장 규모를 함께 확인해야 합니다.</div>
         </section>
         <section class="card">
+          <h2>야간수당이란?</h2>
+          <p>야간수당은 오후 10시부터 다음 날 오전 6시 사이에 실제로 일한 시간에 대해, 적용 요건을 충족하는 경우 기본 임금에 가산분을 더해 계산하는 수당입니다. 밤알바 급여를 볼 때는 전체 근무시간과 야간 시간대를 분리해서 보는 것이 가장 중요합니다.</p>
+        </section>
+        <section class="card">
           <h2>예시 계산으로 바로 이해하기</h2>
           <div class="content-grid">
             <div class="example-card" data-icon="22">
-              <strong>시급 11,000원, 22:00~02:00 근무</strong>
-              <span>4시간 전체가 야간근로 시간입니다.</span>
-              <div class="example-result">야간가산 22,000원</div>
+              <strong>시급 10,320원, 22:00~01:00 근무</strong>
+              <span>3시간 전체가 야간근로 시간입니다.</span>
+              <div class="example-result">야간가산 15,480원</div>
             </div>
             <div class="example-card" data-icon="+">
               <strong>21:00~01:00 근무</strong>
@@ -84,7 +141,7 @@
         </section>
 
         <section class="card">
-          <h2>야간수당 시간 기준</h2>
+          <h2>적용 시간대</h2>
           <p>야간근로 시간대는 일반적으로 <strong>22:00부터 다음 날 06:00까지</strong>입니다. 이 시간 안에 실제로 일한 시간이 야간수당 계산 대상이 됩니다.</p>
           <div class="time-band">
             <div><strong>야간근로 시작</strong><br />22:00 이후 근무분</div>
@@ -94,13 +151,13 @@
         </section>
 
         <section class="card">
-          <h2>야간수당 계산 방식</h2>
+          <h2>계산 공식</h2>
           <div class="formula">야간수당 가산분 = 야간근로시간 x 시급 x 50%<br />야간 시간의 총 임금 = 야간근로시간 x 시급 x 150%</div>
           <p>즉 “1.5배”라는 말은 기본 임금 100%에 야간 가산분 50%가 더해진다는 뜻입니다. 알바BEE 야간수당 계산기는 입력한 근무시간 중 22시~06시에 해당하는 시간을 자동으로 나누어 계산할 수 있습니다.</p>
         </section>
 
         <section class="card">
-          <h2>밤알바 시급 계산 예시</h2>
+          <h2>계산 예시</h2>
           <div class="content-grid">
             <div class="mini-card"><strong>22:00~02:00, 4시간</strong>10,320원 기준 기본 41,280원 + 야간가산 20,640원</div>
             <div class="mini-card"><strong>21:00~01:00, 4시간</strong>야간 3시간만 가산 대상<br />가산분 15,480원</div>
@@ -110,10 +167,15 @@
         </section>
 
         <section class="card">
+          <h2>5인 미만 사업장 안내</h2>
+          <p>근로기준법 제56조의 야간근로 가산수당 규정은 상시 5인 이상 사업장에 적용됩니다. 5인 미만 사업장은 같은 방식의 50% 가산 규정이 적용되지 않을 수 있으므로, 사업장 규모를 먼저 확인하는 것이 중요합니다.</p>
+          <div class="summary-box"><strong>확인 포인트:</strong> 야간근로 시간대만 맞는다고 곧바로 1.5배가 되는 것은 아니며, 상시근로자 수와 실제 근로시간을 함께 봐야 합니다.</div>
+        </section>
+
+        <section class="card">
           <h2>연장근로와 야간수당은 중복될 수 있나요?</h2>
-          <p>같은 시간이 야간근로이면서 연장근로에도 해당하면 가산분을 각각 검토할 수 있습니다. 예를 들어 적용 요건을 충족하는 사업장에서 연장근로와 야간근로가 겹치면 아래처럼 계산됩니다.</p>
+          <p>같은 시간이 야간근로이면서 연장근로에도 해당하면, 적용 요건을 충족하는 사업장에서는 가산분을 각각 검토할 수 있습니다.</p>
           <div class="formula">기본 임금 100% + 연장 가산 50% + 야간 가산 50% = 총 200%</div>
-          <p>다만 연장수당, 야간수당, 휴일수당은 사업장 규모, 근로계약, 실제 근무형태에 따라 적용 여부가 달라질 수 있습니다. 특히 5인 미만 사업장은 가산수당 적용에서 차이가 생길 수 있어 확인이 필요합니다.</p>
         </section>
 
         <section class="card">
@@ -147,6 +209,7 @@
             <a href="/">알바비 계산기</a>
             <a href="/minimum-wage.html">최저시급 계산기</a>
             <a href="/weekly-pay.html">주휴수당 계산기</a>
+            <a href="/wage-guide.html">급여 계산 안내</a>
           </div>
         </section>
 
@@ -162,10 +225,10 @@
 
         <section class="card">
           <h2>자주 묻는 질문</h2>
-          <div class="faq-item"><h3>22시 이후 시급은 무조건 1.5배인가요?</h3><p>야간근로 가산수당이 적용되는 조건이라면 해당 야간근로 시간은 기본 시급의 1.5배로 계산합니다. 다만 사업장 규모와 근무 형태를 확인해야 합니다.</p></div>
-          <div class="faq-item"><h3>21시부터 일하면 전체가 야간수당인가요?</h3><p>아닙니다. 21시~22시는 일반 근로시간이고, 22시 이후 실제 근무한 시간부터 야간수당 계산 대상이 됩니다.</p></div>
-          <div class="faq-item"><h3>휴게시간도 야간수당에 포함되나요?</h3><p>실제로 일을 하지 않는 휴게시간은 임금 계산에서 제외될 수 있습니다. 휴게시간이 언제였는지 기록해두면 계산이 더 정확합니다.</p></div>
-          <div class="faq-item"><h3>야간수당과 주휴수당을 같이 받을 수 있나요?</h3><p>각각의 조건을 충족하면 함께 고려될 수 있습니다. 야간근로는 시간대 기준이고, 주휴수당은 주 소정근로시간과 개근 여부가 핵심입니다.</p></div>
+          <div class="faq-item"><h3>밤 10시 전부터 일하면 어떻게 계산하나요?</h3><p>22시 전 근무는 일반 근로시간으로 보고, 22시부터 다음 날 06시 사이의 실제 근무시간만 따로 분리해 야간수당을 계산합니다.</p></div>
+          <div class="faq-item"><h3>새벽 2시에 끝나면 야간수당은 몇 시간인가요?</h3><p>예를 들어 22시에 시작해 새벽 2시에 끝났다면, 휴게시간을 제외한 4시간이 야간근로 시간에 해당할 수 있습니다.</p></div>
+          <div class="faq-item"><h3>5인 미만 사업장도 야간수당이 적용되나요?</h3><p>상시 5인 이상 사업장에는 야간근로 가산수당 규정이 적용되지만, 5인 미만 사업장은 적용이 달라질 수 있습니다.</p></div>
+          <div class="faq-item"><h3>주휴수당과 야간수당을 같이 받을 수 있나요?</h3><p>각각의 요건을 충족하면 함께 검토될 수 있습니다. 주휴수당은 주 단위 조건, 야간수당은 시간대와 사업장 규모가 핵심입니다.</p></div>
         </section>
 
         <section class="card cta-panel">

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>주휴수당 계산기 | 알바 주휴수당 조건과 주휴 계산법 - 알바BEE</title>
-  <meta name="description" content="주휴수당 계산기 사용 전 알아야 할 알바 주휴수당 조건, 주휴 계산법, 계산 공식, 못 받는 경우와 자주 생기는 실수를 쉽게 정리했습니다." />
+  <title>주휴수당 계산기 | 주 15시간 조건과 주휴수당 계산법 - 알바BEE</title>
+  <meta name="description" content="주 15시간 이상 근무 시 검토하는 주휴수당 조건, 계산 공식, 시급 10,320원 기준 예시, 자주 묻는 질문과 알바비 계산기 연결까지 쉽게 정리했습니다." />
   <meta name="keywords" content="주휴수당 계산기, 알바 주휴수당, 주휴수당 조건, 주휴 계산법, 알바비 계산기" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://albabee.pages.dev/weekly-pay.html" />
@@ -12,20 +12,72 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="stylesheet" href="/styles/main.css" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="주휴수당 계산기 | 알바 주휴수당 조건과 계산법 - 알바BEE" />
-  <meta property="og:description" content="알바도 받을 수 있는 주휴수당 조건과 계산 공식을 실제 예시로 정리했습니다." />
+  <meta property="og:title" content="주휴수당 계산기 | 주 15시간 조건과 계산법 - 알바BEE" />
+  <meta property="og:description" content="주휴수당 조건, 공식, 2026 최저시급 예시와 알바 급여 계산 흐름을 한눈에 확인하세요." />
   <meta property="og:url" content="https://albabee.pages.dev/weekly-pay.html" />
   <meta property="og:image" content="https://albabee.pages.dev/thumbnail.png" />
-  <style>.seo-weekly-pay{--seo-accent:#dc2626;--seo-accent-dark:#991b1b;--seo-accent-soft:#fff1f2;--seo-accent-line:#fecdd3;}</style>
+  <style>
+    .seo-weekly-pay {
+      --seo-accent: #dc2626;
+      --seo-accent-dark: #991b1b;
+      --seo-accent-soft: #fff1f2;
+      --seo-accent-line: #fecdd3;
+    }
+
+    @media (min-width: 761px) {
+      .seo-weekly-pay .seo-hero {
+        grid-template-columns: minmax(0, 1fr) minmax(380px, 430px);
+      }
+
+      .seo-weekly-pay .seo-metric-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+        overflow: hidden;
+        border: 1px solid #edf0f4;
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      .seo-weekly-pay .seo-metric {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 18px;
+        padding: 16px 18px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .seo-weekly-pay .seo-metric + .seo-metric {
+        border-top: 1px solid #edf0f4;
+      }
+
+      .seo-weekly-pay .seo-metric span {
+        font-size: 13px;
+      }
+
+      .seo-weekly-pay .seo-metric:last-child strong,
+      .seo-weekly-pay .seo-visual-value {
+        white-space: nowrap;
+      }
+
+      .seo-weekly-pay .seo-metric strong {
+        margin-top: 0;
+        font-size: 18px;
+        text-align: right;
+      }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type":"Question","name":"알바도 주휴수당을 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 1주 소정근로시간 15시간 이상, 정해진 근무일 개근 등 요건을 충족하면 알바도 주휴수당 대상이 될 수 있습니다."}},
-      {"@type":"Question","name":"주휴수당 계산법은 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"주 40시간 미만 근무자는 보통 1주 소정근로시간을 40으로 나눈 뒤 8시간을 곱해 주휴시간을 구하고, 그 시간에 시급을 곱해 예상 주휴수당을 계산합니다."}},
-      {"@type":"Question","name":"주 15시간 미만이면 주휴수당을 못 받나요?","acceptedAnswer":{"@type":"Answer","text":"일반적으로 주휴수당의 핵심 조건 중 하나가 1주 소정근로시간 15시간 이상이므로, 주 15시간 미만이면 대상이 아닐 가능성이 큽니다."}},
-      {"@type":"Question","name":"지각이나 결근이 있으면 주휴수당은 어떻게 되나요?","acceptedAnswer":{"@type":"Answer","text":"정해진 근무일을 개근했는지가 중요합니다. 결근이 있으면 해당 주의 주휴수당이 발생하지 않을 수 있고, 지각과 조퇴는 근무지 운영 기준과 구체적 상황을 함께 봐야 합니다."}}
+      {"@type":"Question","name":"주 15시간 미만이면 주휴수당을 못 받나요?","acceptedAnswer":{"@type":"Answer","text":"4주 평균 1주 소정근로시간이 15시간 미만이면 원칙적으로 주휴일 규정 적용 대상에서 제외될 수 있습니다."}},
+      {"@type":"Question","name":"결근하면 주휴수당이 줄어드나요?","acceptedAnswer":{"@type":"Answer","text":"주휴수당은 1주간의 소정근로일을 개근했는지가 중요합니다. 결근이 있으면 해당 주의 주휴수당이 발생하지 않을 수 있습니다."}},
+      {"@type":"Question","name":"5인 미만 사업장도 주휴수당이 있나요?","acceptedAnswer":{"@type":"Answer","text":"주휴일과 주휴수당 규정은 5인 미만 사업장에도 적용될 수 있습니다. 다만 실제 지급 판단은 소정근로시간과 개근 여부 등 사실관계를 함께 봐야 합니다."}},
+      {"@type":"Question","name":"주휴수당 포함 시급은 어떻게 봐야 하나요?","acceptedAnswer":{"@type":"Answer","text":"주휴수당을 포함해 안내하는 경우에도 기본 시급, 주휴수당, 총 지급액이 구분되어야 실제 최저임금 충족 여부를 확인하기 쉽습니다."}}
     ]
   }
   </script>
@@ -36,7 +88,7 @@
       <div>
         <span class="seo-kicker">알바BEE 급여 가이드 · 주휴수당</span>
         <h1>주휴수당 계산법</h1>
-        <p class="seo-hero-copy">주 15시간 기준, 개근 조건, 주휴시간 계산 방법을 한 번에 확인하세요. 실제 근무표 기준 계산기로 바로 이어집니다.</p>
+        <p class="seo-hero-copy">주 15시간 이상 근무할 때 받을 수 있는 주휴수당 기준과 계산 방법을 쉽게 확인하세요. 실제 근무표 기준 계산기로 바로 이어집니다.</p>
         <div class="seo-hero-actions">
           <a class="seo-cta" href="/">주휴수당 계산하기</a>
           <a class="seo-secondary-cta" href="/wage-guide.html">급여 가이드 보기</a>
@@ -45,18 +97,19 @@
           <a class="seo-pill" href="/">알바비 계산기</a>
           <a class="seo-pill" href="/minimum-wage.html">최저시급 계산</a>
           <a class="seo-pill" href="/night-pay.html">야간수당 계산</a>
+          <a class="seo-pill" href="/wage-guide.html">급여 계산 안내</a>
         </nav>
       </div>
       <div class="seo-visual" aria-hidden="true">
         <div class="seo-visual-card">
           <span class="seo-visual-icon">15h</span>
-          <span class="seo-visual-label">주휴수당 핵심 조건</span>
-          <strong class="seo-visual-value">주 15시간</strong>
+          <span class="seo-visual-label">주 20시간 예시 예상 주휴</span>
+          <strong class="seo-visual-value">41,280원</strong>
         </div>
         <div class="seo-metric-row">
-          <div class="seo-metric"><span>예시 시급</span><strong>11,000원</strong></div>
-          <div class="seo-metric"><span>주 근무</span><strong>20시간</strong></div>
-          <div class="seo-metric"><span>예상 주휴</span><strong>44,000원</strong></div>
+          <div class="seo-metric"><span>주휴수당 조건</span><strong>주 15시간 이상</strong></div>
+          <div class="seo-metric"><span>기본 공식</span><strong>근무시간 ÷ 40 × 8 × 시급</strong></div>
+          <div class="seo-metric"><span>10,320원 · 주 20시간</span><strong>41,280원</strong></div>
         </div>
       </div>
     </header>
@@ -71,9 +124,9 @@
           <h2>예시 계산으로 바로 이해하기</h2>
           <div class="content-grid">
             <div class="example-card" data-icon="₩">
-              <strong>시급 11,000원, 주 20시간 근무</strong>
+              <strong>시급 10,320원, 주 20시간 근무</strong>
               <span>주휴시간은 20 / 40 x 8 = 4시간입니다.</span>
-              <div class="example-result">예상 주휴수당 44,000원</div>
+              <div class="example-result">예상 주휴수당 41,280원</div>
             </div>
             <div class="example-card" data-icon="✓">
               <strong>주 15시간 근처라면</strong>
@@ -94,7 +147,7 @@
         </section>
 
         <section class="card">
-          <h2>알바 주휴수당 조건 정리</h2>
+          <h2>받을 수 있는 조건</h2>
           <p>주휴수당 조건은 상황에 따라 해석이 필요하지만, 실무적으로는 아래 항목을 먼저 봅니다.</p>
           <ul class="check-list">
             <li><strong>1주 소정근로시간 15시간 이상</strong>인지 확인</li>
@@ -106,13 +159,13 @@
         </section>
 
         <section class="card">
-          <h2>주휴 계산 공식</h2>
+          <h2>계산 공식</h2>
           <div class="formula">주휴시간 = 1주 소정근로시간 / 40 x 8시간<br />주휴수당 = 주휴시간 x 시급</div>
           <p>주 40시간 이상 근무하는 경우에는 주휴시간을 보통 8시간으로 봅니다. 주 40시간 미만 알바는 비례 계산으로 예상할 수 있습니다.</p>
         </section>
 
         <section class="card">
-          <h2>주휴수당 계산 예시</h2>
+          <h2>계산 예시</h2>
           <div class="content-grid">
             <div class="mini-card"><strong>주 15시간 근무</strong>주휴시간 3시간<br />10,320원 기준 30,960원</div>
             <div class="mini-card"><strong>주 20시간 근무</strong>주휴시간 4시간<br />10,320원 기준 41,280원</div>
@@ -155,6 +208,7 @@
             <a href="/">알바비 계산기</a>
             <a href="/minimum-wage.html">최저시급 계산기</a>
             <a href="/night-pay.html">야간수당 계산기</a>
+            <a href="/wage-guide.html">급여 계산 안내</a>
           </div>
         </section>
 
@@ -170,10 +224,10 @@
 
         <section class="card">
           <h2>자주 묻는 질문</h2>
-          <div class="faq-item"><h3>알바도 주휴수당을 받을 수 있나요?</h3><p>네. 조건을 충족하면 알바도 주휴수당 대상이 될 수 있습니다. 특히 주 15시간 이상 근무하는지, 정해진 근무일을 개근했는지가 중요합니다.</p></div>
-          <div class="faq-item"><h3>주휴수당은 매주 따로 계산하나요?</h3><p>근무시간이 일정하면 예상 계산이 쉽지만, 스케줄이 자주 바뀌는 알바는 주별로 조건을 확인하는 것이 더 정확합니다.</p></div>
-          <div class="faq-item"><h3>시급에 주휴수당 포함이라고 쓰면 끝인가요?</h3><p>포괄해서 지급할 수 있는 경우에도 기본 시급, 주휴수당, 총액이 명확해야 합니다. 포함이라고만 쓰고 실제 금액이 최저임금보다 낮으면 문제가 될 수 있습니다.</p></div>
-          <div class="faq-item"><h3>지각하면 주휴수당을 못 받나요?</h3><p>결근과 지각은 다르게 볼 수 있습니다. 다만 사업장 규정, 근로계약, 실제 근무 처리 방식에 따라 판단이 달라질 수 있어 기록을 확인하는 것이 좋습니다.</p></div>
+          <div class="faq-item"><h3>주 15시간 미만이면 주휴수당을 못 받나요?</h3><p>4주 평균 1주 소정근로시간이 15시간 미만이면 주휴일 규정 적용 대상에서 제외될 수 있습니다. 근무표가 자주 바뀐다면 평균 시간을 함께 확인하세요.</p></div>
+          <div class="faq-item"><h3>결근하면 주휴수당이 줄어드나요?</h3><p>주휴수당은 소정근로일을 개근했는지가 핵심입니다. 결근이 있으면 해당 주의 주휴수당이 발생하지 않을 수 있습니다.</p></div>
+          <div class="faq-item"><h3>5인 미만 사업장도 주휴수당이 있나요?</h3><p>주휴일과 주휴수당은 5인 미만 사업장에서도 검토 대상이 될 수 있습니다. 다만 실제 지급 여부는 소정근로시간과 개근 여부를 함께 봐야 합니다.</p></div>
+          <div class="faq-item"><h3>주휴수당 포함 시급은 어떻게 봐야 하나요?</h3><p>기본 시급과 주휴수당, 총 지급액이 구분되어야 실제 최저임금 충족 여부를 확인하기 쉽습니다. 포함이라고만 표시된 경우에는 급여명세서와 계약서를 함께 보세요.</p></div>
         </section>
 
         <section class="card cta-panel">
@@ -201,6 +255,4 @@
   </div>
 </body>
 </html>
-
-
 
