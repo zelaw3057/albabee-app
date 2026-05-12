@@ -61,6 +61,19 @@
   <link rel="stylesheet" href="/styles/main.css?v=20260510-compact2" />
 </head>
 <body>
+  <header class="global-site-header">
+    <div class="global-nav-inner">
+      <a class="global-brand" href="/">알바BEE</a>
+      <nav class="global-nav" aria-label="주요 메뉴">
+        <a href="/">메인 계산기</a>
+        <a href="/wage-guide">급여 안내</a>
+        <a href="/minimum-wage">최저시급</a>
+        <a href="/weekly-pay">주휴수당</a>
+        <a href="/night-pay">야간수당</a>
+        <a href="/about">사이트 소개</a>
+      </nav>
+    </div>
+  </header>
   <div class="container">
     <header>
       <div class="site-hero-banner">
@@ -302,9 +315,12 @@
     </section>
 
     <footer class="site-footer">
-      <div>?? 버그제보 / 제휴문의: <a href="mailto:lawzero3057@gmail.com">lawzero3057@gmail.com</a></div>
-      <div class="footer-links"><a href="/about">사이트 소개</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a><a href="/contact">문의하기</a></div>
-      <div class="lawzero-footer-brand">ⓒ 2026 <span>Lawzero</span>. 알바비 계산기 서비스</div>
+      <div class="footer-inner">
+        <nav class="footer-links footer-service-links" aria-label="서비스 링크"><a href="/">메인 계산기</a><a href="/wage-guide">급여 계산 안내</a><a href="/minimum-wage">최저시급 계산</a><a href="/weekly-pay">주휴수당 계산</a><a href="/night-pay">야간수당 계산</a></nav>
+        <nav class="footer-links footer-policy-links" aria-label="안내 링크"><a href="/about">사이트 소개</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a><a href="/contact">문의하기</a></nav>
+        <p class="footer-contact">버그제보 / 제휴문의<br /><a href="mailto:lawzero3057@gmail.com">lawzero3057@gmail.com</a></p>
+        <div class="lawzero-footer-brand">© 2026 알바BEE</div>
+      </div>
     </footer>
 
   </div>
