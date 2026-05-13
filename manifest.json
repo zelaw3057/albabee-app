@@ -12,7 +12,7 @@
   "categories": ["finance", "productivity", "utilities"],
   "icons": [
     {
-      "src": "/favicon.png",
+      "src": "/images/icons/app-icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

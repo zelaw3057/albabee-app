@@ -1,4 +1,4 @@
-const CACHE_NAME = 'albabee-app-v5-20260510-structure';
+const CACHE_NAME = 'albabee-app-v6-20260514-images';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -6,6 +6,9 @@ const APP_SHELL = [
   '/scripts/app.js',
   '/manifest.json',
   '/images/icons/app-icon.png',
+  '/images/icons/excel-icon.png',
+  '/images/icons/kakao-icon.png',
+  '/images/logo/albabee-logo.png',
   '/images/hero/hero-banner.png'
 ];
 
