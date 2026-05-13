@@ -21,6 +21,7 @@ const staticFiles = [
   'notice.html',
   'overtime-pay.html',
   'privacy.html',
+  'public/images/albabee-logo.png',
   'robots.txt',
   'service-worker.js',
   'site.webmanifest',

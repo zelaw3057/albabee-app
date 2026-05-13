@@ -52,7 +52,7 @@
     drawer.setAttribute('aria-hidden', 'true');
     drawer.innerHTML =
       '<div class="mobile-drawer-head">' +
-        '<a class="site-logo drawer-logo" href="/" aria-label="알바BEE 홈"><img src="/images/albabee-logo.png" alt="알바BEE 로고"></a>' +
+        '<a class="site-logo drawer-logo" href="/" aria-label="알바BEE 홈"><img src="/images/albabee-logo.png" alt="알바BEE 로고" onerror="this.onerror=null;this.src=\'/public/images/albabee-logo.png\';"></a>' +
         '<button type="button" class="mobile-drawer-close" aria-label="메뉴 닫기">×</button>' +
       '</div>' +
       '<nav class="mobile-drawer-nav" aria-label="모바일 메뉴">' +

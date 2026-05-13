@@ -16,9 +16,11 @@ let selectedDateKey = null;
     let mobileResultDetailsOpen = false;
     let detailViewMode = false;
     let lastCalendarPeriod = { year: 2026, month: 4 };
-    const CALCULATOR_DRAFT_KEY = 'albabee_calculator_session_draft_v1';
-    const LEGACY_CALCULATOR_DRAFT_KEY = 'albabee_calculator_draft_v1';
+    const CALCULATOR_DRAFT_KEY = 'albabee_calculator_draft_v1';
+    const CALCULATOR_UI_STATE_KEY = 'albabee_calculator_ui_state_v1';
+    const LEGACY_SESSION_DRAFT_KEY = 'albabee_calculator_session_draft_v1';
     const CALCULATOR_DRAFT_VERSION = 1;
+    const CALCULATOR_UI_STATE_VERSION = 1;
     let draftSaveTimer = null;
     let draftRestoreInProgress = false;
     let draftClearedByUser = false;
@@ -52,34 +54,81 @@ let selectedDateKey = null;
       if(document.body.classList.contains('force-pc-view')) return 'pc';
       return 'auto';
     }
+    function getCalculatorUiState(){
+      const stepIds = ['basicSection','workCalendarSection','allowanceSection','legalOptionSection'];
+      const accordionIds = ['legalNoticeAccordion','resultToolsAccordion','detailTableAccordion'];
+      const editPanel = document.getElementById('editPanel');
+      const mobileSheet = document.getElementById('mobileDaySheet');
+      const shareBox = document.getElementById('shareLinkBox');
+      const steps = {};
+      stepIds.forEach(function(id){
+        const section = document.getElementById(id);
+        if(!section) return;
+        steps[id] = {
+          open: section.classList.contains('step-open'),
+          completed: section.classList.contains('step-completed'),
+          unlocked: section.classList.contains('step-unlocked'),
+          locked: section.classList.contains('step-locked')
+        };
+      });
+      const accordions = {};
+      accordionIds.forEach(function(id){
+        const box = document.getElementById(id);
+        if(box) accordions[id] = box.classList.contains('open');
+      });
+      return {
+        version: CALCULATOR_UI_STATE_VERSION,
+        savedAt: new Date().toISOString(),
+        viewMode: getCurrentViewModeSetting(),
+        steps: steps,
+        selectedDateKey: selectedDateKey,
+        selectedDetailOpen: selectedDetailOpen,
+        detailToggleTouched: detailToggleTouched,
+        detailViewMode: detailViewMode,
+        editPanelOpen: !!(editPanel && editPanel.classList.contains('show')),
+        mobileDaySheetOpen: !!(mobileSheet && mobileSheet.classList.contains('show')),
+        accordions: accordions,
+        shareLinkBoxOpen: !!(shareBox && shareBox.classList.contains('show')),
+        hasCalculatedOnce: hasCalculatedOnce,
+        mobileResultDetailsOpen: mobileResultDetailsOpen,
+        scrollY: window.scrollY || window.pageYOffset || 0
+      };
+    }
+    function saveCalculatorUiStateNow(){
+      if(!draftPersistenceReady) return;
+      if(draftRestoreInProgress) return;
+      if(draftClearedByUser) return;
+      try { localStorage.setItem(CALCULATOR_UI_STATE_KEY, JSON.stringify(getCalculatorUiState())); } catch(e) {}
+    }
     function saveCalculatorDraftNow(){
       if(!draftPersistenceReady) return;
       if(draftRestoreInProgress) return;
       if(draftClearedByUser) return;
       try {
         const data = collectProjectData();
-        delete data.viewMode;
         const payload = {
           version: CALCULATOR_DRAFT_VERSION,
           savedAt: new Date().toISOString(),
           data: data
         };
-        sessionStorage.setItem(CALCULATOR_DRAFT_KEY, JSON.stringify(payload));
+        localStorage.setItem(CALCULATOR_DRAFT_KEY, JSON.stringify(payload));
+        saveCalculatorUiStateNow();
       } catch(e) {}
     }
     function clearCalculatorDraft(){
       clearTimeout(draftSaveTimer);
-      try { sessionStorage.removeItem(CALCULATOR_DRAFT_KEY); } catch(e) {}
-      try { localStorage.removeItem(LEGACY_CALCULATOR_DRAFT_KEY); } catch(e) {}
+      try { localStorage.removeItem(CALCULATOR_DRAFT_KEY); } catch(e) {}
+      try { localStorage.removeItem(CALCULATOR_UI_STATE_KEY); } catch(e) {}
+      try { sessionStorage.removeItem(LEGACY_SESSION_DRAFT_KEY); } catch(e) {}
     }
-    function clearLegacyCalculatorDraft(){
-      try { localStorage.removeItem(LEGACY_CALCULATOR_DRAFT_KEY); } catch(e) {}
+    function clearLegacySessionDraft(){
+      try { sessionStorage.removeItem(LEGACY_SESSION_DRAFT_KEY); } catch(e) {}
     }
     function restoreCalculatorDraft(){
       let payload = null;
-      clearLegacyCalculatorDraft();
+      clearLegacySessionDraft();
       try {
-        const raw = sessionStorage.getItem(CALCULATOR_DRAFT_KEY);
+        const raw = localStorage.getItem(CALCULATOR_DRAFT_KEY);
         if(!raw) return false;
         payload = JSON.parse(raw);
       } catch(e) {
@@ -90,9 +139,73 @@ let selectedDateKey = null;
       try {
         draftRestoreInProgress = true;
         applyProjectData({ ...payload.data, keepAllRecords: true });
+        if(payload.data.viewMode) setViewMode(payload.data.viewMode, false);
         const hasRecords = payload.data.workRecords && Object.keys(payload.data.workRecords).length > 0;
         const hasWage = Number(payload.data.hourlyWage) > 0;
         if(hasRecords && hasWage) calculateMonthlyPay();
+        return true;
+      } catch(e) {
+        return false;
+      } finally {
+        draftRestoreInProgress = false;
+      }
+    }
+    function setAccordionOpen(id, open){
+      const box = document.getElementById(id);
+      if(!box) return;
+      box.classList.toggle('open', !!open);
+      const head = box.querySelector('.collapsible-head');
+      if(head) head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    function restoreCalculatorUiState(){
+      let state = null;
+      try {
+        const raw = localStorage.getItem(CALCULATOR_UI_STATE_KEY);
+        if(!raw) return false;
+        state = JSON.parse(raw);
+      } catch(e) {
+        try { localStorage.removeItem(CALCULATOR_UI_STATE_KEY); } catch(removeError) {}
+        return false;
+      }
+      if(!state || Number(state.version) !== CALCULATOR_UI_STATE_VERSION) return false;
+      try {
+        draftRestoreInProgress = true;
+        if(state.viewMode) setViewMode(state.viewMode, false);
+        if(state.steps){
+          Object.keys(state.steps).forEach(function(id){
+            const section = document.getElementById(id);
+            const saved = state.steps[id];
+            if(!section || !saved) return;
+            section.classList.toggle('step-completed', !!saved.completed);
+            section.classList.toggle('step-unlocked', !!saved.unlocked);
+            section.classList.toggle('step-locked', !!saved.locked);
+            setStepOpen(id, !!saved.open);
+          });
+        }
+        selectedDateKey = state.selectedDateKey || selectedDateKey;
+        selectedDetailOpen = !!state.selectedDetailOpen;
+        detailToggleTouched = !!state.detailToggleTouched;
+        detailViewMode = !!state.detailViewMode;
+        document.body.classList.toggle('pc-detail-hover', detailViewMode && !isMobileView());
+        updateDetailModeButton();
+        renderCalendar();
+        if(state.editPanelOpen && selectedDateKey && workRecords[selectedDateKey]){
+          const parts = selectedDateKey.split('-').map(Number);
+          selectDay(selectedDateKey, parts[0], parts[1], parts[2], selectedDetailOpen);
+        } else {
+          updateSelectedDayDetails();
+        }
+        if(state.mobileDaySheetOpen && selectedDateKey && workRecords[selectedDateKey] && isMobileView()) showMobileDaySheet(selectedDateKey);
+        if(state.accordions){
+          Object.keys(state.accordions).forEach(function(id){ setAccordionOpen(id, !!state.accordions[id]); });
+        }
+        const shareBox = document.getElementById('shareLinkBox');
+        if(shareBox && state.shareLinkBoxOpen) shareBox.classList.add('show');
+        hasCalculatedOnce = !!state.hasCalculatedOnce || hasCalculatedOnce;
+        mobileResultDetailsOpen = !!state.mobileResultDetailsOpen;
+        window.setTimeout(function(){
+          if(Number.isFinite(Number(state.scrollY))) window.scrollTo(0, Math.max(0, Number(state.scrollY)));
+        }, 0);
         return true;
       } catch(e) {
         return false;
@@ -170,6 +283,7 @@ let selectedDateKey = null;
       section.classList.toggle('step-collapsed', !shouldOpen);
       section.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
       updateStepToggleLabel(section);
+      scheduleCalculatorDraftSave();
     }
 
     function openStepSection(sectionId, options){
@@ -579,6 +693,7 @@ let selectedDateKey = null;
       backdrop.classList.add('show');
       sheet.classList.add('show');
       document.body.style.overflow = 'hidden';
+      scheduleCalculatorDraftSave();
     }
 
     function closeMobileDaySheet(){
@@ -587,6 +702,7 @@ let selectedDateKey = null;
       if(sheet) sheet.classList.remove('show');
       if(backdrop) backdrop.classList.remove('show');
       document.body.style.overflow = '';
+      scheduleCalculatorDraftSave();
     }
 
     function editDayFromMobileSheet(dateKey){
@@ -680,9 +796,10 @@ let selectedDateKey = null;
       updateOvernightNotice(rec);
       updateSelectedDayDetails();
       renderSideMiniCalendar();
+      scheduleCalculatorDraftSave();
     }
 
-    function closeEditPanel(){ document.getElementById('editPanel').classList.remove('show'); selectedDetailOpen = false; detailToggleTouched = false; updateSelectedDayDetails(); }
+    function closeEditPanel(){ document.getElementById('editPanel').classList.remove('show'); selectedDetailOpen = false; detailToggleTouched = false; updateSelectedDayDetails(); scheduleCalculatorDraftSave(); }
 
     function addWeekday(weekday){
       const ym = getCurrentYearMonth();
@@ -1281,9 +1398,8 @@ let selectedDateKey = null;
     function toggleAccordion(id){
       const box = document.getElementById(id);
       if(!box) return;
-      box.classList.toggle('open');
-      const head = box.querySelector('.collapsible-head');
-      if(head) head.setAttribute('aria-expanded', box.classList.contains('open') ? 'true' : 'false');
+      setAccordionOpen(id, !box.classList.contains('open'));
+      scheduleCalculatorDraftSave();
     }
 
 
@@ -2168,19 +2284,22 @@ let selectedDateKey = null;
       });
     }
     async function initializeCalculatorPersistence(){
-      clearLegacyCalculatorDraft();
+      clearLegacySessionDraft();
       const isShareEntry = Boolean(getShareIdFromPath()) || location.hash.startsWith('#data=');
       let loadedShared = false;
+      let restoredDraft = false;
       try {
         loadedShared = await loadFromShareLink();
       } catch(e) {
         loadedShared = false;
       }
-      if(!loadedShared && !isShareEntry) restoreCalculatorDraft();
+      if(!loadedShared && !isShareEntry) restoredDraft = restoreCalculatorDraft();
       if(isShareEntry && !loadedShared) draftClearedByUser = true;
+      if(restoredDraft) restoreCalculatorUiState();
       draftPersistenceReady = true;
       installDirtyWatch();
       window.addEventListener('beforeunload', saveCalculatorDraftNow);
+      window.addEventListener('pagehide', saveCalculatorDraftNow);
       saveCalculatorDraftNow();
       clearDirty();
     }

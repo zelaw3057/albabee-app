@@ -9770,6 +9770,78 @@ body:has(.main-doc) .cta-panel .sub-text {
   }
 }
 
+/* v57: stable accordion chevrons and calmer calendar chips */
+.collapsible-head .collapsible-arrow {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  margin-top: 0 !important;
+  border-radius: 999px !important;
+  background: #0f172a !important;
+  color: #fff !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  text-indent: 0 !important;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .18) !important;
+}
+
+.collapsible-head .collapsible-arrow::before {
+  content: "" !important;
+  display: block !important;
+  width: 9px !important;
+  height: 9px !important;
+  border-right: 2.25px solid #fff !important;
+  border-bottom: 2.25px solid #fff !important;
+  transform: translateY(-2px) rotate(45deg) !important;
+  transition: transform .16s ease !important;
+}
+
+.collapsible-box.open .collapsible-head .collapsible-arrow::before,
+.collapsible-head[aria-expanded="true"] .collapsible-arrow::before {
+  transform: translateY(3px) rotate(225deg) !important;
+}
+
+.calendar-legend,
+.calendar-help-note {
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.legend-item {
+  align-items: center;
+  gap: 6px;
+}
+
+.text-chip {
+  min-width: 44px;
+  min-height: 20px;
+  padding: 2px 8px;
+  border: 1px solid #dbe3ee;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.text-day-chip {
+  min-width: 34px;
+  height: 20px;
+  padding: 0 6px;
+  border-color: rgba(255, 255, 255, .5);
+  background: rgba(255, 255, 255, .9);
+  color: #0f172a;
+  font-size: 10px;
+}
+
 /* v52: readable light CTA panels on SEO/info pages */
 body:has(.main-doc) .cta-panel,
 body:has(.main-doc) article > .cta-panel,
