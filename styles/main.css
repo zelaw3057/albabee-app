@@ -629,6 +629,244 @@ html {
   }
 }
 
+/* v21: simplified information architecture and document-style SEO pages */
+.global-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid #edf0f4;
+  background: rgba(255, 255, 255, .97);
+  backdrop-filter: blur(10px);
+}
+
+.global-nav-inner {
+  width: min(100%, 1120px);
+  padding: 14px 24px;
+}
+
+.global-brand {
+  font-size: 19px;
+  letter-spacing: 0;
+}
+
+.global-nav {
+  gap: 6px 16px;
+}
+
+.global-nav a {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.global-nav a:hover {
+  color: #dc2626;
+}
+
+.site-hero-banner {
+  margin-bottom: 12px;
+}
+
+.pc-guide-note,
+.mobile-guide-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  max-width: 100%;
+  margin: 2px auto 14px;
+  padding: 7px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  box-shadow: none;
+}
+
+.guide-switch-link {
+  color: #dc2626 !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+  text-decoration: none;
+}
+
+.container.main-doc,
+.container.seo-service {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.container.main-doc .card,
+.container.seo-service .card {
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+.container.main-doc .seo-hero,
+.container.seo-service .seo-hero,
+.container.main-doc .doc-hero {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.container.seo-service .seo-hero h1,
+body:has(.main-doc) .doc-hero h1,
+body:has(.main-doc) .info-page > header h1 {
+  font-size: clamp(30px, 3.4vw, 40px) !important;
+  letter-spacing: 0 !important;
+}
+
+.guide-table,
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.guide-table th,
+.guide-table td,
+.doc-table th,
+.doc-table td {
+  padding: 13px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  vertical-align: top;
+}
+
+.guide-table th,
+.doc-table th {
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 850;
+}
+
+.doc-list {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+}
+
+.doc-list article,
+.doc-list details,
+.doc-row {
+  padding: 18px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.doc-list h2,
+.doc-list h3,
+.doc-row h2,
+.doc-row h3 {
+  margin-top: 0;
+  letter-spacing: 0;
+}
+
+.doc-meta {
+  display: block;
+  margin-bottom: 5px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.category-tabs a {
+  padding: 7px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.category-tabs a:hover {
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.site-footer,
+.doc-footer,
+footer {
+  border-top: 1px solid #edf0f4 !important;
+  background: #fff;
+  text-align: center !important;
+}
+
+.footer-inner {
+  padding: 28px 20px !important;
+}
+
+.footer-links {
+  gap: 8px 16px !important;
+}
+
+.footer-links a {
+  font-size: 13px !important;
+  font-weight: 750 !important;
+}
+
+@media (max-width: 760px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .global-nav-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .global-nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    width: 100%;
+  }
+
+  .global-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 30px;
+    padding: 4px 2px;
+    border-radius: 7px;
+    background: #f8fafc;
+    font-size: 11px;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;
+    word-break: keep-all;
+  }
+
+  .pc-guide-note,
+  .mobile-guide-note {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .container.seo-service .seo-hero h1,
+  body:has(.main-doc) .doc-hero h1,
+  body:has(.main-doc) .info-page > header h1 {
+    font-size: 28px !important;
+  }
+}
+
 /* High-specificity document guard for legacy SEO overrides */
 html body:has(.main-doc) .main-doc {
   width: min(100%, 880px) !important;

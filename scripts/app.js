@@ -1962,7 +1962,7 @@
     function isMobileView(){
       if(document.body.classList.contains('force-mobile-view')) return true;
       if(document.body.classList.contains('force-pc-view')) return false;
-      return window.matchMedia ? window.matchMedia('(max-width: 900px)').matches : window.innerWidth <= 900;
+      return window.matchMedia ? window.matchMedia('(max-width: 767px)').matches : window.innerWidth < 768;
     }
     function hexToRgba(hex, alpha){
       let h = String(hex || '#22c55e').replace('#','').trim();
@@ -2040,13 +2040,15 @@
       }).join('');
       setAllowanceColor(document.getElementById('allowanceColor')?.value || getNextAllowanceColor());
     }
-    function setViewMode(mode){
+    function setViewMode(mode, persist){
       const normalized = mode === 'pc' ? 'pc' : (mode === 'mobile' ? 'mobile' : 'auto');
-      const effective = normalized === 'auto' ? (window.matchMedia && window.matchMedia('(max-width: 900px)').matches ? 'mobile' : 'pc') : normalized;
+      const effective = normalized === 'auto' ? ((window.innerWidth || 0) >= 768 ? 'pc' : 'mobile') : normalized;
       document.body.classList.remove('force-mobile-view', 'force-pc-view', 'view-mode-mobile', 'view-mode-pc');
       if(effective === 'mobile') document.body.classList.add('force-mobile-view', 'view-mode-mobile');
       if(effective === 'pc') document.body.classList.add('force-pc-view', 'view-mode-pc');
-      try { localStorage.setItem('albaPayViewMode', normalized); } catch(e) {}
+      if(persist !== false){
+        try { localStorage.setItem('albaPayViewMode', normalized); } catch(e) {}
+      }
       renderCalendar();
       if(lastCalculationRows && lastCalculationRows.length) calculateMonthlyPay();
       return false;
@@ -2054,7 +2056,7 @@
     function initViewMode(){
       let saved = 'auto';
       try { saved = localStorage.getItem('albaPayViewMode') || 'auto'; } catch(e) {}
-      if(saved === 'mobile' || saved === 'pc') setViewMode(saved); else setViewMode('auto');
+      if(saved === 'mobile' || saved === 'pc') setViewMode(saved, false); else setViewMode('auto', false);
     }
     function changeMonth(){
       lastCalendarPeriod = getCurrentYearMonth();

@@ -4,28 +4,37 @@ const SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
     <loc>https://albabee.pages.dev/</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/minimum-wage.html</loc>
+    <loc>https://albabee.pages.dev/minimum-wage</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/night-pay.html</loc>
+    <loc>https://albabee.pages.dev/night-pay</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/weekly-pay.html</loc>
+    <loc>https://albabee.pages.dev/weekly-pay</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/wage-guide.html</loc>
+    <loc>https://albabee.pages.dev/wage-guide</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/about.html</loc>
+    <loc>https://albabee.pages.dev/faq</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/privacy.html</loc>
+    <loc>https://albabee.pages.dev/notice</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/terms.html</loc>
+    <loc>https://albabee.pages.dev/how-to-use</loc>
   </url>
   <url>
-    <loc>https://albabee.pages.dev/contact.html</loc>
+    <loc>https://albabee.pages.dev/about</loc>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/privacy</loc>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/terms</loc>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/contact</loc>
   </url>
 </urlset>
 `;
