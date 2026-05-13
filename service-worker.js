@@ -6,10 +6,10 @@ const APP_SHELL = [
   '/scripts/app.js',
   '/manifest.json',
   '/images/icons/app-icon.png',
-  '/images/icons/excel-icon.png',
-  '/images/icons/kakao-icon.png',
+  '/images/icons/excel.png',
+  '/images/icons/kakao.png',
   '/images/logo/albabee-logo.png',
-  '/images/hero/hero-banner.png'
+  '/images/hero/albabee-hero-banner.png'
 ];
 
 self.addEventListener('install', function(event){

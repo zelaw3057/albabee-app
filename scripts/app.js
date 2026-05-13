@@ -19,6 +19,12 @@ let selectedDateKey = null;
     const CALCULATOR_DRAFT_KEY = 'albabee_calculator_draft_v1';
     const CALCULATOR_UI_STATE_KEY = 'albabee_calculator_ui_state_v1';
     const LEGACY_SESSION_DRAFT_KEY = 'albabee_calculator_session_draft_v1';
+    const LEGACY_LOCAL_STORAGE_KEYS = [
+      CALCULATOR_DRAFT_KEY,
+      CALCULATOR_UI_STATE_KEY,
+      LEGACY_SESSION_DRAFT_KEY,
+      'albaPayViewMode'
+    ];
     const CALCULATOR_DRAFT_VERSION = 1;
     const CALCULATOR_UI_STATE_VERSION = 1;
     let draftSaveTimer = null;
@@ -93,7 +99,7 @@ let selectedDateKey = null;
       if(!draftPersistenceReady) return;
       if(draftRestoreInProgress) return;
       if(draftClearedByUser) return;
-      try { localStorage.setItem(CALCULATOR_UI_STATE_KEY, JSON.stringify(getCalculatorUiState())); } catch(e) {}
+      try { sessionStorage.setItem(CALCULATOR_UI_STATE_KEY, JSON.stringify(getCalculatorUiState())); } catch(e) {}
     }
     function saveCalculatorDraftNow(){
       if(!draftPersistenceReady) return;
@@ -106,24 +112,30 @@ let selectedDateKey = null;
           savedAt: new Date().toISOString(),
           data: data
         };
-        localStorage.setItem(CALCULATOR_DRAFT_KEY, JSON.stringify(payload));
+        sessionStorage.setItem(CALCULATOR_DRAFT_KEY, JSON.stringify(payload));
         saveCalculatorUiStateNow();
       } catch(e) {}
     }
     function clearCalculatorDraft(){
       clearTimeout(draftSaveTimer);
+      try { sessionStorage.removeItem(CALCULATOR_DRAFT_KEY); } catch(e) {}
+      try { sessionStorage.removeItem(CALCULATOR_UI_STATE_KEY); } catch(e) {}
+      try { sessionStorage.removeItem(LEGACY_SESSION_DRAFT_KEY); } catch(e) {}
       try { localStorage.removeItem(CALCULATOR_DRAFT_KEY); } catch(e) {}
       try { localStorage.removeItem(CALCULATOR_UI_STATE_KEY); } catch(e) {}
-      try { sessionStorage.removeItem(LEGACY_SESSION_DRAFT_KEY); } catch(e) {}
+      try { localStorage.removeItem(LEGACY_SESSION_DRAFT_KEY); } catch(e) {}
+      try { localStorage.removeItem('albaPayViewMode'); } catch(e) {}
     }
-    function clearLegacySessionDraft(){
+    function clearLegacyDraftStorage(){
       try { sessionStorage.removeItem(LEGACY_SESSION_DRAFT_KEY); } catch(e) {}
+      LEGACY_LOCAL_STORAGE_KEYS.forEach(function(key){
+        try { localStorage.removeItem(key); } catch(e) {}
+      });
     }
     function restoreCalculatorDraft(){
       let payload = null;
-      clearLegacySessionDraft();
       try {
-        const raw = localStorage.getItem(CALCULATOR_DRAFT_KEY);
+        const raw = sessionStorage.getItem(CALCULATOR_DRAFT_KEY);
         if(!raw) return false;
         payload = JSON.parse(raw);
       } catch(e) {
@@ -154,11 +166,11 @@ let selectedDateKey = null;
     function restoreCalculatorUiState(){
       let state = null;
       try {
-        const raw = localStorage.getItem(CALCULATOR_UI_STATE_KEY);
+        const raw = sessionStorage.getItem(CALCULATOR_UI_STATE_KEY);
         if(!raw) return false;
         state = JSON.parse(raw);
       } catch(e) {
-        try { localStorage.removeItem(CALCULATOR_UI_STATE_KEY); } catch(removeError) {}
+        try { sessionStorage.removeItem(CALCULATOR_UI_STATE_KEY); } catch(removeError) {}
         return false;
       }
       if(!state || Number(state.version) !== CALCULATOR_UI_STATE_VERSION) return false;
@@ -1557,7 +1569,7 @@ let selectedDateKey = null;
             content: {
               title: title,
               description: shareMessage,
-              imageUrl: 'https://albabee.pages.dev/images/hero/hero-banner.png',
+              imageUrl: 'https://albabee.pages.dev/images/hero/albabee-hero-banner.png',
               link: { mobileWebUrl: url, webUrl: url }
             },
             buttons: [{ title: '계산 결과 보기', link: { mobileWebUrl: url, webUrl: url } }],
@@ -2271,7 +2283,7 @@ let selectedDateKey = null;
       });
     }
     async function initializeCalculatorPersistence(){
-      clearLegacySessionDraft();
+      clearLegacyDraftStorage();
       const isShareEntry = Boolean(getShareIdFromPath()) || location.hash.startsWith('#data=');
       let loadedShared = false;
       let restoredDraft = false;

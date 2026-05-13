@@ -1,18 +1,20 @@
 # Backup And Deployment Policy
 
-## Current Cleanup Backup
+## Cleanup Safety Gate
 
-The current cleanup backup was requested inside the workspace and is ignored by Git:
+Before cleanup, renaming, archiving, or deleting files, follow [Cleanup Safety Policy](./CLEANUP_SAFETY_POLICY.md).
 
-```text
-backups/stable_build_2026-05/
+Run:
+
+```powershell
+npm.cmd run check:assets
 ```
 
-It excludes generated/heavy folders such as `.git`, `node_modules/`, `dist/`, `dist-toss/`, and `backups/` itself.
+Do not move any file that appears in the referenced asset report.
 
 ## Backup Rule
 
-By default, do not keep backup, old, temp, or version folders inside `albabee-app` unless a specific local backup is requested.
+By default, do not keep backup, old, temp, or version folders inside `albabee-app`.
 
 Avoid these inside the project:
 
@@ -33,9 +35,9 @@ Reasons:
 Use external date-based folders instead:
 
 ```text
-Desktop\albabee-backup-YYYY-MM-DD
-Desktop\albabee-backup-YYYY-MM-DD-HHMMSS
-Desktop\albabee-backup-YYYY-MM-DD-label.zip
+Desktop\backups\albabee-app\YYYY-MM-DD
+Desktop\backups\albabee-app\YYYY-MM-DD-HHMMSS
+Desktop\backups\albabee-app\YYYY-MM-DD-label.zip
 ```
 
 ## Git Is The Main Rollback Tool
@@ -81,11 +83,12 @@ Do not track:
 Before web deployment:
 
 1. Run `npm.cmd run build`.
-2. Confirm `dist/minimum-wage.html`, `dist/weekly-pay.html`, and `dist/night-pay.html` exist.
-3. Confirm `dist/sitemap.xml` exists.
-4. Confirm `dist/images/hero/hero-banner.png`, `dist/images/icons/app-icon.png`, `dist/images/icons/kakao-icon.png`, and `dist/images/icons/excel-icon.png` exist.
-5. Confirm `public/sitemap.xml` and `functions/sitemap.xml.js` contain the same public SEO URLs.
-6. Confirm `public/robots.txt` points to `https://albabee.pages.dev/sitemap.xml`.
+2. Run `npm.cmd run check:assets:dist`.
+3. Confirm `dist/minimum-wage.html`, `dist/weekly-pay.html`, and `dist/night-pay.html` exist.
+4. Confirm `dist/sitemap.xml` exists.
+5. Confirm `dist/images/logo/albabee-logo.png`, `dist/images/hero/albabee-hero-banner.png`, `dist/images/icons/app-icon.png`, `dist/images/icons/kakao.png`, and `dist/images/icons/excel.png` exist.
+6. Confirm `public/sitemap.xml` and `functions/sitemap.xml.js` contain the same public SEO URLs.
+7. Confirm `public/robots.txt` points to `https://albabee.pages.dev/sitemap.xml`.
 
 Before Toss/AIT packaging:
 

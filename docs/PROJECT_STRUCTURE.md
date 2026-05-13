@@ -53,9 +53,6 @@ albabee-app/
   docs/
   archive/
     toss-inapp/                 # archived Toss source, excluded from web workflow
-  backups/                      # local backup only, ignored by Git
-  backup_2026_05_14_before_cleanup/
-  backup_unused/
 ```
 
 ## Why SEO Pages Stay In Root
@@ -77,10 +74,18 @@ Use role-based image folders:
 
 ```text
 /images/logo/albabee-logo.png
-/images/hero/hero-banner.png
+/images/hero/albabee-hero-banner.png
 /images/icons/app-icon.png
-/images/icons/excel-icon.png
-/images/icons/kakao-icon.png
+/images/icons/excel.png
+/images/icons/kakao.png
+```
+
+Use absolute `/images/...` paths only. Do not use `./images/...`, `../images/...`, or `images/...` in active HTML, CSS, JS, manifest, or SEO metadata.
+
+Before moving, renaming, archiving, or deleting files, follow [Cleanup Safety Policy](./CLEANUP_SAFETY_POLICY.md) and run:
+
+```powershell
+npm.cmd run check:assets
 ```
 
 ## Build Outputs

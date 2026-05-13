@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "npm run web:dev",
     "build": "npm run web:build",
+    "check:assets": "node scripts/asset-safety-check.mjs",
+    "check:assets:dist": "node scripts/asset-safety-check.mjs --dist",
     "web:dev": "vite dev",
     "web:build": "vite build",
     "preview": "vite preview"
