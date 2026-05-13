@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -67,7 +67,7 @@
 <body>
     <header class="global-site-header">
     <div class="global-nav-inner">
-      <a class="global-brand" href="/">알바BEE</a>
+      <a class="global-brand site-logo" href="/" aria-label="알바BEE 홈"><img src="/images/albabee-logo.png" alt="알바BEE 로고"></a>
       <nav class="global-nav" aria-label="주요 메뉴">
         <a href="/">급여계산기</a>
         <a href="/how-to-use">사용법</a>
@@ -87,7 +87,7 @@
       <h1 class="sr-only">알바비 계산기</h1>
       <p class="pc-guide-note"><span>현재 PC 상세화면 사용 중</span><button type="button" class="guide-switch-link" onclick="setViewMode('mobile')">모바일 간편화면 보기</button></p>
       <p class="mobile-guide-note"><span>현재 모바일 간편화면 사용 중</span><button type="button" class="guide-switch-link" onclick="setViewMode('pc')">PC 상세화면 보기</button></p>
-      <p class="draft-save-note">입력 내용은 이 기기에 임시 저장됩니다.</p>
+      <p class="draft-save-note">입력 내용은 현재 브라우저 탭에 임시 저장됩니다.</p>
     </header>
 
     <section class="card step-card step-collapsed" id="basicSection" data-step-index="1">
@@ -143,8 +143,8 @@
               <div class="calendar-top-actions"><button type="button" class="soft-btn" id="detailModeBtn" onclick="toggleDetailViewMode()">상세확인</button><button type="button" class="danger-btn" onclick="clearCurrentMonth()">전체취소</button></div>
               <div class="weekdays"><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(0)">일</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(1)">월</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(2)">화</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(3)">수</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(4)">목</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(5)">금</button><button type="button" class="weekday-btn" onclick="toggleWeekdayFromHeader(6)">토</button></div>
               <div id="calendar" class="calendar"></div>
-              <div class="calendar-legend"><span class="legend-item">? 퇴근 시간이 다음날이에요</span><span class="legend-item">?? 22:00~06:00 근무가 포함돼요</span><span class="legend-item">날짜 배경색은 등록된 근무시간이에요</span><span class="legend-item">● 작은 원은 추가수당이에요</span></div>
-              <div class="calendar-help-note">?? 선택한 날짜를 다시 누르면 해제돼요.</div>
+              <div class="calendar-legend"><span class="legend-item"><span class="text-chip">다음날</span> 퇴근 시간이 다음날이에요</span><span class="legend-item"><span class="text-chip">야간</span> 22:00~06:00 근무가 포함돼요</span><span class="legend-item">날짜 배경색은 등록된 근무시간이에요</span><span class="legend-item"><span class="text-chip">수당</span> 작은 원은 추가수당이에요</span></div>
+              <div class="calendar-help-note"><span class="text-chip">안내</span> 선택한 날짜를 다시 누르면 해제돼요.</div>
               <div id="mobileAllowanceLegend" class="mobile-allowance-legend"></div>
             </div>
             <aside id="mainCalendarLegend" class="main-calendar-color-guide"></aside>
@@ -282,7 +282,7 @@
     </section>
 
     <section class="calculation-section" id="calculationSection">
-      <div id="dirtyNotice" class="dirty-notice">? 변경된 내용이 있습니다. 다시 계산해주세요.</div>
+      <div id="dirtyNotice" class="dirty-notice">변경된 내용이 있습니다. 다시 계산해주세요.</div>
       <button id="calculateBtn" class="calculate-btn" onclick="calculateMonthlyPay()">월급 계산하기</button>
       <div id="result" class="result-box">계산 결과가 여기에 표시됩니다.</div>
       <div id="lastCalculated" class="last-calculated"></div>

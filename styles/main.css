@@ -68,6 +68,8 @@
     .next-day-pill { display: inline-block; padding: 5px 9px; border-radius: 999px; background: #fef3c7; color: #92400e; font-size: 12px; font-weight: 900; margin-top: 8px; }
     .icon-row { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
     .day-icon { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 999px; background: #f3f4f6; font-size: 13px; }
+    .text-chip { display: inline-flex; align-items: center; justify-content: center; min-height: 20px; padding: 2px 7px; border-radius: 999px; background: #eef2ff; color: #334155; font-size: 11px; font-weight: 800; line-height: 1.2; vertical-align: 1px; }
+    .text-day-chip { min-width: auto; height: 22px; padding: 0 6px; font-size: 10px; font-weight: 800; letter-spacing: 0; }
     .calendar-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.5; }
     .legend-item { display: inline-flex; align-items: center; gap: 5px; padding: 6px 9px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
     .calendar-help-note { margin:10px 0 0; padding:0 2px; color:#6b7280; font-size:12px; font-weight:700; line-height:1.55; }
@@ -9724,6 +9726,47 @@ body:has(.main-doc) .cta-panel .sub-text {
   .notice-list-page .notice-title,
   body:has(.main-doc) .notice-list-page .notice-title {
     font-size: 19.5px !important;
+  }
+}
+
+/* v56: image logo alignment */
+.global-brand.site-logo,
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.site-logo img {
+  display: block;
+  width: auto;
+  height: 42px;
+  max-width: 170px;
+  object-fit: contain;
+}
+
+.mobile-drawer-head .drawer-logo {
+  justify-content: flex-start;
+}
+
+.mobile-drawer-head .drawer-logo img {
+  height: 36px;
+  max-width: 150px;
+}
+
+@media (max-width: 768px) {
+  .global-site-header .global-brand.site-logo {
+    height: 56px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .global-site-header .site-logo img {
+    height: 34px;
+    max-width: 140px;
   }
 }
 

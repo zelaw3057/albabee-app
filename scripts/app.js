@@ -16,7 +16,8 @@ let selectedDateKey = null;
     let mobileResultDetailsOpen = false;
     let detailViewMode = false;
     let lastCalendarPeriod = { year: 2026, month: 4 };
-    const CALCULATOR_DRAFT_KEY = 'albabee_calculator_draft_v1';
+    const CALCULATOR_DRAFT_KEY = 'albabee_calculator_session_draft_v1';
+    const LEGACY_CALCULATOR_DRAFT_KEY = 'albabee_calculator_draft_v1';
     const CALCULATOR_DRAFT_VERSION = 1;
     let draftSaveTimer = null;
     let draftRestoreInProgress = false;
@@ -56,23 +57,29 @@ let selectedDateKey = null;
       if(draftRestoreInProgress) return;
       if(draftClearedByUser) return;
       try {
+        const data = collectProjectData();
+        delete data.viewMode;
         const payload = {
           version: CALCULATOR_DRAFT_VERSION,
           savedAt: new Date().toISOString(),
-          data: collectProjectData()
+          data: data
         };
-        payload.data.viewMode = getCurrentViewModeSetting();
-        localStorage.setItem(CALCULATOR_DRAFT_KEY, JSON.stringify(payload));
+        sessionStorage.setItem(CALCULATOR_DRAFT_KEY, JSON.stringify(payload));
       } catch(e) {}
     }
     function clearCalculatorDraft(){
       clearTimeout(draftSaveTimer);
-      try { localStorage.removeItem(CALCULATOR_DRAFT_KEY); } catch(e) {}
+      try { sessionStorage.removeItem(CALCULATOR_DRAFT_KEY); } catch(e) {}
+      try { localStorage.removeItem(LEGACY_CALCULATOR_DRAFT_KEY); } catch(e) {}
+    }
+    function clearLegacyCalculatorDraft(){
+      try { localStorage.removeItem(LEGACY_CALCULATOR_DRAFT_KEY); } catch(e) {}
     }
     function restoreCalculatorDraft(){
       let payload = null;
+      clearLegacyCalculatorDraft();
       try {
-        const raw = localStorage.getItem(CALCULATOR_DRAFT_KEY);
+        const raw = sessionStorage.getItem(CALCULATOR_DRAFT_KEY);
         if(!raw) return false;
         payload = JSON.parse(raw);
       } catch(e) {
@@ -83,7 +90,6 @@ let selectedDateKey = null;
       try {
         draftRestoreInProgress = true;
         applyProjectData({ ...payload.data, keepAllRecords: true });
-        if(payload.data.viewMode) setViewMode(payload.data.viewMode, false);
         const hasRecords = payload.data.workRecords && Object.keys(payload.data.workRecords).length > 0;
         const hasWage = Number(payload.data.hourlyWage) > 0;
         if(hasRecords && hasWage) calculateMonthlyPay();
@@ -307,8 +313,8 @@ let selectedDateKey = null;
           const night = calculateNightHours(rec.startTime, rec.endTime, rec.breakHours);
           html += '<div class="work-summary">' + rec.startTime + '–' + rec.endTime + '</div>';
           let icons = '';
-          if(isOvernight(rec.startTime, rec.endTime)) icons += '<span class="day-icon" aria-label="다음날 퇴근">↪</span>';
-          if(night > 0) icons += '<span class="day-icon" aria-label="야간 시간 포함">🌙</span>';
+          if(isOvernight(rec.startTime, rec.endTime)) icons += '<span class="day-icon text-day-chip" aria-label="다음날 퇴근">다음날</span>';
+          if(night > 0) icons += '<span class="day-icon text-day-chip" aria-label="야간 시간 포함">야간</span>';
           if(icons) html += '<div class="icon-row">' + icons + '</div>';
         }
         if(relatedAllowances.length > 0){
@@ -472,7 +478,7 @@ let selectedDateKey = null;
     function updateDetailModeButton(){
       const btn = document.getElementById('detailModeBtn');
       if(!btn) return;
-      btn.textContent = detailViewMode ? '✏️ 근무 입력 모드로 돌아가기' : '🔍 상세 확인 모드 켜기';
+      btn.textContent = detailViewMode ? '근무 입력 모드로 돌아가기' : '상세 확인 모드 켜기';
       btn.classList.toggle('active', detailViewMode);
     }
 
@@ -1239,7 +1245,7 @@ let selectedDateKey = null;
         + '</div>';
 
       const resultExtraHtml = isMobileView()
-        ? '<div id="mobileResultDetails" class="mobile-result-details' + (mobileResultDetailsOpen ? ' open' : '') + '"><button type="button" id="mobileResultDetailsBtn" class="mobile-result-details-head" onclick="toggleMobileResultDetails()">' + (mobileResultDetailsOpen ? '<span>급여 상세정보 닫기</span><span>⌃</span>' : '<span>💬 급여 상세정보 열기</span><span>⌄</span>') + '</button><div class="mobile-result-details-body">' + detailLinesHtml + '</div></div><p class="muted">※ 모바일에서는 핵심 결과를 먼저 보여줘요. 더 자세한 날짜별 표는 PC 버전에서 확인하면 편합니다.</p>'
+        ? '<div id="mobileResultDetails" class="mobile-result-details' + (mobileResultDetailsOpen ? ' open' : '') + '"><button type="button" id="mobileResultDetailsBtn" class="mobile-result-details-head" onclick="toggleMobileResultDetails()">' + (mobileResultDetailsOpen ? '<span>급여 상세정보 닫기</span><span>⌃</span>' : '<span>급여 상세정보 열기</span><span>⌄</span>') + '</button><div class="mobile-result-details-body">' + detailLinesHtml + '</div></div><p class="muted">※ 모바일에서는 핵심 결과를 먼저 보여줘요. 더 자세한 날짜별 표는 PC 버전에서 확인하면 편합니다.</p>'
         : detailLinesHtml + buildDetailTable(rows) + '<p class="muted">※ 날짜별 상세표는 기본급·일 연장·주 연장·야간·휴일·추가수당이 어떻게 쌓였는지 확인하는 용도입니다. 주휴수당(추정)은 주 단위 수당이라 날짜별 표에는 나누어 넣지 않았습니다.</p>';
 
       document.getElementById('result').innerHTML = summaryHtml + resultExtraHtml;
@@ -1269,7 +1275,7 @@ let selectedDateKey = null;
       box.classList.toggle('open');
       const open = box.classList.contains('open');
       mobileResultDetailsOpen = open;
-      btn.innerHTML = open ? '<span>급여 상세정보 닫기</span><span>⌃</span>' : '<span>💬 급여 상세정보 열기</span><span>⌄</span>';
+      btn.innerHTML = open ? '<span>급여 상세정보 닫기</span><span>⌃</span>' : '<span>급여 상세정보 열기</span><span>⌄</span>';
     }
 
     function toggleAccordion(id){
@@ -1503,7 +1509,7 @@ let selectedDateKey = null;
         return;
       }
       await showShareLinkBox(url);
-      const copied = await copyTextToClipboard(getShareSummaryText(), '공유 문구를 복사했어요 🔗', '자동 복사가 막혀서 공유 문구를 직접 복사할 수 있게 열어뒀어요 🔗');
+      const copied = await copyTextToClipboard(getShareSummaryText(), '공유 문구를 복사했어요.', '자동 복사가 막혀서 공유 문구를 직접 복사할 수 있게 열어뒀어요.');
       if(!copied){
         const textarea = document.getElementById('shareLinkText');
         if(textarea){
@@ -1529,7 +1535,7 @@ let selectedDateKey = null;
       if(anchor){ anchor.href = url; anchor.querySelector('span').textContent = '공유 링크 열기'; }
       if(actions) actions.hidden = true;
       box.classList.add('show');
-      if(btn){ btn.textContent = '공유 링크 접기 🔗'; btn.classList.add('open'); }
+      if(btn){ btn.textContent = '공유 링크 접기'; btn.classList.add('open'); }
     }
     function showShortShareFailureBox(message){
       const box = document.getElementById('shareLinkBox');
@@ -1541,7 +1547,7 @@ let selectedDateKey = null;
       if(anchor){ anchor.removeAttribute('href'); anchor.querySelector('span').textContent = '짧은 링크 생성 실패'; }
       if(actions) actions.hidden = false;
       if(box) box.classList.add('show');
-      if(btn){ btn.textContent = '공유 링크 접기 🔗'; btn.classList.add('open'); }
+      if(btn){ btn.textContent = '공유 링크 접기'; btn.classList.add('open'); }
     }
     async function retryCreateShortShareLink(){
       const url = await createShortShareUrl();
@@ -1551,7 +1557,7 @@ let selectedDateKey = null;
         return false;
       }
       await showShareLinkBox(url);
-      await copyTextToClipboard(getShareSummaryText(), '공유 문구를 복사했어요 🔗');
+      await copyTextToClipboard(getShareSummaryText(), '공유 문구를 복사했어요.');
       return false;
     }
     async function copyShareSummaryText(){
@@ -1562,7 +1568,7 @@ let selectedDateKey = null;
       const box = document.getElementById('shareLinkBox');
       const btn = document.getElementById('shareLinkToggleBtn');
       if(box) box.classList.remove('show');
-      if(btn){ btn.textContent = '공유 링크 보기 🔗'; btn.classList.remove('open'); }
+      if(btn){ btn.textContent = '공유 링크 보기'; btn.classList.remove('open'); }
     }
     function toggleShareLinkBox(){
       const box = document.getElementById('shareLinkBox');
@@ -2092,7 +2098,7 @@ let selectedDateKey = null;
       if(!btn) return;
       const ym = getCurrentYearMonth();
       const changed = lastCalendarPeriod && (Number(lastCalendarPeriod.year) !== ym.year || Number(lastCalendarPeriod.month) !== ym.month);
-      if(changed){ btn.textContent = '✅ 달력 적용'; btn.classList.remove('applied'); }
+      if(changed){ btn.textContent = '달력 적용'; btn.classList.remove('applied'); }
     }
     function handleCalendarPeriodChange(){
       const m = document.getElementById('month');
@@ -2139,7 +2145,7 @@ let selectedDateKey = null;
       calendarHasBeenBuilt = true;
       renderCalendar(); renderAllowanceList(); updateMinimumWageInfo();
       const btn = document.getElementById('calendarBuildBtn');
-      if(btn){ btn.classList.add('applied'); btn.textContent = '✅ 적용됨'; clearTimeout(calendarApplyTimer); calendarApplyTimer = setTimeout(function(){ btn.classList.remove('applied'); btn.textContent = '✅ 달력 적용'; }, 1200); }
+      if(btn){ btn.classList.add('applied'); btn.textContent = '적용됨'; clearTimeout(calendarApplyTimer); calendarApplyTimer = setTimeout(function(){ btn.classList.remove('applied'); btn.textContent = '달력 적용'; }, 1200); }
       return false;
     }
 
@@ -2162,6 +2168,7 @@ let selectedDateKey = null;
       });
     }
     async function initializeCalculatorPersistence(){
+      clearLegacyCalculatorDraft();
       const isShareEntry = Boolean(getShareIdFromPath()) || location.hash.startsWith('#data=');
       let loadedShared = false;
       try {
