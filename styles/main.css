@@ -9773,12 +9773,24 @@ body:has(.main-doc) .cta-panel .sub-text {
 /* v58: larger header logo and no manual view-mode switch UI */
 .global-site-header .global-nav-inner {
   align-items: center !important;
+  min-height: 92px !important;
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+}
+
+.global-site-header .global-brand.site-logo {
+  min-height: 64px !important;
 }
 
 .global-site-header .site-logo img {
-  height: 46px !important;
+  height: 64px !important;
   width: auto !important;
-  max-width: 210px !important;
+  max-width: 260px !important;
+  object-fit: contain !important;
+}
+
+.global-site-header .global-nav {
+  align-items: center !important;
 }
 
 .pc-guide-note,
@@ -9788,9 +9800,25 @@ body:has(.main-doc) .cta-panel .sub-text {
 }
 
 @media (max-width: 768px) {
+  .global-site-header {
+    min-height: 68px !important;
+  }
+
+  .global-site-header .global-nav-inner {
+    height: 68px !important;
+    min-height: 68px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .global-site-header .global-brand.site-logo {
+    height: 68px !important;
+    min-height: 68px !important;
+  }
+
   .global-site-header .site-logo img {
-    height: 38px !important;
-    max-width: 160px !important;
+    height: 46px !important;
+    max-width: 190px !important;
   }
 }
 
