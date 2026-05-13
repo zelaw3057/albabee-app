@@ -23,6 +23,7 @@ const staticFiles = [
   'privacy.html',
   'robots.txt',
   'service-worker.js',
+  'site.webmanifest',
   'sitemap.xml',
   'styles/main.css',
   'terms.html',

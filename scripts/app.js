@@ -16,6 +16,12 @@ let selectedDateKey = null;
     let mobileResultDetailsOpen = false;
     let detailViewMode = false;
     let lastCalendarPeriod = { year: 2026, month: 4 };
+    const CALCULATOR_DRAFT_KEY = 'albabee_calculator_draft_v1';
+    const CALCULATOR_DRAFT_VERSION = 1;
+    let draftSaveTimer = null;
+    let draftRestoreInProgress = false;
+    let draftClearedByUser = false;
+    let draftPersistenceReady = false;
 
 
     function updateDirtyUI(){
@@ -32,6 +38,61 @@ let selectedDateKey = null;
       if(!hasCalculatedOnce) return;
       isDirty = true;
       updateDirtyUI();
+    }
+    function scheduleCalculatorDraftSave(){
+      if(!draftPersistenceReady) return;
+      if(draftRestoreInProgress) return;
+      draftClearedByUser = false;
+      clearTimeout(draftSaveTimer);
+      draftSaveTimer = setTimeout(saveCalculatorDraftNow, 450);
+    }
+    function getCurrentViewModeSetting(){
+      if(document.body.classList.contains('force-mobile-view')) return 'mobile';
+      if(document.body.classList.contains('force-pc-view')) return 'pc';
+      return 'auto';
+    }
+    function saveCalculatorDraftNow(){
+      if(!draftPersistenceReady) return;
+      if(draftRestoreInProgress) return;
+      if(draftClearedByUser) return;
+      try {
+        const payload = {
+          version: CALCULATOR_DRAFT_VERSION,
+          savedAt: new Date().toISOString(),
+          data: collectProjectData()
+        };
+        payload.data.viewMode = getCurrentViewModeSetting();
+        localStorage.setItem(CALCULATOR_DRAFT_KEY, JSON.stringify(payload));
+      } catch(e) {}
+    }
+    function clearCalculatorDraft(){
+      clearTimeout(draftSaveTimer);
+      try { localStorage.removeItem(CALCULATOR_DRAFT_KEY); } catch(e) {}
+    }
+    function restoreCalculatorDraft(){
+      let payload = null;
+      try {
+        const raw = localStorage.getItem(CALCULATOR_DRAFT_KEY);
+        if(!raw) return false;
+        payload = JSON.parse(raw);
+      } catch(e) {
+        clearCalculatorDraft();
+        return false;
+      }
+      if(!payload || Number(payload.version) !== CALCULATOR_DRAFT_VERSION || !payload.data) return false;
+      try {
+        draftRestoreInProgress = true;
+        applyProjectData({ ...payload.data, keepAllRecords: true });
+        if(payload.data.viewMode) setViewMode(payload.data.viewMode, false);
+        const hasRecords = payload.data.workRecords && Object.keys(payload.data.workRecords).length > 0;
+        const hasWage = Number(payload.data.hourlyWage) > 0;
+        if(hasRecords && hasWage) calculateMonthlyPay();
+        return true;
+      } catch(e) {
+        return false;
+      } finally {
+        draftRestoreInProgress = false;
+      }
     }
     function clearDirty(){
       isDirty = false;
@@ -55,17 +116,20 @@ let selectedDateKey = null;
         const target = e.target;
         if(!target || target.closest('#shareLinkBox') || target.closest('.policy-modal')) return;
         if(target.matches('input, select, textarea')) markDirty();
+        if(target.matches('input, select, textarea')) scheduleCalculatorDraftSave();
       }, true);
       document.addEventListener('change', function(e){
         const target = e.target;
         if(!target || target.closest('#shareLinkBox') || target.closest('.policy-modal')) return;
         if(target.matches('input, select, textarea')) markDirty();
+        if(target.matches('input, select, textarea')) scheduleCalculatorDraftSave();
       }, true);
       document.addEventListener('click', function(e){
         const target = e.target;
         if(!target || target.closest('#shareLinkBox') || target.closest('.policy-modal')) return;
         if(target.closest('#calendar .day:not(.empty)') && !detailViewMode) markDirty();
         if(target.closest('.weekday-btn')) markDirty();
+        if(target.closest('#calendar .day:not(.empty), .weekday-btn, #allowanceList button, .color-choice')) scheduleCalculatorDraftSave();
       }, true);
       updateDirtyUI();
     }
@@ -594,6 +658,7 @@ let selectedDateKey = null;
       if(detailViewMode && !isMobileView()) closeEditPanel();
       updateDetailModeButton();
       renderCalendar();
+      scheduleCalculatorDraftSave();
     }
 
     function selectDay(dateKey, year, month, day, showDetails=false){
@@ -650,6 +715,8 @@ let selectedDateKey = null;
 
     function resetAllInputs(){
       if(!confirm('근무일, 추가수당, 계산 결과를 전부 초기화할까요?')) return;
+      clearCalculatorDraft();
+      draftClearedByUser = true;
       workRecords = {};
       scheduleColorMap = {};
       allowances = [];
@@ -1507,10 +1574,16 @@ let selectedDateKey = null;
       return match ? decodeURIComponent(match[1]) : '';
     }
     function finishSharedProjectLoad(data, message){
-      applyProjectData(data);
+      draftRestoreInProgress = true;
+      try {
+        applyProjectData(data);
+      } finally {
+        draftRestoreInProgress = false;
+      }
       const hasRecords = data && data.workRecords && Object.keys(data.workRecords).length > 0;
       const hasWage = Number(data && data.hourlyWage) > 0;
       if(hasRecords && hasWage) calculateMonthlyPay();
+      saveCalculatorDraftNow();
       const state = document.getElementById('saveState');
       if(state) state.textContent = message || '공유 링크에서 불러오기 완료';
       return true;
@@ -1569,6 +1642,7 @@ let selectedDateKey = null;
           holiday: document.getElementById('holidayOption').checked,
           weeklyHoliday: document.getElementById('weeklyHolidayOption').checked
         },
+        viewMode: getCurrentViewModeSetting(),
         workRecords, allowances
       };
     }
@@ -1594,12 +1668,13 @@ let selectedDateKey = null;
         document.getElementById('holidayOption').checked = !!data.options.holiday;
         document.getElementById('weeklyHolidayOption').checked = !!data.options.weeklyHoliday;
       }
+      const keepAllRecords = !!data.keepAllRecords;
       workRecords = data.workRecords || {};
       const activePrefix = (data.year || document.getElementById('year').value) + '-' + pad(Number(data.month || document.getElementById('month').value)) + '-';
-      Object.keys(workRecords || {}).forEach(k => { if(!k.startsWith(activePrefix)) delete workRecords[k]; });
+      if(!keepAllRecords) Object.keys(workRecords || {}).forEach(k => { if(!k.startsWith(activePrefix)) delete workRecords[k]; });
       scheduleColorMap = {};
       Object.keys(workRecords || {}).sort().forEach(k => { const r = workRecords[k]; if(r && r.patternColor) scheduleColorMap[getScheduleSignature(r.startTime, r.endTime, r.breakHours)] = r.patternColor; });
-      allowances = (data.allowances || []).map(a => ({ ...a, dates:(a.dates || []).filter(d => d.startsWith(activePrefix)) })).filter(a => (a.dates || []).length > 0);
+      allowances = (data.allowances || []).map(a => ({ ...a, dates: keepAllRecords ? (a.dates || []) : (a.dates || []).filter(d => d.startsWith(activePrefix)) })).filter(a => keepAllRecords || (a.dates || []).length > 0);
       toggleCustomTax(); applyBusinessSizeRules(); updateMinimumWageInfo(); renderCalendar(); renderAllowanceList(); updateSelectedDayDetails();
     }
     function ensureCalculated(){ if(!lastCalculationRows.length){ calculateMonthlyPay(); } return lastCalculationRows.length > 0; }
@@ -2051,6 +2126,7 @@ let selectedDateKey = null;
       }
       renderCalendar();
       if(lastCalculationRows && lastCalculationRows.length) calculateMonthlyPay();
+      scheduleCalculatorDraftSave();
       return false;
     }
     function initViewMode(){
@@ -2070,7 +2146,7 @@ let selectedDateKey = null;
 
     function installDirtyWrappers(){
       const names = [
-        'deleteWorkDay','deleteSelectedWorkDay','applyDefaultTimeToSelectedDay','applySelectedDayTime','applyWeekdayToMonth','clearAllWorkDays','addAllowance','deleteAllowance','toggleAllowanceDate','changeMonth','applyBusinessSizeRules','setAllowanceColor'
+        'deleteWorkDay','deleteSelectedWorkDay','applyDefaultTimeToSelectedDay','applySelectedDayTime','applyWeekdayToMonth','clearCurrentMonth','createAllowance','deleteAllowance','toggleAllowanceDate','changeMonth','refreshAfterOptionChange','applyBusinessSizeRules','setAllowanceColor'
       ];
       names.forEach(function(name){
         const original = window[name];
@@ -2078,11 +2154,28 @@ let selectedDateKey = null;
         const wrapped = function(){
           const result = original.apply(this, arguments);
           if(name !== 'setAllowanceColor') markDirty();
+          scheduleCalculatorDraftSave();
           return result;
         };
         wrapped.__dirtyWrapped = true;
         window[name] = wrapped;
       });
+    }
+    async function initializeCalculatorPersistence(){
+      const isShareEntry = Boolean(getShareIdFromPath()) || location.hash.startsWith('#data=');
+      let loadedShared = false;
+      try {
+        loadedShared = await loadFromShareLink();
+      } catch(e) {
+        loadedShared = false;
+      }
+      if(!loadedShared && !isShareEntry) restoreCalculatorDraft();
+      if(isShareEntry && !loadedShared) draftClearedByUser = true;
+      draftPersistenceReady = true;
+      installDirtyWatch();
+      window.addEventListener('beforeunload', saveCalculatorDraftNow);
+      saveCalculatorDraftNow();
+      clearDirty();
     }
 
     function installInAppBrowserBridges(){
@@ -2221,9 +2314,7 @@ let selectedDateKey = null;
     renderCalendar();
     renderAllowanceList();
     installDirtyWrappers();
-    loadFromShareLink();
-    installDirtyWatch();
+    initializeCalculatorPersistence();
     installInAppBrowserBridges();
     applyTossInAppPolicy();
     registerServiceWorker();
-    clearDirty();

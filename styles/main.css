@@ -177,6 +177,7 @@
     .muted { color: var(--muted); font-size: 13px; }
     .warning { margin-top: 12px; padding: 13px 14px; background: #f9fafb; border: 1px solid var(--line); color: #4b5563; border-radius: 12px; font-size: 13px; line-height: 1.55; }
     .small-note { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.55; }
+    .draft-save-note { margin: 10px auto 0; color: #94a3b8; font-size: 12px; line-height: 1.45; text-align: center; }
     .mini-actions { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; margin-top: 12px; }
     .table-wrap { overflow-x: auto; margin-top: 16px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
     .detail-table { width: 100%; border-collapse: collapse; min-width: 920px; font-size: 13px; }

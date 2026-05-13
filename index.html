@@ -20,15 +20,16 @@
   <meta name="keywords" content="알바비 계산기, 알바 급여 계산기, 알바 월급 계산기, 시급 계산기, 주휴수당 계산기, 야간수당 계산기, 연장수당 계산기, 휴일수당 계산기, 아르바이트 급여 계산, 세후 월급 계산" />
   <meta name="author" content="Lawzero" />
   <meta name="robots" content="index, follow" />
+  
+  <meta name="application-name" content="알바BEE" />
   <link rel="canonical" href="https://albabee.pages.dev/" />
-  <link rel="icon" href="/images/app-icon.png" type="image/png" />
-  <link rel="shortcut icon" href="/images/app-icon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/images/app-icon.png" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#111827" />
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260513" />
+  <link rel="apple-touch-icon" href="/favicon.png?v=20260513" />
+  <link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#111827" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="알바비 계산기" />
+  <meta name="apple-mobile-web-app-title" content="알바BEE" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta property="og:image" content="https://albabee.pages.dev/thumbnail.png" />
   <meta property="og:image:width" content="1932" />
@@ -39,7 +40,7 @@
   <meta property="og:description" content="실제 근무일 기준으로 시급, 주휴수당, 야간수당, 연장수당, 휴일수당까지 포함해 알바 월급과 급여를 계산해보세요." />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:url" content="https://albabee.pages.dev/" />
-  <meta property="og:site_name" content="알바비 계산기" />
+  <meta property="og:site_name" content="알바BEE" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="알바비 계산기 | 시급·주휴수당 포함 월급 계산" />
   <meta name="twitter:description" content="시급, 근무시간, 주휴수당, 야간수당, 연장수당, 세금까지 반영해 알바 월급을 계산하세요." />
@@ -47,18 +48,21 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "알바비 계산기",
+    "name": "알바BEE",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any",
     "description": "알바비 계산기입니다. 달력 기반으로 실제 근무일, 시급, 근무시간, 주휴수당, 연장수당, 야간수당, 휴일수당, 세후 급여를 계산하는 무료 도구입니다.",
     "inLanguage": "ko-KR",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
-    "publisher": { "@type": "Organization", "name": "Lawzero", "alternateName": "로제로", "logo": "https://albabee.pages.dev/logo.png" },
+    "publisher": { "@id": "https://albabee.pages.dev/#organization" },
     "image": "https://albabee.pages.dev/thumbnail.png",
     "contactPoint": { "@type": "ContactPoint", "email": "lawzero3057@gmail.com", "contactType": "customer support" }
   }
   </script>
   <link rel="stylesheet" href="/styles/main.css?v=20260510-compact2" />
+  <script id="albabee-brand-schema" type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albabee.pages.dev/#organization","name":"알바BEE","alternateName":["AlbaBEE","알바비 계산기"],"url":"https://albabee.pages.dev/","logo":{"@type":"ImageObject","url":"https://albabee.pages.dev/favicon.png","width":512,"height":512}},{"@type":"WebSite","@id":"https://albabee.pages.dev/#website","name":"알바BEE","url":"https://albabee.pages.dev/","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"},{"@type":"WebPage","@id":"https://albabee.pages.dev/#webpage","url":"https://albabee.pages.dev/","name":"알바비 계산기 | 주휴수당·야간수당·연장수당 월급 계산","isPartOf":{"@id":"https://albabee.pages.dev/#website"},"about":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"}]}
+  </script>
 </head>
 <body>
     <header class="global-site-header">
@@ -83,6 +87,7 @@
       <h1 class="sr-only">알바비 계산기</h1>
       <p class="pc-guide-note"><span>현재 PC 상세화면 사용 중</span><button type="button" class="guide-switch-link" onclick="setViewMode('mobile')">모바일 간편화면 보기</button></p>
       <p class="mobile-guide-note"><span>현재 모바일 간편화면 사용 중</span><button type="button" class="guide-switch-link" onclick="setViewMode('pc')">PC 상세화면 보기</button></p>
+      <p class="draft-save-note">입력 내용은 이 기기에 임시 저장됩니다.</p>
     </header>
 
     <section class="card step-card step-collapsed" id="basicSection" data-step-index="1">

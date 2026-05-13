@@ -1,15 +1,14 @@
 {
   "name": "알바BEE",
   "short_name": "알바BEE",
-  "description": "시급, 근무일, 근무시간, 주휴수당, 야간수당, 연장수당, 휴일수당, 세후 월급을 계산하는 모바일 웹앱입니다.",
+  "description": "알바 근무일, 시급, 주휴수당, 야간수당, 연장수당, 휴일수당과 세후 월급을 계산하는 알바 급여 계산 서비스입니다.",
   "lang": "ko-KR",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#f6f7fb",
+  "background_color": "#ffffff",
   "theme_color": "#111827",
-  "categories": ["finance", "productivity", "utilities"],
   "icons": [
     {
       "src": "/favicon.png",
