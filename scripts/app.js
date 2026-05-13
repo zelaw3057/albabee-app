@@ -1,4 +1,4 @@
-﻿let selectedDateKey = null;
+let selectedDateKey = null;
     let selectedDetailOpen = false;
     let detailToggleTouched = false;
     let workRecords = {};
@@ -1104,7 +1104,7 @@
         + '<td>' + Math.round(r.allowanceMoney).toLocaleString() + '</td>'
         + '<td>' + Math.round(r.total).toLocaleString() + '</td>'
         + '</tr>').join('');
-      return '<div id="detailTableAccordion" class="collapsible-box"><button type="button" class="collapsible-head" onclick="toggleAccordion(\'detailTableAccordion\')"><div><strong>날짜별 계산 상세표</strong><span>보고 싶은 사람만 펼쳐서 날짜별 기본급·연장·야간·휴일·추가수당을 확인해요.</span></div><div class="collapsible-arrow">⌄</div></button><div class="collapsible-body"><div class="table-wrap"><table class="detail-table"><thead><tr><th>날짜</th><th>근무</th><th>실근무</th><th>기본급</th><th>일 연장</th><th>주 연장</th><th>야간</th><th>휴일</th><th>추가수당</th><th>일 합계</th></tr></thead><tbody>' + body + '</tbody></table></div></div></div>';
+      return '<div id="detailTableAccordion" class="collapsible-box"><button type="button" class="collapsible-head" onclick="toggleAccordion(\'detailTableAccordion\')" aria-expanded="false"><div><strong>날짜별 계산 상세표</strong><span>보고 싶은 사람만 펼쳐서 날짜별 기본급·연장·야간·휴일·추가수당을 확인해요.</span></div><span class="collapsible-arrow" aria-hidden="true"></span></button><div class="collapsible-body"><div class="table-wrap"><table class="detail-table"><thead><tr><th>날짜</th><th>근무</th><th>실근무</th><th>기본급</th><th>일 연장</th><th>주 연장</th><th>야간</th><th>휴일</th><th>추가수당</th><th>일 합계</th></tr></thead><tbody>' + body + '</tbody></table></div></div></div>';
     }
 
 
@@ -1209,8 +1209,8 @@
       const box = document.getElementById(id);
       if(!box) return;
       box.classList.toggle('open');
-      const arrow = box.querySelector('.collapsible-arrow');
-      if(arrow) arrow.textContent = box.classList.contains('open') ? '⌃' : '⌄';
+      const head = box.querySelector('.collapsible-head');
+      if(head) head.setAttribute('aria-expanded', box.classList.contains('open') ? 'true' : 'false');
     }
 
 
