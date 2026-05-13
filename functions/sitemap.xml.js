@@ -10,6 +10,12 @@ const SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
     <loc>https://albabee.pages.dev/night-pay</loc>
   </url>
   <url>
+    <loc>https://albabee.pages.dev/overtime-pay</loc>
+  </url>
+  <url>
+    <loc>https://albabee.pages.dev/holiday-pay</loc>
+  </url>
+  <url>
     <loc>https://albabee.pages.dev/weekly-pay</loc>
   </url>
   <url>

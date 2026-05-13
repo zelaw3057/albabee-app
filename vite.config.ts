@@ -3,7 +3,6 @@ import { dirname, join } from 'node:path';
 import { defineConfig } from 'vite';
 
 const staticFiles = [
-  'ads.txt',
   'about.html',
   'apple-touch-icon.png',
   'scripts/app.js',
@@ -21,11 +20,8 @@ const staticFiles = [
   'notice.html',
   'overtime-pay.html',
   'privacy.html',
-  'public/images/albabee-logo.png',
-  'robots.txt',
   'service-worker.js',
   'site.webmanifest',
-  'sitemap.xml',
   'styles/main.css',
   'terms.html',
   'thumbnail.png',

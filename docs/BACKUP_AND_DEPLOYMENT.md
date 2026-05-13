@@ -83,9 +83,9 @@ Before web deployment:
 1. Run `npm.cmd run build`.
 2. Confirm `dist/minimum-wage.html`, `dist/weekly-pay.html`, and `dist/night-pay.html` exist.
 3. Confirm `dist/sitemap.xml` exists.
-4. Confirm `dist/images/hero-banner.png`, `dist/images/app-icon.png`, `dist/images/kakao-icon.png`, and `dist/images/excel-icon.png` exist.
-5. Confirm `sitemap.xml` and `functions/sitemap.xml.js` contain the same public SEO URLs.
-6. Confirm `robots.txt` points to `https://albabee.pages.dev/sitemap.xml`.
+4. Confirm `dist/images/hero/hero-banner.png`, `dist/images/icons/app-icon.png`, `dist/images/icons/kakao-icon.png`, and `dist/images/icons/excel-icon.png` exist.
+5. Confirm `public/sitemap.xml` and `functions/sitemap.xml.js` contain the same public SEO URLs.
+6. Confirm `public/robots.txt` points to `https://albabee.pages.dev/sitemap.xml`.
 
 Before Toss/AIT packaging:
 

@@ -19,9 +19,9 @@ npm.cmd run web:build
 
 - `index.html`, `styles/main.css`, `scripts/app.js`: main web calculator.
 - `minimum-wage.html`, `weekly-pay.html`, `night-pay.html`: SEO pages.
-- `sitemap.xml`, `functions/sitemap.xml.js`: sitemap output. Keep these in sync until sitemap generation is centralized.
+- `public/sitemap.xml`, `functions/sitemap.xml.js`: sitemap output. Keep these in sync until sitemap generation is centralized.
 - `vite.config.ts`: web build static copy list. Add every new root SEO page here.
-- `public/_headers`, `public/_routes.json`: Cloudflare sitemap behavior.
+- `public/ads.txt`, `public/robots.txt`, `public/_headers`, `public/_routes.json`: public SEO and Cloudflare behavior.
 
 ## Toss Status
 
@@ -36,4 +36,4 @@ Toss in-app work is out of the current web stabilization workflow. Archived Toss
 
 ## Backup Note
 
-The current cleanup backup is stored at `backups/stable_build_2026-05/` and is ignored by Git. Use Git commits and tags as the primary rollback method for deployable changes.
+The 2026-05-14 cleanup backup is stored at `backup_2026_05_14_before_cleanup/`. Use Git commits and tags as the primary rollback method for deployable changes.
