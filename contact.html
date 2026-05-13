@@ -16,11 +16,8 @@
     .info-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
     .info-nav a { display: inline-flex; padding: 8px 11px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: #111827; font-size: 13px; font-weight: 900; text-decoration: none; }
     .contact-box { padding: 16px; border: 1px solid #bbf7d0; border-radius: 14px; background: #f0fdf4; color: #166534; font-weight: 800; line-height: 1.65; }
-    .cta-panel { text-align: center; background: #111827; color: #fff; border: 0; }
-    .cta-panel .sub-text { color: #d1d5db; }
-    .cta-button { display: inline-flex; justify-content: center; align-items: center; width: auto; min-width: 220px; margin-top: 16px; padding: 14px 18px; border-radius: 14px; background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; font-weight: 950; text-decoration: none; box-shadow: 0 12px 24px rgba(220,38,38,.24); }
     footer { text-align: center; color: var(--muted); font-size: 12px; padding: 22px 0 4px; }
-    @media (max-width: 700px) { .container.info-page { padding: 18px 14px; } h1 { font-size: 27px; } .card { padding: 18px; } .cta-button { width: 100%; min-width: 0; } }
+    @media (max-width: 700px) { .container.info-page { padding: 18px 14px; } h1 { font-size: 27px; } .card { padding: 18px; } }
   </style>
 </head>
 <body>
@@ -53,24 +50,10 @@
     </header>
     <main>
       <article>
-        <section class="card"><p class="lead">계산기 오류, 모바일 화면 문제, 급여 정보 페이지 개선 의견, 제휴 문의가 있다면 아래 안내를 참고해 연락해주세요.</p></section>
-        <section class="card"><h2>문의 가능한 내용</h2><ul><li>알바비 계산기 입력 또는 결과 표시 오류</li><li>주휴수당, 야간수당, 최저시급 안내 페이지 개선 의견</li><li>모바일 화면, 공유 기능, footer 링크 문제</li><li>콘텐츠 제휴 또는 광고 관련 문의</li></ul></section>
-        <section class="card"><h2>문의 전 확인하면 좋은 정보</h2><p>오류 제보 시 사용 기기, 브라우저, 입력한 근무 조건, 문제가 발생한 페이지 주소를 함께 알려주시면 확인이 더 빠릅니다.</p><div class="contact-box">문의 메일: <a href="mailto:lawzero3057@gmail.com">lawzero3057@gmail.com</a><br />현재는 사이트 안정화와 SEO 페이지 품질 개선을 우선 진행하고 있어 답변까지 시간이 걸릴 수 있습니다.</div></section>
-        <section class="card"><h2>급한 급여 문제라면</h2><p>임금 체불, 최저임금 위반, 주휴수당 미지급처럼 실제 권리 구제가 필요한 사안은 고용노동부, 노동청, 노무사 등 공식 상담 채널을 함께 확인하는 것이 좋습니다.</p></section>
-        <section class="card">
-          <h2>문의 전 함께 보면 좋은 페이지</h2>
-          <div class="related-list">
-            <a href="/wage-guide">급여 계산 안내<br /><span class="sub-text">계산 구조 먼저 확인</span></a>
-            <a href="/minimum-wage">최저시급 계산<br /><span class="sub-text">최저임금 기준 확인</span></a>
-            <a href="/weekly-pay">주휴수당 계산<br /><span class="sub-text">주휴 조건 확인</span></a>
-          </div>
-        </section>
-        <section class="card">
-          <h2>자주 묻는 질문</h2>
-          <div class="faq-item"><h3>오류 제보에는 무엇을 적으면 좋나요?</h3><p>사용 기기, 브라우저, 페이지 주소, 입력한 근무 조건, 기대한 결과와 실제 결과를 함께 적어주면 확인이 빠릅니다.</p></div>
-          <div class="faq-item"><h3>급여 분쟁 상담도 가능한가요?</h3><p>알바BEE는 계산과 정보 제공 서비스입니다. 실제 권리 구제는 고용노동부, 노동청, 노무사 등 공식 상담 채널을 함께 이용하는 것이 좋습니다.</p></div>
-        </section>
-        <section class="card cta-panel"><h2>실제 근무일 기준으로 정확하게 계산하려면 알바BEE 계산기를 사용하세요</h2><p class="sub-text">문의 전 계산기에서 입력값을 다시 확인하면 문제 상황을 더 정확히 정리할 수 있습니다.</p><a class="cta-button" href="/">알바비 계산하러 가기</a></section>
+        <section class="card"><p class="lead">계산기 오류, 모바일 화면 문제, 급여 정보 페이지 개선 의견, 제휴 문의가 있다면 아래 이메일로 보내주세요.</p></section>
+        <section class="card"><h2>문의 이메일</h2><div class="contact-box">lawzero3057@gmail.com</div><p>현재는 사이트 안정화와 SEO 페이지 품질 개선을 우선 진행하고 있어 답변까지 시간이 걸릴 수 있습니다.</p></section>
+        <section class="card"><h2>오류 제보 시 적으면 좋은 내용</h2><ul class="notice-list"><li>문제가 발생한 페이지 주소</li><li>사용 기기와 브라우저</li><li>입력한 시급, 근무시간, 수당, 공제 조건</li><li>기대한 결과와 실제로 보인 결과</li><li>가능하다면 화면 캡처</li></ul></section>
+        <section class="card"><h2>제휴 문의 안내</h2><p>콘텐츠 제휴, 광고, 서비스 연동 제안은 메일 제목에 <strong>제휴 문의</strong>를 포함해 보내주세요. 제안 목적과 연결하려는 페이지 또는 서비스 정보를 함께 적어주시면 검토가 더 쉽습니다.</p></section>
       </article>
     </main>
         <footer class="site-footer">
