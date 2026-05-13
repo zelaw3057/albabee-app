@@ -9725,3 +9725,59 @@ body:has(.main-doc) .cta-panel .sub-text {
     font-size: 19.5px !important;
   }
 }
+
+/* v52: readable light CTA panels on SEO/info pages */
+body:has(.main-doc) .cta-panel,
+body:has(.main-doc) article > .cta-panel,
+body:has(.main-doc) article > section.cta-panel,
+.container.main-doc .cta-panel,
+.container.seo-service .cta-panel {
+  margin-top: 46px !important;
+  padding: 24px 0 0 !important;
+  border: 0 !important;
+  border-top: 1px solid #e5e7eb !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #0f172a !important;
+  text-align: left !important;
+  box-shadow: none !important;
+}
+
+body:has(.main-doc) .cta-panel h2,
+body:has(.main-doc) .cta-panel h3,
+body:has(.main-doc) .cta-panel p,
+body:has(.main-doc) .cta-panel .sub-text,
+body:has(.main-doc) .cta-panel span:not(.cta-button span),
+.container.main-doc .cta-panel h2,
+.container.main-doc .cta-panel h3,
+.container.main-doc .cta-panel p,
+.container.main-doc .cta-panel .sub-text,
+.container.seo-service .cta-panel h2,
+.container.seo-service .cta-panel h3,
+.container.seo-service .cta-panel p,
+.container.seo-service .cta-panel .sub-text {
+  color: #475569 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+body:has(.main-doc) .cta-panel h2,
+.container.main-doc .cta-panel h2,
+.container.seo-service .cta-panel h2 {
+  color: #0f172a !important;
+}
+
+body:has(.main-doc) .cta-panel h2::before,
+.container.main-doc .cta-panel h2::before,
+.container.seo-service .cta-panel h2::before {
+  display: none !important;
+}
+
+body:has(.main-doc) .cta-panel .cta-button,
+.container.main-doc .cta-panel .cta-button,
+.container.seo-service .cta-panel .cta-button {
+  margin-top: 14px !important;
+  color: #fff !important;
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  text-align: center !important;
+}
