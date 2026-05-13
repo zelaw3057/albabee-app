@@ -32,6 +32,8 @@ public/images/icons/
 public/images/seo/
 ```
 
+For the current Cloudflare Pages publish-root deployment, keep the root `images/` mirror synchronized with the live files in `public/images/`.
+
 8. Use absolute runtime image paths only:
 
 ```html

@@ -40,6 +40,10 @@ albabee-app/
     _headers
     _routes.json
     _redirects
+  images/                        # deployment mirror for Cloudflare publish-root fallback
+    logo/
+    hero/
+    icons/
   pages/                        # reserved for a future routed/page-generation migration
   src/
     styles/                     # reserved for future CSS modules
@@ -69,6 +73,8 @@ Moving those files into `/pages` would change URLs or require redirects. For SEO
 ## Active Asset Policy
 
 Only `public/images/` is the active image source for app UI assets. Vite serves these at `/images/...`.
+
+`images/` mirrors the live `/images/...` files for the current Cloudflare Pages publish-root deployment. Keep it synchronized with `public/images/` until the Cloudflare project publish directory is confirmed as `dist`.
 
 Use role-based image folders:
 
