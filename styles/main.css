@@ -9770,6 +9770,30 @@ body:has(.main-doc) .cta-panel .sub-text {
   }
 }
 
+/* v58: larger header logo and no manual view-mode switch UI */
+.global-site-header .global-nav-inner {
+  align-items: center !important;
+}
+
+.global-site-header .site-logo img {
+  height: 46px !important;
+  width: auto !important;
+  max-width: 210px !important;
+}
+
+.pc-guide-note,
+.mobile-guide-note,
+.guide-switch-link {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .global-site-header .site-logo img {
+    height: 38px !important;
+    max-width: 160px !important;
+  }
+}
+
 /* v57: stable accordion chevrons and calmer calendar chips */
 .collapsible-head .collapsible-arrow {
   position: relative !important;

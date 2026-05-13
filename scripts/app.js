@@ -25,6 +25,7 @@ let selectedDateKey = null;
     let draftRestoreInProgress = false;
     let draftClearedByUser = false;
     let draftPersistenceReady = false;
+    let viewModeResizeTimer = null;
 
 
     function updateDirtyUI(){
@@ -48,11 +49,6 @@ let selectedDateKey = null;
       draftClearedByUser = false;
       clearTimeout(draftSaveTimer);
       draftSaveTimer = setTimeout(saveCalculatorDraftNow, 450);
-    }
-    function getCurrentViewModeSetting(){
-      if(document.body.classList.contains('force-mobile-view')) return 'mobile';
-      if(document.body.classList.contains('force-pc-view')) return 'pc';
-      return 'auto';
     }
     function getCalculatorUiState(){
       const stepIds = ['basicSection','workCalendarSection','allowanceSection','legalOptionSection'];
@@ -79,7 +75,6 @@ let selectedDateKey = null;
       return {
         version: CALCULATOR_UI_STATE_VERSION,
         savedAt: new Date().toISOString(),
-        viewMode: getCurrentViewModeSetting(),
         steps: steps,
         selectedDateKey: selectedDateKey,
         selectedDetailOpen: selectedDetailOpen,
@@ -139,7 +134,6 @@ let selectedDateKey = null;
       try {
         draftRestoreInProgress = true;
         applyProjectData({ ...payload.data, keepAllRecords: true });
-        if(payload.data.viewMode) setViewMode(payload.data.viewMode, false);
         const hasRecords = payload.data.workRecords && Object.keys(payload.data.workRecords).length > 0;
         const hasWage = Number(payload.data.hourlyWage) > 0;
         if(hasRecords && hasWage) calculateMonthlyPay();
@@ -170,7 +164,6 @@ let selectedDateKey = null;
       if(!state || Number(state.version) !== CALCULATOR_UI_STATE_VERSION) return false;
       try {
         draftRestoreInProgress = true;
-        if(state.viewMode) setViewMode(state.viewMode, false);
         if(state.steps){
           Object.keys(state.steps).forEach(function(id){
             const section = document.getElementById(id);
@@ -1764,7 +1757,6 @@ let selectedDateKey = null;
           holiday: document.getElementById('holidayOption').checked,
           weeklyHoliday: document.getElementById('weeklyHolidayOption').checked
         },
-        viewMode: getCurrentViewModeSetting(),
         workRecords, allowances
       };
     }
@@ -2237,24 +2229,19 @@ let selectedDateKey = null;
       }).join('');
       setAllowanceColor(document.getElementById('allowanceColor')?.value || getNextAllowanceColor());
     }
-    function setViewMode(mode, persist){
-      const normalized = mode === 'pc' ? 'pc' : (mode === 'mobile' ? 'mobile' : 'auto');
-      const effective = normalized === 'auto' ? ((window.innerWidth || 0) >= 768 ? 'pc' : 'mobile') : normalized;
+    function setViewMode(){
+      const effective = ((window.innerWidth || 0) >= 768 ? 'pc' : 'mobile');
       document.body.classList.remove('force-mobile-view', 'force-pc-view', 'view-mode-mobile', 'view-mode-pc');
       if(effective === 'mobile') document.body.classList.add('force-mobile-view', 'view-mode-mobile');
       if(effective === 'pc') document.body.classList.add('force-pc-view', 'view-mode-pc');
-      if(persist !== false){
-        try { localStorage.setItem('albaPayViewMode', normalized); } catch(e) {}
-      }
       renderCalendar();
       if(lastCalculationRows && lastCalculationRows.length) calculateMonthlyPay();
       scheduleCalculatorDraftSave();
       return false;
     }
     function initViewMode(){
-      let saved = 'auto';
-      try { saved = localStorage.getItem('albaPayViewMode') || 'auto'; } catch(e) {}
-      if(saved === 'mobile' || saved === 'pc') setViewMode(saved, false); else setViewMode('auto', false);
+      try { localStorage.removeItem('albaPayViewMode'); } catch(e) {}
+      setViewMode();
     }
     function changeMonth(){
       lastCalendarPeriod = getCurrentYearMonth();
@@ -2436,7 +2423,10 @@ let selectedDateKey = null;
     setAllowanceColor(getNextAllowanceColor());
     toggleAllowanceTypeFields();
     applyBusinessSizeRules();
-    window.addEventListener('resize', function(){ renderCalendar(); if(lastCalculationRows.length) calculateMonthlyPay(); });
+    window.addEventListener('resize', function(){
+      clearTimeout(viewModeResizeTimer);
+      viewModeResizeTimer = setTimeout(function(){ setViewMode(); }, 160);
+    });
     renderCalendar();
     renderAllowanceList();
     installDirtyWrappers();
