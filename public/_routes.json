@@ -1,5 +1,5 @@
 {
   "version": 1,
-  "include": ["/s", "/s/*", "/sitemap.xml"],
+  "include": ["/s", "/s/*"],
   "exclude": ["/images/*", "/scripts/*", "/styles/*", "/favicon.png", "/apple-touch-icon.png", "/manifest.json"]
 }

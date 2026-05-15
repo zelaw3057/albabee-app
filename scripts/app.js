@@ -381,6 +381,87 @@ let selectedDateKey = null;
       });
     }
 
+    function isDifferentFromDefaultWorkTime(rec){
+      if(!rec) return false;
+      const start = document.getElementById('defaultStartTime')?.value || '';
+      const end = document.getElementById('defaultEndTime')?.value || '';
+      const breakMinutes = Number(document.getElementById('defaultBreakHours')?.value || 0);
+      return rec.startTime !== start || rec.endTime !== end || breakHoursToMinutes(rec.breakHours) !== breakMinutes;
+    }
+
+    function getCalendarDateState(dateKey, activeAllowanceId){
+      const p = dateKey.split('-');
+      const date = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+      const rec = workRecords[dateKey] || null;
+      const holidayInfo = getHolidayInfo(dateKey);
+      const dayAllowances = getAllowancesForDate(dateKey);
+      const activeAllowance = activeAllowanceId ? allowances.find(a => a.id === activeAllowanceId) : null;
+      const nightHours = rec ? calculateNightHours(rec.startTime, rec.endTime, rec.breakHours) : 0;
+      return {
+        dateKey,
+        date,
+        rec,
+        hasWork: Boolean(rec),
+        isSunday: date.getDay() === 0,
+        isSaturday: date.getDay() === 6,
+        isSelectedDate: dateKey === selectedDateKey,
+        holidayInfo,
+        holidayName: holidayInfo ? holidayInfo.name : '',
+        isSubstituteHoliday: Boolean(holidayInfo && holidayInfo.type === 'substitute'),
+        dayAllowances,
+        hasAllowance: dayAllowances.length > 0,
+        activeAllowanceSelected: Boolean(activeAllowance && (activeAllowance.dates || []).includes(dateKey)),
+        nightHours,
+        hasNight: nightHours > 0,
+        overnight: rec ? isOvernight(rec.startTime, rec.endTime) : false,
+        patternColor: rec ? getRecordPatternColor(rec) : '',
+        differentFromDefault: isDifferentFromDefaultWorkTime(rec)
+      };
+    }
+
+    function getCalendarDateClasses(state, baseClass){
+      const classes = [baseClass];
+      if(!state.hasWork) classes.push('no-work');
+      if(state.isSunday) classes.push('sunday');
+      if(state.isSaturday) classes.push('saturday');
+      if(state.holidayName) classes.push('holiday');
+      if(state.isSubstituteHoliday) classes.push('substitute-holiday');
+      if(state.hasWork) classes.push('active-work', 'pattern-work');
+      if(state.isSelectedDate) classes.push('selected');
+      if(state.hasAllowance) classes.push('has-allowance');
+      if(state.hasNight) classes.push('has-night');
+      if(state.differentFromDefault) classes.push('different-work-time');
+      if(state.activeAllowanceSelected) classes.push('allowance-picked');
+      return classes;
+    }
+
+    function applyCalendarDateStyle(el, state, alpha){
+      if(!el || !state.hasWork || !state.patternColor) return;
+      el.style.setProperty('--pattern-bg', hexToRgba(state.patternColor, alpha || 0.14));
+      el.style.setProperty('--pattern-border', hexToRgba(state.patternColor, 0.75));
+    }
+
+    function renderCalendarHolidayBadge(state, compact){
+      if(!state.holidayName) return '';
+      const label = state.isSubstituteHoliday ? '\uB300\uCCB4' : (compact ? '\uD734\uC77C' : state.holidayName);
+      return '<div class="holiday-badge ' + (state.isSubstituteHoliday ? 'substitute-badge' : '') + '" title="' + escapeHtml(state.holidayName) + '">' + escapeHtml(label) + '</div>';
+    }
+
+    function renderAllowanceDots(state, maxCount){
+      if(!state.dayAllowances.length) return '';
+      const visible = state.dayAllowances.slice(0, maxCount || state.dayAllowances.length);
+      const more = state.dayAllowances.length - visible.length;
+      return '<div class="allowance-dots">' + visible.map(a => '<span class="color-dot" title="' + escapeHtml(a.name) + '" style="--dot-color:' + a.color + '"></span>').join('') + (more > 0 ? '<span class="allowance-more-dot">+' + more + '</span>' : '') + '</div>';
+    }
+
+    function renderCalendarStatusChips(state, compact){
+      let chips = '';
+      if(state.overnight && !compact) chips += '<span class="day-icon text-day-chip" aria-label="다음날 퇴근">다음날</span>';
+      if(state.hasNight) chips += '<span class="day-icon text-day-chip" aria-label="야간 시간 포함">야간</span>';
+      if(state.differentFromDefault) chips += '<span class="day-icon text-day-chip" aria-label="기본 근무시간과 다름">변경</span>';
+      return chips ? '<div class="icon-row">' + chips + '</div>' : '';
+    }
+
     function renderCalendar(){
       const ym = getCurrentYearMonth();
       const year = ym.year, month = ym.month;
@@ -403,37 +484,25 @@ let selectedDateKey = null;
       }
 
       for(let day=1; day<=lastDate; day++){
-        const date = new Date(year, month - 1, day);
         const dateKey = getDateKey(year, month, day);
-        const hasWork = Boolean(workRecords[dateKey]);
-        const holidayName = getFixedHolidayName(month, day, year);
-        const relatedAllowances = getAllowancesForDate(dateKey);
+        const state = getCalendarDateState(dateKey);
+        const hasWork = state.hasWork;
+        const holidayName = state.holidayName;
+        const relatedAllowances = state.dayAllowances;
+        const night = state.nightHours;
         const dayBox = document.createElement('div');
-        dayBox.className = 'day';
-        if(date.getDay() === 0) dayBox.classList.add('sunday');
-        if(date.getDay() === 6) dayBox.classList.add('saturday');
-        if(holidayName) dayBox.classList.add('holiday');
-        if(hasWork) {
-          dayBox.classList.add('active-work');
-          const recForStyle = workRecords[dateKey];
-          if(recForStyle){
-            const pc = getRecordPatternColor(recForStyle);
-            dayBox.classList.add('pattern-work');
-            dayBox.style.setProperty('--pattern-bg', hexToRgba(pc, 0.14));
-            dayBox.style.setProperty('--pattern-border', hexToRgba(pc, 0.75));
-          }
-        }
-        if(dateKey === selectedDateKey) dayBox.classList.add('selected');
+        dayBox.className = getCalendarDateClasses(state, 'day').filter(c => c !== 'no-work').join(' ');
+        applyCalendarDateStyle(dayBox, state, 0.14);
 
         let html = '<div class="day-number">' + day + '</div>';
-        if(holidayName) html += '<div class="holiday-badge">' + holidayName + '</div>';
+        html += renderCalendarHolidayBadge(state, false);
         if(hasWork){
-          const rec = workRecords[dateKey];
-          const night = calculateNightHours(rec.startTime, rec.endTime, rec.breakHours);
-          html += '<div class="work-summary">' + rec.startTime + '–' + rec.endTime + '</div>';
+          const rec = state.rec;
+          html += '<div class="work-summary">' + rec.startTime + '~' + rec.endTime + '</div>';
           let icons = '';
           if(isOvernight(rec.startTime, rec.endTime)) icons += '<span class="day-icon text-day-chip" aria-label="다음날 퇴근">다음날</span>';
           if(night > 0) icons += '<span class="day-icon text-day-chip" aria-label="야간 시간 포함">야간</span>';
+          if(state.differentFromDefault) icons += '<span class="day-icon text-day-chip" aria-label="기본 근무시간과 다름">변경</span>';
           if(icons) html += '<div class="icon-row">' + icons + '</div>';
         }
         if(relatedAllowances.length > 0){
@@ -443,6 +512,7 @@ let selectedDateKey = null;
         }
         dayBox.innerHTML = html;
         dayBox.dataset.dateKey = dateKey;
+        if(state.holidayName) dayBox.title = state.holidayName;
         dayBox.onclick = function(){ handleCalendarClick(dateKey, year, month, day); };
         if(hasWork){
           dayBox.onmouseenter = function(event){ showDayDetailTooltip(event, dateKey); };
@@ -486,10 +556,11 @@ let selectedDateKey = null;
       for(let day=1; day<=lastDate; day++){
         const date = new Date(year, month - 1, day);
         const dateKey = getDateKey(year, month, day);
-        const hasWork = Boolean(workRecords[dateKey]);
+        const state = getCalendarDateState(dateKey);
+        const hasWork = state.hasWork;
         const rec = workRecords[dateKey];
-        const holidayName = getFixedHolidayName(month, day, year);
-        const relatedAllowances = getAllowancesForDate(dateKey);
+        const holidayName = state.holidayName;
+        const relatedAllowances = state.dayAllowances;
         const classes = ['side-mini-day'];
         let miniStyle = '';
         if(hasWork){
@@ -499,6 +570,7 @@ let selectedDateKey = null;
         }
         if(dateKey === selectedDateKey) classes.push('selected');
         if(date.getDay() === 0 || holidayName) classes.push('holiday');
+        if(state.isSubstituteHoliday) classes.push('substitute-holiday');
         if(date.getDay() === 6) classes.push('saturday');
         const miniDots = relatedAllowances.length ? '<span class="side-mini-dots">' + relatedAllowances.slice(0,3).map(a => '<span class="side-mini-dot" style="--dot-color:' + a.color + '"></span>').join('') + '</span>' : '';
         html += '<button type="button" class="' + classes.join(' ') + '"' + miniStyle + ' title="' + (hasWork ? '근무 상세보기' : '근무일 아님 · 조회만 가능') + '" ' + (hasWork ? 'onclick="handleSideMiniDateClick(\'' + dateKey + '\',' + year + ',' + month + ',' + day + ')"' : 'aria-disabled="true"') + '>' + day + miniDots + '</button>';
@@ -1121,12 +1193,15 @@ let selectedDateKey = null;
       for(let i=0; i<firstDay; i++) html += '<div class="mini-day empty"></div>';
       for(let day=1; day<=lastDate; day++){
         const dateKey = getDateKey(year, month, day);
-        const hasWork = Boolean(workRecords[dateKey]);
-        const selected = a.dates.includes(dateKey);
-        const cls = 'mini-day' + (hasWork ? '' : ' no-work') + (selected ? ' selected' : '');
-        const action = hasWork ? 'onclick="toggleAllowanceDate(' + a.id + ', \' ' + dateKey + '\'.trim())"' : 'disabled title="먼저 근무일로 추가하세요"';
-        const style = selected ? ' style="--dot-color:' + a.color + '"' : '';
-        html += '<button type="button" class="' + cls + '" ' + action + style + '>' + day + '</button>';
+        const state = getCalendarDateState(dateKey, a.id);
+        const classes = getCalendarDateClasses(state, 'mini-day');
+        const action = state.hasWork ? 'onclick="toggleAllowanceDate(' + a.id + ', \' ' + dateKey + '\'.trim())"' : 'disabled title="먼저 근무일로 추가하세요"';
+        const style = state.hasWork ? ' style="--pattern-bg:' + hexToRgba(state.patternColor, 0.14) + ';--pattern-border:' + hexToRgba(state.patternColor, 0.75) + ';--dot-color:' + a.color + '"' : '';
+        let content = '<span class="mini-day-number">' + day + '</span>';
+        content += renderCalendarHolidayBadge(state, true);
+        if(state.hasWork) content += renderCalendarStatusChips(state, true);
+        content += renderAllowanceDots(state, 3);
+        html += '<button type="button" class="' + classes.join(' ') + '" ' + action + style + '>' + content + '</button>';
       }
       html += '</div><div class="two-grid" style="margin-top:10px;"><button class="soft-btn" onclick="selectAllDatesForAllowance(' + a.id + ')">근무일 전체 적용</button><button class="danger-btn" onclick="clearDatesForAllowance(' + a.id + ')">이 수당 날짜 전체 해제</button></div></div>';
       return html;
@@ -1193,9 +1268,9 @@ let selectedDateKey = null;
     function getSelectedTaxType(){ const s = document.querySelector('input[name="taxType"]:checked'); return s ? s.value : 'none'; }
     function getTaxRate(){ const t = getSelectedTaxType(); if(t === 'none') return 0; if(t === '3.3') return 3.3; if(t === 'insurance') return 9.7; if(t === 'custom') return Number(document.getElementById('customTaxRate').value); return 0; }
     function getSelectedHolidayApplyType(){ const s = document.querySelector('input[name="holidayApplyType"]:checked'); return s ? s.value : 'publicOnly'; }
-    function isPublicHoliday(dateKey){ const p = dateKey.split('-'); return Boolean(getFixedHolidayName(Number(p[1]), Number(p[2]), Number(p[0]))); }
+    function isPublicHoliday(dateKey){ return Boolean(getHolidayInfo(dateKey)); }
     function isSunday(dateKey){ const p = dateKey.split('-'); return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])).getDay() === 0; }
-    function getHolidayNameForDate(dateKey){ const p = dateKey.split('-'); return getFixedHolidayName(Number(p[1]), Number(p[2]), Number(p[0])); }
+    function getHolidayNameForDate(dateKey){ const info = getHolidayInfo(dateKey); return info ? info.name : ''; }
     function isHoliday(dateKey){
       const type = getSelectedHolidayApplyType();
       if(type === 'none') return false;
@@ -1299,7 +1374,7 @@ let selectedDateKey = null;
         + '<td>' + Math.round(r.allowanceMoney).toLocaleString() + '</td>'
         + '<td>' + Math.round(r.total).toLocaleString() + '</td>'
         + '</tr>').join('');
-      return '<div id="detailTableAccordion" class="collapsible-box"><button type="button" class="collapsible-head" onclick="toggleAccordion(\'detailTableAccordion\')" aria-expanded="false"><div><strong>날짜별 계산 상세표</strong><span>보고 싶은 사람만 펼쳐서 날짜별 기본급·연장·야간·휴일·추가수당을 확인해요.</span></div><span class="collapsible-arrow" aria-hidden="true"></span></button><div class="collapsible-body"><div class="table-wrap"><table class="detail-table"><thead><tr><th>날짜</th><th>근무</th><th>실근무</th><th>기본급</th><th>일 연장</th><th>주 연장</th><th>야간</th><th>휴일</th><th>추가수당</th><th>일 합계</th></tr></thead><tbody>' + body + '</tbody></table></div></div></div>';
+      return '<div id="detailTableAccordion" class="collapsible-box"><button type="button" class="collapsible-head" onclick="toggleAccordion(\'detailTableAccordion\')" aria-expanded="false"><div><strong>날짜별 계산 상세표</strong><span>보고 싶은 사람만 펼쳐서 날짜별 기본급·연장·야간·휴일·추가수당을 확인해요.</span></div><span class="collapsible-arrow" aria-hidden="true"><svg class="collapsible-arrow-icon" viewBox="0 0 24 24" focusable="false"><polyline points="6 9 12 15 18 9"></polyline></svg></span></button><div class="collapsible-body"><div class="table-wrap"><table class="detail-table"><thead><tr><th>날짜</th><th>근무</th><th>실근무</th><th>기본급</th><th>일 연장</th><th>주 연장</th><th>야간</th><th>휴일</th><th>추가수당</th><th>일 합계</th></tr></thead><tbody>' + body + '</tbody></table></div></div></div>';
     }
 
 
@@ -2176,6 +2251,42 @@ let selectedDateKey = null;
       const md = pad(month) + '-' + pad(day);
       const fixed = {'01-01':'신정','03-01':'삼일절','05-05':'어린이날','06-06':'현충일','08-15':'광복절','10-03':'개천절','10-09':'한글날','12-25':'성탄절'};
       return fixed[md] || '';
+    }
+    const KOREAN_HOLIDAYS_BY_YEAR = {
+      2026: {
+        '2026-01-01': { name: '\uC2E0\uC815', type: 'holiday' },
+        '2026-02-16': { name: '\uC124\uB0A0 \uC5F0\uD734', type: 'holiday' },
+        '2026-02-17': { name: '\uC124\uB0A0', type: 'holiday' },
+        '2026-02-18': { name: '\uC124\uB0A0 \uC5F0\uD734', type: 'holiday' },
+        '2026-03-01': { name: '\uC0BC\uC77C\uC808', type: 'holiday' },
+        '2026-03-02': { name: '\uC0BC\uC77C\uC808 \uB300\uCCB4\uACF5\uD734\uC77C', type: 'substitute' },
+        '2026-05-05': { name: '\uC5B4\uB9B0\uC774\uB0A0', type: 'holiday' },
+        '2026-05-24': { name: '\uBD80\uCC98\uB2D8\uC624\uC2E0\uB0A0', type: 'holiday' },
+        '2026-05-25': { name: '\uBD80\uCC98\uB2D8\uC624\uC2E0\uB0A0 \uB300\uCCB4\uACF5\uD734\uC77C', type: 'substitute' },
+        '2026-06-03': { name: '\uC804\uAD6D\uB3D9\uC2DC\uC9C0\uBC29\uC120\uAC70\uC77C', type: 'holiday' },
+        '2026-06-06': { name: '\uD604\uCDA9\uC77C', type: 'holiday' },
+        '2026-08-15': { name: '\uAD11\uBCF5\uC808', type: 'holiday' },
+        '2026-08-17': { name: '\uAD11\uBCF5\uC808 \uB300\uCCB4\uACF5\uD734\uC77C', type: 'substitute' },
+        '2026-09-24': { name: '\uCD94\uC11D \uC5F0\uD734', type: 'holiday' },
+        '2026-09-25': { name: '\uCD94\uC11D', type: 'holiday' },
+        '2026-09-26': { name: '\uCD94\uC11D \uC5F0\uD734', type: 'holiday' },
+        '2026-10-03': { name: '\uAC1C\uCC9C\uC808', type: 'holiday' },
+        '2026-10-05': { name: '\uAC1C\uCC9C\uC808 \uB300\uCCB4\uACF5\uD734\uC77C', type: 'substitute' },
+        '2026-10-09': { name: '\uD55C\uAE00\uB0A0', type: 'holiday' },
+        '2026-12-25': { name: '\uC131\uD0C4\uC808', type: 'holiday' }
+      }
+    };
+    function getHolidayInfo(dateKey){
+      const year = Number(String(dateKey).slice(0, 4));
+      const yearly = KOREAN_HOLIDAYS_BY_YEAR[year];
+      if(yearly && yearly[dateKey]) return yearly[dateKey];
+      const p = String(dateKey).split('-');
+      const name = getFixedHolidayName(Number(p[1]), Number(p[2]), Number(p[0]));
+      return name ? { name, type: 'holiday' } : null;
+    }
+    function getHolidayBadgeLabel(info){
+      if(!info) return '';
+      return info.type === 'substitute' ? '\uB300\uCCB4' : info.name;
     }
     function getRecordPatternColor(rec){
       if(!rec) return '#22c55e';
