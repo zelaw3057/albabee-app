@@ -714,6 +714,75 @@ html {
   transform: rotate(180deg) !important;
 }
 
+/* Final calendar holiday label layout: keep date numbers readable first. */
+#calendar .day {
+  padding: 14px 10px 10px !important;
+}
+
+#calendar .day-number {
+  position: relative !important;
+  z-index: 2 !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+  line-height: 1.1 !important;
+}
+
+#calendar .holiday-badge {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 100% !important;
+  min-height: 0 !important;
+  margin: 0 0 4px !important;
+  padding: 3px 7px !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  vertical-align: top !important;
+}
+
+@media (max-width: 768px) {
+  #calendar .day {
+    display: block !important;
+    min-height: 64px !important;
+    padding: 9px 6px 7px !important;
+  }
+
+  #calendar .day-number {
+    margin-bottom: 6px !important;
+  }
+
+  #calendar .holiday-badge {
+    max-width: 54px !important;
+    padding: 2px 5px !important;
+    font-size: 9px !important;
+    line-height: 1.15 !important;
+  }
+}
+
+body.force-mobile-view #calendar .day {
+  display: block !important;
+  min-height: 64px !important;
+  padding: 9px 6px 7px !important;
+}
+
+body.force-mobile-view #calendar .day-number {
+  margin-bottom: 6px !important;
+}
+
+body.force-mobile-view #calendar .holiday-badge {
+  max-width: 54px !important;
+  padding: 2px 5px !important;
+  font-size: 9px !important;
+  line-height: 1.15 !important;
+}
+
 @media (max-width: 768px) {
   .global-site-header .desktop-nav,
   .global-site-header .global-nav {

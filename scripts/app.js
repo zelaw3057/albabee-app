@@ -443,8 +443,17 @@ let selectedDateKey = null;
 
     function renderCalendarHolidayBadge(state, compact){
       if(!state.holidayName) return '';
-      const label = state.isSubstituteHoliday ? '\uB300\uCCB4' : (compact ? '\uD734\uC77C' : state.holidayName);
+      const label = getHolidayDisplayLabel(state.holidayInfo, compact);
       return '<div class="holiday-badge ' + (state.isSubstituteHoliday ? 'substitute-badge' : '') + '" title="' + escapeHtml(state.holidayName) + '">' + escapeHtml(label) + '</div>';
+    }
+
+    function getHolidayDisplayLabel(info, compact){
+      if(!info) return '';
+      if(info.type === 'substitute') return '\uB300\uCCB4';
+      const name = info.name || '';
+      if(name === '\uC804\uAD6D\uB3D9\uC2DC\uC9C0\uBC29\uC120\uAC70\uC77C') return '\uC9C0\uBC29\uC120\uAC70';
+      if(name === '\uBD80\uCC98\uB2D8\uC624\uC2E0\uB0A0') return compact ? '\uBD80\uCC98\uB2D8' : '\uBD80\uCC98\uB2D8\uC624\uC2E0\uB0A0';
+      return compact ? name.replace(/\s*\uC5F0\uD734$/, '') : name;
     }
 
     function renderAllowanceDots(state, maxCount){
@@ -495,7 +504,7 @@ let selectedDateKey = null;
         applyCalendarDateStyle(dayBox, state, 0.14);
 
         let html = '<div class="day-number">' + day + '</div>';
-        html += renderCalendarHolidayBadge(state, false);
+        html += renderCalendarHolidayBadge(state, isMobileView());
         if(hasWork){
           const rec = state.rec;
           html += '<div class="work-summary">' + rec.startTime + '~' + rec.endTime + '</div>';
