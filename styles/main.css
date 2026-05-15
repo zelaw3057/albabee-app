@@ -10311,3 +10311,108 @@ body:has(.main-doc) .cta-panel .cta-button,
     display: none !important;
   }
 }
+
+/* v59: keep the home page calculator-first and quiet. */
+#serviceTrustInfo.service-trust-info {
+  margin-top: 22px !important;
+  margin-bottom: 0 !important;
+  padding: 18px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, .035) !important;
+}
+
+#serviceTrustInfo h2 {
+  margin-bottom: 6px !important;
+  font-size: 18px !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+}
+
+#serviceTrustInfo > .sub-text {
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: #64748b !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+#serviceTrustInfo .seo-note-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  margin-top: 12px !important;
+}
+
+#serviceTrustInfo .seo-note {
+  min-height: 0 !important;
+  padding: 12px !important;
+  border-radius: 13px !important;
+  background: #fbfcfe !important;
+  box-shadow: none !important;
+}
+
+#serviceTrustInfo .seo-note strong {
+  margin-bottom: 3px !important;
+  font-size: 13px !important;
+}
+
+#serviceTrustInfo .seo-note span {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+.main-seo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eef2f7;
+}
+
+.main-seo-links a {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color .15s ease, transform .15s ease;
+}
+
+.main-seo-links a:hover {
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.global-site-header .global-brand.site-logo,
+.global-site-header .site-logo,
+.global-site-header a.site-logo {
+  background: transparent !important;
+  background-color: transparent !important;
+  mix-blend-mode: normal !important;
+  isolation: isolate !important;
+}
+
+.global-site-header .site-logo img {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  image-rendering: auto !important;
+}
+
+@media (max-width: 700px) {
+  #serviceTrustInfo.service-trust-info {
+    margin-top: 16px !important;
+    padding: 15px !important;
+  }
+
+  #serviceTrustInfo .seo-note-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .main-seo-links {
+    justify-content: center;
+    gap: 6px 10px;
+    text-align: center;
+  }
+}
