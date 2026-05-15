@@ -783,6 +783,41 @@ body.force-mobile-view #calendar .holiday-badge {
   line-height: 1.15 !important;
 }
 
+/* Final logo transparency lock: keep only the PNG visible in the header. */
+.global-site-header .global-brand,
+.global-site-header .global-brand.site-logo,
+.global-site-header .site-logo,
+.global-site-header a.site-logo,
+.global-site-header a.logo,
+.global-site-header .logo,
+.global-site-header .header-logo,
+.global-site-header .navbar-brand,
+.global-site-header .brand,
+.global-site-header .global-brand img,
+.global-site-header .site-logo img,
+.global-site-header .logo img,
+.global-site-header .header-logo img,
+.global-site-header .navbar-brand img,
+.global-site-header .brand img,
+.global-site-header header img {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+.global-site-header .global-brand.site-logo,
+.global-site-header .site-logo,
+.global-site-header a.site-logo {
+  padding: 0 !important;
+}
+
+.global-site-header .site-logo img {
+  display: block !important;
+}
+
 @media (max-width: 768px) {
   .global-site-header .desktop-nav,
   .global-site-header .global-nav {
