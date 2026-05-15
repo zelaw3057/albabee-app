@@ -37,6 +37,9 @@
   <script id="albabee-brand-schema" type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albabee.pages.dev/#organization","name":"알바BEE","alternateName":["AlbaBEE","알바비 계산기"],"url":"https://albabee.pages.dev/","logo":{"@type":"ImageObject","url":"https://albabee.pages.dev/images/icons/app-icon.png","width":512,"height":512}},{"@type":"WebSite","@id":"https://albabee.pages.dev/#website","name":"알바BEE","url":"https://albabee.pages.dev/","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"},{"@type":"WebPage","@id":"https://albabee.pages.dev/minimum-wage.html#webpage","url":"https://albabee.pages.dev/minimum-wage.html","name":"2026 최저시급 기준 | 최저임금 월급 계산법 - 알바BEE","isPartOf":{"@id":"https://albabee.pages.dev/#website"},"about":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"}]}
   </script>
+  <script id="albabee-seo-schema" type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https://albabee.pages.dev/minimum-wage.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"알바BEE","item":"https://albabee.pages.dev/"},{"@type":"ListItem","position":2,"name":"최저시급","item":"https://albabee.pages.dev/minimum-wage.html"}]},{"@type":"Article","@id":"https://albabee.pages.dev/minimum-wage.html#article","headline":"2026 최저시급 기준","mainEntityOfPage":"https://albabee.pages.dev/minimum-wage.html","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"},{"@type":"FAQPage","@id":"https://albabee.pages.dev/minimum-wage.html#faq","mainEntity":[{"@type":"Question","name":"최저시급은 세전 기준인가요?","acceptedAnswer":{"@type":"Answer","text":"네. 최저임금 판단은 보통 세전 임금을 기준으로 보며, 실제 입금액은 세금과 보험 공제에 따라 달라질 수 있습니다."}},{"@type":"Question","name":"수습기간이면 무조건 90%만 받아도 되나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 계약 기간, 수습 기간, 업무 성격 등 제한 조건을 충족하는 경우에만 감액 적용을 검토할 수 있습니다."}}]}]}
+  </script>
 </head>
 <body>
     <header class="global-site-header">
@@ -177,6 +180,31 @@
           <p>이 자료가 있으면 예상 월급과 실제 지급액의 차이를 훨씬 쉽게 확인할 수 있습니다.</p>
         </section>
 
+        <section class="card" id="minimum-wage-examples">
+          <h2>실제 알바 예시로 보는 최저시급</h2>
+          <div class="seo-note-grid">
+            <div class="seo-note"><strong>카페 5시간 마감</strong><span>10,320원 x 5시간 = 51,600원입니다. 22시 이후 시간이 있으면 야간수당도 따로 확인합니다.</span></div>
+            <div class="seo-note"><strong>편의점 주 20시간</strong><span>기본급 206,400원에 주휴수당 예시 41,280원을 더해 주급 흐름을 봅니다.</span></div>
+            <div class="seo-note"><strong>주말 8시간 근무</strong><span>하루 8시간 기준 일급은 82,560원입니다. 휴게시간은 실제 근무시간에서 제외될 수 있습니다.</span></div>
+          </div>
+        </section>
+        <section class="card" id="minimum-wage-faq">
+          <h2>최저시급 FAQ</h2>
+          <div class="quiet-faq">
+            <details><summary>최저시급은 세전 기준인가요?</summary><p>네. 최저임금 판단은 보통 세전 임금을 기준으로 봅니다. 실제 입금액은 세금, 보험, 기타 공제 때문에 달라질 수 있습니다.</p></details>
+            <details><summary>주휴수당을 포함해 최저시급을 맞춰도 되나요?</summary><p>계약서와 급여명세서에서 기본시급과 주휴수당이 명확히 구분되는지 확인해야 합니다. 총액만으로는 실제 최저임금 충족 여부를 판단하기 어렵습니다.</p></details>
+            <details><summary>수습기간이면 무조건 90%만 받아도 되나요?</summary><p>아닙니다. 계약 기간, 수습 기간, 업무 성격 등 제한 조건이 있어 모든 알바에 감액을 적용할 수 있는 것은 아닙니다.</p></details>
+          </div>
+        </section>
+        <section class="card" id="minimum-wage-related">
+          <h2>같이 보면 좋은 정보</h2>
+          <div class="quiet-link-list">
+            <a href="/weekly-pay.html">주휴수당 계산법 <span>주 15시간 이상 근무 확인</span></a>
+            <a href="/night-pay.html">야간수당 계산법 <span>22시 이후 근무가 있을 때</span></a>
+            <a href="/wage-guide.html">알바 급여 계산 안내 <span>세전·세후·수당 흐름 정리</span></a>
+          </div>
+        </section>
+
         <section class="card cta-panel">
           <h2>실제 근무일 기준으로 정확하게 계산하려면 알바BEE 계산기를 사용하세요</h2>
           <p class="sub-text">달력에서 근무일을 고르고 시급, 휴게시간, 주휴수당, 야간수당, 세금까지 반영해 예상 알바비를 계산할 수 있습니다.</p>
@@ -188,7 +216,12 @@
         <footer class="site-footer">
       <div class="footer-inner">
         <nav class="footer-links footer-policy-links" aria-label="하단 링크"><a href="/about.html">사이트 소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/terms.html">이용약관</a><a href="/contact.html">문의하기</a></nav>
-        <p class="footer-contact">버그제보 / 제휴문의: <a href="mailto:lawzero3057@gmail.com">lawzero3057@gmail.com</a></p>
+        <div class="footer-business-info" aria-label="운영자 정보">
+          <span>운영사: 로제로(Lawzero)</span>
+          <span>대표: 박도영</span>
+          <span>사업자등록번호: 833-61-00978</span>
+          <span>문의: <a href="mailto:lawzero3057@gmail.com">lawzero3057@gmail.com</a></span>
+        </div>
         <div class="lawzero-footer-brand">© 2026 알바BEE</div>
       </div>
     </footer>

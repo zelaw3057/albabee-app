@@ -39,6 +39,9 @@
   <script id="albabee-brand-schema" type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albabee.pages.dev/#organization","name":"알바BEE","alternateName":["AlbaBEE","알바비 계산기"],"url":"https://albabee.pages.dev/","logo":{"@type":"ImageObject","url":"https://albabee.pages.dev/images/icons/app-icon.png","width":512,"height":512}},{"@type":"WebSite","@id":"https://albabee.pages.dev/#website","name":"알바BEE","url":"https://albabee.pages.dev/","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"},{"@type":"WebPage","@id":"https://albabee.pages.dev/about.html#webpage","url":"https://albabee.pages.dev/about.html","name":"알바BEE 소개 | 알바 급여 계산기와 수당 계산 안내","isPartOf":{"@id":"https://albabee.pages.dev/#website"},"about":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"}]}
   </script>
+  <script id="albabee-seo-schema" type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https://albabee.pages.dev/about.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"알바BEE","item":"https://albabee.pages.dev/"},{"@type":"ListItem","position":2,"name":"사이트 소개","item":"https://albabee.pages.dev/about.html"}]},{"@type":"Article","@id":"https://albabee.pages.dev/about.html#article","headline":"알바BEE 소개","mainEntityOfPage":"https://albabee.pages.dev/about.html","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"}]}
+  </script>
 </head>
 <body>
     <header class="global-site-header">
@@ -89,6 +92,23 @@
           <h2>이용 전 참고</h2>
           <p>알바BEE의 계산 결과는 입력값을 바탕으로 한 예상 금액입니다. 실제 지급액은 근로계약서, 회사의 급여 산정 기준, 결근 및 지각 처리, 세금과 보험 적용 방식에 따라 달라질 수 있습니다.</p>
         </section>
+        <section class="card" id="trust-standards">
+          <h2>계산 기준을 다루는 방식</h2>
+          <div class="seo-note-grid">
+            <div class="seo-note"><strong>입력값 중심</strong><span>사용자가 입력한 근무일, 시간, 휴게시간을 기준으로 예상 금액을 계산합니다.</span></div>
+            <div class="seo-note"><strong>기준 분리</strong><span>주휴, 야간, 연장, 휴일, 공제 항목을 분리해 차이를 확인하기 쉽게 구성합니다.</span></div>
+            <div class="seo-note"><strong>참고용 안내</strong><span>실제 지급 판단은 근로계약서, 급여명세서, 공식 상담 결과와 함께 확인해야 합니다.</span></div>
+          </div>
+        </section>
+        <section class="card" id="about-related">
+          <h2>서비스를 이해하는 데 도움이 되는 페이지</h2>
+          <div class="quiet-link-list">
+            <a href="/how-to-use.html">급여계산기 사용법 <span>처음 계산할 때 입력 순서</span></a>
+            <a href="/wage-guide.html">알바 급여 계산 안내 <span>수당과 공제 기준 정리</span></a>
+            <a href="/contact.html">문의하기 <span>오류 제보와 개선 의견</span></a>
+          </div>
+        </section>
+
         <section class="card cta-panel">
           <h2>실제 근무일 기준으로 알바비를 계산해보세요</h2>
           <p class="sub-text">시급, 근무시간, 휴게시간, 수당과 공제 항목을 입력해 예상 급여를 확인할 수 있습니다.</p>
@@ -99,7 +119,12 @@
         <footer class="site-footer">
       <div class="footer-inner">
         <nav class="footer-links footer-policy-links" aria-label="하단 링크"><a href="/about.html">사이트 소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/terms.html">이용약관</a><a href="/contact.html">문의하기</a></nav>
-        <p class="footer-contact">버그제보 / 제휴문의: <a href="mailto:lawzero3057@gmail.com">lawzero3057@gmail.com</a></p>
+        <div class="footer-business-info" aria-label="운영자 정보">
+          <span>운영사: 로제로(Lawzero)</span>
+          <span>대표: 박도영</span>
+          <span>사업자등록번호: 833-61-00978</span>
+          <span>문의: <a href="mailto:lawzero3057@gmail.com">lawzero3057@gmail.com</a></span>
+        </div>
         <div class="lawzero-footer-brand">© 2026 알바BEE</div>
       </div>
     </footer>
