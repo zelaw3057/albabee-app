@@ -2,7 +2,7 @@ import { jsonResponse, readShare } from '../_share-storage.js';
 
 const DEFAULT_TITLE = '알바BEE 알바 근무표';
 const DEFAULT_DESCRIPTION = '공유된 근무표와 예상 급여를 확인해보세요.';
-const THUMBNAIL_URL = 'https://albabee.pages.dev/thumbnail.png';
+const THUMBNAIL_URL = 'https://albabee.pages.dev/images/og/albabee-og.png';
 
 function escapeHtml(value) {
   return String(value || '')

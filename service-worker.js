@@ -1,4 +1,4 @@
-const CACHE_NAME = 'albabee-app-v6-20260514-images';
+const CACHE_NAME = 'albabee-app-v7-20260516-images';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -9,7 +9,8 @@ const APP_SHELL = [
   '/images/icons/excel.png',
   '/images/icons/kakao.png',
   '/images/logo/albabee-logo.png',
-  '/images/hero/albabee-hero-banner.png'
+  '/images/banners/albabee-hero-banner.png',
+  '/images/og/albabee-og.png'
 ];
 
 self.addEventListener('install', function(event){
