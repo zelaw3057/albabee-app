@@ -467,7 +467,6 @@ let selectedDateKey = null;
       let chips = '';
       if(state.overnight && !compact) chips += '<span class="day-icon text-day-chip" aria-label="다음날 퇴근">다음날</span>';
       if(state.hasNight) chips += '<span class="day-icon text-day-chip" aria-label="야간 시간 포함">야간</span>';
-      if(state.differentFromDefault) chips += '<span class="day-icon text-day-chip" aria-label="기본 근무시간과 다름">변경</span>';
       return chips ? '<div class="icon-row">' + chips + '</div>' : '';
     }
 
@@ -503,22 +502,25 @@ let selectedDateKey = null;
         dayBox.className = getCalendarDateClasses(state, 'day').filter(c => c !== 'no-work').join(' ');
         applyCalendarDateStyle(dayBox, state, 0.14);
 
-        let html = '<div class="day-number">' + day + '</div>';
-        html += renderCalendarHolidayBadge(state, isMobileView());
+        let topHtml = '<div class="calendar-day-top"><div class="day-number">' + day + '</div>' + renderCalendarHolidayBadge(state, isMobileView()) + '</div>';
+        let middleHtml = '<div class="calendar-day-middle">';
+        let bottomHtml = '<div class="calendar-day-bottom">';
         if(hasWork){
           const rec = state.rec;
-          html += '<div class="work-summary">' + rec.startTime + '~' + rec.endTime + '</div>';
+          middleHtml += '<div class="work-summary">' + rec.startTime + '~' + rec.endTime + '</div>';
           let icons = '';
           if(isOvernight(rec.startTime, rec.endTime)) icons += '<span class="day-icon text-day-chip" aria-label="다음날 퇴근">다음날</span>';
           if(night > 0) icons += '<span class="day-icon text-day-chip" aria-label="야간 시간 포함">야간</span>';
-          if(state.differentFromDefault) icons += '<span class="day-icon text-day-chip" aria-label="기본 근무시간과 다름">변경</span>';
-          if(icons) html += '<div class="icon-row">' + icons + '</div>';
+          if(icons) bottomHtml += '<div class="icon-row">' + icons + '</div>';
         }
+        middleHtml += '</div>';
         if(relatedAllowances.length > 0){
           const visibleAllowances = isMobileView() ? relatedAllowances.slice(0, 5) : relatedAllowances;
           const moreAllowanceCount = relatedAllowances.length - visibleAllowances.length;
-          html += '<div class="allowance-dots">' + visibleAllowances.map(a => '<span class="color-dot" title="' + escapeHtml(a.name) + '" style="--dot-color:' + a.color + '"></span>').join('') + (moreAllowanceCount > 0 ? '<span class="allowance-more-dot">+' + moreAllowanceCount + '</span>' : '') + '</div>';
+          bottomHtml += '<div class="allowance-dots">' + visibleAllowances.map(a => '<span class="color-dot" title="' + escapeHtml(a.name) + '" style="--dot-color:' + a.color + '"></span>').join('') + (moreAllowanceCount > 0 ? '<span class="allowance-more-dot">+' + moreAllowanceCount + '</span>' : '') + '</div>';
         }
+        bottomHtml += '</div>';
+        let html = '<div class="calendar-day-inner">' + topHtml + middleHtml + bottomHtml + '</div>';
         dayBox.innerHTML = html;
         dayBox.dataset.dateKey = dateKey;
         if(state.holidayName) dayBox.title = state.holidayName;
@@ -1149,6 +1151,28 @@ let selectedDateKey = null;
       renderAllowanceList();
       renderCalendar();
     }
+    function toggleAllowanceWeekday(id, weekday){
+      const a = allowances.find(item => item.id === id);
+      if(!a) return;
+      const ym = getCurrentYearMonth();
+      const monthPrefix = ym.year + '-' + pad(ym.month) + '-';
+      const keys = Object.keys(workRecords).filter(function(key){
+        if(!key.startsWith(monthPrefix)) return false;
+        const parts = key.split('-').map(Number);
+        return new Date(parts[0], parts[1] - 1, parts[2]).getDay() === weekday;
+      }).sort();
+      if(!keys.length) return;
+      const selected = new Set(a.dates || []);
+      const allSelected = keys.every(function(key){ return selected.has(key); });
+      if(allSelected){
+        a.dates = (a.dates || []).filter(function(key){ return !keys.includes(key); });
+      } else {
+        keys.forEach(function(key){ selected.add(key); });
+        a.dates = Array.from(selected).sort();
+      }
+      renderAllowanceList();
+      renderCalendar();
+    }
     function selectAllDatesForAllowance(id){
       const a = allowances.find(item => item.id === id);
       if(!a) return;
@@ -1198,7 +1222,7 @@ let selectedDateKey = null;
       const firstDay = new Date(year, month - 1, 1).getDay();
       const lastDate = new Date(year, month, 0).getDate();
       let html = '<div class="date-picker-box"><strong>적용 날짜 선택</strong><p class="small-note">아래 달력에서 이 수당을 받을 근무일을 눌러주세요. 다시 누르면 그 날짜만 해제됩니다.</p>';
-      html += '<div class="mini-calendar"><div class="mini-weekday">일</div><div class="mini-weekday">월</div><div class="mini-weekday">화</div><div class="mini-weekday">수</div><div class="mini-weekday">목</div><div class="mini-weekday">금</div><div class="mini-weekday">토</div>';
+      html += '<div class="mini-calendar"><button type="button" class="mini-weekday mini-weekday-btn" onclick="toggleAllowanceWeekday(' + a.id + ',0)">일</button><button type="button" class="mini-weekday mini-weekday-btn" onclick="toggleAllowanceWeekday(' + a.id + ',1)">월</button><button type="button" class="mini-weekday mini-weekday-btn" onclick="toggleAllowanceWeekday(' + a.id + ',2)">화</button><button type="button" class="mini-weekday mini-weekday-btn" onclick="toggleAllowanceWeekday(' + a.id + ',3)">수</button><button type="button" class="mini-weekday mini-weekday-btn" onclick="toggleAllowanceWeekday(' + a.id + ',4)">목</button><button type="button" class="mini-weekday mini-weekday-btn" onclick="toggleAllowanceWeekday(' + a.id + ',5)">금</button><button type="button" class="mini-weekday mini-weekday-btn" onclick="toggleAllowanceWeekday(' + a.id + ',6)">토</button>';
       for(let i=0; i<firstDay; i++) html += '<div class="mini-day empty"></div>';
       for(let day=1; day<=lastDate; day++){
         const dateKey = getDateKey(year, month, day);
@@ -1208,8 +1232,6 @@ let selectedDateKey = null;
         const style = state.hasWork ? ' style="--pattern-bg:' + hexToRgba(state.patternColor, 0.14) + ';--pattern-border:' + hexToRgba(state.patternColor, 0.75) + ';--dot-color:' + a.color + '"' : '';
         let content = '<span class="mini-day-number">' + day + '</span>';
         content += renderCalendarHolidayBadge(state, true);
-        if(state.hasWork) content += renderCalendarStatusChips(state, true);
-        content += renderAllowanceDots(state, 3);
         html += '<button type="button" class="' + classes.join(' ') + '" ' + action + style + '>' + content + '</button>';
       }
       html += '</div><div class="two-grid" style="margin-top:10px;"><button class="soft-btn" onclick="selectAllDatesForAllowance(' + a.id + ')">근무일 전체 적용</button><button class="danger-btn" onclick="clearDatesForAllowance(' + a.id + ')">이 수당 날짜 전체 해제</button></div></div>';

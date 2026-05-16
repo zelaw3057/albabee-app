@@ -10760,3 +10760,282 @@ body:has(.main-doc) .cta-panel .cta-button,
 .collapsible-head[aria-expanded="true"] .collapsible-arrow-icon {
   transform: translateY(-1px) rotate(180deg) !important;
 }
+
+/* v65: cleaner calendar and allowance mini-calendar UX */
+.calendar-legend {
+  display: inline-flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px 14px !important;
+  width: 100% !important;
+  margin-top: 10px !important;
+  color: #64748b !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.45 !important;
+}
+
+.calendar-legend .legend-label {
+  color: #334155 !important;
+  font-weight: 900 !important;
+}
+
+.calendar-legend .legend-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  white-space: nowrap !important;
+}
+
+.calendar-help-note {
+  display: none !important;
+}
+
+.mini-weekday-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 24px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  line-height: 1 !important;
+  transition: background .14s ease, color .14s ease;
+}
+
+.mini-weekday-btn:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.mini-day {
+  display: grid !important;
+  align-content: start !important;
+  justify-items: start !important;
+  min-height: 44px !important;
+  padding: 6px !important;
+}
+
+.mini-day .mini-day-number {
+  z-index: 2 !important;
+  color: inherit !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+}
+
+.mini-day.sunday .mini-day-number,
+.mini-day.holiday .mini-day-number,
+.mini-day.substitute-holiday .mini-day-number {
+  color: var(--red) !important;
+}
+
+.mini-day.saturday .mini-day-number {
+  color: var(--blue) !important;
+}
+
+.mini-day .holiday-badge {
+  position: static !important;
+  display: inline-flex !important;
+  max-width: 100% !important;
+  margin-top: 5px !important;
+  padding: 1px 4px !important;
+  font-size: 9px !important;
+  line-height: 1.15 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.mini-day .icon-row,
+.mini-day .allowance-dots {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  .calendar-legend {
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    gap: 6px 10px !important;
+    font-size: 11.5px !important;
+  }
+
+  .calendar-legend .legend-item {
+    white-space: normal !important;
+  }
+}
+
+/* v66: three-zone layout inside main calendar days */
+.calendar .day {
+  padding: 10px !important;
+}
+
+.calendar-day-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 7px;
+  width: 100%;
+  height: 100%;
+  min-height: 96px;
+}
+
+.calendar-day-top {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 6px;
+  min-height: 24px;
+}
+
+.calendar-day-top .day-number {
+  position: relative !important;
+  z-index: 2 !important;
+  display: block !important;
+  line-height: 1.1 !important;
+}
+
+.calendar .day .holiday-badge {
+  position: static !important;
+  display: inline-flex !important;
+  justify-self: start !important;
+  align-self: start !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 2px 6px !important;
+  border-radius: 999px !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.calendar-day-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 28px;
+}
+
+.calendar-day-middle:empty {
+  min-height: 20px;
+}
+
+.calendar-day-middle .work-summary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 5px 9px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, .86) !important;
+  color: #166534 !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  line-height: 1.15 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  box-shadow: inset 0 0 0 1px rgba(22, 101, 52, .14) !important;
+}
+
+.calendar-day-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 18px;
+}
+
+.calendar-day-bottom .icon-row {
+  position: static !important;
+  display: inline-flex !important;
+  flex: 1 1 auto !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.calendar-day-bottom .text-day-chip {
+  height: 18px !important;
+  min-width: 0 !important;
+  padding: 1px 6px !important;
+  font-size: 9.5px !important;
+  line-height: 1 !important;
+}
+
+.calendar-day-bottom .allowance-dots {
+  position: static !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  max-width: 44px !important;
+  margin-left: auto !important;
+  gap: 3px !important;
+  transform: none !important;
+}
+
+.calendar-day-bottom .color-dot {
+  width: 7px !important;
+  height: 7px !important;
+}
+
+.calendar-day-bottom .allowance-more-dot {
+  font-size: 9px !important;
+  line-height: 1 !important;
+}
+
+@media (max-width: 700px) {
+  .calendar .day {
+    padding: 8px !important;
+  }
+
+  .calendar-day-inner {
+    gap: 5px;
+    min-height: 84px;
+  }
+
+  .calendar-day-top {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .calendar .day .holiday-badge {
+    max-width: 100% !important;
+    padding: 1px 5px !important;
+    font-size: 9px !important;
+  }
+
+  .calendar-day-middle .work-summary {
+    padding: 4px 6px !important;
+    font-size: 10.5px !important;
+  }
+
+  .calendar-day-bottom {
+    gap: 3px;
+  }
+
+  .calendar-day-bottom .text-day-chip {
+    padding: 1px 4px !important;
+    font-size: 8.5px !important;
+  }
+
+  .calendar-day-bottom .allowance-dots {
+    max-width: 24px !important;
+  }
+}
