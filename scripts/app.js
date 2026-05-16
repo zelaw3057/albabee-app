@@ -165,9 +165,6 @@ let selectedDateKey = null;
       const icon = box.querySelector('.collapsible-arrow-icon');
       if(icon){
         icon.classList.toggle('is-open', !!open);
-        icon.setAttribute('data-state', open ? 'open' : 'closed');
-        const line = icon.querySelector('polyline');
-        if(line) line.setAttribute('points', open ? '6 15 12 9 18 15' : '6 9 12 15 18 9');
       }
     }
     function restoreCalculatorUiState(){

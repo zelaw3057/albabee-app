@@ -10762,11 +10762,6 @@ body:has(.main-doc) .cta-panel .cta-button,
   transform: translateY(-1px) rotate(180deg) !important;
 }
 
-/* v67: JS owns the actual accordion chevron direction via SVG points. */
-.collapsible-head .collapsible-arrow-icon[data-state] {
-  transform: translateY(-1px) rotate(0deg) !important;
-}
-
 /* v65: cleaner calendar and allowance mini-calendar UX */
 .calendar-legend {
   display: inline-flex !important;
@@ -11053,5 +11048,206 @@ body:has(.main-doc) .cta-panel .cta-button,
 
   .calendar-day-bottom .allowance-dots {
     max-width: 24px !important;
+  }
+}
+
+/* v68: make the calculation-basis accordion use the exact shared toggle size and motion */
+#legalOptionSection .compact-info-accordion .collapsible-arrow {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  font-size: 0 !important;
+}
+
+#legalOptionSection .compact-info-accordion .collapsible-arrow-icon {
+  width: 18px !important;
+  height: 18px !important;
+  transform: translateY(-1px) rotate(0deg) !important;
+  transform-origin: center !important;
+  transition: transform .18s ease !important;
+}
+
+#legalOptionSection .compact-info-accordion.open .collapsible-arrow-icon,
+#legalOptionSection .compact-info-accordion .collapsible-head[aria-expanded="true"] .collapsible-arrow-icon,
+#legalOptionSection .compact-info-accordion .collapsible-arrow-icon.is-open {
+  transform: translateY(-1px) rotate(180deg) !important;
+}
+
+/* Image-first tutorial page */
+body:has(.tutorial-page) {
+  background: #ffffff;
+}
+
+.tutorial-page {
+  width: 100%;
+  max-width: none;
+  overflow-x: hidden;
+  background: #ffffff;
+}
+
+.tutorial-page *,
+.tutorial-page *::before,
+.tutorial-page *::after {
+  box-sizing: border-box;
+}
+
+.tutorial-hero {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  padding: 104px 24px 80px;
+}
+
+.tutorial-kicker {
+  margin: 0 0 18px;
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.tutorial-hero h1 {
+  margin: 0;
+  color: #111827;
+  font-size: clamp(48px, 7vw, 76px);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.tutorial-hero p:not(.tutorial-kicker) {
+  max-width: 760px;
+  margin: 28px 0 0;
+  color: #64748b;
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.tutorial-steps {
+  display: grid;
+  gap: 0;
+}
+
+.tutorial-step {
+  padding: 96px 24px 118px;
+  border-top: 1px solid #eef2f7;
+  background: #ffffff;
+}
+
+.tutorial-step:nth-child(even) {
+  background: #f8fafc;
+}
+
+.tutorial-step-inner {
+  width: min(100%, 1400px);
+  margin: 0 auto;
+}
+
+.tutorial-step-copy {
+  max-width: 780px;
+  margin: 0;
+}
+
+.tutorial-step-number {
+  margin: 0 0 14px;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.tutorial-step h2 {
+  margin: 0;
+  color: #111827;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.tutorial-step-copy p:not(.tutorial-step-number) {
+  margin: 18px 0 0;
+  color: #64748b;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.75;
+}
+
+.tutorial-image-frame {
+  width: 100%;
+  max-width: 1400px;
+  margin: 46px auto 0;
+}
+
+.tutorial-image-frame img {
+  display: block;
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 28px;
+  background: #f8fafc;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.14);
+}
+
+@media (max-width: 768px) {
+  .tutorial-hero {
+    padding: 72px 18px 54px;
+  }
+
+  .tutorial-kicker {
+    margin-bottom: 14px;
+    font-size: 12px;
+  }
+
+  .tutorial-hero h1 {
+    font-size: 42px;
+  }
+
+  .tutorial-hero p:not(.tutorial-kicker) {
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .desktop-break {
+    display: none;
+  }
+
+  .tutorial-step {
+    padding: 62px 14px 78px;
+  }
+
+  .tutorial-step h2 {
+    font-size: 30px;
+  }
+
+  .tutorial-step-copy p:not(.tutorial-step-number) {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .tutorial-image-frame {
+    margin-top: 30px;
+  }
+
+  .tutorial-image-frame img {
+    border-radius: 18px;
+    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12);
+  }
+}
+
+@media (max-width: 420px) {
+  .tutorial-hero h1 {
+    font-size: 36px;
+  }
+
+  .tutorial-step {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .tutorial-step h2 {
+    font-size: 27px;
   }
 }
