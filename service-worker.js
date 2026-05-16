@@ -1,4 +1,4 @@
-const CACHE_NAME = 'albabee-app-v10-20260516-accordion2';
+const CACHE_NAME = 'albabee-app-v11-20260516-nav-guide-image';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -43,15 +43,38 @@ self.addEventListener('fetch', function(event){
   const url = new URL(request.url);
   if(url.origin !== location.origin) return;
   if(url.pathname.startsWith('/s')) return;
+
+  if(url.pathname.startsWith('/images/guide/')){
+    event.respondWith(
+      fetch(request, { cache: 'no-store' }).then(function(response){
+        if(response.ok){
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(function(cache){
+            cache.put(request, copy);
+          });
+        }
+        return response;
+      }).catch(function(){
+        return caches.match(request).then(function(cached){
+          if(cached) return cached;
+          throw new Error('offline');
+        });
+      })
+    );
+    return;
+  }
+
   const networkFirst = request.mode === 'navigate' || ['style', 'script'].includes(request.destination) || /\.(?:html|css|js)$/i.test(url.pathname);
 
   if(networkFirst){
     event.respondWith(
       fetch(request, { cache: 'no-store' }).then(function(response){
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then(function(cache){
-          cache.put(request, copy);
-        });
+        if(response.ok){
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(function(cache){
+            cache.put(request, copy);
+          });
+        }
         return response;
       }).catch(function(){
         return caches.match(request).then(function(cached){
@@ -67,10 +90,12 @@ self.addEventListener('fetch', function(event){
   event.respondWith(
     caches.match(request).then(function(cached){
       return cached || fetch(request).then(function(response){
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then(function(cache){
-          cache.put(request, copy);
-        });
+        if(response.ok){
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(function(cache){
+            cache.put(request, copy);
+          });
+        }
         return response;
       }).catch(function(){
         if(request.mode === 'navigate') return caches.match('/index.html');

@@ -11488,23 +11488,24 @@ body:has(.tutorial-page) {
 }
 
 /* Header navigation typography normalization */
-.global-site-header,
-.global-site-header * {
+html body .global-site-header,
+html body .global-site-header * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-.global-site-header .global-nav,
-.global-site-header .desktop-nav {
+html body .global-site-header .global-nav,
+html body .global-site-header .desktop-nav {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
   gap: 8px 18px !important;
 }
 
-.global-site-header .global-nav a,
-.global-site-header .desktop-nav a {
+html body .global-site-header .global-nav a,
+html body .global-site-header .desktop-nav a,
+html body .tutorial-page ~ .global-site-header .global-nav a {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -11514,7 +11515,7 @@ body:has(.tutorial-page) {
   border: 0 !important;
   background: transparent !important;
   color: #1f2937 !important;
-  font-family: Arial, "Noto Sans KR", sans-serif !important;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: 17px !important;
   font-style: normal !important;
   font-weight: 700 !important;
@@ -11528,18 +11529,18 @@ body:has(.tutorial-page) {
   transition: color 0.16s ease, opacity 0.16s ease !important;
 }
 
-.global-site-header .global-nav a:hover,
-.global-site-header .global-nav a:focus-visible,
-.global-site-header .desktop-nav a:hover,
-.global-site-header .desktop-nav a:focus-visible {
+html body .global-site-header .global-nav a:hover,
+html body .global-site-header .global-nav a:focus-visible,
+html body .global-site-header .desktop-nav a:hover,
+html body .global-site-header .desktop-nav a:focus-visible {
   color: #dc2626 !important;
   opacity: 1 !important;
   transform: none !important;
 }
 
 @media (max-width: 768px) {
-  .global-site-header .global-nav a,
-  .global-site-header .desktop-nav a {
+  html body .global-site-header .global-nav a,
+  html body .global-site-header .desktop-nav a {
     font-size: 16px !important;
   }
 }
