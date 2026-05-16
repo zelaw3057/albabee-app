@@ -12144,6 +12144,195 @@ body:has(.main-doc) .info-page > header .sub-text,
   }
 }
 
+/* v83: actual final how-to sizing and footer slash guard */
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
+  width: min(100%, 760px) !important;
+  max-width: 760px !important;
+  margin: 24px auto 30px !important;
+  padding: 36px 40px !important;
+  border: 1px solid rgba(239, 68, 68, 0.09) !important;
+  border-radius: 22px !important;
+  background: #fffafa !important;
+  box-shadow: none !important;
+  text-align: left !important;
+}
+
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero::before,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero::before {
+  height: 4px !important;
+  border-radius: 22px 22px 0 0 !important;
+  background: #ef4444 !important;
+}
+
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1 {
+  max-width: 680px !important;
+  margin: 0 !important;
+  color: #0f172a !important;
+  font-size: clamp(34px, 3.2vw, 48px) !important;
+  font-weight: 720 !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
+  max-width: 620px !important;
+  margin: 12px 0 0 !important;
+  color: #64748b !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+html body .tutorial-tabs .step-copy .step-kicker {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+}
+
+html body .tutorial-tabs .step-copy h2,
+html body .tutorial-tabs .step-copy #guideStepTitle {
+  font-size: clamp(28px, 2.6vw, 40px) !important;
+  font-weight: 720 !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0 !important;
+}
+
+html body .tutorial-tabs .step-copy p:not(.step-kicker),
+html body .tutorial-tabs .step-copy #guideStepDescription {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+}
+
+html body .site-footer .footer-primary-line > span + span::before {
+  content: "/" !important;
+  display: inline-block !important;
+  margin: 0 12px !important;
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 768px) {
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
+    width: auto !important;
+    margin: 18px 14px 24px !important;
+    padding: 32px 24px !important;
+    text-align: center !important;
+  }
+
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+}
+
+/* v82: hard override for the how-to guide page and footer separators */
+.tutorial-page.tutorial-tabs-page .tutorial-hero,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
+  width: min(100%, 760px) !important;
+  max-width: 760px !important;
+  margin: 24px auto 30px !important;
+  padding: 36px 40px !important;
+  border: 1px solid rgba(239, 68, 68, 0.09) !important;
+  border-radius: 22px !important;
+  background: #fffafa !important;
+  box-shadow: none !important;
+  text-align: left !important;
+}
+
+.tutorial-page.tutorial-tabs-page .tutorial-hero::before,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero::before {
+  height: 4px !important;
+  border-radius: 22px 22px 0 0 !important;
+  background: #ef4444 !important;
+}
+
+.tutorial-page.tutorial-tabs-page .tutorial-hero h1,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1 {
+  margin: 0 !important;
+  max-width: 680px !important;
+  color: #0f172a !important;
+  font-size: clamp(34px, 3.2vw, 48px) !important;
+  font-weight: 720 !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+.tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
+  margin: 12px 0 0 !important;
+  max-width: 620px !important;
+  color: #64748b !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+.tutorial-tabs .step-kicker,
+html body .tutorial-tabs .step-copy .step-kicker {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+}
+
+.tutorial-tabs .step-copy h2,
+html body .tutorial-tabs .step-copy #guideStepTitle {
+  font-size: clamp(28px, 2.6vw, 40px) !important;
+  font-weight: 720 !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0 !important;
+}
+
+.tutorial-tabs .step-copy p:not(.step-kicker),
+html body .tutorial-tabs .step-copy #guideStepDescription {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+}
+
+.site-footer .footer-primary-line > span + span::before {
+  content: "/" !important;
+  display: inline-block !important;
+  margin: 0 12px !important;
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 768px) {
+  .tutorial-page.tutorial-tabs-page .tutorial-hero,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
+    width: auto !important;
+    margin: 18px 14px 24px !important;
+    padding: 32px 24px !important;
+    text-align: center !important;
+  }
+
+  .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1,
+  .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+}
+
 /* v78: smaller document hero and no-orphan footer separators */
 .container.seo-service .doc-hero,
 body:has(.main-doc) .doc-hero,
@@ -12957,4 +13146,107 @@ body:has(.main-doc) .info-page > header .sub-text,
   .tutorial-tabs .step-tabs {
     margin-top: 0 !important;
   }
+}
+
+/* v84: final applied how-to sizing and footer slash guard */
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
+  width: min(100%, 760px) !important;
+  max-width: 760px !important;
+  margin: 24px auto 30px !important;
+  padding: 36px 40px !important;
+  border: 1px solid rgba(239, 68, 68, 0.09) !important;
+  border-radius: 22px !important;
+  background: #fffafa !important;
+  box-shadow: none !important;
+  text-align: left !important;
+}
+
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero::before,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero::before {
+  height: 4px !important;
+  border-radius: 22px 22px 0 0 !important;
+  background: #ef4444 !important;
+}
+
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1 {
+  max-width: 680px !important;
+  margin: 0 !important;
+  color: #0f172a !important;
+  font-size: clamp(34px, 3.2vw, 48px) !important;
+  font-weight: 720 !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
+  max-width: 620px !important;
+  margin: 12px 0 0 !important;
+  color: #64748b !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+html body .tutorial-tabs .step-copy .step-kicker {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+}
+
+html body .tutorial-tabs .step-copy h2,
+html body .tutorial-tabs .step-copy #guideStepTitle {
+  font-size: clamp(28px, 2.6vw, 40px) !important;
+  font-weight: 720 !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0 !important;
+}
+
+html body .tutorial-tabs .step-copy p:not(.step-kicker),
+html body .tutorial-tabs .step-copy #guideStepDescription {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+}
+
+html body .site-footer .footer-primary-line > span + span::before {
+  content: "/" !important;
+  display: inline-block !important;
+  margin: 0 12px !important;
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 768px) {
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
+    width: auto !important;
+    margin: 18px 14px 24px !important;
+    padding: 32px 24px !important;
+    text-align: center !important;
+  }
+
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+}
+
+/* v85: override old footer pseudo hiding rules */
+html body .site-footer .footer-business-info .footer-primary-line > span:nth-child(n + 2)::before {
+  content: "/" !important;
+  display: inline-block !important;
+  margin: 0 12px !important;
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
 }

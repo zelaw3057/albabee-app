@@ -14,7 +14,21 @@
   <meta name="description" content="로제로(Lawzero)는 알바BEE를 운영하는 1인 개발·소프트웨어 사업자입니다. 알바 급여 계산, 근무 기록, 수당 확인을 더 쉽게 만드는 제품 로드맵을 소개합니다." />
   <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://albabee.pages.dev/company.html" />
-<link rel="stylesheet" href="/styles/main.css?v=20260516-nav-guide-image" />
+<link rel="stylesheet" href="/styles/main.css?v=20260517-compact-doc-hero" />
+  <style>
+    .operator-section { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); align-items: center; gap: 42px; max-width: 1200px; margin: 54px auto 0; }
+    .operator-label { margin: 0 0 10px; color: #ef4444; font-size: 12px; font-weight: 900; line-height: 1.4; letter-spacing: .08em; }
+    .operator-section h2 { margin: 0; color: #0f172a; font-size: clamp(30px, 3vw, 42px); font-weight: 800; line-height: 1.18; }
+    .operator-section p { max-width: 680px; margin: 14px 0 0; color: #64748b; font-size: 17px; font-weight: 500; line-height: 1.75; }
+    .operator-logo-wrap { display: flex; align-items: center; justify-content: center; min-height: 220px; padding: 28px; }
+    .company-logo { width: 100%; max-width: 320px; height: auto; object-fit: contain; }
+    .company-roadmap { margin-top: 54px; }
+    .company-roadmap-label { margin: 0 0 10px; color: #ef4444; font-size: 12px; font-weight: 900; line-height: 1.4; letter-spacing: .08em; }
+    .company-roadmap h2 { margin: 0; color: #0f172a; font-size: clamp(30px, 3vw, 42px); font-weight: 800; line-height: 1.18; }
+    .company-roadmap p { max-width: 720px; margin: 14px 0 0; color: #64748b; font-size: 17px; font-weight: 500; line-height: 1.75; }
+    .company-roadmap img { display: block; width: 100%; max-width: 1200px; height: auto; margin: 30px auto 0; border-radius: 28px; box-shadow: 0 18px 48px rgba(15, 23, 42, .08); }
+    @media (max-width: 700px) { .operator-section { grid-template-columns: 1fr; margin-top: 42px; } .operator-section h2, .company-roadmap h2 { font-size: 28px; } .operator-section p, .company-roadmap p { font-size: 15.5px; } .operator-logo-wrap { min-height: 160px; padding: 20px; } .company-logo { max-width: 260px; } .company-roadmap { margin-top: 42px; } .company-roadmap img { width: 100%; margin-top: 22px; border-radius: 20px; } }
+  </style>
   <meta property="og:type" content="website" />
   <meta property="og:title" content="로제로(Lawzero) 기업소개 | 알바BEE 운영사" />
   <meta property="og:description" content="로제로는 실생활 문제를 해결하는 소프트웨어를 만드는 작은 사업자이며, 첫 서비스로 알바BEE를 운영합니다." />
@@ -70,8 +84,9 @@
       <article>
         <section class="card summary-card"><p class="summary-line"><strong>로제로(Lawzero)</strong>는 알바BEE를 만들고 운영하는 작은 소프트웨어 스튜디오입니다.</p><div class="key-points"><div class="key-point"><span>형태</span><strong>1인 개발</strong></div><div class="key-point"><span>첫 서비스</span><strong>알바BEE</strong></div><div class="key-point"><span>방향</span><strong>실용적인 근로자 도구</strong></div></div></section>
         <section class="plain-section"><h2>무엇을 만들고 있나요?</h2><p>로제로는 첫 서비스로 알바BEE를 운영합니다. 알바 급여 계산기, 근무표 계산기, 주휴수당 계산, 야간수당 계산처럼 일상에서 자주 필요하지만 막상 직접 계산하기 번거로운 문제를 작고 실용적인 제품으로 풀고 있습니다.</p></section>
-        <section class="plain-section"><h2>대표 / 개발</h2><p><strong>박도영 (Lawzero)</strong>이 알바BEE를 직접 기획하고 개발하고 있습니다. 실제 알바 경험을 바탕으로, 알바 월급 계산과 수당 확인을 더 쉽게 만드는 도구를 꾸준히 다듬고 있습니다.</p></section>
-        <section class="plain-section"><h2>로드맵</h2><ol class="compact-list"><li>알바BEE 웹 계산기 안정화</li><li>급여가이드와 FAQ 등 정보성 콘텐츠 강화</li><li>월별 급여 기록과 실제 입금액 비교 기능 검토</li><li>모바일 앱 출시 검토</li><li>근무 기록 관리 기능 고도화</li></ol></section>
+        <section class="plain-section operator-section"><div><p class="operator-label">OPERATED BY</p><h2>운영 기업</h2><p>알바BEE는 로제로(Lawzero)에서 개발 및 운영하는 근로·급여 관리 서비스입니다.</p><p>실사용 중심의 근무 기록과 급여 계산 경험을 만들고, 근로자에게 실질적으로 도움이 되는 도구를 목표로 서비스 고도화를 진행하고 있습니다.</p></div><div class="operator-logo-wrap"><img class="company-logo" src="/images/company/lawzero-logo-black.png" alt="Lawzero 로고" loading="lazy" decoding="async" /></div></section>
+        <section class="plain-section company-roadmap"><p class="company-roadmap-label">ALBABEE ROADMAP</p><h2>앞으로의 로드맵</h2><p>알바BEE는 단순 급여 계산기를 넘어 근무 기록과 근로자 도구 중심 플랫폼으로 확장해 나가고 있습니다.</p><img src="/images/company/albabee-roadmap-2026.png" alt="알바BEE 2026 서비스 로드맵" loading="lazy" decoding="async" /></section>
+        <section class="plain-section"><h2>향후 비전</h2><p>로제로는 알바BEE를 시작으로 생산성, 기록, 계산처럼 생활 속 반복 문제를 줄여주는 실사용 중심 서비스를 확장해 나가려 합니다.</p></section>
         <section class="plain-section"><h2>운영 원칙</h2><p>확정되지 않은 기능은 약속처럼 말하지 않고, 로드맵 또는 검토 단계로 안내합니다. 알바BEE는 작지만 꾸준히 개선되는 도구를 목표로 운영됩니다.</p><div class="inline-links"><a href="/about.html">알바BEE 소개</a><a href="/notice.html">공지사항</a><a href="/contact.html">문의하기</a></div></section>
       </article>
     </main>
