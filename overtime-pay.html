@@ -1,33 +1,52 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="application-name" content="알바BEE" />
+  <meta name="apple-mobile-web-app-title" content="알바BEE" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <title>연장수당 계산법 | 초과근무 기준과 가산수당 - 알바BEE</title>
   <meta name="description" content="알바 연장수당 계산법을 정리했습니다. 1일 8시간, 1주 40시간 초과 기준, 50% 가산, 5인 이상 사업장 기준과 확인할 자료를 안내합니다." />
   <meta name="keywords" content="연장수당 계산법, 알바 연장수당, 초과근무 수당, 연장근로 가산수당" />
   <meta name="robots" content="index, follow" />
-  
-  <meta name="application-name" content="알바BEE" />
-  <link rel="canonical" href="https://albabee.pages.dev/overtime-pay.html" />
-  <link rel="icon" type="image/png" href="/images/icons/app-icon.png?v=20260514" />
-  <link rel="apple-touch-icon" href="/images/icons/app-icon.png?v=20260514" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <link rel="stylesheet" href="/styles/main.css?v=20260516-nav-guide-image" />
+<link rel="canonical" href="https://albabee.pages.dev/overtime-pay.html" />
+<link rel="stylesheet" href="/styles/main.css?v=20260516-nav-guide-image" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="연장수당 계산법 | 알바BEE" />
   <meta property="og:description" content="초과근무 시간과 연장근로 가산수당 기준을 알바 관점에서 짧게 정리했습니다." />
   <meta property="og:url" content="https://albabee.pages.dev/overtime-pay.html" />
-  <meta name="twitter:title" content="연장수당 계산법 | 알바BEE" />
+    <meta property="og:site_name" content="알바BEE" />
+<meta name="twitter:title" content="연장수당 계산법 | 알바BEE" />
   <meta name="twitter:description" content="초과근무 시간과 연장근로 가산수당 기준을 알바 관점에서 짧게 정리했습니다." />
-  
-  <meta property="og:site_name" content="알바BEE" />
-  <meta property="og:image" content="https://albabee.pages.dev/images/og/albabee-og.png" />
+<meta property="og:image" content="https://albabee.pages.dev/images/og/albabee-og.png" />
   <script id="albabee-brand-schema" type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albabee.pages.dev/#organization","name":"알바BEE","alternateName":["AlbaBEE","알바비 계산기"],"url":"https://albabee.pages.dev/","logo":{"@type":"ImageObject","url":"https://albabee.pages.dev/images/icons/app-icon.png","width":512,"height":512}},{"@type":"WebSite","@id":"https://albabee.pages.dev/#website","name":"알바BEE","url":"https://albabee.pages.dev/","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"},{"@type":"WebPage","@id":"https://albabee.pages.dev/overtime-pay.html#webpage","url":"https://albabee.pages.dev/overtime-pay.html","name":"연장수당 계산법 | 초과근무 기준과 가산수당 - 알바BEE","isPartOf":{"@id":"https://albabee.pages.dev/#website"},"about":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"}]}
+  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albabee.pages.dev/#organization","name":"알바BEE","alternateName":["AlbaBEE","알바비 계산기"],"url":"https://albabee.pages.dev/","logo":{"@type":"ImageObject","url":"https://albabee.pages.dev/android-chrome-512x512.png","width":512,"height":512}},{"@type":"WebSite","@id":"https://albabee.pages.dev/#website","name":"알바BEE","url":"https://albabee.pages.dev/","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"},{"@type":"WebPage","@id":"https://albabee.pages.dev/overtime-pay.html#webpage","url":"https://albabee.pages.dev/overtime-pay.html","name":"연장수당 계산법 | 초과근무 기준과 가산수당 - 알바BEE","isPartOf":{"@id":"https://albabee.pages.dev/#website"},"about":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"}]}
   </script>
   <script id="albabee-seo-schema" type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https://albabee.pages.dev/overtime-pay.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"알바BEE","item":"https://albabee.pages.dev/"},{"@type":"ListItem","position":2,"name":"연장수당","item":"https://albabee.pages.dev/overtime-pay.html"}]},{"@type":"Article","@id":"https://albabee.pages.dev/overtime-pay.html#article","headline":"연장수당 계산법","mainEntityOfPage":"https://albabee.pages.dev/overtime-pay.html","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"},{"@type":"FAQPage","@id":"https://albabee.pages.dev/overtime-pay.html#faq","mainEntity":[{"@type":"Question","name":"하루 8시간을 넘으면 무조건 연장수당인가요?","acceptedAnswer":{"@type":"Answer","text":"1일 8시간 초과는 중요한 기준이지만 사업장 규모와 실제 근로시간, 휴게시간을 함께 확인해야 합니다."}},{"@type":"Question","name":"야간수당과 중복될 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"같은 시간이 연장근로이면서 야간근로라면 요건 충족 시 각각의 가산을 따로 검토할 수 있습니다."}}]}]}
+  </script>
+  <script id="albabee-site-name-schema" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "알바BEE",
+    "alternateName": ["알바비 계산기", "알바BEE | 알바비 계산기"],
+    "url": "https://albabee.pages.dev/"
+  }
+  </script>
+  <script id="lawzero-organization-schema" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "로제로(Lawzero)",
+    "url": "https://albabee.pages.dev/",
+    "logo": "https://albabee.pages.dev/android-chrome-512x512.png"
+  }
   </script>
 </head>
 <body>
@@ -57,10 +76,10 @@
     </header>
     <main>
       <article>
-        <section class="card summary-card"><p class="summary-line">연장수당은 보통 <strong>1일 8시간</strong> 또는 <strong>1주 40시간</strong>을 넘는 근무부터 확인합니다.</p><div class="key-points"><div class="key-point"><span>하루 기준</span><strong>8시간 초과</strong></div><div class="key-point"><span>주 기준</span><strong>40시간 초과</strong></div><div class="key-point"><span>가산</span><strong>50% 검토</strong></div></div><a class="mini-cta" href="/">초과근무 계산하기</a></section>
-        <section class="plain-section"><h2>확인할 것</h2><ul class="compact-list"><li>출퇴근 시간에서 휴게시간을 제외합니다.</li><li>정해진 소정근로시간과 실제 근무시간을 비교합니다.</li><li>상시 5인 이상 사업장인지 확인합니다.</li></ul></section>
-        <section class="card"><h2>예시</h2><div class="example-grid"><div class="example-item"><strong>치킨집 10시간</strong><span>휴게시간 제외 후 8시간 초과분을 봅니다.</span></div><div class="example-item"><strong>주 45시간</strong><span>주 40시간을 넘는 5시간을 따로 확인합니다.</span></div></div></section>
-        <section class="plain-section"><h2>짧은 FAQ</h2><div class="quiet-faq"><details><summary>야간수당과 겹칠 수 있나요?</summary><p>요건을 충족하면 연장과 야간 가산을 각각 검토할 수 있습니다.</p></details><details><summary>갑자기 더 일한 시간도 포함되나요?</summary><p>사용자의 지시나 묵인 아래 일했다면 출퇴근 기록과 메시지를 함께 확인하세요.</p></details></div><div class="inline-links"><a href="/night-pay.html">야간수당</a><a href="/holiday-pay.html">휴일수당</a><a href="/wage-guide.html">급여 가이드</a></div></section>
+        <section class="card summary-card"><p class="summary-line">연장수당은 보통 <strong>1일 8시간</strong> 또는 <strong>1주 40시간</strong>을 넘는 근무부터 확인합니다.</p><div class="key-points"><div class="key-point"><span>하루 기준</span><strong>8시간 초과</strong></div><div class="key-point"><span>주 기준</span><strong>40시간 초과</strong></div><div class="key-point"><span>가산</span><strong>50% 검토</strong></div></div></section>
+        <section class="plain-section"><h2>확인할 것</h2><p>연장수당은 단순히 매장에 오래 있었다는 이유만으로 계산하지 않습니다. 휴게시간을 제외한 실제 근로시간과 근로계약상 정해진 시간을 비교해야 합니다.</p><ul class="compact-list"><li>출퇴근 시간에서 휴게시간을 제외합니다.</li><li>정해진 소정근로시간과 실제 근무시간을 비교합니다.</li><li>1일 8시간, 1주 40시간 초과 여부를 각각 확인합니다.</li><li>상시 5인 이상 사업장인지 확인합니다.</li></ul></section>
+        <section class="card"><h2>예시</h2><table class="guide-table"><tbody><tr><th>치킨집 10시간</th><td>휴게시간 제외 후 8시간을 넘는 시간이 있는지 봅니다.</td></tr><tr><th>주 45시간</th><td>주 40시간을 넘는 5시간을 따로 확인합니다.</td></tr><tr><th>마감 지연 30분</th><td>사용자의 지시나 묵인 아래 일한 시간인지, 기록이 남아 있는지 확인합니다.</td></tr></tbody></table></section>
+        <section class="plain-section"><h2>짧은 FAQ</h2><div class="quiet-faq"><details><summary>야간수당과 겹칠 수 있나요?</summary><p>요건을 충족하면 연장과 야간 가산을 각각 검토할 수 있습니다.</p></details><details><summary>갑자기 더 일한 시간도 포함되나요?</summary><p>사용자의 지시나 묵인 아래 일했다면 출퇴근 기록과 메시지를 함께 확인하세요.</p></details><details><summary>하루 8시간 넘으면 무조건인가요?</summary><p>휴게시간을 제외한 실제 근로시간과 사업장 규모, 근로계약 기준을 함께 확인해야 합니다.</p></details></div><div class="inline-links"><a href="/night-pay.html">야간수당</a><a href="/holiday-pay.html">휴일수당</a><a href="/wage-guide.html">급여 가이드</a></div></section>
       </article>
     </main>
     <footer class="site-footer">

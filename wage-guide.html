@@ -1,34 +1,53 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="application-name" content="알바BEE" />
+  <meta name="apple-mobile-web-app-title" content="알바BEE" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <title>알바 급여 계산 안내 | 시급, 주휴수당, 야간수당, 세금, 실수령액 계산법</title>
   <meta name="description" content="알바 급여 계산 방법을 한 번에 정리했습니다. 시급 계산, 주휴수당, 야간수당, 연장수당, 휴일수당, 세금 3.3%, 4대보험, 실수령액과 알바생이 헷갈리는 급여 용어를 안내합니다." />
   <meta name="keywords" content="알바 급여 계산, 알바비 계산기, 시급 계산, 주휴수당 계산, 야간수당 계산, 연장수당 계산, 휴일수당 계산, 세금 3.3%, 4대보험, 실수령액" />
   <meta name="robots" content="index, follow" />
-  
-  <meta name="application-name" content="알바BEE" />
-  <link rel="canonical" href="https://albabee.pages.dev/wage-guide.html" />
-  <link rel="icon" type="image/png" href="/images/icons/app-icon.png?v=20260514" />
-  <link rel="apple-touch-icon" href="/images/icons/app-icon.png?v=20260514" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <link rel="stylesheet" href="/styles/main.css?v=20260516-nav-guide-image" />
+<link rel="canonical" href="https://albabee.pages.dev/wage-guide.html" />
+<link rel="stylesheet" href="/styles/main.css?v=20260516-nav-guide-image" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="알바 급여 계산 안내 | 알바BEE" />
   <meta property="og:description" content="알바비 계산에 필요한 시급, 주휴수당, 야간수당, 세금, 4대보험, 실수령액 기준을 쉽게 정리했습니다." />
   <meta property="og:url" content="https://albabee.pages.dev/wage-guide.html" />
-  <meta name="twitter:title" content="알바 급여 계산 안내 | 알바BEE" />
+    <meta property="og:site_name" content="알바BEE" />
+<meta name="twitter:title" content="알바 급여 계산 안내 | 알바BEE" />
   <meta name="twitter:description" content="알바비 계산에 필요한 시급, 주휴수당, 야간수당, 세금, 4대보험, 실수령액 기준을 쉽게 정리했습니다." />
-  
-  <meta property="og:site_name" content="알바BEE" />
-  <meta property="og:image" content="https://albabee.pages.dev/images/og/albabee-og.png" />
+<meta property="og:image" content="https://albabee.pages.dev/images/og/albabee-og.png" />
   <style>.seo-wage-guide{--seo-accent:#dc2626;--seo-accent-dark:#991b1b;--seo-accent-soft:#fff1f2;--seo-accent-line:#fecdd3;}</style>
   <script id="albabee-brand-schema" type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albabee.pages.dev/#organization","name":"알바BEE","alternateName":["AlbaBEE","알바비 계산기"],"url":"https://albabee.pages.dev/","logo":{"@type":"ImageObject","url":"https://albabee.pages.dev/images/icons/app-icon.png","width":512,"height":512}},{"@type":"WebSite","@id":"https://albabee.pages.dev/#website","name":"알바BEE","url":"https://albabee.pages.dev/","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"},{"@type":"WebPage","@id":"https://albabee.pages.dev/wage-guide.html#webpage","url":"https://albabee.pages.dev/wage-guide.html","name":"알바 급여 계산 안내 | 시급, 주휴수당, 야간수당, 세금, 실수령액 계산법","isPartOf":{"@id":"https://albabee.pages.dev/#website"},"about":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"}]}
+  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albabee.pages.dev/#organization","name":"알바BEE","alternateName":["AlbaBEE","알바비 계산기"],"url":"https://albabee.pages.dev/","logo":{"@type":"ImageObject","url":"https://albabee.pages.dev/android-chrome-512x512.png","width":512,"height":512}},{"@type":"WebSite","@id":"https://albabee.pages.dev/#website","name":"알바BEE","url":"https://albabee.pages.dev/","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"},{"@type":"WebPage","@id":"https://albabee.pages.dev/wage-guide.html#webpage","url":"https://albabee.pages.dev/wage-guide.html","name":"알바 급여 계산 안내 | 시급, 주휴수당, 야간수당, 세금, 실수령액 계산법","isPartOf":{"@id":"https://albabee.pages.dev/#website"},"about":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"}]}
   </script>
   <script id="albabee-seo-schema" type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https://albabee.pages.dev/wage-guide.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"알바BEE","item":"https://albabee.pages.dev/"},{"@type":"ListItem","position":2,"name":"급여가이드","item":"https://albabee.pages.dev/wage-guide.html"}]},{"@type":"Article","@id":"https://albabee.pages.dev/wage-guide.html#article","headline":"알바 급여 계산 안내","mainEntityOfPage":"https://albabee.pages.dev/wage-guide.html","publisher":{"@id":"https://albabee.pages.dev/#organization"},"inLanguage":"ko-KR"},{"@type":"FAQPage","@id":"https://albabee.pages.dev/wage-guide.html#faq","mainEntity":[{"@type":"Question","name":"예상 월급과 실제 입금액이 다른 이유는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"세금, 4대보험, 휴게시간 제외, 결근 처리, 급여 마감일 차이 때문에 달라질 수 있습니다."}},{"@type":"Question","name":"시급만 알면 월급을 정확히 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 실제 근무일, 휴게시간, 수당, 공제 방식을 함께 봐야 합니다."}}]}]}
+  </script>
+  <script id="albabee-site-name-schema" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "알바BEE",
+    "alternateName": ["알바비 계산기", "알바BEE | 알바비 계산기"],
+    "url": "https://albabee.pages.dev/"
+  }
+  </script>
+  <script id="lawzero-organization-schema" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "로제로(Lawzero)",
+    "url": "https://albabee.pages.dev/",
+    "logo": "https://albabee.pages.dev/android-chrome-512x512.png"
+  }
   </script>
 </head>
 <body>
@@ -76,10 +95,11 @@
     </header>
     <main>
       <article>
-        <section class="card summary-card"><p class="summary-line">알바 급여는 <strong>시급 x 실제 근무시간</strong>에 수당을 더하고 공제를 빼면 흐름이 정리됩니다.</p><div class="key-points"><div class="key-point"><span>기본</span><strong>시급 x 시간</strong></div><div class="key-point"><span>수당</span><strong>주휴·야간·연장·휴일</strong></div><div class="key-point"><span>실수령</span><strong>총급여 - 공제</strong></div></div><a class="mini-cta" href="/">급여 바로 계산하기</a></section>
-        <section class="plain-section"><h2>계산 순서</h2><ul class="compact-list"><li>실제 근무일과 출퇴근 시간을 먼저 정리합니다.</li><li>휴게시간을 제외하고 기본급을 계산합니다.</li><li>주휴·야간·연장·휴일수당을 조건에 맞게 더합니다.</li><li>3.3%, 4대보험 등 공제 방식을 선택합니다.</li></ul></section>
-        <section class="card"><h2>알바 유형별 체크</h2><div class="example-grid"><div class="example-item"><strong>편의점</strong><span>야간 시간, 교대 전후 시간, 주휴 조건.</span></div><div class="example-item"><strong>카페</strong><span>마감 22시 이후 근무와 휴게시간.</span></div><div class="example-item"><strong>음식점</strong><span>피크타임 추가근무와 휴일근무.</span></div><div class="example-item"><strong>주말 알바</strong><span>주 15시간 이상인지 주 단위로 확인.</span></div></div></section>
-        <section class="plain-section"><h2>자주 헷갈리는 기준</h2><ul class="compact-list"><li>체류시간과 임금 계산 시간은 다를 수 있습니다.</li><li>세전 급여와 실제 입금액은 공제 때문에 다를 수 있습니다.</li><li>급여 마감일이 매월 1일~말일이 아닐 수 있습니다.</li></ul><div class="inline-links"><a href="/minimum-wage.html">최저시급</a><a href="/weekly-pay.html">주휴수당</a><a href="/night-pay.html">야간수당</a><a href="/faq.html">FAQ</a></div></section>
+        <section class="card summary-card"><p class="summary-line">알바 급여는 <strong>시급 x 실제 근무시간</strong>을 기본으로 계산하고, 조건에 맞는 수당을 더한 뒤 세금과 보험 공제를 빼면 흐름이 정리됩니다.</p><div class="key-points"><div class="key-point"><span>기본</span><strong>시급 x 시간</strong></div><div class="key-point"><span>수당</span><strong>주휴·야간·연장·휴일</strong></div><div class="key-point"><span>실수령</span><strong>총급여 - 공제</strong></div></div></section>
+        <section class="plain-section"><h2>알바 급여 계산 기본 흐름</h2><p>먼저 출퇴근 기록에서 실제로 일한 시간을 정리합니다. 이때 휴게시간은 임금을 받는 근로시간에서 제외될 수 있으므로, 출근부터 퇴근까지 머문 시간과 급여 계산 시간이 항상 같지는 않습니다.</p><ul class="compact-list"><li>근무일별 출근·퇴근 시간을 확인합니다.</li><li>휴게시간을 빼고 실제 근무시간을 구합니다.</li><li>시급을 곱해 기본급을 계산합니다.</li><li>주휴수당, 야간수당, 연장수당, 휴일수당을 조건별로 더합니다.</li><li>3.3% 원천징수 또는 4대보험 등 공제 방식을 확인합니다.</li></ul></section>
+        <section class="card"><h2>급여 항목 한눈에 보기</h2><table class="guide-table"><tbody><tr><th>기본급</th><td>시급에 실제 근무시간을 곱한 금액입니다. 휴게시간은 보통 제외합니다.</td></tr><tr><th>주휴수당</th><td>1주 소정근로시간 15시간 이상, 소정근로일 개근 등 조건을 확인합니다.</td></tr><tr><th>야간수당</th><td>22:00~06:00 사이 실제 근무한 시간에 대해 가산 여부를 봅니다.</td></tr><tr><th>연장수당</th><td>1일 8시간 또는 1주 40시간 초과 여부와 사업장 규모를 함께 확인합니다.</td></tr><tr><th>휴일수당</th><td>근로계약상 휴일 또는 적용 대상 공휴일에 일했는지부터 확인합니다.</td></tr><tr><th>공제</th><td>3.3%, 4대보험, 소득세 처리 방식에 따라 실제 입금액이 달라집니다.</td></tr></tbody></table></section>
+        <section class="card"><h2>예상 급여와 실제 입금액이 다른 이유</h2><div class="example-grid"><div class="example-item"><strong>휴게시간 차이</strong><span>근무표에는 8시간으로 보이지만 휴게 1시간을 빼면 임금 계산 시간은 7시간일 수 있습니다.</span></div><div class="example-item"><strong>급여 마감일</strong><span>월 1일부터 말일까지가 아니라 15일~다음 달 14일처럼 회사 기준이 따로 있을 수 있습니다.</span></div><div class="example-item"><strong>공제 방식</strong><span>3.3% 원천징수와 4대보험 가입은 공제 금액과 정산 방식이 다릅니다.</span></div><div class="example-item"><strong>수당 조건</strong><span>5인 미만 사업장, 결근, 지각, 휴일 지정 여부에 따라 가산수당이 달라질 수 있습니다.</span></div></div></section>
+        <section class="plain-section"><h2>읽어두면 좋은 기준</h2><p>급여가 이상하게 느껴질 때는 먼저 근로계약서, 출퇴근 기록, 급여명세서를 나란히 놓고 비교해보세요. 시급 자체보다 실제 근무시간, 휴게시간, 수당 적용 여부에서 차이가 나는 경우가 많습니다.</p><div class="inline-links"><a href="/minimum-wage.html">최저시급</a><a href="/weekly-pay.html">주휴수당</a><a href="/night-pay.html">야간수당</a><a href="/faq.html">FAQ</a></div></section>
       </article>
     </main>
         <footer class="site-footer">
