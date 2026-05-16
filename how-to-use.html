@@ -160,12 +160,8 @@
             width="1400"
             height="875"
             loading="eager"
-            fetchpriority="high"
             decoding="async"
           />
-          <figcaption class="step-image-fallback" id="guideImageFallback" hidden>
-            이미지를 불러오지 못했습니다. 파일 경로를 확인해주세요.
-          </figcaption>
         </figure>
       </section>
     </main>
@@ -247,7 +243,6 @@
       const title = document.getElementById('guideStepTitle');
       const description = document.getElementById('guideStepDescription');
       const image = document.getElementById('guideStepImage');
-      const fallback = document.getElementById('guideImageFallback');
 
       function setStep(index) {
         const step = steps[index] || steps[0];
@@ -262,33 +257,17 @@
           kicker.textContent = 'STEP ' + (index + 1);
           title.textContent = step.title;
           description.textContent = step.description;
-          fallback.hidden = true;
-          image.classList.remove('is-error');
           image.alt = step.alt;
           image.src = step.image;
           view.classList.add('is-visible');
         }, 90);
       }
 
-      image.addEventListener('error', () => {
-        image.classList.add('is-error');
-        fallback.hidden = false;
-      });
-
-      image.addEventListener('load', () => {
-        image.classList.remove('is-error');
-        fallback.hidden = true;
-      });
-
       buttons.forEach((button) => {
         button.addEventListener('click', () => setStep(Number(button.dataset.step || 0)));
       });
 
       view.classList.add('is-visible');
-      steps.slice(1).forEach((step) => {
-        const preloaded = new Image();
-        preloaded.src = step.image;
-      });
     })();
   </script>
 </body>
