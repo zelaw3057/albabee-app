@@ -10733,3 +10733,30 @@ body:has(.main-doc) .cta-panel .cta-button,
     display: none !important;
   }
 }
+
+/* v64: reliable open/closed direction for all accordion chevrons */
+.collapsible-head .collapsible-arrow::before {
+  content: none !important;
+  display: none !important;
+}
+
+.collapsible-head .collapsible-arrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 0 !important;
+}
+
+.collapsible-head .collapsible-arrow-icon {
+  display: block !important;
+  transform: translateY(-1px) rotate(0deg) !important;
+  transform-box: fill-box !important;
+  transform-origin: center !important;
+  transition: transform .18s ease !important;
+  will-change: transform;
+}
+
+.collapsible-box.open > .collapsible-head .collapsible-arrow-icon,
+.collapsible-head[aria-expanded="true"] .collapsible-arrow-icon {
+  transform: translateY(-1px) rotate(180deg) !important;
+}
