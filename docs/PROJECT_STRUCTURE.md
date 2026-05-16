@@ -31,7 +31,7 @@ albabee-app/
       logo/
         albabee-logo.png
       hero/
-        hero-banner.png
+        albabee-main-banner.png
       icons/
         app-icon.png
         kakao-icon.png
@@ -80,7 +80,7 @@ Use role-based image folders:
 
 ```text
 /images/logo/albabee-logo.png
-/images/hero/albabee-hero-banner.png
+/images/banners/albabee-main-banner.png
 /images/icons/app-icon.png
 /images/icons/excel.png
 /images/icons/kakao.png

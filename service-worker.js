@@ -9,7 +9,7 @@ const APP_SHELL = [
   '/images/icons/excel.png',
   '/images/icons/kakao.png',
   '/images/logo/albabee-logo.png',
-  '/images/banners/albabee-hero-banner.png',
+  '/images/banners/albabee-main-banner.png',
   '/images/og/albabee-og.png'
 ];
 

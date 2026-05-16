@@ -54,7 +54,7 @@ These remain in the project root to preserve existing public URLs:
 Active image assets live in `public/images/`:
 
 - `public/images/logo/albabee-logo.png`
-- `public/images/hero/hero-banner.png`
+- `public/images/banners/albabee-main-banner.png`
 - `public/images/icons/app-icon.png`
 - `public/images/icons/kakao-icon.png`
 - `public/images/icons/excel-icon.png`

@@ -102,7 +102,7 @@ npm.cmd run check:assets:dist
 Also verify these deployment URLs in local preview or after deployment:
 
 - `/images/logo/albabee-logo.png`
-- `/images/hero/albabee-hero-banner.png`
+- `/images/banners/albabee-main-banner.png`
 - `/images/icons/app-icon.png`
 - `/images/icons/excel.png`
 - `/images/icons/kakao.png`

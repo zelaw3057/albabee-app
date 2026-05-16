@@ -10416,3 +10416,221 @@ body:has(.main-doc) .cta-panel .cta-button,
     text-align: center;
   }
 }
+
+/* v61: stable banner asset path and clearer header logo sizing */
+.global-site-header .global-nav-inner {
+  min-height: 96px !important;
+}
+
+.global-site-header .global-brand.site-logo {
+  min-height: 72px !important;
+  padding: 0 !important;
+}
+
+.global-site-header .site-logo img {
+  height: 72px !important;
+  max-width: 300px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 768px) {
+  .global-site-header,
+  .global-site-header .global-nav-inner,
+  .global-site-header .global-brand.site-logo {
+    min-height: 72px !important;
+    height: 72px !important;
+  }
+
+  .global-site-header .site-logo img {
+    height: 52px !important;
+    max-width: 210px !important;
+  }
+}
+
+/* v60: compact tool-guide layout for SEO pages */
+.guide-compact article {
+  display: grid;
+  gap: 18px;
+}
+
+.guide-compact article > .card,
+.guide-compact article > section.card {
+  margin-bottom: 0 !important;
+  padding: 22px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, .03) !important;
+}
+
+.guide-compact .summary-card {
+  border-color: #e2e8f0 !important;
+  background: #fff !important;
+}
+
+.guide-compact .summary-line {
+  margin: 0 !important;
+  color: #0f172a !important;
+  font-size: 18px !important;
+  font-weight: 850 !important;
+  line-height: 1.55 !important;
+}
+
+.guide-compact .key-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.guide-compact .key-point {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.guide-compact .key-point span {
+  display: block;
+  margin-bottom: 3px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.guide-compact .key-point strong {
+  display: block;
+  color: #0f172a;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.guide-compact .plain-section {
+  padding: 6px 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.guide-compact .plain-section h2,
+.guide-compact .card h2 {
+  margin-bottom: 10px !important;
+  font-size: clamp(24px, 3vw, 30px) !important;
+  line-height: 1.25 !important;
+}
+
+.guide-compact .plain-section p,
+.guide-compact .card p {
+  max-width: 760px;
+}
+
+.guide-compact .compact-list {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guide-compact .compact-list li {
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  color: #334155 !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+.guide-compact .example-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.guide-compact .example-item {
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.guide-compact .example-item strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.guide-compact .example-item span {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.guide-compact .inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eef2f7;
+}
+
+.guide-compact .inline-links a {
+  color: #475569;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.guide-compact .inline-links a:hover {
+  color: #0f172a;
+}
+
+.guide-compact .mini-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 0 16px;
+  border-radius: 10px;
+  background: #dc2626;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .guide-compact article {
+    gap: 14px;
+  }
+
+  .guide-compact article > .card,
+  .guide-compact article > section.card {
+    padding: 17px !important;
+    border-radius: 16px !important;
+  }
+
+  .guide-compact .summary-line {
+    font-size: 16px !important;
+  }
+
+  .guide-compact .key-points,
+  .guide-compact .example-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-compact .plain-section h2,
+  .guide-compact .card h2 {
+    font-size: 23px !important;
+  }
+
+  .guide-compact .compact-list li {
+    padding: 9px 10px;
+    font-size: 13px !important;
+  }
+}

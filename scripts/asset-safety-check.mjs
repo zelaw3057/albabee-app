@@ -29,7 +29,7 @@ const ignoredDirs = new Set([
 
 const requiredSourceAssets = [
   'public/images/logo/albabee-logo.png',
-  'public/images/hero/albabee-hero-banner.png',
+  'public/images/banners/albabee-main-banner.png',
   'public/images/icons/app-icon.png',
   'public/images/icons/excel.png',
   'public/images/icons/kakao.png',
@@ -43,10 +43,10 @@ const requiredSourceAssets = [
 
 const requiredDistAssets = [
   'images/logo/albabee-logo.png',
-  'images/hero/hero-banner.png',
+  'images/banners/albabee-main-banner.png',
   'images/icons/app-icon.png',
-  'images/icons/excel-icon.png',
-  'images/icons/kakao-icon.png',
+  'images/icons/excel.png',
+  'images/icons/kakao.png',
   '_routes.json',
   '_headers',
   '_redirects',
