@@ -10419,17 +10419,20 @@ body:has(.main-doc) .cta-panel .cta-button,
 
 /* v61: stable banner asset path and clearer header logo sizing */
 .global-site-header .global-nav-inner {
-  min-height: 96px !important;
+  min-height: 80px !important;
+  gap: 22px !important;
 }
 
 .global-site-header .global-brand.site-logo {
-  min-height: 72px !important;
+  min-width: 180px !important;
+  min-height: 60px !important;
   padding: 0 !important;
+  justify-content: flex-start !important;
 }
 
 .global-site-header .site-logo img {
-  height: 72px !important;
-  max-width: 300px !important;
+  height: 56px !important;
+  max-width: 220px !important;
   width: auto !important;
   object-fit: contain !important;
 }
@@ -10438,13 +10441,17 @@ body:has(.main-doc) .cta-panel .cta-button,
   .global-site-header,
   .global-site-header .global-nav-inner,
   .global-site-header .global-brand.site-logo {
-    min-height: 72px !important;
-    height: 72px !important;
+    min-height: 68px !important;
+    height: 68px !important;
   }
 
   .global-site-header .site-logo img {
-    height: 52px !important;
-    max-width: 210px !important;
+    height: 44px !important;
+    max-width: 178px !important;
+  }
+
+  .global-site-header .global-brand.site-logo {
+    min-width: 150px !important;
   }
 }
 
@@ -10664,4 +10671,65 @@ body:has(.main-doc) .cta-panel .cta-button,
 .collapsible-box.open .collapsible-head .collapsible-arrow-icon,
 .collapsible-head[aria-expanded="true"] .collapsible-arrow-icon {
   transform: translateY(1px) rotate(180deg) !important;
+}
+
+/* v63: calmer footer business information layout */
+.site-footer .footer-inner {
+  gap: 8px !important;
+}
+
+.site-footer .footer-business-info {
+  max-width: 860px !important;
+  gap: 4px 14px !important;
+  line-height: 1.65 !important;
+}
+
+.site-footer .footer-business-info span:nth-child(-n + 3) {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.site-footer .footer-business-info span:nth-child(n + 2):nth-child(-n + 3)::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 1px !important;
+  height: 10px !important;
+  margin-right: 14px !important;
+  background: #d7dee8 !important;
+}
+
+.site-footer .footer-business-info span:nth-child(4) {
+  flex-basis: 100% !important;
+  justify-content: center !important;
+  margin-top: 2px !important;
+}
+
+.site-footer .footer-business-info span:nth-child(4)::before {
+  display: none !important;
+  content: none !important;
+}
+
+.site-footer .footer-business-info span:nth-child(4) a {
+  margin-left: 4px !important;
+}
+
+.site-footer .lawzero-footer-brand {
+  margin-top: 2px !important;
+}
+
+@media (max-width: 640px) {
+  .site-footer .footer-business-info {
+    gap: 2px !important;
+    line-height: 1.7 !important;
+  }
+
+  .site-footer .footer-business-info span:nth-child(-n + 3),
+  .site-footer .footer-business-info span:nth-child(4) {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .site-footer .footer-business-info span:nth-child(n + 2):nth-child(-n + 3)::before {
+    display: none !important;
+  }
 }
