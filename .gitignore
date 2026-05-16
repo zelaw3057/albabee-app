@@ -16,6 +16,8 @@ playwright-report/
 test-results/
 backups/
 unused-assets/
+!archive/unused-assets/
+!archive/unused-assets/**
 backup-old/
 backup*/
 *-backup*/
