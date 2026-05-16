@@ -21,7 +21,7 @@
   <meta name="twitter:title" content="급여계산기 사용법 | 알바BEE" />
   <meta name="twitter:description" content="실제 계산기 화면을 보며 기본 설정부터 공유와 저장까지 순서대로 따라해보세요." />
   <meta name="twitter:image" content="https://albabee.pages.dev/images/og/albabee-og.png" />
-  <link rel="stylesheet" href="/styles/main.css?v=20260516-guide-tutorial" />
+  <link rel="stylesheet" href="/styles/main.css?v=20260516-guide-tabs" />
   <script id="albabee-brand-schema" type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -81,7 +81,7 @@
         "step": [
           { "@type": "HowToStep", "position": 1, "name": "기본 설정 입력", "image": "https://albabee.pages.dev/images/guide/guide-step-1-basic-settings.png" },
           { "@type": "HowToStep", "position": 2, "name": "근무일 선택", "image": "https://albabee.pages.dev/images/guide/guide-step-2-work-calendar.png" },
-          { "@type": "HowToStep", "position": 3, "name": "상세정보 확인 및 근무시간 수정", "image": "https://albabee.pages.dev/images/guide/guide-step-3-detail-edit.png" },
+          { "@type": "HowToStep", "position": 3, "name": "상세정보 확인 및 수정", "image": "https://albabee.pages.dev/images/guide/guide-step-3-detail-edit.png" },
           { "@type": "HowToStep", "position": 4, "name": "추가 수당 등록", "image": "https://albabee.pages.dev/images/guide/guide-step-4-extra-pay.png" },
           { "@type": "HowToStep", "position": 5, "name": "법정수당 계산 옵션 설정", "image": "https://albabee.pages.dev/images/guide/guide-step-5-legal-options.png" },
           { "@type": "HowToStep", "position": 6, "name": "월급 계산 결과 확인", "image": "https://albabee.pages.dev/images/guide/guide-step-6-salary-result.png" },
@@ -104,8 +104,8 @@
     </div>
   </header>
 
-  <div class="tutorial-page">
-    <header class="tutorial-hero">
+  <div class="tutorial-page tutorial-tabs-page">
+    <header class="tutorial-hero tutorial-tabs-hero">
       <p class="tutorial-kicker">알바BEE 사용법</p>
       <h1>급여계산기 사용법</h1>
       <p>
@@ -114,96 +114,59 @@
       </p>
     </header>
 
-    <main class="tutorial-steps" aria-label="알바BEE 급여계산기 단계별 사용법">
-      <section class="tutorial-step" id="step-1">
-        <div class="tutorial-step-inner">
-          <div class="tutorial-step-copy">
-            <p class="tutorial-step-number">STEP 1</p>
-            <h2>기본 설정 입력</h2>
-            <p>계산할 연도·월, 시급, 사업장 규모를 입력합니다.<br />사업장 규모에 따라 법정수당 계산 방식이 달라집니다.</p>
-          </div>
-          <figure class="tutorial-image-frame">
-            <img src="/images/guide/guide-step-1-basic-settings.png" alt="알바BEE 급여계산기 기본 설정 입력 화면" loading="lazy" decoding="async" />
-          </figure>
-        </div>
-      </section>
+    <main class="tutorial-tabs" aria-label="알바BEE 급여계산기 단계별 사용법">
+      <nav class="step-tabs" aria-label="사용법 단계 선택">
+        <button class="step-tab is-active" type="button" data-step="0" aria-selected="true">
+          <span class="step-tab-number">1</span>
+          <span class="step-tab-label">기본 설정</span>
+        </button>
+        <button class="step-tab" type="button" data-step="1" aria-selected="false">
+          <span class="step-tab-number">2</span>
+          <span class="step-tab-label">근무일 선택</span>
+        </button>
+        <button class="step-tab" type="button" data-step="2" aria-selected="false">
+          <span class="step-tab-number">3</span>
+          <span class="step-tab-label">상세정보 수정</span>
+        </button>
+        <button class="step-tab" type="button" data-step="3" aria-selected="false">
+          <span class="step-tab-number">4</span>
+          <span class="step-tab-label">추가수당 등록</span>
+        </button>
+        <button class="step-tab" type="button" data-step="4" aria-selected="false">
+          <span class="step-tab-number">5</span>
+          <span class="step-tab-label">법정수당 설정</span>
+        </button>
+        <button class="step-tab" type="button" data-step="5" aria-selected="false">
+          <span class="step-tab-number">6</span>
+          <span class="step-tab-label">월급 계산 결과</span>
+        </button>
+        <button class="step-tab" type="button" data-step="6" aria-selected="false">
+          <span class="step-tab-number">7</span>
+          <span class="step-tab-label">공유 및 저장</span>
+        </button>
+      </nav>
 
-      <section class="tutorial-step" id="step-2">
-        <div class="tutorial-step-inner">
-          <div class="tutorial-step-copy">
-            <p class="tutorial-step-number">STEP 2</p>
-            <h2>근무일 선택</h2>
-            <p>출근·퇴근·휴게시간을 입력한 뒤 달력에서 날짜를 클릭하여 근무일을 등록합니다.<br />요일 클릭 시 해당 요일 전체가 선택됩니다.</p>
-          </div>
-          <figure class="tutorial-image-frame">
-            <img src="/images/guide/guide-step-2-work-calendar.png" alt="알바BEE 달력에서 근무일을 선택하는 화면" loading="lazy" decoding="async" />
-          </figure>
+      <section class="step-view" aria-live="polite">
+        <div class="step-copy">
+          <p class="step-kicker" id="guideStepKicker">STEP 1</p>
+          <h2 id="guideStepTitle">기본 설정 입력</h2>
+          <p id="guideStepDescription">계산할 연도·월, 시급, 사업장 규모를 입력합니다.</p>
         </div>
-      </section>
-
-      <section class="tutorial-step" id="step-3">
-        <div class="tutorial-step-inner">
-          <div class="tutorial-step-copy">
-            <p class="tutorial-step-number">STEP 3</p>
-            <h2>상세정보 확인 및 근무시간 수정</h2>
-            <p>등록된 날짜를 클릭하면 상세정보를 확인할 수 있으며, 근무시간·휴게시간도 수정할 수 있습니다.</p>
-          </div>
-          <figure class="tutorial-image-frame">
-            <img src="/images/guide/guide-step-3-detail-edit.png" alt="선택한 근무일의 상세정보와 근무시간을 수정하는 화면" loading="lazy" decoding="async" />
-          </figure>
-        </div>
-      </section>
-
-      <section class="tutorial-step" id="step-4">
-        <div class="tutorial-step-inner">
-          <div class="tutorial-step-copy">
-            <p class="tutorial-step-number">STEP 4</p>
-            <h2>추가 수당 등록</h2>
-            <p>식대·교통비·마감수당 등 추가 수당을 등록하고, 달력에서 적용 날짜를 선택합니다.</p>
-          </div>
-          <figure class="tutorial-image-frame">
-            <img src="/images/guide/guide-step-4-extra-pay.png" alt="알바BEE에서 추가 수당을 등록하고 적용 날짜를 선택하는 화면" loading="lazy" decoding="async" />
-          </figure>
-        </div>
-      </section>
-
-      <section class="tutorial-step" id="step-5">
-        <div class="tutorial-step-inner">
-          <div class="tutorial-step-copy">
-            <p class="tutorial-step-number">STEP 5</p>
-            <h2>법정수당 계산 옵션 설정</h2>
-            <p>연장·야간·휴일·주휴수당과 세금 공제 방식을 설정할 수 있습니다.</p>
-          </div>
-          <figure class="tutorial-image-frame">
-            <img src="/images/guide/guide-step-5-legal-options.png" alt="연장 야간 휴일 주휴수당과 세금 공제 옵션을 설정하는 화면" loading="lazy" decoding="async" />
-          </figure>
-        </div>
-      </section>
-
-      <section class="tutorial-step" id="step-6">
-        <div class="tutorial-step-inner">
-          <div class="tutorial-step-copy">
-            <p class="tutorial-step-number">STEP 6</p>
-            <h2>월급 계산 결과 확인</h2>
-            <p>총 근무시간, 수당, 세후 예상 월급까지 상세 계산 결과를 확인할 수 있습니다.</p>
-          </div>
-          <figure class="tutorial-image-frame">
-            <img src="/images/guide/guide-step-6-salary-result.png" alt="총 근무시간 수당 세후 예상 월급 계산 결과 화면" loading="lazy" decoding="async" />
-          </figure>
-        </div>
-      </section>
-
-      <section class="tutorial-step" id="step-7">
-        <div class="tutorial-step-inner">
-          <div class="tutorial-step-copy">
-            <p class="tutorial-step-number">STEP 7</p>
-            <h2>공유 및 저장</h2>
-            <p>Excel 파일 다운로드, 링크 공유, 카카오톡 공유가 가능합니다.</p>
-          </div>
-          <figure class="tutorial-image-frame">
-            <img src="/images/guide/guide-step-7-share-export.png" alt="알바BEE 계산 결과를 엑셀 링크 카카오톡으로 공유하고 저장하는 화면" loading="lazy" decoding="async" />
-          </figure>
-        </div>
+        <figure class="step-image-frame">
+          <img
+            id="guideStepImage"
+            src="/images/guide/guide-step-1-basic-settings.png"
+            alt="알바BEE 급여계산기 기본 설정 입력 화면"
+            width="1400"
+            height="875"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <figcaption class="step-image-fallback" id="guideImageFallback" hidden>
+            이미지를 불러오지 못했습니다. 파일 경로를 확인해주세요.
+          </figcaption>
+        </figure>
       </section>
     </main>
 
@@ -231,5 +194,102 @@
   </div>
 
   <script src="/scripts/site-nav.js" defer></script>
+  <script>
+    (function () {
+      const steps = [
+        {
+          title: '기본 설정 입력',
+          description: '계산할 연도·월, 시급, 사업장 규모를 입력합니다.',
+          image: '/images/guide/guide-step-1-basic-settings.png',
+          alt: '알바BEE 급여계산기 기본 설정 입력 화면'
+        },
+        {
+          title: '근무일 선택',
+          description: '출근·퇴근·휴게시간을 입력한 뒤 달력에서 날짜를 클릭하여 근무일을 등록합니다.',
+          image: '/images/guide/guide-step-2-work-calendar.png',
+          alt: '알바BEE 달력에서 근무일을 선택하는 화면'
+        },
+        {
+          title: '상세정보 확인 및 수정',
+          description: '등록된 날짜를 클릭하면 상세정보와 근무시간을 수정할 수 있습니다.',
+          image: '/images/guide/guide-step-3-detail-edit.png',
+          alt: '선택한 근무일의 상세정보와 근무시간을 수정하는 화면'
+        },
+        {
+          title: '추가 수당 등록',
+          description: '식대·교통비·마감수당 등을 추가 등록할 수 있습니다.',
+          image: '/images/guide/guide-step-4-extra-pay.png',
+          alt: '알바BEE에서 추가 수당을 등록하는 화면'
+        },
+        {
+          title: '법정수당 계산 옵션 설정',
+          description: '연장·야간·휴일·주휴수당과 세금 옵션을 설정합니다.',
+          image: '/images/guide/guide-step-5-legal-options.png',
+          alt: '연장 야간 휴일 주휴수당과 세금 옵션을 설정하는 화면'
+        },
+        {
+          title: '월급 계산 결과 확인',
+          description: '총 근무시간과 예상 세후 월급을 확인할 수 있습니다.',
+          image: '/images/guide/guide-step-6-salary-result.png',
+          alt: '총 근무시간과 예상 세후 월급 계산 결과 화면'
+        },
+        {
+          title: '공유 및 저장',
+          description: 'Excel, 링크, 카카오톡으로 계산 결과를 공유할 수 있습니다.',
+          image: '/images/guide/guide-step-7-share-export.png',
+          alt: '알바BEE 계산 결과를 엑셀 링크 카카오톡으로 공유하는 화면'
+        }
+      ];
+
+      const buttons = Array.from(document.querySelectorAll('.step-tab'));
+      const view = document.querySelector('.step-view');
+      const kicker = document.getElementById('guideStepKicker');
+      const title = document.getElementById('guideStepTitle');
+      const description = document.getElementById('guideStepDescription');
+      const image = document.getElementById('guideStepImage');
+      const fallback = document.getElementById('guideImageFallback');
+
+      function setStep(index) {
+        const step = steps[index] || steps[0];
+        buttons.forEach((button, buttonIndex) => {
+          const isActive = buttonIndex === index;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        view.classList.remove('is-visible');
+        window.setTimeout(() => {
+          kicker.textContent = 'STEP ' + (index + 1);
+          title.textContent = step.title;
+          description.textContent = step.description;
+          fallback.hidden = true;
+          image.classList.remove('is-error');
+          image.alt = step.alt;
+          image.src = step.image;
+          view.classList.add('is-visible');
+        }, 90);
+      }
+
+      image.addEventListener('error', () => {
+        image.classList.add('is-error');
+        fallback.hidden = false;
+      });
+
+      image.addEventListener('load', () => {
+        image.classList.remove('is-error');
+        fallback.hidden = true;
+      });
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => setStep(Number(button.dataset.step || 0)));
+      });
+
+      view.classList.add('is-visible');
+      steps.slice(1).forEach((step) => {
+        const preloaded = new Image();
+        preloaded.src = step.image;
+      });
+    })();
+  </script>
 </body>
 </html>
