@@ -11975,3 +11975,250 @@ html body .global-site-header .desktop-nav a {
     display: none !important;
   }
 }
+
+/* v74: final SEO hero guard after page-specific overrides */
+.container.seo-service .doc-hero,
+body:has(.main-doc) .doc-hero,
+.tutorial-tabs-page .tutorial-hero {
+  position: relative !important;
+  width: min(100%, 980px) !important;
+  max-width: 980px !important;
+  margin: 42px auto 42px !important;
+  padding: 54px 34px 50px !important;
+  border: 1px solid rgba(239, 68, 68, 0.10) !important;
+  border-radius: 28px !important;
+  background: #fffafa !important;
+  box-shadow: none !important;
+  text-align: center !important;
+  overflow: hidden !important;
+}
+
+.container.seo-service .doc-hero::before,
+body:has(.main-doc) .doc-hero::before,
+.tutorial-tabs-page .tutorial-hero::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 5px !important;
+  background: #ef4444 !important;
+  border-radius: 28px 28px 0 0 !important;
+}
+
+.container.seo-service .doc-hero::after,
+body:has(.main-doc) .doc-hero::after,
+.tutorial-tabs-page .tutorial-hero::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 22px !important;
+  left: 50% !important;
+  width: 240px !important;
+  height: 86px !important;
+  border-radius: 999px !important;
+  background: rgba(239, 68, 68, 0.055) !important;
+  filter: blur(22px) !important;
+  transform: translateX(-50%) !important;
+  pointer-events: none !important;
+}
+
+.container.seo-service .doc-eyebrow,
+body:has(.main-doc) .doc-eyebrow,
+.tutorial-tabs-page .tutorial-kicker {
+  position: relative !important;
+  z-index: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 0 14px !important;
+  color: #ef4444 !important;
+  font-size: 13px !important;
+  font-weight: 850 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+}
+
+.container.seo-service .doc-hero h1,
+body:has(.main-doc) .doc-hero h1,
+body:has(.main-doc) .info-page > header h1,
+.seo-page h1,
+.guide-page h1,
+.tutorial-tabs-page .tutorial-hero h1 {
+  position: relative !important;
+  z-index: 1 !important;
+  max-width: 840px !important;
+  margin: 0 auto !important;
+  color: #0f172a !important;
+  font-size: clamp(42px, 5vw, 64px) !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+}
+
+.container.seo-service .doc-hero .sub-text,
+body:has(.main-doc) .doc-hero .sub-text,
+body:has(.main-doc) .info-page > header .sub-text,
+.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker) {
+  position: relative !important;
+  z-index: 1 !important;
+  max-width: 720px !important;
+  margin: 18px auto 0 !important;
+  color: #64748b !important;
+  font-size: clamp(18px, 2vw, 22px) !important;
+  font-weight: 600 !important;
+  line-height: 1.7 !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+}
+
+.container.seo-service main,
+.tutorial-tabs {
+  margin-top: 0 !important;
+}
+
+.tutorial-tabs {
+  padding-top: 8px !important;
+}
+
+.tutorial-tabs .step-tabs {
+  margin-top: 76px !important;
+}
+
+@media (max-width: 768px) {
+  .container.seo-service .doc-hero,
+  body:has(.main-doc) .doc-hero,
+  .tutorial-tabs-page .tutorial-hero {
+    width: auto !important;
+    margin: 22px 14px 30px !important;
+    padding: 38px 18px 34px !important;
+    border-radius: 22px !important;
+  }
+
+  .container.seo-service .doc-hero::before,
+  body:has(.main-doc) .doc-hero::before,
+  .tutorial-tabs-page .tutorial-hero::before {
+    height: 4px !important;
+    border-radius: 22px 22px 0 0 !important;
+  }
+
+  .container.seo-service .doc-hero::after,
+  body:has(.main-doc) .doc-hero::after,
+  .tutorial-tabs-page .tutorial-hero::after {
+    width: 180px !important;
+    height: 68px !important;
+  }
+
+  .container.seo-service .doc-eyebrow,
+  body:has(.main-doc) .doc-eyebrow,
+  .tutorial-tabs-page .tutorial-kicker {
+    margin-bottom: 10px !important;
+    font-size: 12px !important;
+  }
+
+  .container.seo-service .doc-hero h1,
+  body:has(.main-doc) .doc-hero h1,
+  body:has(.main-doc) .info-page > header h1,
+  .seo-page h1,
+  .guide-page h1,
+  .tutorial-tabs-page .tutorial-hero h1 {
+    font-size: clamp(34px, 10vw, 44px) !important;
+    line-height: 1.12 !important;
+  }
+
+  .container.seo-service .doc-hero .sub-text,
+  body:has(.main-doc) .doc-hero .sub-text,
+  body:has(.main-doc) .info-page > header .sub-text,
+  .tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker) {
+    margin-top: 14px !important;
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+  }
+
+  .tutorial-tabs {
+    padding-top: 0 !important;
+  }
+
+  .tutorial-tabs .step-tabs {
+    margin-top: 0 !important;
+  }
+}
+
+/* v75: concise two-line footer identity */
+.site-footer {
+  border-top: 1px solid rgba(148, 163, 184, 0.18) !important;
+  box-shadow: none !important;
+}
+
+.site-footer .footer-inner {
+  display: grid !important;
+  justify-items: center !important;
+  gap: 0 !important;
+}
+
+.site-footer .footer-business-info {
+  display: grid !important;
+  justify-items: center !important;
+  gap: 5px !important;
+  max-width: min(100%, 920px) !important;
+  margin: 0 auto !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+}
+
+.site-footer .footer-primary-line {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 8px !important;
+  color: #64748b !important;
+}
+
+.site-footer .footer-company {
+  color: #475569 !important;
+  font-weight: 650 !important;
+}
+
+.site-footer .footer-separator {
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
+}
+
+.site-footer .footer-copyright {
+  color: #94a3b8 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.7 !important;
+}
+
+.site-footer .footer-business-info a {
+  color: #64748b !important;
+  font: inherit !important;
+  text-decoration: none !important;
+}
+
+.site-footer .footer-business-info a:hover {
+  color: #334155 !important;
+}
+
+@media (max-width: 640px) {
+  .site-footer .footer-business-info {
+    gap: 6px !important;
+    padding: 0 8px !important;
+    font-size: 13px !important;
+    line-height: 1.75 !important;
+  }
+
+  .site-footer .footer-primary-line {
+    gap: 0 7px !important;
+  }
+
+  .site-footer .footer-copyright {
+    font-size: 12.5px !important;
+  }
+}
