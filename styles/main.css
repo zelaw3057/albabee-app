@@ -13250,3 +13250,193 @@ html body .site-footer .footer-business-info .footer-primary-line > span:nth-chi
   color: #cbd5e1 !important;
   font-weight: 500 !important;
 }
+
+/* v86: unified SEO hero and balanced footer separators */
+html body .container.seo-service .doc-hero,
+html body .main-doc .doc-hero,
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
+  position: relative !important;
+  width: min(100%, 860px) !important;
+  max-width: 860px !important;
+  margin: 24px auto 30px !important;
+  padding: 42px 48px !important;
+  border: 1px solid #fee2e2 !important;
+  border-radius: 28px !important;
+  background: #fffafa !important;
+  box-shadow: none !important;
+  text-align: left !important;
+  overflow: hidden !important;
+}
+
+html body .container.seo-service .doc-hero::before,
+html body .main-doc .doc-hero::before,
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero::before,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  display: block !important;
+  height: 4px !important;
+  border-radius: 28px 28px 0 0 !important;
+  background: #ef4444 !important;
+}
+
+html body .container.seo-service .doc-hero::after,
+html body .main-doc .doc-hero::after,
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero::after,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero::after {
+  display: none !important;
+  content: none !important;
+}
+
+html body .container.seo-service .doc-eyebrow,
+html body .main-doc .doc-eyebrow,
+html body .tutorial-page.tutorial-tabs-page .tutorial-kicker {
+  position: relative !important;
+  z-index: 1 !important;
+  display: block !important;
+  margin: 0 0 18px !important;
+  color: #ef4444 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+html body .container.seo-service .doc-hero h1,
+html body .main-doc .doc-hero h1,
+html body .main-doc .info-page > header h1,
+html body .seo-page h1,
+html body .guide-page h1,
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1 {
+  position: relative !important;
+  z-index: 1 !important;
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: #0f172a !important;
+  font-size: clamp(44px, 4vw, 64px) !important;
+  font-weight: 760 !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+html body .container.seo-service .doc-hero .sub-text,
+html body .main-doc .doc-hero .sub-text,
+html body .main-doc .info-page > header .sub-text,
+html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
+html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
+  position: relative !important;
+  z-index: 1 !important;
+  max-width: 720px !important;
+  margin: 22px 0 0 !important;
+  color: #64748b !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 1.75 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+html body .site-footer .footer-primary-line {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 0 !important;
+  width: 100% !important;
+  text-align: center !important;
+  line-height: 1.8 !important;
+}
+
+html body .site-footer .footer-primary-line > span {
+  display: inline-flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  line-height: inherit !important;
+}
+
+html body .site-footer .footer-primary-line > span + span::before,
+html body .site-footer .footer-business-info .footer-primary-line > span:nth-child(n + 2)::before {
+  content: "/" !important;
+  display: inline-block !important;
+  margin: 0 10px !important;
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+}
+
+html body .site-footer .footer-primary-line a {
+  white-space: nowrap !important;
+}
+
+@media (max-width: 768px) {
+  html body .container.seo-service .doc-hero,
+  html body .main-doc .doc-hero,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
+    width: auto !important;
+    margin: 18px 14px 24px !important;
+    padding: 32px 24px !important;
+    border-radius: 22px !important;
+    text-align: center !important;
+  }
+
+  html body .container.seo-service .doc-hero::before,
+  html body .main-doc .doc-hero::before,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero::before,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero::before {
+    border-radius: 22px 22px 0 0 !important;
+  }
+
+  html body .container.seo-service .doc-eyebrow,
+  html body .main-doc .doc-eyebrow,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-kicker,
+  html body .container.seo-service .doc-hero h1,
+  html body .main-doc .doc-hero h1,
+  html body .main-doc .info-page > header h1,
+  html body .seo-page h1,
+  html body .guide-page h1,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1,
+  html body .container.seo-service .doc-hero .sub-text,
+  html body .main-doc .doc-hero .sub-text,
+  html body .main-doc .info-page > header .sub-text,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    text-align: center !important;
+  }
+
+  html body .container.seo-service .doc-hero h1,
+  html body .main-doc .doc-hero h1,
+  html body .main-doc .info-page > header h1,
+  html body .seo-page h1,
+  html body .guide-page h1,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1 {
+    font-size: clamp(34px, 10vw, 44px) !important;
+    line-height: 1.12 !important;
+  }
+
+  html body .container.seo-service .doc-hero .sub-text,
+  html body .main-doc .doc-hero .sub-text,
+  html body .main-doc .info-page > header .sub-text,
+  html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
+  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
+    margin-top: 14px !important;
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+  }
+
+  html body .site-footer .footer-primary-line > span + span::before,
+  html body .site-footer .footer-business-info .footer-primary-line > span:nth-child(n + 2)::before {
+    margin: 0 8px !important;
+  }
+}
