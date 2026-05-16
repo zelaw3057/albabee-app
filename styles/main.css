@@ -10756,6 +10756,7 @@ body:has(.main-doc) .cta-panel .cta-button,
   will-change: transform;
 }
 
+.collapsible-head .collapsible-arrow-icon.is-open,
 .collapsible-box.open > .collapsible-head .collapsible-arrow-icon,
 .collapsible-head[aria-expanded="true"] .collapsible-arrow-icon {
   transform: translateY(-1px) rotate(180deg) !important;
@@ -10776,11 +10777,6 @@ body:has(.main-doc) .cta-panel .cta-button,
   line-height: 1.45 !important;
 }
 
-.calendar-legend .legend-label {
-  color: #334155 !important;
-  font-weight: 900 !important;
-}
-
 .calendar-legend .legend-item {
   display: inline-flex !important;
   align-items: center !important;
@@ -10790,6 +10786,14 @@ body:has(.main-doc) .cta-panel .cta-button,
   border: 0 !important;
   background: transparent !important;
   white-space: nowrap !important;
+}
+
+.calendar-legend .legend-separator {
+  display: inline-block !important;
+  margin: 0 4px !important;
+  color: #94a3b8 !important;
+  font-weight: 700 !important;
+  opacity: .72 !important;
 }
 
 .calendar-help-note {
@@ -10916,8 +10920,8 @@ body:has(.main-doc) .cta-panel .cta-button,
   font-size: 10px !important;
   line-height: 1.2 !important;
   white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
 }
 
 .calendar-day-middle {
@@ -10942,13 +10946,19 @@ body:has(.main-doc) .cta-panel .cta-button,
   border-radius: 999px !important;
   background: rgba(255, 255, 255, .86) !important;
   color: #166534 !important;
-  font-size: 12px !important;
+  font-size: 11px !important;
   font-weight: 900 !important;
   line-height: 1.15 !important;
   white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
   box-shadow: inset 0 0 0 1px rgba(22, 101, 52, .14) !important;
+}
+
+@media (min-width: 701px) {
+  .calendar-day-middle .work-summary {
+    min-width: max-content !important;
+  }
 }
 
 .calendar-day-bottom {
@@ -11022,8 +11032,9 @@ body:has(.main-doc) .cta-panel .cta-button,
   }
 
   .calendar-day-middle .work-summary {
-    padding: 4px 6px !important;
-    font-size: 10.5px !important;
+    padding: 3px 4px !important;
+    font-size: 9.5px !important;
+    letter-spacing: -0.45px !important;
   }
 
   .calendar-day-bottom {

@@ -162,6 +162,8 @@ let selectedDateKey = null;
       box.classList.toggle('open', !!open);
       const head = box.querySelector('.collapsible-head');
       if(head) head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      const icon = box.querySelector('.collapsible-arrow-icon');
+      if(icon) icon.classList.toggle('is-open', !!open);
     }
     function restoreCalculatorUiState(){
       let state = null;
@@ -452,7 +454,7 @@ let selectedDateKey = null;
       if(info.type === 'substitute') return '\uB300\uCCB4';
       const name = info.name || '';
       if(name === '\uC804\uAD6D\uB3D9\uC2DC\uC9C0\uBC29\uC120\uAC70\uC77C') return '\uC9C0\uBC29\uC120\uAC70';
-      if(name === '\uBD80\uCC98\uB2D8\uC624\uC2E0\uB0A0') return compact ? '\uBD80\uCC98\uB2D8' : '\uBD80\uCC98\uB2D8\uC624\uC2E0\uB0A0';
+      if(name === '\uBD80\uCC98\uB2D8\uC624\uC2E0\uB0A0') return '\uBD80\uCC98\uB2D8';
       return compact ? name.replace(/\s*\uC5F0\uD734$/, '') : name;
     }
 
