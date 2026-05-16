@@ -239,7 +239,7 @@
 }
 
 .quiet-faq summary::after {
-  content: "⌄";
+  content: "v";
   float: right;
   color: #9ca3af;
   font-size: 15px;
@@ -247,7 +247,7 @@
 }
 
 .quiet-faq details[open] summary::after {
-  content: "⌃";
+  content: "^";
 }
 
 .quiet-faq details p {
@@ -561,7 +561,7 @@
     .share-fallback-actions .soft-btn { min-height:34px; padding:8px 11px; font-size:12px; }
     .calendar-feature-note { margin:10px 0 8px; padding:0 2px; border-radius:0; background:transparent; border:0; color:#6b7280; font-size:12px; font-weight:700; line-height:1.55; }
     .weekday-btn { position:relative; }
-    .weekday-btn::after { content:'전체'; display:block; margin-top:1px; font-size:9px; font-weight:800; color:#94a3b8; }
+    .weekday-btn::after { content:'?꾩껜'; display:block; margin-top:1px; font-size:9px; font-weight:800; color:#94a3b8; }
     .highlight-row { background:#fff7ed; font-weight:900; }
     .highlight-row td { color:#9a3412; }
     .calendar-top-actions .soft-btn.active { background:#111827; color:#fff; }
@@ -619,7 +619,7 @@
     .policy-section.open .policy-toggle-arrow { transform:rotate(180deg); }
 
 
-    /* v14: 상세정보 팝업 가독성 개선 */
+    /* v14: ?곸꽭?뺣낫 ?앹뾽 媛?낆꽦 媛쒖꽑 */
     .detail-label { display:block; color:#6b7280; font-size:12px; font-weight:900; margin-bottom:4px; letter-spacing:-0.02em; }
     .detail-value { display:block; color:#111827; font-size:15px; font-weight:950; line-height:1.35; letter-spacing:-0.02em; word-break:keep-all; }
     .day-detail-tooltip .detail-label { color:#d1d5db; }
@@ -643,7 +643,7 @@
 
 
 
-    /* v15: PC 화면에서 모바일 버전으로 전환했을 때도 후원 영역 모바일 가독성 적용 */
+    /* v15: PC ?붾㈃?먯꽌 紐⑤컮??踰꾩쟾?쇰줈 ?꾪솚?덉쓣 ?뚮룄 ?꾩썝 ?곸뿭 紐⑤컮??媛?낆꽦 ?곸슜 */
     body.force-mobile-view .developer-support-inner { grid-template-columns:1fr; }
     body.force-mobile-view .developer-support-main-btn { white-space:nowrap; font-size:15px; padding:14px 16px; width:100%; text-align:center; }
     body.force-mobile-view .developer-support-text .donation-mobile-break { display:block; height:4px; }
@@ -651,7 +651,7 @@
     body.force-mobile-view .donation-custom-row { grid-template-columns:1fr; }
     body.force-mobile-view .donation-custom-row button { width:100%; }
 
-    /* v16: 첫 화면 정리 + 단계별 접기 UI */
+    /* v16: 泥??붾㈃ ?뺣━ + ?④퀎蹂??묎린 UI */
     .hero-proof-line { display:inline-flex; align-items:center; justify-content:center; margin:10px auto 0; padding:8px 13px; border-radius:999px; background:#111827; color:#fff; font-size:14px; font-weight:950; letter-spacing:-0.03em; box-shadow:0 8px 18px rgba(17,24,39,.14); }
     .step-card { padding:0; overflow:hidden; }
     .step-toggle { width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0; padding:18px 20px; border:0; background:#fff; color:var(--text); text-align:left; cursor:pointer; border-radius:18px; font-size:20px; font-weight:950; letter-spacing:-0.02em; }
@@ -677,7 +677,7 @@
 
 
 
-    /* final: 추가수당 카테고리 내부의 2중 접힘 제거 */
+    /* final: 異붽??섎떦 移댄뀒怨좊━ ?대???2以??묓옒 ?쒓굅 */
     #allowanceSection .mobile-allowance-toggle { display: none !important; }
     #allowanceSection .mobile-allowance-body { display: block !important; margin-top: 0 !important; }
     body.force-mobile-view #allowanceSection .mobile-allowance-body { display: block !important; margin-top: 0 !important; }
@@ -4034,7 +4034,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "다음" !important;
+  content: "?ㅼ쓬" !important;
   color: #7b8494 !important;
   font-size: 10px !important;
 }
@@ -4393,7 +4393,7 @@ body:has(.seo-service) {
 .mini-card::before,
 .related-list a[data-icon]::before,
 .example-card::before {
-  content: "✓";
+  content: "";
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -5351,7 +5351,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "다음" !important;
+  content: "?ㅼ쓬" !important;
   color: #7b8494 !important;
   font-size: 10px !important;
 }
@@ -5774,7 +5774,7 @@ footer {
 }
 
 .related-list a::after {
-  content: "바로가기";
+  content: "Open";
   display: block;
   margin-top: 8px;
   color: var(--brand-red-dark);
@@ -6692,7 +6692,7 @@ header {
 }
 
 .step-card.step-locked .step-arrow::before {
-  content: "다음";
+  content: "?ㅼ쓬";
   position: absolute;
   color: #667085;
 }
@@ -7858,7 +7858,7 @@ textarea {
 }
 
 .step-card.step-locked .step-arrow::before {
-  content: "다음";
+  content: "?ㅼ쓬";
   position: absolute;
   color: #667085;
   font-size: 10px;
@@ -8860,7 +8860,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "다음" !important;
+  content: "?ㅼ쓬" !important;
   position: absolute !important;
   inset: 0 !important;
   display: flex !important;
@@ -9212,7 +9212,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "다음" !important;
+  content: "?ㅼ쓬" !important;
   position: absolute !important;
   inset: 0 !important;
   display: flex !important;
@@ -9394,7 +9394,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "다음" !important;
+  content: "?ㅼ쓬" !important;
   color: #7b8494 !important;
   font-size: 10px !important;
 }
@@ -12814,7 +12814,7 @@ body:has(.main-doc) .info-page > header .sub-text,
 }
 
 .site-footer .footer-policy-links a + a::before {
-  content: "·" !important;
+  content: "쨌" !important;
   margin-right: 12px !important;
   color: #cbd5e1 !important;
 }
@@ -13148,49 +13148,94 @@ body:has(.main-doc) .info-page > header .sub-text,
   }
 }
 
-/* v84: final applied how-to sizing and footer slash guard */
-html body .tutorial-page.tutorial-tabs-page .tutorial-hero,
-html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
-  width: min(100%, 760px) !important;
-  max-width: 760px !important;
-  margin: 24px auto 30px !important;
-  padding: 36px 40px !important;
-  border: 1px solid rgba(239, 68, 68, 0.09) !important;
-  border-radius: 22px !important;
+/* v87: final SEO hero component and slash-only footer separators */
+html body .seo-hero {
+  position: relative !important;
+  width: min(100%, 820px) !important;
+  max-width: 820px !important;
+  margin: 22px auto 30px !important;
+  padding: 38px 44px !important;
+  border: 1px solid #fee2e2 !important;
+  border-top: 4px solid #ef4444 !important;
+  border-radius: 24px !important;
   background: #fffafa !important;
   box-shadow: none !important;
   text-align: left !important;
+  overflow: hidden !important;
 }
 
-html body .tutorial-page.tutorial-tabs-page .tutorial-hero::before,
-html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero::before {
-  height: 4px !important;
-  border-radius: 22px 22px 0 0 !important;
-  background: #ef4444 !important;
+html body .seo-hero::before,
+html body .seo-hero::after {
+  display: none !important;
+  content: none !important;
 }
 
-html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
-html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1 {
-  max-width: 680px !important;
-  margin: 0 !important;
-  color: #0f172a !important;
-  font-size: clamp(34px, 3.2vw, 48px) !important;
-  font-weight: 720 !important;
-  line-height: 1.12 !important;
+html body .seo-hero-kicker {
+  display: block !important;
+  margin: 0 0 14px !important;
+  color: #ef4444 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
   letter-spacing: 0 !important;
   text-align: left !important;
 }
 
-html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
-html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
-  max-width: 620px !important;
-  margin: 12px 0 0 !important;
+html body .seo-hero-title {
+  max-width: 720px !important;
+  margin: 0 !important;
+  color: #0f172a !important;
+  font-size: clamp(34px, 3.4vw, 48px) !important;
+  font-weight: 700 !important;
+  line-height: 1.14 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+html body .seo-hero-desc {
+  max-width: 680px !important;
+  margin: 16px 0 0 !important;
   color: #64748b !important;
   font-size: 16px !important;
   font-weight: 500 !important;
-  line-height: 1.65 !important;
+  line-height: 1.7 !important;
   letter-spacing: 0 !important;
   text-align: left !important;
+}
+
+html body .site-footer .footer-policy-links,
+html body .site-footer .footer-primary-line {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 0 !important;
+  width: 100% !important;
+  text-align: center !important;
+  line-height: 1.8 !important;
+}
+
+html body .site-footer .footer-policy-links a,
+html body .site-footer .footer-primary-line > span {
+  display: inline-flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  line-height: inherit !important;
+}
+
+html body .site-footer .footer-policy-links a + a::before,
+html body .site-footer .footer-primary-line > span + span::before,
+html body .site-footer .footer-business-info .footer-primary-line > span:nth-child(n + 2)::before {
+  content: "/" !important;
+  display: inline-block !important;
+  margin: 0 10px !important;
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+}
+
+html body .site-footer .footer-primary-line a {
+  white-space: nowrap !important;
 }
 
 html body .tutorial-tabs .step-copy .step-kicker {
@@ -13215,226 +13260,35 @@ html body .tutorial-tabs .step-copy #guideStepDescription {
   line-height: 1.6 !important;
 }
 
-html body .site-footer .footer-primary-line > span + span::before {
-  content: "/" !important;
-  display: inline-block !important;
-  margin: 0 12px !important;
-  color: #cbd5e1 !important;
-  font-weight: 500 !important;
-}
-
 @media (max-width: 768px) {
-  html body .tutorial-page.tutorial-tabs-page .tutorial-hero,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
+  html body .seo-hero {
     width: auto !important;
     margin: 18px 14px 24px !important;
-    padding: 32px 24px !important;
+    padding: 30px 22px !important;
+    border-radius: 20px !important;
     text-align: center !important;
   }
 
-  html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
-  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center !important;
-  }
-}
-
-/* v85: override old footer pseudo hiding rules */
-html body .site-footer .footer-business-info .footer-primary-line > span:nth-child(n + 2)::before {
-  content: "/" !important;
-  display: inline-block !important;
-  margin: 0 12px !important;
-  color: #cbd5e1 !important;
-  font-weight: 500 !important;
-}
-
-/* v86: unified SEO hero and balanced footer separators */
-html body .container.seo-service .doc-hero,
-html body .main-doc .doc-hero,
-html body .tutorial-page.tutorial-tabs-page .tutorial-hero,
-html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
-  position: relative !important;
-  width: min(100%, 860px) !important;
-  max-width: 860px !important;
-  margin: 24px auto 30px !important;
-  padding: 42px 48px !important;
-  border: 1px solid #fee2e2 !important;
-  border-radius: 28px !important;
-  background: #fffafa !important;
-  box-shadow: none !important;
-  text-align: left !important;
-  overflow: hidden !important;
-}
-
-html body .container.seo-service .doc-hero::before,
-html body .main-doc .doc-hero::before,
-html body .tutorial-page.tutorial-tabs-page .tutorial-hero::before,
-html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero::before {
-  content: "" !important;
-  position: absolute !important;
-  top: 0 !important;
-  right: 0 !important;
-  left: 0 !important;
-  display: block !important;
-  height: 4px !important;
-  border-radius: 28px 28px 0 0 !important;
-  background: #ef4444 !important;
-}
-
-html body .container.seo-service .doc-hero::after,
-html body .main-doc .doc-hero::after,
-html body .tutorial-page.tutorial-tabs-page .tutorial-hero::after,
-html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero::after {
-  display: none !important;
-  content: none !important;
-}
-
-html body .container.seo-service .doc-eyebrow,
-html body .main-doc .doc-eyebrow,
-html body .tutorial-page.tutorial-tabs-page .tutorial-kicker {
-  position: relative !important;
-  z-index: 1 !important;
-  display: block !important;
-  margin: 0 0 18px !important;
-  color: #ef4444 !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  line-height: 1.4 !important;
-  letter-spacing: 0 !important;
-  text-align: left !important;
-}
-
-html body .container.seo-service .doc-hero h1,
-html body .main-doc .doc-hero h1,
-html body .main-doc .info-page > header h1,
-html body .seo-page h1,
-html body .guide-page h1,
-html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
-html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1 {
-  position: relative !important;
-  z-index: 1 !important;
-  max-width: 760px !important;
-  margin: 0 !important;
-  color: #0f172a !important;
-  font-size: clamp(44px, 4vw, 64px) !important;
-  font-weight: 760 !important;
-  line-height: 1.08 !important;
-  letter-spacing: 0 !important;
-  text-align: left !important;
-}
-
-html body .container.seo-service .doc-hero .sub-text,
-html body .main-doc .doc-hero .sub-text,
-html body .main-doc .info-page > header .sub-text,
-html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
-html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
-  position: relative !important;
-  z-index: 1 !important;
-  max-width: 720px !important;
-  margin: 22px 0 0 !important;
-  color: #64748b !important;
-  font-size: 18px !important;
-  font-weight: 500 !important;
-  line-height: 1.75 !important;
-  letter-spacing: 0 !important;
-  text-align: left !important;
-}
-
-html body .site-footer .footer-primary-line {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 0 !important;
-  width: 100% !important;
-  text-align: center !important;
-  line-height: 1.8 !important;
-}
-
-html body .site-footer .footer-primary-line > span {
-  display: inline-flex !important;
-  align-items: center !important;
-  white-space: nowrap !important;
-  line-height: inherit !important;
-}
-
-html body .site-footer .footer-primary-line > span + span::before,
-html body .site-footer .footer-business-info .footer-primary-line > span:nth-child(n + 2)::before {
-  content: "/" !important;
-  display: inline-block !important;
-  margin: 0 10px !important;
-  color: #cbd5e1 !important;
-  font-weight: 500 !important;
-  line-height: 1 !important;
-}
-
-html body .site-footer .footer-primary-line a {
-  white-space: nowrap !important;
-}
-
-@media (max-width: 768px) {
-  html body .container.seo-service .doc-hero,
-  html body .main-doc .doc-hero,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-hero,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero {
-    width: auto !important;
-    margin: 18px 14px 24px !important;
-    padding: 32px 24px !important;
-    border-radius: 22px !important;
-    text-align: center !important;
-  }
-
-  html body .container.seo-service .doc-hero::before,
-  html body .main-doc .doc-hero::before,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-hero::before,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero::before {
-    border-radius: 22px 22px 0 0 !important;
-  }
-
-  html body .container.seo-service .doc-eyebrow,
-  html body .main-doc .doc-eyebrow,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-kicker,
-  html body .container.seo-service .doc-hero h1,
-  html body .main-doc .doc-hero h1,
-  html body .main-doc .info-page > header h1,
-  html body .seo-page h1,
-  html body .guide-page h1,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1,
-  html body .container.seo-service .doc-hero .sub-text,
-  html body .main-doc .doc-hero .sub-text,
-  html body .main-doc .info-page > header .sub-text,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
-  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
+  html body .seo-hero-kicker,
+  html body .seo-hero-title,
+  html body .seo-hero-desc {
     margin-right: auto !important;
     margin-left: auto !important;
     text-align: center !important;
   }
 
-  html body .container.seo-service .doc-hero h1,
-  html body .main-doc .doc-hero h1,
-  html body .main-doc .info-page > header h1,
-  html body .seo-page h1,
-  html body .guide-page h1,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-hero h1,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero h1 {
-    font-size: clamp(34px, 10vw, 44px) !important;
-    line-height: 1.12 !important;
+  html body .seo-hero-title {
+    font-size: clamp(30px, 8.5vw, 38px) !important;
+    line-height: 1.16 !important;
   }
 
-  html body .container.seo-service .doc-hero .sub-text,
-  html body .main-doc .doc-hero .sub-text,
-  html body .main-doc .info-page > header .sub-text,
-  html body .tutorial-page.tutorial-tabs-page .tutorial-hero p:not(.tutorial-kicker),
-  html body .tutorial-page.tutorial-tabs-page .tutorial-tabs-hero p:not(.tutorial-kicker) {
-    margin-top: 14px !important;
-    font-size: 16px !important;
+  html body .seo-hero-desc {
+    margin-top: 12px !important;
+    font-size: 15.5px !important;
     line-height: 1.65 !important;
   }
 
+  html body .site-footer .footer-policy-links a + a::before,
   html body .site-footer .footer-primary-line > span + span::before,
   html body .site-footer .footer-business-info .footer-primary-line > span:nth-child(n + 2)::before {
     margin: 0 8px !important;
