@@ -163,6 +163,10 @@
             decoding="async"
           />
         </figure>
+        <div class="step-bottom-nav" aria-label="단계 이동">
+          <button class="step-move-button" type="button" id="guidePrevStep">이전 단계</button>
+          <button class="step-move-button is-primary" type="button" id="guideNextStep">다음 단계</button>
+        </div>
       </section>
     </main>
 
@@ -243,18 +247,29 @@
       const title = document.getElementById('guideStepTitle');
       const description = document.getElementById('guideStepDescription');
       const image = document.getElementById('guideStepImage');
+      const prevButton = document.getElementById('guidePrevStep');
+      const nextButton = document.getElementById('guideNextStep');
+      let currentIndex = 0;
 
       function setStep(index) {
-        const step = steps[index] || steps[0];
+        currentIndex = Math.max(0, Math.min(index, steps.length - 1));
+        const step = steps[currentIndex] || steps[0];
         buttons.forEach((button, buttonIndex) => {
-          const isActive = buttonIndex === index;
+          const isActive = buttonIndex === currentIndex;
           button.classList.toggle('is-active', isActive);
           button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          if (isActive && window.matchMedia('(max-width: 980px)').matches) {
+            button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
         });
+        prevButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === steps.length - 1;
+        prevButton.setAttribute('aria-disabled', currentIndex === 0 ? 'true' : 'false');
+        nextButton.setAttribute('aria-disabled', currentIndex === steps.length - 1 ? 'true' : 'false');
 
         view.classList.remove('is-visible');
         window.setTimeout(() => {
-          kicker.textContent = 'STEP ' + (index + 1);
+          kicker.textContent = 'STEP ' + (currentIndex + 1);
           title.textContent = step.title;
           description.textContent = step.description;
           image.alt = step.alt;
@@ -266,7 +281,10 @@
       buttons.forEach((button) => {
         button.addEventListener('click', () => setStep(Number(button.dataset.step || 0)));
       });
+      prevButton.addEventListener('click', () => setStep(currentIndex - 1));
+      nextButton.addEventListener('click', () => setStep(currentIndex + 1));
 
+      setStep(0);
       view.classList.add('is-visible');
     })();
   </script>
