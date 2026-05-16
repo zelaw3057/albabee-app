@@ -10762,6 +10762,11 @@ body:has(.main-doc) .cta-panel .cta-button,
   transform: translateY(-1px) rotate(180deg) !important;
 }
 
+/* v67: JS owns the actual accordion chevron direction via SVG points. */
+.collapsible-head .collapsible-arrow-icon[data-state] {
+  transform: translateY(-1px) rotate(0deg) !important;
+}
+
 /* v65: cleaner calendar and allowance mini-calendar UX */
 .calendar-legend {
   display: inline-flex !important;

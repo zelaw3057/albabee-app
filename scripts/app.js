@@ -163,7 +163,12 @@ let selectedDateKey = null;
       const head = box.querySelector('.collapsible-head');
       if(head) head.setAttribute('aria-expanded', open ? 'true' : 'false');
       const icon = box.querySelector('.collapsible-arrow-icon');
-      if(icon) icon.classList.toggle('is-open', !!open);
+      if(icon){
+        icon.classList.toggle('is-open', !!open);
+        icon.setAttribute('data-state', open ? 'open' : 'closed');
+        const line = icon.querySelector('polyline');
+        if(line) line.setAttribute('points', open ? '6 15 12 9 18 15' : '6 9 12 15 18 9');
+      }
     }
     function restoreCalculatorUiState(){
       let state = null;
