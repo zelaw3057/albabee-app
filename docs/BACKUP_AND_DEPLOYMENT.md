@@ -86,7 +86,7 @@ Before web deployment:
 2. Run `npm.cmd run check:assets:dist`.
 3. Confirm `dist/minimum-wage.html`, `dist/weekly-pay.html`, and `dist/night-pay.html` exist.
 4. Confirm `dist/sitemap.xml` exists.
-5. Confirm `dist/images/logo/albabee-logo.png`, `dist/images/banners/albabee-main-banner.png`, `dist/images/icons/app-icon.png`, `dist/images/icons/kakao.png`, and `dist/images/icons/excel.png` exist.
+5. Confirm `dist/images/logo/albabee-logo.png`, `dist/images/banners/main-banner-v2.png`, `dist/images/icons/app-icon.png`, `dist/images/icons/kakao.png`, and `dist/images/icons/excel.png` exist.
 6. Confirm `public/sitemap.xml` and `functions/sitemap.xml.js` contain the same public SEO URLs.
 7. Confirm `public/robots.txt` points to `https://albabee.pages.dev/sitemap.xml`.
 

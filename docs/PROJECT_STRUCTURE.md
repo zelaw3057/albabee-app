@@ -31,11 +31,11 @@ albabee-app/
       logo/
         albabee-logo.png
       hero/
-        albabee-main-banner.png
+        main-banner-v2.png
       icons/
         app-icon.png
-        kakao-icon.png
-        excel-icon.png
+        kakao.png
+        excel.png
       seo/
     _headers
     _routes.json
@@ -80,7 +80,7 @@ Use role-based image folders:
 
 ```text
 /images/logo/albabee-logo.png
-/images/banners/albabee-main-banner.png
+/images/banners/main-banner-v2.png
 /images/icons/app-icon.png
 /images/icons/excel.png
 /images/icons/kakao.png

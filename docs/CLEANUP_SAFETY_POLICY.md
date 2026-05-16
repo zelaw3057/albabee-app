@@ -27,9 +27,9 @@ Desktop\backups\albabee-app\archive\YYYY-MM-DD\
 
 ```text
 public/images/logo/
-public/images/hero/
+public/images/banners/
 public/images/icons/
-public/images/seo/
+public/images/og/
 ```
 
 For the current Cloudflare Pages publish-root deployment, keep the root `images/` mirror synchronized with the live files in `public/images/`.
@@ -102,7 +102,7 @@ npm.cmd run check:assets:dist
 Also verify these deployment URLs in local preview or after deployment:
 
 - `/images/logo/albabee-logo.png`
-- `/images/banners/albabee-main-banner.png`
+- `/images/banners/main-banner-v2.png`
 - `/images/icons/app-icon.png`
 - `/images/icons/excel.png`
 - `/images/icons/kakao.png`

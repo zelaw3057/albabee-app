@@ -21,6 +21,7 @@ const ignoredDirs = new Set([
   'dist-toss',
   'archive',
   'backups',
+  'backup_before_image_cleanup',
   'backup_unused',
   'unused-assets',
   'tmp',
@@ -29,7 +30,7 @@ const ignoredDirs = new Set([
 
 const requiredSourceAssets = [
   'public/images/logo/albabee-logo.png',
-  'public/images/banners/albabee-main-banner.png',
+  'public/images/banners/main-banner-v2.png',
   'public/images/icons/app-icon.png',
   'public/images/icons/excel.png',
   'public/images/icons/kakao.png',
@@ -43,7 +44,7 @@ const requiredSourceAssets = [
 
 const requiredDistAssets = [
   'images/logo/albabee-logo.png',
-  'images/banners/albabee-main-banner.png',
+  'images/banners/main-banner-v2.png',
   'images/icons/app-icon.png',
   'images/icons/excel.png',
   'images/icons/kakao.png',

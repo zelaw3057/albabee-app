@@ -54,11 +54,11 @@ These remain in the project root to preserve existing public URLs:
 Active image assets live in `public/images/`:
 
 - `public/images/logo/albabee-logo.png`
-- `public/images/banners/albabee-main-banner.png`
+- `public/images/banners/main-banner-v2.png`
 - `public/images/icons/app-icon.png`
-- `public/images/icons/kakao-icon.png`
-- `public/images/icons/excel-icon.png`
-- `public/images/seo/` is reserved for future SEO images.
+- `public/images/icons/kakao.png`
+- `public/images/icons/excel.png`
+- `public/images/og/albabee-og.png`
 
 These are served publicly as `/images/...`.
 

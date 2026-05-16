@@ -1,4 +1,4 @@
-const CACHE_NAME = 'albabee-app-v7-20260516-images';
+const CACHE_NAME = 'albabee-app-v8-20260516-banner-v2';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -9,7 +9,7 @@ const APP_SHELL = [
   '/images/icons/excel.png',
   '/images/icons/kakao.png',
   '/images/logo/albabee-logo.png',
-  '/images/banners/albabee-main-banner.png',
+  '/images/banners/main-banner-v2.png',
   '/images/og/albabee-og.png'
 ];
 
