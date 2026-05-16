@@ -30,6 +30,10 @@
     .mini-card { padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
     .mini-card strong { display: block; margin-bottom: 7px; color: #111827; font-size: 16px; }
     .mini-card p { margin: 0; color: var(--muted); line-height: 1.65; }
+    .maker-profile { display: grid; gap: 10px; margin-top: 12px; padding-top: 4px; }
+    .maker-role { margin: 0; color: #ef4444; font-size: 13px; font-weight: 900; line-height: 1.5; }
+    .maker-name { margin: 0; color: #111827; font-size: 20px; font-weight: 950; line-height: 1.35; }
+    .maker-profile p:not(.maker-role):not(.maker-name) { margin: 0; color: #475569; font-size: 16px; line-height: 1.8; }
     .info-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
     .info-nav a { display: inline-flex; padding: 8px 11px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: #111827; font-size: 13px; font-weight: 900; text-decoration: none; }
     .cta-panel { text-align: center; background: #111827; color: #fff; border: 0; }
@@ -94,24 +98,21 @@
 
     <main>
       <article>
-        <section class="card summary-card"><p class="summary-line"><strong>알바BEE</strong>는 실제 근무표 기준으로 알바 급여와 수당을 빠르게 확인하는 계산 서비스입니다.</p><div class="key-points"><div class="key-point"><span>목적</span><strong>예상 급여 확인</strong></div><div class="key-point"><span>기준</span><strong>근무일·시간 중심</strong></div><div class="key-point"><span>성격</span><strong>참고용 계산 도구</strong></div></div></section>
-        <section class="plain-section"><h2>무엇을 돕나요?</h2><p>알바 급여는 단순히 시급에 날짜를 곱하는 것보다 복잡합니다. 주휴수당, 야간수당, 연장수당, 휴일수당, 세금과 보험 공제까지 함께 봐야 실제 입금액과 가까워집니다.</p><ul class="compact-list"><li>달마다 달라지는 실제 근무일을 기준으로 계산합니다.</li><li>주휴수당, 야간수당, 연장수당, 휴일수당을 구분해 확인합니다.</li><li>세금 3.3%, 4대보험 등 공제 후 예상 실수령액을 봅니다.</li><li>계산 결과를 링크, Excel, 카카오톡으로 정리해 공유할 수 있습니다.</li></ul></section>
-        <section class="card"><h2>운영사 소개</h2><p>알바BEE는 로제로(Lawzero)가 운영합니다. 로제로는 실생활에서 자주 부딪히는 문제를 소프트웨어로 풀어가는 1인 개발·소프트웨어 사업자입니다.</p><table class="guide-table"><tbody><tr><th>상호</th><td>로제로(Lawzero)</td></tr><tr><th>대표</th><td>박도영</td></tr><tr><th>사업자등록번호</th><td>833-61-00978</td></tr><tr><th>업태/종목</th><td>정보통신업 / 응용소프트웨어 개발 및 공급업</td></tr><tr><th>이메일</th><td><a href="mailto:lawzero3057@gmail.com">lawzero3057@gmail.com</a></td></tr></tbody></table><div class="inline-links"><a href="/company.html">로제로(Lawzero) 기업소개 보기</a></div></section>
-        <section class="plain-section"><h2>로드맵</h2><ul class="compact-list"><li>알바BEE 웹 계산기 안정화</li><li>급여가이드와 FAQ 등 정보성 콘텐츠 강화</li><li>모바일 앱 출시 검토</li><li>월별 급여 기록과 실제 입금액 비교 기능 검토</li><li>Toss 인앱 또는 다른 플랫폼 확장 검토</li><li>장기적으로 근무 기록 관리와 근로자 도구 플랫폼 확장 가능성 검토</li></ul></section>
-        <section class="card"><h2>계산 결과를 볼 때</h2><p>알바BEE 결과는 입력값을 바탕으로 한 예상 금액입니다. 실제 지급액은 근로계약서, 급여명세서, 회사 기준에 따라 달라질 수 있습니다.</p></section>
-        <section class="plain-section"><h2>관련 페이지</h2><div class="inline-links"><a href="/how-to-use.html">사용법</a><a href="/wage-guide.html">급여 가이드</a><a href="/company.html">기업소개</a><a href="/contact.html">문의하기</a><a href="/privacy.html">개인정보처리방침</a></div></section>
+        <section class="card summary-card"><p class="summary-line"><strong>알바BEE</strong>는 실제 근무표 기준으로 알바 월급 계산과 수당 확인을 쉽게 할 수 있도록 만든 알바 급여 계산기입니다.</p><div class="key-points"><div class="key-point"><span>목적</span><strong>예상 급여 확인</strong></div><div class="key-point"><span>기준</span><strong>근무일·시간 중심</strong></div><div class="key-point"><span>성격</span><strong>참고용 계산 도구</strong></div></div></section>
+        <section class="plain-section"><h2>왜 만들게 되었는지</h2><p>알바 급여는 시급 하나만으로 끝나지 않습니다. 근무표가 매주 달라지고, 주휴수당 계산이나 야간수당 계산처럼 헷갈리는 항목이 붙으면 예상 월급을 직접 맞춰보기가 어렵습니다.</p><p>알바BEE는 이런 복잡함을 줄이기 위해 시작했습니다. 근무일과 시간을 넣으면 알바 월급 계산 흐름을 한 화면에서 확인하고, 실제 입금액과 비교해볼 수 있는 작은 도구를 목표로 합니다.</p></section>
+        <section class="plain-section"><h2>서비스 방향성</h2><p>알바BEE는 근무표 계산기처럼 가볍게 열고 바로 계산할 수 있는 서비스를 지향합니다. 불필요한 설명을 앞세우기보다, 필요한 순간에 급여와 수당 기준을 담백하게 확인할 수 있도록 다듬고 있습니다.</p><ul class="compact-list"><li>실제 근무일과 휴게시간을 기준으로 계산합니다.</li><li>주휴수당, 야간수당, 연장수당, 휴일수당을 구분해 보여줍니다.</li><li>세금 3.3%, 4대보험 등 공제 후 예상 실수령액을 함께 확인합니다.</li><li>계산 결과를 링크, Excel, 카카오톡으로 정리해 공유할 수 있게 합니다.</li></ul></section>
+        <section class="plain-section"><h2>앞으로의 로드맵</h2><ul class="compact-list"><li>알바BEE 웹 계산기 안정화</li><li>급여가이드와 FAQ 등 정보성 콘텐츠 강화</li><li>월별 급여 기록과 실제 입금액 비교 기능 검토</li><li>모바일 앱 출시 검토</li><li>장기적으로 근무 기록 관리와 근로자 도구 플랫폼 확장 가능성 검토</li></ul></section>
+        <section class="plain-section"><h2>대표 / 개발자 소개</h2><div class="maker-profile"><p class="maker-role">대표 / 개발</p><p class="maker-name">박도영 (Lawzero)</p><p>실제 알바 경험을 바탕으로, 근무표 기반 급여 계산 서비스를 직접 개발하고 있습니다.</p><p>복잡한 주휴수당·야간수당 계산을 누구나 쉽게 사용할 수 있도록 만드는 것이 목표입니다.</p></div></section>
+        <section class="plain-section"><h2>문의 방법</h2><p>오류 제보, 개선 의견, 제휴 문의는 이메일로 보내주세요. 입력 조건과 기대한 결과를 함께 적어주시면 더 빠르게 확인할 수 있습니다.</p><div class="inline-links"><a href="mailto:lawzero3057@gmail.com">lawzero3057@gmail.com</a><a href="/contact.html">문의하기</a><a href="/privacy.html">개인정보처리방침</a></div></section>
       </article>
     </main>
         <footer class="site-footer">
       <div class="footer-inner">
-        <nav class="footer-links footer-policy-links" aria-label="하단 링크"><a href="/about.html">사이트 소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/terms.html">이용약관</a><a href="/contact.html">문의하기</a></nav>
-        <div class="footer-business-info" aria-label="운영자 정보">
-          <span>운영사: 로제로(Lawzero)</span>
-          <span>대표: 박도영</span>
-          <span>사업자등록번호: 833-61-00978</span>
+        <div class="footer-business-info" aria-label="알바BEE 운영 정보">
+          <span>&copy; 2026 알바BEE</span>
+          <span>Lawzero</span>
           <span>문의: <a href="mailto:lawzero3057@gmail.com">lawzero3057@gmail.com</a></span>
         </div>
-        <div class="lawzero-footer-brand">© 2026 알바BEE</div>
       </div>
     </footer>
   </div>
