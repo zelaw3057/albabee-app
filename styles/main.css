@@ -15981,3 +15981,93 @@ textarea {
   font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", system-ui, sans-serif !important;
   font-synthesis-weight: none;
 }
+
+/* how-to-use final layout polish: keep the left step menu, make the tutorial card image-led */
+@media (min-width: 901px) {
+  html body.howto-page .seo-hero {
+    width: calc(100% - 140px) !important;
+    max-width: 1016px !important;
+    margin: 34px 0 30px 140px !important;
+  }
+
+  html body.howto-page .step-view,
+  html body.howto-page .step-content,
+  html body.howto-page .guide-step-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 22px !important;
+  }
+
+  html body.howto-page .step-view {
+    width: 100% !important;
+    max-width: 1016px !important;
+    padding: 34px 34px 30px !important;
+  }
+
+  html body.howto-page .step-copy,
+  html body.howto-page .guide-step-copy {
+    width: 100% !important;
+    max-width: 780px !important;
+    margin: 0 !important;
+  }
+
+  html body.howto-page .step-image-frame,
+  html body.howto-page .step-image,
+  html body.howto-page .guide-step-image {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  html body.howto-page .step-image-frame img,
+  html body.howto-page .step-image img,
+  html body.howto-page .guide-step-image img {
+    width: 100% !important;
+    max-width: 948px !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    border-radius: 18px !important;
+  }
+
+  html body.howto-page .step-bottom-nav,
+  html body.howto-page .step-actions,
+  html body.howto-page .guide-step-actions,
+  html body.howto-page .howto-actions {
+    width: 100% !important;
+    margin: 2px 0 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body.howto-page .seo-hero {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 28px auto 28px !important;
+  }
+
+  html body.howto-page .step-view,
+  html body.howto-page .step-content,
+  html body.howto-page .guide-step-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  html body.howto-page .step-image-frame img,
+  html body.howto-page .step-image img,
+  html body.howto-page .guide-step-image img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+}
