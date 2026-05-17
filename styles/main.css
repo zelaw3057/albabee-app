@@ -4034,7 +4034,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "?ㅼ쓬" !important;
+  content: none !important;
   color: #7b8494 !important;
   font-size: 10px !important;
 }
@@ -5351,7 +5351,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "?ㅼ쓬" !important;
+  content: none !important;
   color: #7b8494 !important;
   font-size: 10px !important;
 }
@@ -6692,7 +6692,7 @@ header {
 }
 
 .step-card.step-locked .step-arrow::before {
-  content: "?ㅼ쓬";
+  content: none;
   position: absolute;
   color: #667085;
 }
@@ -7858,7 +7858,7 @@ textarea {
 }
 
 .step-card.step-locked .step-arrow::before {
-  content: "?ㅼ쓬";
+  content: none;
   position: absolute;
   color: #667085;
   font-size: 10px;
@@ -8860,7 +8860,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "?ㅼ쓬" !important;
+  content: none !important;
   position: absolute !important;
   inset: 0 !important;
   display: flex !important;
@@ -9212,7 +9212,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "?ㅼ쓬" !important;
+  content: none !important;
   position: absolute !important;
   inset: 0 !important;
   display: flex !important;
@@ -9394,7 +9394,7 @@ body.force-mobile-view .step-card.step-locked .step-arrow {
 
 .step-card.step-locked .step-arrow::before,
 body.force-mobile-view .step-card.step-locked .step-arrow::before {
-  content: "?ㅼ쓬" !important;
+  content: none !important;
   color: #7b8494 !important;
   font-size: 10px !important;
 }
@@ -15193,4 +15193,63 @@ html body.howto-page .howto-actions {
     max-width: 100% !important;
     min-width: 0 !important;
   }
+}
+
+/* final calculator step label lock: use real JS text only, never pseudo glyphs */
+html body .step-arrow,
+html body .section-toggle,
+html body .step-card-toggle,
+html body button[data-step-toggle],
+html body.force-mobile-view .step-arrow {
+  position: static !important;
+  min-width: 64px !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 30px !important;
+  padding: 7px 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+  font-family: inherit !important;
+}
+
+html body .step-card.step-open .step-arrow,
+html body.force-mobile-view .step-card.step-open .step-arrow {
+  background: #0f172a !important;
+  color: #fff !important;
+}
+
+html body .step-card.step-completed:not(.step-open) .step-arrow,
+html body.force-mobile-view .step-card.step-completed:not(.step-open) .step-arrow {
+  background: #eef4ff !important;
+  color: #1f3b8f !important;
+}
+
+html body .step-card.step-locked .step-arrow,
+html body.force-mobile-view .step-card.step-locked .step-arrow {
+  border: 1px solid #e6eaf0 !important;
+  background: #f6f8fb !important;
+  color: #475569 !important;
+}
+
+html body .step-arrow::before,
+html body .step-arrow::after,
+html body .section-toggle::before,
+html body .section-toggle::after,
+html body .step-card-toggle::before,
+html body .step-card-toggle::after,
+html body button[data-step-toggle]::before,
+html body button[data-step-toggle]::after,
+html body.force-mobile-view .step-arrow::before,
+html body.force-mobile-view .step-arrow::after {
+  content: none !important;
+  display: none !important;
 }
