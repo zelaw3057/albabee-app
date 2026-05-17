@@ -1,4 +1,4 @@
-const CACHE_NAME = 'albabee-app-v12-20260517-static-routes';
+const CACHE_NAME = 'albabee-app-v13-20260517-click-bindings';
 const APP_SHELL = [
   '/',
   '/index.html',
