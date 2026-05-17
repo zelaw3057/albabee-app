@@ -1,4 +1,4 @@
-const CACHE_NAME = 'albabee-app-v11-20260516-nav-guide-image';
+const CACHE_NAME = 'albabee-app-v12-20260517-static-routes';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -50,10 +50,18 @@ self.addEventListener('fetch', function(event){
   if(url.origin !== location.origin) return;
   if(url.pathname.startsWith('/s')) return;
 
+  function shouldCacheResponse(request, response){
+    if(!response || !response.ok) return false;
+    if(request.destination === 'image' || url.pathname.startsWith('/images/')){
+      return (response.headers.get('Content-Type') || '').toLowerCase().startsWith('image/');
+    }
+    return true;
+  }
+
   if(url.pathname.startsWith('/images/guide/')){
     event.respondWith(
       fetch(request, { cache: 'no-store' }).then(function(response){
-        if(response.ok){
+        if(shouldCacheResponse(request, response)){
           const copy = response.clone();
           caches.open(CACHE_NAME).then(function(cache){
             cache.put(request, copy);
@@ -75,7 +83,7 @@ self.addEventListener('fetch', function(event){
   if(networkFirst){
     event.respondWith(
       fetch(request, { cache: 'no-store' }).then(function(response){
-        if(response.ok){
+        if(shouldCacheResponse(request, response)){
           const copy = response.clone();
           caches.open(CACHE_NAME).then(function(cache){
             cache.put(request, copy);
@@ -96,7 +104,7 @@ self.addEventListener('fetch', function(event){
   event.respondWith(
     caches.match(request).then(function(cached){
       return cached || fetch(request).then(function(response){
-        if(response.ok){
+        if(shouldCacheResponse(request, response)){
           const copy = response.clone();
           caches.open(CACHE_NAME).then(function(cache){
             cache.put(request, copy);
