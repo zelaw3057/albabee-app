@@ -6,18 +6,20 @@
 /favicon.png /favicon.png 200
 /apple-touch-icon.png /apple-touch-icon.png 200
 /manifest.json /manifest.json 200
-/minimum-wage /minimum-wage.html 301
-/weekly-pay /weekly-pay.html 301
-/night-pay /night-pay.html 301
-/overtime-pay /overtime-pay.html 301
-/holiday-pay /holiday-pay.html 301
-/wage-guide /wage-guide.html 301
-/faq /faq.html 301
-/notice /notice.html 301
-/how-to-use /how-to-use.html 301
-/about /about.html 301
-/company /company.html 301
-/privacy /privacy.html 301
-/terms /terms.html 301
-/contact /contact.html 301
+
+/how-to-use.html /how-to-use.html 200
+/about.html /about.html 200
+/company.html /company.html 200
+/wage-guide.html /wage-guide.html 200
+/faq.html /faq.html 200
+/notice.html /notice.html 200
+/contact.html /contact.html 200
+/privacy.html /privacy.html 200
+/terms.html /terms.html 200
+/minimum-wage.html /minimum-wage.html 200
+/weekly-pay.html /weekly-pay.html 200
+/night-pay.html /night-pay.html 200
+/overtime-pay.html /overtime-pay.html 200
+/holiday-pay.html /holiday-pay.html 200
+
 /* /index.html 200
