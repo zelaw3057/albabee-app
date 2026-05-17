@@ -2598,21 +2598,23 @@ let selectedDateKey = null;
         const section = header.closest('.step-card');
         if(!section || !section.id) return;
         header.dataset.albabeeBound = '1';
-        header.onclick = null;
-        header.addEventListener('click', function(event){
-          event.preventDefault();
-          toggleStepSection(section.id);
-        });
+        if(!header.getAttribute('onclick')){
+          header.addEventListener('click', function(event){
+            event.preventDefault();
+            toggleStepSection(section.id);
+          });
+        }
       });
 
       const calcBtn = document.getElementById('calculateBtn');
       if(calcBtn && calcBtn.dataset.albabeeBound !== '1'){
         calcBtn.dataset.albabeeBound = '1';
-        calcBtn.onclick = null;
-        calcBtn.addEventListener('click', function(event){
-          event.preventDefault();
-          calculateMonthlyPay();
-        });
+        if(!calcBtn.getAttribute('onclick')){
+          calcBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            calculateMonthlyPay();
+          });
+        }
       }
 
       document.querySelectorAll('.collapsible-head').forEach(function(btn){
@@ -2620,21 +2622,23 @@ let selectedDateKey = null;
         const box = btn.closest('.collapsible-box');
         if(!box || !box.id) return;
         btn.dataset.albabeeBound = '1';
-        btn.onclick = null;
-        btn.addEventListener('click', function(event){
-          event.preventDefault();
-          toggleAccordion(box.id);
-        });
+        if(!btn.getAttribute('onclick')){
+          btn.addEventListener('click', function(event){
+            event.preventDefault();
+            toggleAccordion(box.id);
+          });
+        }
       });
 
       const shareBtn = document.getElementById('shareLinkToggleBtn');
       if(shareBtn && shareBtn.dataset.albabeeBound !== '1'){
         shareBtn.dataset.albabeeBound = '1';
-        shareBtn.onclick = null;
-        shareBtn.addEventListener('click', function(event){
-          event.preventDefault();
-          copyShareLink();
-        });
+        if(!shareBtn.getAttribute('onclick')){
+          shareBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            copyShareLink();
+          });
+        }
       }
     }
 
@@ -2658,34 +2662,48 @@ let selectedDateKey = null;
       return result;
     };
 
+    function runCalculatorInitializers(){
+      safeInit('button bindings', installCalculatorButtonBindings);
+      safeInit('allowance picker outside click', function(){
+        document.addEventListener('click', function(){
+          if(activeAllowancePickerId !== null){ activeAllowancePickerId = null; renderAllowanceList(); }
+        });
+      });
+      safeInit('date and wage defaults', setInitialDateAndWageDefaults);
+      safeInit('view mode', initViewMode);
+      safeInit('step flow', initStepFlow);
+      safeInit('cookie consent', initCookieConsent);
+      safeInit('color palette', initColorPalette);
+      safeInit('info tooltips', installInfoTooltips);
+      safeInit('day tooltip auto hide', installDayTooltipAutoHide);
+      safeInit('current year month', function(){ lastCalendarPeriod = getCurrentYearMonth(); });
+      safeInit('allowance color', function(){ setAllowanceColor(getNextAllowanceColor()); });
+      safeInit('allowance type fields', toggleAllowanceTypeFields);
+      safeInit('business size rules', applyBusinessSizeRules);
+      safeInit('resize handler', function(){
+        window.addEventListener('resize', function(){
+          clearTimeout(viewModeResizeTimer);
+          viewModeResizeTimer = setTimeout(function(){ setViewMode(); }, 160);
+        });
+      });
+      safeInit('calendar render', renderCalendar);
+      safeInit('allowance render', renderAllowanceList);
+      safeInit('dirty wrappers', installDirtyWrappers);
+      safeInit('persistence', initializeCalculatorPersistence);
+      safeInit('in-app browser bridges', installInAppBrowserBridges);
+      safeInit('toss in-app policy', applyTossInAppPolicy);
+      safeInit('service worker', registerServiceWorker);
+    }
+
+    function onDomReady(fn){
+      if(document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', fn, { once: true });
+      } else {
+        fn();
+      }
+    }
+
     safeInit('expose globals', exposeCalculatorGlobals);
-    safeInit('button bindings', installCalculatorButtonBindings);
-    safeInit('allowance picker outside click', function(){
-      document.addEventListener('click', function(){
-        if(activeAllowancePickerId !== null){ activeAllowancePickerId = null; renderAllowanceList(); }
-      });
+    onDomReady(function(){
+      safeInit('calculator initializers', runCalculatorInitializers);
     });
-    safeInit('date and wage defaults', setInitialDateAndWageDefaults);
-    safeInit('view mode', initViewMode);
-    safeInit('step flow', initStepFlow);
-    safeInit('cookie consent', initCookieConsent);
-    safeInit('color palette', initColorPalette);
-    safeInit('info tooltips', installInfoTooltips);
-    safeInit('day tooltip auto hide', installDayTooltipAutoHide);
-    safeInit('current year month', function(){ lastCalendarPeriod = getCurrentYearMonth(); });
-    safeInit('allowance color', function(){ setAllowanceColor(getNextAllowanceColor()); });
-    safeInit('allowance type fields', toggleAllowanceTypeFields);
-    safeInit('business size rules', applyBusinessSizeRules);
-    safeInit('resize handler', function(){
-      window.addEventListener('resize', function(){
-        clearTimeout(viewModeResizeTimer);
-        viewModeResizeTimer = setTimeout(function(){ setViewMode(); }, 160);
-      });
-    });
-    safeInit('calendar render', renderCalendar);
-    safeInit('allowance render', renderAllowanceList);
-    safeInit('dirty wrappers', installDirtyWrappers);
-    safeInit('persistence', initializeCalculatorPersistence);
-    safeInit('in-app browser bridges', installInAppBrowserBridges);
-    safeInit('toss in-app policy', applyTossInAppPolicy);
-    safeInit('service worker', registerServiceWorker);

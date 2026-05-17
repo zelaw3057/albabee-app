@@ -1,4 +1,4 @@
-const CACHE_NAME = 'albabee-app-v13-20260517-click-bindings';
+const CACHE_NAME = 'albabee-app-v14-20260518-calculator-restore';
 const APP_SHELL = [
   '/',
   '/index.html',
