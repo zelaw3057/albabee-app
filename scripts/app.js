@@ -32,6 +32,9 @@ let selectedDateKey = null;
     let draftClearedByUser = false;
     let draftPersistenceReady = false;
     let viewModeResizeTimer = null;
+    let calculatorOutsideClickBound = false;
+    let calculatorResizeBound = false;
+    let calculatorLifecycleBound = false;
 
 
     function updateDirtyUI(){
@@ -2594,51 +2597,43 @@ let selectedDateKey = null;
 
     function installCalculatorButtonBindings(){
       document.querySelectorAll('.step-toggle').forEach(function(header){
-        if(header.dataset.albabeeBound === '1') return;
         const section = header.closest('.step-card');
         if(!section || !section.id) return;
         header.dataset.albabeeBound = '1';
-        if(!header.getAttribute('onclick')){
-          header.addEventListener('click', function(event){
-            event.preventDefault();
-            toggleStepSection(section.id);
-          });
-        }
+        header.onclick = function(event){
+          if(event) event.preventDefault();
+          return toggleStepSection(section.id);
+        };
       });
 
       const calcBtn = document.getElementById('calculateBtn');
-      if(calcBtn && calcBtn.dataset.albabeeBound !== '1'){
+      if(calcBtn){
         calcBtn.dataset.albabeeBound = '1';
-        if(!calcBtn.getAttribute('onclick')){
-          calcBtn.addEventListener('click', function(event){
-            event.preventDefault();
-            calculateMonthlyPay();
-          });
-        }
+        calcBtn.onclick = function(event){
+          if(event) event.preventDefault();
+          calculateMonthlyPay();
+          return false;
+        };
       }
 
       document.querySelectorAll('.collapsible-head').forEach(function(btn){
-        if(btn.dataset.albabeeBound === '1') return;
         const box = btn.closest('.collapsible-box');
         if(!box || !box.id) return;
         btn.dataset.albabeeBound = '1';
-        if(!btn.getAttribute('onclick')){
-          btn.addEventListener('click', function(event){
-            event.preventDefault();
-            toggleAccordion(box.id);
-          });
-        }
+        btn.onclick = function(event){
+          if(event) event.preventDefault();
+          return toggleAccordion(box.id);
+        };
       });
 
       const shareBtn = document.getElementById('shareLinkToggleBtn');
-      if(shareBtn && shareBtn.dataset.albabeeBound !== '1'){
+      if(shareBtn){
         shareBtn.dataset.albabeeBound = '1';
-        if(!shareBtn.getAttribute('onclick')){
-          shareBtn.addEventListener('click', function(event){
-            event.preventDefault();
-            copyShareLink();
-          });
-        }
+        shareBtn.onclick = function(event){
+          if(event) event.preventDefault();
+          copyShareLink();
+          return false;
+        };
       }
     }
 
@@ -2662,9 +2657,13 @@ let selectedDateKey = null;
       return result;
     };
 
-    function runCalculatorInitializers(){
+    function initAlbabeeCalculator(){
+      const calculatorRoot = document.getElementById('calculationSection') || document.getElementById('basicSection');
+      if(!calculatorRoot) return false;
       safeInit('button bindings', installCalculatorButtonBindings);
       safeInit('allowance picker outside click', function(){
+        if(calculatorOutsideClickBound) return;
+        calculatorOutsideClickBound = true;
         document.addEventListener('click', function(){
           if(activeAllowancePickerId !== null){ activeAllowancePickerId = null; renderAllowanceList(); }
         });
@@ -2681,6 +2680,8 @@ let selectedDateKey = null;
       safeInit('allowance type fields', toggleAllowanceTypeFields);
       safeInit('business size rules', applyBusinessSizeRules);
       safeInit('resize handler', function(){
+        if(calculatorResizeBound) return;
+        calculatorResizeBound = true;
         window.addEventListener('resize', function(){
           clearTimeout(viewModeResizeTimer);
           viewModeResizeTimer = setTimeout(function(){ setViewMode(); }, 160);
@@ -2693,6 +2694,7 @@ let selectedDateKey = null;
       safeInit('in-app browser bridges', installInAppBrowserBridges);
       safeInit('toss in-app policy', applyTossInAppPolicy);
       safeInit('service worker', registerServiceWorker);
+      return true;
     }
 
     function onDomReady(fn){
@@ -2704,6 +2706,21 @@ let selectedDateKey = null;
     }
 
     safeInit('expose globals', exposeCalculatorGlobals);
+    window.initAlbabeeCalculator = initAlbabeeCalculator;
     onDomReady(function(){
-      safeInit('calculator initializers', runCalculatorInitializers);
+      safeInit('calculator initializers', initAlbabeeCalculator);
     });
+    if(!calculatorLifecycleBound){
+      calculatorLifecycleBound = true;
+      window.addEventListener('pageshow', function(){
+        safeInit('calculator pageshow', initAlbabeeCalculator);
+      });
+      window.addEventListener('popstate', function(){
+        window.setTimeout(function(){
+          safeInit('calculator popstate', initAlbabeeCalculator);
+        }, 0);
+      });
+      document.addEventListener('visibilitychange', function(){
+        if(!document.hidden) safeInit('calculator visible', initAlbabeeCalculator);
+      });
+    }

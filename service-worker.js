@@ -1,4 +1,4 @@
-const CACHE_NAME = 'albabee-app-v14-20260518-calculator-restore';
+const CACHE_NAME = 'albabee-app-v15-20260518-calculator-lifecycle';
 const APP_SHELL = [
   '/',
   '/index.html',
