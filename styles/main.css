@@ -15017,3 +15017,180 @@ html body.howto-page .howto-actions {
     max-width: 100% !important;
   }
 }
+
+/* cascade final v5: image-first how-to with slim floating steps */
+html body.howto-page .howto-layout {
+  position: relative !important;
+  width: min(100% - 32px, 980px) !important;
+  max-width: 980px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  padding: 0 !important;
+}
+
+html body.howto-page .step-tabs,
+html body.howto-page .howto-step-tabs {
+  position: absolute !important;
+  left: -72px !important;
+  top: 40px !important;
+  z-index: 2 !important;
+  width: 142px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  gap: 6px !important;
+  margin: 0 !important;
+  padding: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04) !important;
+  overflow: visible !important;
+}
+
+html body.howto-page .step-tab,
+html body.howto-page .howto-step-tab {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 40px !important;
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 7px !important;
+  padding: 8px 9px !important;
+  border-radius: 12px !important;
+  font-size: 12.5px !important;
+  font-weight: 650 !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  text-align: left !important;
+}
+
+html body.howto-page .step-tab-number {
+  width: 21px !important;
+  height: 21px !important;
+  min-width: 21px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+html body.howto-page .step-tab span,
+html body.howto-page .howto-step-tab span,
+html body.howto-page .step-tab-label {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+}
+
+html body.howto-page .step-view {
+  width: min(100%, 820px) !important;
+  max-width: 820px !important;
+  margin: 0 auto !important;
+  padding: 34px 38px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 28px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05) !important;
+}
+
+html body.howto-page .step-copy {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+html body.howto-page .step-copy h2 {
+  margin: 0 !important;
+  font-size: clamp(34px, 4vw, 46px) !important;
+  font-weight: 800 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.04em !important;
+}
+
+html body.howto-page .step-copy p:not(.step-kicker) {
+  max-width: 680px !important;
+  margin-top: 14px !important;
+  color: #475569 !important;
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+}
+
+html body.howto-page .step-image-frame {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  margin: 0 !important;
+}
+
+html body.howto-page .step-image-frame img {
+  width: 100% !important;
+  max-width: 760px !important;
+  min-width: min(700px, 100%) !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 20px !important;
+}
+
+html body.howto-page .step-bottom-nav,
+html body.howto-page .step-actions,
+html body.howto-page .guide-step-actions,
+html body.howto-page .howto-actions {
+  display: flex !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  margin-top: 2px !important;
+}
+
+@media (max-width: 900px) {
+  html body.howto-page .howto-layout {
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 14px !important;
+    display: block !important;
+  }
+
+  html body.howto-page .step-tabs,
+  html body.howto-page .howto-step-tabs {
+    position: static !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    margin: 0 0 18px !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+  }
+
+  html body.howto-page .step-tab,
+  html body.howto-page .howto-step-tab {
+    flex: 0 0 auto !important;
+    min-width: 124px !important;
+    white-space: normal !important;
+  }
+
+  html body.howto-page .step-tab span,
+  html body.howto-page .howto-step-tab span,
+  html body.howto-page .step-tab-label {
+    white-space: normal !important;
+  }
+
+  html body.howto-page .step-view {
+    width: 100% !important;
+    padding: 28px 20px !important;
+    border-radius: 22px !important;
+  }
+
+  html body.howto-page .step-image-frame img {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}

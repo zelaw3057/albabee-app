@@ -1,8 +1,11 @@
+/images/* /images/:splat 200
+/assets/* /assets/:splat 200
+/scripts/* /scripts/:splat 200
+/styles/* /styles/:splat 200
+/favicon.ico /favicon.ico 200
 /favicon.png /favicon.png 200
 /apple-touch-icon.png /apple-touch-icon.png 200
 /manifest.json /manifest.json 200
-/scripts/* /scripts/:splat 200
-/styles/* /styles/:splat 200
 /minimum-wage /minimum-wage.html 301
 /weekly-pay /weekly-pay.html 301
 /night-pay /night-pay.html 301
@@ -17,3 +20,4 @@
 /privacy /privacy.html 301
 /terms /terms.html 301
 /contact /contact.html 301
+/* /index.html 200
