@@ -1678,7 +1678,7 @@ let selectedDateKey = null;
             content: {
               title: title,
               description: shareMessage,
-              imageUrl: 'https://albabee.pages.dev/images/og/albabee-og.png',
+              imageUrl: 'https://albabee.co.kr/images/og/albabee-og.png',
               link: { mobileWebUrl: url, webUrl: url }
             },
             buttons: [{ title: '계산 결과 보기', link: { mobileWebUrl: url, webUrl: url } }],
