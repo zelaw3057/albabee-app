@@ -320,12 +320,11 @@ let selectedDateKey = null;
       } else if(section.classList.contains('step-open')){
         label.textContent = '접기';
       } else if(section.classList.contains('step-locked')){
-        label.textContent = '다음';
+        label.textContent = '입력하기';
       } else {
         label.textContent = '입력하기';
       }
     }
-
     function markStepUnlocked(sectionId){
       const section = document.getElementById(sectionId);
       if(!section) return;
